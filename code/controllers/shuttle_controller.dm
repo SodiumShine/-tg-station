@@ -9,7 +9,7 @@
 #define SHUTTLEARRIVETIME 600		// 10 minutes = 600 seconds
 #define SHUTTLELEAVETIME 180		// 3 minutes = 180 seconds
 #define SHUTTLETRANSITTIME 120		// 2 minutes = 120 seconds
-#define SHUTTLEAUTOCALLTIMER 2.5   	// 25 minutes
+#define SHUTTLEAUTOCALLTIMER 2   	// 25 minutes // SHINE reduced to 2 so it's only 20 minutes
 
 #define UNDOCKED 0 //Shuttle is always this until the shuttle has reached the station.
 #define DOCKED -1 //Shuttle is at the station
