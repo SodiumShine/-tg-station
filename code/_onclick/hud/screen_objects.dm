@@ -325,12 +325,12 @@
 			if(isAI(usr))
 				var/mob/living/silicon/ai/AI = usr
 				AI.ai_alerts()
-
+/* // SHINE removed, more unused AI stuff
 		if("Announcement")
 			if(isAI(usr))
 				var/mob/living/silicon/ai/AI = usr
 				AI.announcement()
-
+*/
 		if("Call Emergency Shuttle")
 			if(isAI(usr))
 				var/mob/living/silicon/ai/AI = usr

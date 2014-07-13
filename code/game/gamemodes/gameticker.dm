@@ -7,7 +7,7 @@ var/round_start_time = 0
 #define GAME_STATE_FINISHED		4
 
 /datum/controller/gameticker
-	var/const/restart_timeout = 250
+	var/const/restart_timeout = 600 // SHINE changed 250 to 600 for a minute of dicking about after the game ends
 	var/current_state = GAME_STATE_PREGAME
 
 	var/hide_mode = 0

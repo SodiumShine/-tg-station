@@ -3,8 +3,8 @@
 	max_stages = 4
 	spread = "On contact"
 	spread_type = CONTACT_GENERAL
-	cure = "Ryetalin"
 	cure = "ryetalyn"
+	cure_id = "ryetalyn" // SHINE fixed cure to cure_id
 	curable = 0
 	agent = "S4E1 retrovirus"
 	affected_species = list("Human")

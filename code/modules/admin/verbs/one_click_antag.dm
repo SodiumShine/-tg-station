@@ -73,7 +73,7 @@ client/proc/one_click_antag()
 								candidates += applicant
 
 	if(candidates.len)
-		var/numTraitors = min(candidates.len, 3)
+		var/numTraitors = min(candidates.len, 1) // SHINE 3 to 1, hopefully will only make one traitor at a time
 
 		for(var/i = 0, i<numTraitors, i++)
 			H = pick(candidates)
@@ -105,7 +105,7 @@ client/proc/one_click_antag()
 								candidates += applicant
 
 	if(candidates.len)
-		var/numChanglings = min(candidates.len, 3)
+		var/numChanglings = min(candidates.len, 1) // SHINE 3 to 1 hopefully will only make one at a time
 
 		for(var/i = 0, i<numChanglings, i++)
 			H = pick(candidates)
