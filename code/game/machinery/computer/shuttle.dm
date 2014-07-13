@@ -2,7 +2,7 @@
 	name = "emergency shuttle console"
 	desc = "For shuttle control."
 	icon_state = "shuttle"
-	var/auth_need = 3.0
+	var/auth_need = 2.0 // 3 to 2 SHINE
 	var/list/authorized = list(  )
 
 
