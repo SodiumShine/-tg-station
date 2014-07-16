@@ -58,21 +58,22 @@
 				S.imp = new /obj/item/weapon/implant/explosive(S)
 				S.name += " (explosive)"
 				return
-
+/* SHINE removed
 			if("hacker")
 				new /obj/item/weapon/aiModule/syndicate(src)
 				new /obj/item/weapon/card/emag(src)
 				new /obj/item/device/encryptionkey/binary(src)
 				new /obj/item/weapon/aiModule/toyAI(src)
 				return
-
+*/
+/* SHINE removed
 			if("lordsingulo")
 				new /obj/item/device/sbeacondrop(src)
 				new /obj/item/clothing/suit/space/syndicate/black/red(src)
 				new /obj/item/clothing/head/helmet/space/syndicate/black/red(src)
 				new /obj/item/weapon/card/emag(src)
 				return
-
+*/
 			if("darklord")
 				new /obj/item/weapon/melee/energy/sword(src)
 				new /obj/item/weapon/melee/energy/sword(src)

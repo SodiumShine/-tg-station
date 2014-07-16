@@ -139,7 +139,7 @@ var/list/uplink_items = list()
 	desc = "A flamethrower, fueled by a portion of highly flammable biotoxins stolen previously from Nanotrasen stations. Make a statement by roasting the filth in their own greed. Use with caution."
 	item = /obj/item/weapon/flamethrower/full/tank
 	cost = 6
-	gamemodes = list(/datum/game_mode/nuclear)
+	gamemodes = list() // SHINE empty list
 
 /datum/uplink_item/dangerous/sword
 	name = "Energy Sword"
@@ -164,7 +164,7 @@ var/list/uplink_items = list()
 	desc = "A unique grenade that deploys a swarm of viscerators upon activation, which will chase down and shred any non-operatives in the area."
 	item = /obj/item/weapon/grenade/spawnergrenade/manhacks
 	cost = 4
-	gamemodes = list(/datum/game_mode/nuclear)
+	gamemodes = list() // SHINE empty list
 
 /datum/uplink_item/dangerous/bioterror
 	name = "Biohazardous Chemical Sprayer"
@@ -172,7 +172,7 @@ var/list/uplink_items = list()
 	Use with extreme caution, to prevent exposure to yourself and your fellow operatives."
 	item = /obj/item/weapon/reagent_containers/spray/chemsprayer/bioterror
 	cost = 10
-	gamemodes = list(/datum/game_mode/nuclear)
+	gamemodes = list() // SHINE empty list
 
 /datum/uplink_item/dangerous/gygax
 	name = "Gygax Exosuit"
@@ -334,7 +334,7 @@ var/list/uplink_items = list()
 	and other medical supplies helpful for a medical field operative.."
 	item = /obj/item/weapon/storage/firstaid/tactical
 	cost = 5
-	gamemodes = list(/datum/game_mode/nuclear)
+	gamemodes = list() // SHINE empty list
 
 /datum/uplink_item/device_tools/space_suit
 	name = "Syndicate Space Suit"
@@ -349,25 +349,27 @@ var/list/uplink_items = list()
 	Hotter objects, such as warm bodies, cybernetic organisms and artificial intelligence cores emit more of this light than cooler objects like walls and airlocks."
 	item = /obj/item/clothing/glasses/thermal/syndi
 	cost = 3
-
+/* // SHINE DISABLED
 /datum/uplink_item/device_tools/binary
 	name = "Binary Translator Key"
 	desc = "A key, that when inserted into a radio headset, allows you to listen to and talk with artificial intelligences and cybernetic organisms in binary. "
 	item = /obj/item/device/encryptionkey/binary
 	cost = 3
-
+*/
+/* SHINE disabled
 /datum/uplink_item/device_tools/ai_detector
 	name = "Artificial Intelligence Detector" // changed name in case newfriends thought it detected disguised ai's
 	desc = "A functional multitool that turns red when it detects an artificial intelligence watching it or its holder. Knowing when an artificial intelligence is watching you is useful for knowing when to maintain cover."
 	item = /obj/item/device/multitool/ai_detect
 	cost = 1
-
+*/
+/* SHINE disabled
 /datum/uplink_item/device_tools/hacked_module
 	name = "Hacked AI Law Upload Module"
 	desc = "When used with an upload console, this module allows you to upload priority laws to an artificial intelligence. Be careful with their wording, as artificial intelligences may look for loopholes to exploit."
 	item = /obj/item/weapon/aiModule/syndicate
 	cost = 7
-
+*/
 /datum/uplink_item/device_tools/plastic_explosives
 	name = "Composition C-4"
 	desc = "C-4 is plastic explosive of the common variety Composition C. You can use it to breach walls or connect a signaler to its wiring to make it remotely detonable. \
@@ -418,7 +420,7 @@ var/list/uplink_items = list()
 	desc = "An incredibly useful personal shield projector, capable of reflecting energy projectiles and defending against other attacks."
 	item = /obj/item/weapon/shield/energy
 	cost = 8
-	gamemodes = list(/datum/game_mode/nuclear)
+	gamemodes = list() // SHINE empty list
 
 
 // IMPLANTS
