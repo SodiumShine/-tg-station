@@ -38,7 +38,7 @@
 	..()
 	item = null // Disabled
 
-/datum/uplink_item/dangerous/viscerators // SHINE transfered
+/datum/uplink_item/dangerous/viscerators/New() // SHINE transfered
 	..()
 	name = "Viscerator Delivery Grenade"
 	desc = "A unique grenade that deploys a swarm of viscerators upon activation, which will chase down and shred any non-operatives in the area."
@@ -52,7 +52,7 @@
 
 
 
-/datum/uplink_item/device_tools/medkit // SHINE add
+/datum/uplink_item/device_tools/medkit/New() // SHINE add
 	..()
 	name = "Syndicate Medical Supply Kit"
 	desc = "The syndicate medkit is a suspicious black and red. Included is a combat stimulant injector for rapid healing, a medical hud for quick identification of injured comrades, \
@@ -62,6 +62,6 @@
 	gamemodes = list() // SHINE empty list all modes
 
 
-/datum/uplink_item/device_tools/shield // SHINE add
+/datum/uplink_item/device_tools/shield/New() // SHINE add
 	..()
 	gamemodes = list() // SHINE empty list
