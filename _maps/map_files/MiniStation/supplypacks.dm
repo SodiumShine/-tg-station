@@ -37,11 +37,11 @@
 	containertype = /obj/structure/largecrate
 	containername = "hydroponics tray crate"
 
-/datum/supply_packs/organic/pizza
+/datum/supply_packs/organic/pizza // SHINE added
 	name = "Pizza Delivery"
 	contains = list(/obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/margherita,
 					/obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/meatpizza,
 					/obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/mushroompizza,
 					/obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/vegetablepizza)
-	cost = 35
+	cost = 50
 	containername = "Pizza crate"

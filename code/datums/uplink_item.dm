@@ -172,7 +172,7 @@ var/list/uplink_items = list()
 	Use with extreme caution, to prevent exposure to yourself and your fellow operatives."
 	item = /obj/item/weapon/reagent_containers/spray/chemsprayer/bioterror
 	cost = 10
-	gamemodes = list() // SHINE empty list
+	gamemodes = list(/datum/game_mode/nuclear)
 
 /datum/uplink_item/dangerous/gygax
 	name = "Gygax Exosuit"

@@ -14,12 +14,12 @@
 
 /datum/uplink_item/dangerous/syndicate_minibomb/New()
 	..()
-	cost = 6
+	cost = 5
 // SHINE re-add parapen
 /datum/uplink_item/stealthy_weapons/para_pen/New()
 	..()
 //	item = null // Disabled
-	cost = 5
+	cost = 6
 /datum/uplink_item/stealthy_tools/syndigolashes/New()
 	..()
 	cost = 3 // SHINE 5 to 3
@@ -43,7 +43,7 @@
 	name = "Viscerator Delivery Grenade"
 	desc = "A unique grenade that deploys a swarm of viscerators upon activation, which will chase down and shred any non-operatives in the area."
 	item = /obj/item/weapon/grenade/spawnergrenade/manhacks
-	cost = 7 // SHINE Price up 4 to 7
+	cost = 6 // SHINE Price up 4 to 7
 	gamemodes = list() // SHINE empty list for all modes
 
 /datum/uplink_item/dangerous/bioterror // SHINE add
