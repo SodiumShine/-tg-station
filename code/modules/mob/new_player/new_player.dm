@@ -41,16 +41,16 @@
 					isadmin = 1
 				var/DBQuery/query = dbcon.NewQuery("SELECT id FROM erro_poll_question WHERE [(isadmin ? "" : "adminonly = false AND")] Now() BETWEEN starttime AND endtime AND id NOT IN (SELECT pollid FROM erro_poll_vote WHERE ckey = \"[ckey]\") AND id NOT IN (SELECT pollid FROM erro_poll_textreply WHERE ckey = \"[ckey]\")")
 				query.Execute()
-				var/newpoll = 0
+//				var/newpoll = 0 //SHINE REMOVED
 				while(query.NextRow())
-					newpoll = 1
+//					newpoll = 1 //SHINE removed
 					break
-
+/* SHINE removed?
 				if(newpoll)
 					output += "<p><b><a href='byond://?src=\ref[src];showpoll=1'>Show Player Polls</A> (NEW!)</b></p>"
 				else
 					output += "<p><a href='byond://?src=\ref[src];showpoll=1'>Show Player Polls</A></p>"
-
+*/
 		output += "</center>"
 
 		//src << browse(output,"window=playersetup;size=210x240;can_close=0")

@@ -13,7 +13,7 @@
 	response_help = "touches"
 	response_disarm = "pushes"
 	response_harm = "hits"
-	speed = 0
+	speed = 1 // SHINE 0 to 1, make them slower
 	maxHealth = 250
 	health = 250
 
