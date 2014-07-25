@@ -48,7 +48,7 @@ var/list/ai_list = list()
 	var/camera_light_on = 0
 	var/list/obj/machinery/camera/lit_cameras = list()
 
-	var/datum/trackable/track = null
+	var/datum/trackable/track = new()
 
 	var/last_paper_seen = null
 	var/can_shunt = 1
@@ -251,14 +251,14 @@ var/list/ai_list = list()
 	src.view_core()
 
 /mob/living/silicon/ai/verb/toggle_anchor()
-        set category = "AI Commands"
-        set name = "Toggle Floor Bolts"
-        if(!isturf(loc)) // if their location isn't a turf
-                return // stop
-        anchored = !anchored // Toggles the anchor
+	set category = "AI Commands"
+	set name = "Toggle Floor Bolts"
+	if(!isturf(loc)) // if their location isn't a turf
+		return // stop
+	anchored = !anchored // Toggles the anchor
 
-        src << "[anchored ? "<b>You are now anchored.</b>" : "<b>You are now unanchored.</b>"]"
-        // the message in the [] will change depending whether or not the AI is anchored
+	src << "[anchored ? "<b>You are now anchored.</b>" : "<b>You are now unanchored.</b>"]"
+	// the message in the [] will change depending whether or not the AI is anchored
 
 /mob/living/silicon/ai/update_canmove() //If the AI dies, mobs won't go through it anymore
 	return 0
