@@ -12,19 +12,19 @@ datum/proc/check_special_completion() //for objectives with special checks (is t
 
 
 datum/objective_item/steal/caplaser
-	name = "the captain's antique laser gun"
+	name = "the captain's antique laser gun. Intel suggests it is on display in the Bridge"
 	targetitem = /obj/item/weapon/gun/energy/laser/captain
 	difficulty = 5
 	excludefromjob = list("Captain")
 
 datum/objective_item/steal/handtele
-	name = "a hand teleporter"
+	name = "a hand teleporter. Intel suggests it is stored on the Bridge"
 	targetitem = /obj/item/weapon/hand_tele
 	difficulty = 5
 	excludefromjob = list("Captain")
 
 datum/objective_item/steal/rcd
-	name = "a rapid-construction-device"
+	name = "a rapid-construction-device. Intel suggests one is stored in the EVA"
 	targetitem = /obj/item/weapon/rcd
 	difficulty = 3
 /* SHINE too hard to hide
@@ -34,31 +34,31 @@ datum/objective_item/steal/jetpack
 	difficulty = 3
 */
 datum/objective_item/steal/magboots // SHINE changed from advanced to normal boots
-	name = "a pair of magboots"
+	name = "a pair of magboots. Intel suggests these are stored in the EVA"
 	targetitem =  /obj/item/clothing/shoes/magboots
 	difficulty = 5
 	excludefromjob = list("Chief Engineer", "Station Engineer") //SHINE added  station engineer
 
 datum/objective_item/steal/corgimeat
-	name = "a piece of corgi meat"
+	name = "a piece of corgi meat. Intel suggests the Head of Personnel owns a corgi"
 	targetitem = /obj/item/weapon/reagent_containers/food/snacks/meat/corgi
 	difficulty = 5
 	excludefromjob = list("Head of Personnel") //>hurting your little buddy ever
 
 datum/objective_item/steal/capmedal
-	name = "the medal of captaincy"
+	name = "the medal of captaincy. Intel suggests the captain has it"
 	targetitem = /obj/item/clothing/tie/medal/gold/captain
 	difficulty = 5
 	excludefromjob = list("Captain")
 
 datum/objective_item/steal/hypo
-	name = "the hypospray"
+	name = "the hypospray. Intel suggests it's stored in the Medbay"
 	targetitem = /obj/item/weapon/reagent_containers/hypospray
 	difficulty = 5
 	excludefromjob = list("Chief Medical Officer", "Medical Doctor", "Chemist") //SHINE added medical doctor and chemist
 
 datum/objective_item/steal/nukedisc
-	name = "the nuclear authentication disk"
+	name = "the nuclear authentication disk. Intel suggests it's kept on the Bridge"
 	targetitem = /obj/item/weapon/disk/nuclear
 	difficulty = 5
 	excludefromjob = list("Captain")
@@ -76,11 +76,12 @@ datum/objective_item/steal/reactive
 	excludefromjob = list("Research Director")
 */
 datum/objective_item/steal/documents
-	name = "any set of secret documents of any organization"
+	name = "a set of secret documents. Intel suggests they're stored in the Bridge"
 	targetitem = /obj/item/documents //Any set of secret documents. Doesn't have to be NT's
 	difficulty = 5
 
 //Items with special checks!
+/* // SHINE fuck plasma seriously
 datum/objective_item/steal/plasma
 	name = "28 moles of plasma (full tank)"
 	targetitem = /obj/item/weapon/tank
@@ -92,12 +93,12 @@ datum/objective_item/plasma/check_special_completion(var/obj/item/weapon/tank/T)
 	var/found_amount = 0
 	found_amount += T.air_contents.toxins
 	return found_amount>=target_amount
-
+*/
 
 datum/objective_item/steal/functionalai
-	name = "a functional AI"
+	name = "an AI card. Intel suggests it can be found on the Bridge"
 	targetitem = /obj/item/device/aicard
-	difficulty = 20 //beyond the impossible
+	difficulty = 5 //beyond the impossible // SHINE changed to 5 since no actual ai
 /* SHINE we dont have AI on ministation so dead ones will do
 datum/objective_item/functionalai/check_special_completion(var/obj/item/device/aicard/C)
 	for(var/mob/living/silicon/ai/A in C)
@@ -106,9 +107,9 @@ datum/objective_item/functionalai/check_special_completion(var/obj/item/device/a
 	return 0
 */
 datum/objective_item/steal/blueprints
-	name = "the station blueprints"
+	name = "the station blueprints. Intel suggests blueprints are kept in the EVA"
 	targetitem = /obj/item/blueprints
-	difficulty = 10
+	difficulty = 5
 	excludefromjob = list("Chief Engineer")
 	altitems = list(/obj/item/weapon/photo)
 
@@ -122,7 +123,7 @@ datum/objective_item/blueprints/check_special_completion(var/obj/item/I)
 	return 0
 
 datum/objective_item/steal/slime
-	name = "an unused sample of slime extract"
+	name = "an unused sample of slime extract. Intel suggests you can get this from Research & Development"
 	targetitem = /obj/item/slime_extract
 	difficulty = 3
 	excludefromjob = list("Research Director","Scientist")
@@ -131,6 +132,27 @@ datum/objective_item/slime/check_special_completion(var/obj/item/slime_extract/E
 	if(E.Uses > 0)
 		return 1
 	return 0
+
+// SHINE ADD THIS SECTION
+datum/objective_item/steal/monitorkey
+	name = "the key for the message monitors. Intel suggests you can find this in the Telecoms control room"
+	targetitem = /obj/item/weapon/paper/monitorkey
+	difficulty = 5
+
+datum/objective_item/steal/shotgun
+	name = "the bartender's shotgun. Intel suggests it can be found in the Bar"
+	targetitem = /obj/item/weapon/gun/projectile/revolver/doublebarrel
+	difficulty = 3
+
+datum/objective_item/steal/detectivegun
+	name = "the detective's revolver. Intel suggests it can be found in the Detective Office"
+	targetitem = /obj/item/weapon/gun/projectile/revolver/detective
+	difficulty = 5
+
+datum/objective_item/steal/loyaltybox
+	name = "the box of loyalty implants. Intel suggests they are stored in the Brig"
+	targetitem = /obj/item/weapon/storage/lockbox/loyalty
+	difficulty = 5
 
 //Unique Objectives
 datum/objective_item/unique/docs_red
