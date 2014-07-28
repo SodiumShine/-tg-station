@@ -114,6 +114,7 @@
 	icon_state = "beartrap0"
 	desc = "A trap used to catch bears and other legged creatures."
 	var/armed = 0
+	m_amt = 500
 
 /obj/item/weapon/legcuffs/beartrap/suicide_act(mob/user)
 	user.visible_message("<span class='suicide'>[user] is putting the [src.name] on \his head! It looks like \he's trying to commit suicide.</span>")
