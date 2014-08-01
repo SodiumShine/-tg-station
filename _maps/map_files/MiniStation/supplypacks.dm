@@ -37,11 +37,26 @@
 	containertype = /obj/structure/largecrate
 	containername = "hydroponics tray crate"
 
-/datum/supply_packs/organic/pizza // SHINE added
-	name = "Pizza Delivery"
-	contains = list(/obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/margherita,
-					/obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/meatpizza,
-					/obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/mushroompizza,
-					/obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/vegetablepizza)
-	cost = 50
+/datum/supply_packs/organic/pizza/margherita // SHINE added
+	name = "Margherita Pizza"
+	contains = list(/obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/margherita)
+	cost = 35
+	containername = "Pizza crate"
+
+/datum/supply_packs/organic/pizza/meat // SHINE added
+	name = "Meat Pizza"
+	contains = list(/obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/meatpizza)
+	cost = 35
+	containername = "Pizza crate"
+
+/datum/supply_packs/organic/pizza/mushroom // SHINE added
+	name = "Mushroom Pizza"
+	contains = list(/obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/mushroompizza)
+	cost = 35
+	containername = "Pizza crate"
+
+/datum/supply_packs/organic/pizza/vegetable // SHINE added
+	name = "Vegetable Pizza"
+	contains = list(/obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/vegetablepizza)
+	cost = 35
 	containername = "Pizza crate"
