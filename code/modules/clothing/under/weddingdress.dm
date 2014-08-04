@@ -1,3 +1,10 @@
+/obj/item/clothing/under/weddingdress
+	name = ""
+	fitted = 0
+	has_sensor = 0
+
+
+
 /obj/item/clothing/under/weddingdress/posh
 	name = "wedding dress"
 	icon_state = "wed_dress"
@@ -21,3 +28,9 @@
 	item_color = "reddress"
 	fitted = 0
 	has_sensor = 0
+
+obj/item/clothing/under/weddingdress/kimono
+	name = "kimono"
+	icon_state = "kimono"
+	item_state = "p_suit"
+	item_color = "kimono"

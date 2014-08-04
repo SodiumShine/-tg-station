@@ -14,3 +14,11 @@
 	item_state = "captainarmor"
 	item_color = "dress_cap"
 	fitted = 0
+
+/obj/item/clothing/under/rank/security/secskirt
+	name = "security officer's skirt uniform"
+	desc = "It's made of a slightly sturdier material than standard skirts, to allow for robust protection."
+	icon_state = "secredskirt"
+	item_state = "r_suit"
+	item_color = "secredskirt"
+	fitted = 0
