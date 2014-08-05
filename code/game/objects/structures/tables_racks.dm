@@ -511,13 +511,17 @@
 		density = 0
 		qdel(src)
 	else
-		visible_message("<span class='danger'>[user] is trying to climb onto the table</span>")
 		if(user.buckled)
 			user << "<span class='notice'>You're buckled to a chair! You can't climb like that.</span>"
 			return
-		else if (do_after(user, 50))
-			user.loc = src.loc
-			visible_message("[user] climbed onto the table")
+		else if(user.a_intent == "grab")
+			visible_message("<span class='danger'>[user] is trying to climb onto the table</span>")
+			if(do_after(user, 50))
+				user.loc = src.loc
+				visible_message("[user] climbed onto the table")
+		else
+			user << "You need to get a better hold of the table to climb it. (Use grab intent)"
+			return
 		..()
 
 /obj/structure/table/attack_tk() // no telehulk sorry
