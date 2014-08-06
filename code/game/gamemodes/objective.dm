@@ -205,7 +205,7 @@ datum/objective/block/check_completion()
 
 
 datum/objective/escape
-	explanation_text = "Sabotage the station and escape on the shuttle alive."
+	explanation_text = "Initiate a station-wide evacuation, by any means necessary. Escape on the shuttle alive." // SHINE reworded escape desc
 	dangerrating = 5
 
 datum/objective/escape/check_completion()

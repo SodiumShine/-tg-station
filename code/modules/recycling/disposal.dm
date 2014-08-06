@@ -45,8 +45,7 @@
 		trunk.linked = src	// link the pipe trunk to self
 
 /obj/machinery/disposal/Destroy()
-	for(var/atom/movable/AM in contents)
-		AM.loc = src.loc
+	eject()
 	..()
 
 /obj/machinery/disposal/initialize()
@@ -776,6 +775,12 @@
 
 	// pipe affected by explosion
 	ex_act(severity)
+
+		//pass on ex_act to our contents before calling it on ourself
+		var/obj/structure/disposalholder/H = locate() in src
+		if(H)
+			for(var/atom/movable/AM in H)
+				AM.ex_act(severity)
 
 		switch(severity)
 			if(1.0)

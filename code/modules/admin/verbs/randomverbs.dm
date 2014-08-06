@@ -39,6 +39,29 @@
 	message_admins("\blue \bold SubtleMessage: [key_name_admin(usr)] -> [key_name_admin(M)] : [msg]", 1)
 	feedback_add_details("admin_verb","SMS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
+//SHINE syndie pm test
+/client/proc/cmd_admin_syndie_message(mob/M as mob in mob_list)
+	set category = "Special Verbs"
+	set name = "Syndicate Message"
+
+	if(!ismob(M))	return
+	if (!holder)
+		src << "Only administrators may use this command."
+		return
+
+	var/msg = input("Message:", text("Syndicate message to [M.key]")) as text
+
+	if (!msg)
+		return
+	if(usr)
+		if (usr.client)
+			if(usr.client.holder)
+				M << "<b> \red Syndicate Message Incoming:</b> \black <b>You get a sharp twinge of pain in your head, as the following message is relayed to you...</b> \italic [msg]"
+
+	log_admin("SyndiePM: [key_name(usr)] -> [key_name(M)] : [msg]")
+	message_admins("\blue \bold SubtleMessage: [key_name_admin(usr)] -> [key_name_admin(M)] : [msg]", 1)
+	feedback_add_details("admin_verb","SYPM") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
 /client/proc/cmd_admin_world_narrate()
 	set category = "Special Verbs"
 	set name = "Global Narrate"
@@ -594,7 +617,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 			return
 		if(M)
 			AddBan(M.ckey, M.computer_id, reason, usr.ckey, 1, mins)
-			M << "\red<BIG><B>You have been banned by [usr.client.ckey].\nReason: [reason].</B></BIG>"
+			M << "\red<BIG><B>You have been banned by [usr.client.ckey].\nReason: [reason]</B></BIG>"
 			M << "\red This is a temporary ban, it will be removed in [mins] minutes."
 			M << "\red To try to resolve this matter head to http://ss13.donglabs.com/forum/"
 			log_admin("[usr.client.ckey] has banned [M.ckey].\nReason: [reason]\nThis will be removed in [mins] minutes.")
@@ -609,7 +632,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		if(!reason)
 			return
 		AddBan(M.ckey, M.computer_id, reason, usr.ckey, 0, 0)
-		M << "\red<BIG><B>You have been banned by [usr.client.ckey].\nReason: [reason].</B></BIG>"
+		M << "\red<BIG><B>You have been banned by [usr.client.ckey].\nReason: [reason]</B></BIG>"
 		M << "\red This is a permanent ban."
 		M << "\red To try to resolve this matter head to http://ss13.donglabs.com/forum/"
 		log_admin("[usr.client.ckey] has banned [M.ckey].\nReason: [reason]\nThis is a permanent ban.")

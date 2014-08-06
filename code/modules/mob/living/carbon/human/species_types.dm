@@ -23,7 +23,7 @@
 
 /datum/species/lizard
 	// Reptilian humanoids with scaled skin and tails.
-	name = "Lizardperson. Servants of Nanostrasen."
+	name = "Reptile"
 	id = "lizard"
 	say_mod = "hisses"
 	default_color = "00FF00"
@@ -46,7 +46,7 @@
 
 /datum/species/plant
 	// Creatures made of leaves and plant matter.
-	name = "Plant. Mutated sentient vegetables."
+	name = "Folia"
 	id = "plant"
 	default_color = "59CE00"
 	specflags = list(MUTCOLORS,EYECOLOR)
@@ -119,7 +119,7 @@
 
 /datum/species/shadow
 	// Humans cursed to stay in the darkness, lest their life forces drain. They regain health in shadow and die in light.
-	name = "Shadowperson. Light burns, darkness heals." // SHINE changed ??? to Shadow
+	name = "Shadowling" // SHINE changed ??? to Shadow
 	id = "shadow"
 	darksight = 8
 	sexes = 0
@@ -146,7 +146,7 @@
 
 /datum/species/slime
 	// Humans mutated by slime mutagen, produced from green slimes. They are not targetted by slimes.
-	name = "Slimeperson. Xenobiology accident."
+	name = "Slime"
 	id = "slime"
 	default_color = "00FFFF"
 	darksight = 3
@@ -176,7 +176,7 @@
 
 /datum/species/golem
 	// Animated beings of stone. They have increased defenses, and do not need to breathe. They're also slow as fuuuck.
-	name = "Golem. Big and rocky."
+	name = "Golem"
 	id = "golem"
 	specflags = list(NOBREATH,HEATRES,COLDRES,NOGUNS,NOBLOOD,RADIMMUNE)
 	speedmod = 3

@@ -172,7 +172,7 @@ var/list/uplink_items = list()
 	Use with extreme caution, to prevent exposure to yourself and your fellow operatives."
 	item = /obj/item/weapon/reagent_containers/spray/chemsprayer/bioterror
 	cost = 10
-	gamemodes = list() // SHINE empty list
+	gamemodes = list(/datum/game_mode/nuclear)
 
 /datum/uplink_item/dangerous/gygax
 	name = "Gygax Exosuit"
@@ -236,11 +236,11 @@ var/list/uplink_items = list()
 /datum/uplink_item/stealthy_weapons
 	category = "Stealthy and Inconspicuous Weapons"
 
-/datum/uplink_item/stealthy_weapons/para_pen
+/datum/uplink_item/stealthy_weapons/sleepy_pen
 	name = "Sleepy Pen"
 	desc = "A syringe disguised as a functional pen, filled with a potent mix of drugs, including a strong anaesthetic and a chemical that is capable of blocking the movement of the vocal chords. \
 	The pen holds one dose of the mixture, and cannot be refilled."
-	item = /obj/item/weapon/pen/paralysis
+	item = /obj/item/weapon/pen/sleepy
 	cost = 3
 	excludefrom = list(/datum/game_mode/nuclear)
 
@@ -399,6 +399,13 @@ var/list/uplink_items = list()
 	item = /obj/item/device/sbeacondrop/bomb
 	cost = 5
 	excludefrom = list(/datum/game_mode/traitor/double_agents)
+
+/datum/uplink_item/device_tools/rad_laser
+	name = "Radioactive Microlaser"
+	desc = "A radioactive microlaser disguised as a standard Nanotrasen health analyzer. When used, it emits a powerful burst of radiation, which, after a short delay, can incapitate all but the most protected of humanoids. \
+	It has two settings: intensity, which controls the power of the radiation, and wavelength, which controls how long the radiation delay is."
+	item = /obj/item/device/rad_laser
+	cost = 4
 
 /datum/uplink_item/device_tools/syndicate_detonator
 	name = "Syndicate Detonator"

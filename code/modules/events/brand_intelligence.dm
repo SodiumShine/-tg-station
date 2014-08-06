@@ -5,8 +5,9 @@
 	max_occurrences = 1
 
 /datum/round_event/brand_intelligence
-	announceWhen	= 21
-	endWhen			= 1000	//Ends when all vending machines are subverted anyway.
+	startWhen = 1
+	announceWhen = 2 // SHINE changed to give time to react
+	endWhen = 1000	//Ends when all vending machines are subverted anyway.
 
 	var/list/obj/machinery/vending/vendingMachines = list()
 	var/list/obj/machinery/vending/infectedMachines = list()
@@ -53,12 +54,12 @@
 		for(var/obj/machinery/vending/upriser in infectedMachines)
 			if(prob(70))
 				var/mob/living/simple_animal/hostile/mimic/copy/M = new(upriser.loc, upriser, null, 1) // it will delete upriser on creation and override any machine checks
-				M.faction = "profit"
+				M.faction = list("profit")
 				M.speak = rampant_speeches.Copy()
 				M.speak_chance = 15
-			else
-				explosion(upriser.loc, -1, 1, 2, 4, 0)
-				qdel(upriser)
+//			else
+//				explosion(upriser.loc, -1, 1, 2, 4, 0) // SHINE removed explosion
+//				qdel(upriser)
 
 		kill()
 		return

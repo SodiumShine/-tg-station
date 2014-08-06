@@ -87,6 +87,8 @@ var/const/SAFETY_COOLDOWN = 100
 				stop(AM)
 		else if(istype(AM, /obj/item))
 			recycle(AM)
+		else if(istype(AM, /obj/machinery/portable_atmospherics/canister)) // SHINE attempt at adding canisters
+			recycle(AM)
 		else // Can't recycle
 			playsound(src.loc, 'sound/machines/buzz-sigh.ogg', 50, 0)
 			AM.loc = src.loc

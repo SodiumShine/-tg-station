@@ -498,7 +498,7 @@
 
 
 
-/obj/structure/table/attack_hand(mob/user)
+/obj/structure/table/attack_hand(mob/user) // SHINE added table climb
 	if(HULK in user.mutations)
 		visible_message("<span class='danger'>[user] smashes [src] apart!</span>")
 		user.say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!" ))
@@ -511,6 +511,17 @@
 		density = 0
 		qdel(src)
 	else
+		if(user.buckled)
+			user << "<span class='notice'>You're buckled to a chair! You can't climb like that.</span>"
+			return
+		else if(user.a_intent == "grab")
+			visible_message("<span class='danger'>[user] is trying to climb onto the table</span>")
+			if(do_after(user, 50))
+				user.loc = src.loc
+				visible_message("[user] climbed onto the table")
+		else
+			user << "You need to get a better hold of the table to climb it. (Use grab intent)"
+			return
 		..()
 
 /obj/structure/table/attack_tk() // no telehulk sorry
@@ -520,6 +531,8 @@
 	if(air_group || (height==0)) return 1
 
 	if(istype(mover) && mover.checkpass(PASSTABLE))
+		return 1
+	if(locate(/obj/structure/table) in get_turf(mover))
 		return 1
 	else
 		return 0
@@ -559,16 +572,16 @@
 	if (istype(I, /obj/item/weapon/wrench))
 		table_destroy(2, user)
 		return
-	
+
 	if (istype(I, /obj/item/weapon/storage/bag/tray))
 		var/obj/item/weapon/storage/bag/tray/T = I
 		if(T.contents.len > 0) // If the tray isn't empty
 			var/list/obj/item/oldContents = T.contents.Copy()
 			T.quick_empty()
-			
+
 			for(var/obj/item/C in oldContents)
 				C.loc = src.loc
-			
+
 			user.visible_message("<span class='notice'>[user] empties [I] on [src].</span>")
 			return
 		// If the tray IS empty, continue on (tray will be placed on the table like other items)

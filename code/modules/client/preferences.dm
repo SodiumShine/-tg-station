@@ -167,7 +167,7 @@ datum/preferences
 				dat += "<table width='100%'><tr><td width='24%' valign='top'>"
 
 				if(config.mutant_races)
-					dat += "<b>Species:</b><BR><a href='?_src_=prefs;preference=species;task=input'>[pref_species.name]</a><BR>"
+					dat += "<b>Species:</b><BR><a href='?_src_=prefs;preference=species;task=input'>[pref_species.name]</a><a href='http://zebra.byondpanel.com/species.html'>?</a><BR>"
 				else
 					dat += "<b>Species:</b> Human<BR>"
 
