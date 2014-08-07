@@ -235,3 +235,59 @@
 				icon_state = "pinonfar"
 
 	spawn(5) .()
+
+
+
+/////////////////////////
+// SHINE Space Compass///
+/////////////////////////
+
+/obj/item/weapon/pinpointer/compass
+	name = "space compass"
+	icon = 'icons/obj/device.dmi'
+	desc = "A space compass. It doesn't point space north like it should, but it does direct you back to the station if you get lost."
+	var/mode = 1  // Mode 0 locates disk, mode 1 locates coordinates.
+	var/turf/location = null
+	var/obj/target = null
+
+	attack_self()
+		if(!active)
+			active = 1
+			point_at(location)
+			usr << "\blue You activate the pinpointer"
+		else
+			active = 0
+			icon_state = "pinoff"
+			usr << "\blue You deactivate the pinpointer"
+
+
+/obj/item/weapon/pinpointer/compass/verb/toggle_mode()
+	set category = "Object"
+	set name = "Toggle Pinpointer Mode"
+	set src in view(1)
+
+	active = 0
+	icon_state = "pinoff"
+	target = null
+	location = null
+
+	switch(alert("Please select the mode you want to put the pinpointer in.", "Pinpointer Mode Select", "New Location", "Locate Station"))
+		if("New Location")
+			var/locationx = input(usr, "Please input the x coordinate to search for.", "Location?" , "") as num
+			if(!locationx || !(usr in view(1,src)))
+				return
+			var/locationy = input(usr, "Please input the y coordinate to search for.", "Location?" , "") as num
+			if(!locationy || !(usr in view(1,src)))
+				return
+
+			var/turf/Z = get_turf(src)
+
+			location = locate(locationx,locationy,Z.z)
+
+			usr << "You set the compass to locate [locationx],[locationy]"
+
+
+			return attack_self()
+		if("Locate Station")
+			location = locate(126,111,1)
+			usr << "You set the compass to point back to the station."

@@ -39,7 +39,10 @@
 	message_admins("\blue \bold SubtleMessage: [key_name_admin(usr)] -> [key_name_admin(M)] : [msg]", 1)
 	feedback_add_details("admin_verb","SMS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-//SHINE syndie pm test
+
+/////////////////////
+///SHINE syndie pm///
+/////////////////////
 /client/proc/cmd_admin_syndie_message(mob/M as mob in mob_list)
 	set category = "Special Verbs"
 	set name = "Syndicate Message"
@@ -62,6 +65,7 @@
 	message_admins("\blue \bold SubtleMessage: [key_name_admin(usr)] -> [key_name_admin(M)] : [msg]", 1)
 	feedback_add_details("admin_verb","SYPM") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
+
 /client/proc/cmd_admin_world_narrate()
 	set category = "Special Verbs"
 	set name = "Global Narrate"
@@ -78,6 +82,7 @@
 	log_admin("GlobalNarrate: [key_name(usr)] : [msg]")
 	message_admins("\blue \bold GlobalNarrate: [key_name_admin(usr)] : [msg]<BR>", 1)
 	feedback_add_details("admin_verb","GLN") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
 
 /client/proc/cmd_admin_direct_narrate(var/mob/M)
 	set category = "Special Verbs"

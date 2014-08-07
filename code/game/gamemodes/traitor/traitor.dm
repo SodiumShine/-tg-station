@@ -121,6 +121,11 @@
 				kill_objective.owner = traitor
 				kill_objective.find_target()
 				traitor.objectives += kill_objective
+			else if(prob(20))
+				var/datum/objective/protect/protect_objective = new
+				protect_objective.owner = traitor
+				protect_objective.find_target()
+				traitor.objectives += protect_objective
 			else
 				var/datum/objective/steal/steal_objective = new
 				steal_objective.owner = traitor

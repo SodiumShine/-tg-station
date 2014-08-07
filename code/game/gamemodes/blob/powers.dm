@@ -95,7 +95,7 @@
 		R.overmind = src
 
 	return
-*/
+
 /mob/camera/blob/verb/create_node()
 	set category = "Blob"
 	set name = "Create Node Blob (60)"
@@ -128,7 +128,7 @@
 	B.change_to(/obj/effect/blob/node)
 	return
 
-
+*/
 /mob/camera/blob/verb/create_factory()
 	set category = "Blob"
 	set name = "Create Factory Blob (60)"

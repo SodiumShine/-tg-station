@@ -139,16 +139,45 @@
 	return dat
 
 
+//////////////////////
+///Loyalty Implants///
+//////////////////////
+
 /obj/item/weapon/implant/loyalty/implanted(mob/target)
 	if(target.mind in ticker.mode.head_revolutionaries)
 		target.visible_message("<span class='warning'>[target] seems to resist the implant!</span>", "<span class='warning'>You feel the corporate tendrils of Nanotrasen try to invade your mind!</span>")
 		return 0
 	if(target.mind in ticker.mode.revolutionaries)
 		ticker.mode.remove_revolutionary(target.mind)
-	target << "<span class='notice'>You feel a surge of loyalty towards Nanotrasen.</span>"
-	return 1
-
-
+		target << "<span class='notice'>You feel a surge of loyalty towards Nanotrasen.</span>"
+		return 1
+	if(target.mind in ticker.mode.traitors) //SHINE if traitor, make them not traitor
+		target.mind.remove_traitor()
+		message_admins("[key_name(usr)] has de-traitor'ed [target].")
+		log_admin("[key_name(usr)] has de-traitor'ed [target].")
+		target << "<span class='warning'>Your head hurts like crazy!</span>"
+		target << "\red <FONT size = 3><B>You have been brainwashed! You are no longer a traitor, and feel a surge of loyalty towards Nanotrasen!</B></FONT>"
+		return 1
+	else
+		target << "\red <FONT size = 3><B>The loyalty implant causes your already loyal brain to overload! You realise Nanotrasen is bullshit. <i>Fuck</i> Nanotrasen.</B></FONT>"
+		if(!(src in ticker.mode.traitors))
+			ticker.mode.traitors += target.mind
+			target.mind.special_role = "traitor"
+			target << "<B>\red You are now a traitor!</B>"
+			message_admins("[key_name(usr)] has traitor'ed [target].")
+			log_admin("[key_name(usr)] has traitor'ed [target].")
+			ticker.mode.forge_traitor_objectives(target.mind)
+			var/obj_count = 1
+			target << "\blue Your current objectives:"
+			for(var/datum/objective/objective in target.mind.objectives)
+				target << "<B>Objective #[obj_count]</B>: [objective.explanation_text]"
+				obj_count++
+		return 1
+/*
+		target.visible_message("<span class='warning'>[target] already had a standard issue Loyalty Implant! The second one caused an overload!</span>")
+		explosion(target, -1, 0, 2, 3, 0)
+		return 0
+*/
 /obj/item/weapon/implant/adrenalin
 	name = "adrenal implant"
 	desc = "Removes all stuns and knockdowns."
@@ -209,3 +238,13 @@
 		source.mind.store_memory("EMP implant can be activated [uses] time\s by using the [src.activation_emote] emote, <B>say *[src.activation_emote]</B> to attempt to activate.", 0, 0)
 		source << "The implanted EMP implant can be activated [uses] time\s by using the [src.activation_emote] emote, <B>say *[src.activation_emote]</B> to attempt to activate."
 		return 1
+
+
+
+
+//////////////////////////////////
+///SHINE Loyalty implant papers///
+//////////////////////////////////
+/obj/item/weapon/paper/loyalty
+	name = "Loyalty Implant Instructions"
+	info = "<h1>Loyalty Implant Usage</h1><hr><p>You have been provided with 3 loyalty implants. These are very expensive and very dangerous so do not waste them. <br>Implanting any Syndicate agents will force them to obey Nanotrasen, and lose their connection to the Syndicate. <br><span class='warning'><b>WARNING</b>:</span> Don't use these on loyal crewmembers! It's a waste of expensive equipment.  Oh and the overdose of loyalty may result in insanity.</p><ul><li><b>Step 1:</b> Insert implant into injector</li><li><b>Step 2:</b> Secure Syndicate scum</li><li><b>Step 3:</b> Firmly place the implant injector directly against the agent's temple or spine.</li><li><b>Step 4:</b> Stab them full of implant.</li></ul>"
