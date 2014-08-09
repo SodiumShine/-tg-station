@@ -159,6 +159,7 @@
 		target << "\red <FONT size = 3><B>You have been brainwashed! You are no longer a traitor, and feel a surge of loyalty towards Nanotrasen!</B></FONT>"
 		return 1
 	else
+		target << "<span class='warning'>Your head hurts like crazy!</span>"
 		target << "\red <FONT size = 3><B>The loyalty implant causes your already loyal brain to overload! You realise Nanotrasen is bullshit. <i>Fuck</i> Nanotrasen.</B></FONT>"
 		if(!(src in ticker.mode.traitors))
 			ticker.mode.traitors += target.mind

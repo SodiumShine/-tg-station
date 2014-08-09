@@ -55,13 +55,17 @@
 				M << "<span class='notice'>You can't eat wrapped food!</span>"
 				return 0
 			else if(fullness <= 50)
-				M << "<span class='notice'>You hungrily [eatverb] some of \the [src] and gobble it down!</span>"
+				//M << "<span class='notice'>You hungrily [eatverb] some of \the [src], shoving it into your mouth!</span>"
+				M.visible_message("[M] hungrily [eatverb]s a large portion of \the [src], shoving it into their mouth!")
 			else if(fullness > 50 && fullness < 150)
-				M << "<span class='notice'>You hungrily begin to [eatverb] \the [src].</span>"
+				//M << "<span class='notice'>You hungrily begin to [eatverb] \the [src].</span>"
+				M.visible_message("[M] hungrily [eatverb]s some of \the [src].")
 			else if(fullness > 150 && fullness < 350)
-				M << "<span class='notice'>You [eatverb] \the [src].</span>"
+				//M << "<span class='notice'>You [eatverb] \the [src].</span>"
+				M.visible_message("[M] [eatverb]s \the [src].")
 			else if(fullness > 350 && fullness < 550)
-				M << "<span class='notice'>You unwillingly [eatverb] a bit of \the [src].</span>"
+				//M << "<span class='notice'>You unwillingly [eatverb] a bit of \the [src].</span>"
+				M.visible_message("[M] reluctantly [eatverb]s a bit of \the [src].")
 			else if(fullness > (550 * (1 + M.overeatduration / 2000)))	// The more you eat - the more you can eat
 				M << "<span class='notice'>You cannot force any more of \the [src] to go down your throat.</span>"
 				return 0
