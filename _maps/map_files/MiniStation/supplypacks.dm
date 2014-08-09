@@ -60,3 +60,10 @@
 	contains = list(/obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/vegetablepizza)
 	cost = 35
 	containername = "Pizza crate"
+
+/datum/supply_packs/engineering/superair
+	name = "Atmosphere replacement canister"
+	contains = list(/obj/machinery/portable_atmospherics/canister/superair)
+	cost = 115
+	containername = "Atmosphere replacement canister"
+	containertype = /obj/structure/closet/crate/secure

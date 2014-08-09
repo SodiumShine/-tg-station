@@ -48,6 +48,13 @@
 	icon_state = "grey"
 	canister_color = "grey"
 	can_label = 0
+/obj/machinery/portable_atmospherics/canister/superair
+	name = "canister \[Air\]"
+	icon_state = "grey"
+	canister_color = "grey"
+	can_label = 0
+	volume = 100000
+	filled = 1
 
 /obj/machinery/portable_atmospherics/canister/proc/check_change()
 	var/old_flag = update_flag
@@ -404,6 +411,15 @@ Release Pressure: <A href='?src=\ref[src];pressure_adj=-1000'>-</A> <A href='?sr
 
 
 /obj/machinery/portable_atmospherics/canister/air/New()
+
+	..()
+	src.air_contents.oxygen = (O2STANDARD*src.maximum_pressure*filled)*air_contents.volume/(R_IDEAL_GAS_EQUATION*air_contents.temperature)
+	src.air_contents.nitrogen = (N2STANDARD*src.maximum_pressure*filled)*air_contents.volume/(R_IDEAL_GAS_EQUATION*air_contents.temperature)
+
+	src.update_icon()
+	return 1
+
+/obj/machinery/portable_atmospherics/canister/superair/New()
 
 	..()
 	src.air_contents.oxygen = (O2STANDARD*src.maximum_pressure*filled)*air_contents.volume/(R_IDEAL_GAS_EQUATION*air_contents.temperature)
