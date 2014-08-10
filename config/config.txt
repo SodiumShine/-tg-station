@@ -124,6 +124,8 @@ GUEST_BAN
 ## Ban appeals URL - usually for a forum or wherever people should go to contact your admins.
 # BANAPPEALS http://justanotherday.example.com
 
+#TUMBLRURL http://zebra-station.tumblr.com/
+
 ## In-game features
 ##Toggle for having jobs load up from the .txt
 # LOAD_JOBS_FROM_TXT

@@ -57,6 +57,7 @@
 	var/forumurl = "http://tgstation13.org/phpBB/index.php" //default forums
 	var/rulesurl = "http://www.tgstation13.org/wiki/Rules" // default rules
 	var/githuburl = "https://www.github.com/tgstation/-tg-station" //default github
+	var/tumblrurl = "http://zebra-station.tumblr.com/"
 
 	var/forbid_singulo_possession = 0
 	var/useircbot = 0

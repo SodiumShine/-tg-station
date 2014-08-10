@@ -5,8 +5,8 @@
 	weight = 5
 
 /datum/round_event/anomaly/anomaly_bluespace
-	startWhen = 3
-	announceWhen = 10
+	startWhen = 5
+	announceWhen = 1
 	endWhen = 55
 
 

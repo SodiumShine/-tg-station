@@ -2,7 +2,7 @@
 	name = "Gravity Systems Failure"
 	typepath = /datum/round_event/weightless
 	max_occurrences = 1
-	weight = 10
+	weight = 15
 
 /datum/round_event/weightless
 	startWhen = 1

@@ -6,7 +6,7 @@
 
 /datum/round_event/anomaly/anomaly_grav
 	startWhen = 3
-	announceWhen = 20
+	announceWhen = 1
 	endWhen = 50
 
 

@@ -1,4 +1,16 @@
 //Please use mob or src (not usr) in these procs. This way they can be called in the same fashion as procs.
+/client/verb/tumblr()
+	set name = "tumblr"
+	set desc = "Visit the tumblr changelog"
+	set hidden = 1
+	if(config.tumblrurl)
+		if(alert("This will open the tumblr changelog in your browser. Are you sure?",,"Yes","No")=="No")
+			return
+		src << link(config.tumblrurl)
+	else
+		src << "<span class='danger'>The tumblr URL is not set in the server configuration.</span>"
+	return
+
 /client/verb/wiki()
 	set name = "wiki"
 	set desc = "Visit the wiki."

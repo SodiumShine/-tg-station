@@ -6,7 +6,7 @@
 
 /datum/round_event/meteor_wave
 	startWhen		= 6
-	endWhen			= 66
+	endWhen			= 33 //SHINE nerfed to 33 from 55
 	var/announce = 1
 
 /datum/round_event/meteor_wave/New(should_announce = 1)
