@@ -17,6 +17,7 @@
 							//If you died in the game and are a ghsot - this will remain as null.
 							//Note that this is not a reliable way to determine if admins started as observers, since they change mobs a lot.
 	var/atom/movable/following = null
+	var/vendtime = 0
 
 /mob/dead/observer/New(mob/body)
 	sight |= SEE_TURFS | SEE_MOBS | SEE_OBJS | SEE_SELF
@@ -234,19 +235,40 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 /mob/dead/observer/verb/boo() // SHINE UNCOMMENTED
 	set category = "Ghost"
-	set name = "Boo!"
-	set desc= "Scare your crew members because of boredom!"
+	set name = "Flicker lights"
+	set desc = "Make the lights flicker! Spooky!"
 
-	if(bootime > world.time) return
+	if(bootime > world.time)
+		src << "You have to wait before you can do that again."
+		return
 	var/obj/machinery/light/L = locate(/obj/machinery/light) in view(1, src)
 	if(L)
 		L.flicker()
-		bootime = world.time + 600
+		bootime = world.time + 400
 		playsound(src.loc, pick('sound/effects/ghost.ogg','sound/effects/ghost2.ogg'), 10, 1)
 		return
+	else
 	//Maybe in the future we can add more <i>spooky</i> code here!
-	return
+		return
 
+// SHINE ghosts make vending machines throw
+/mob/dead/observer/verb/vend()
+	set category = "Ghost"
+	set name = "Malfunction Vending Machine"
+	set desc = "Make a vending machine spit stuff out at people"
+
+	if(vendtime > world.time)
+		src << "You have to wait before you can do that again."
+		return
+	var/obj/machinery/vending/V = locate(/obj/machinery/vending) in view(1, src)
+	if(V)
+		V.throw_item()
+		vendtime = world.time + 800
+		playsound(src.loc, pick('sound/effects/ghost.ogg','sound/effects/ghost2.ogg'), 10, 1)
+		V.ghostwhine()
+		return
+	else
+		return
 
 /mob/dead/observer/memory()
 	set hidden = 1

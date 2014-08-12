@@ -174,12 +174,12 @@
 
 
 /datum/song/Topic(href, href_list)
-	if(!usr.canUseTopic(instrumentObj))
-		usr << browse(null, "window=instrument")
-		usr.unset_machine()
-		return
-
-	instrumentObj.add_fingerprint(usr)
+//	if(!usr.canUseTopic(instrumentObj))
+//		usr << browse(null, "window=instrument")
+//		usr.unset_machine()
+//		return
+	if(usr.canUseTopic(instrumentObj))
+		instrumentObj.add_fingerprint(usr)
 
 	if(href_list["newsong"])
 		lines = new()

@@ -274,6 +274,8 @@
 
 
 // returns the wire panel text
+
+
 /obj/machinery/vending/proc/wires()
 	return wires.GetInteractWindow()
 
@@ -407,6 +409,11 @@
 		return
 
 	visible_message("<span class='name'>[src]</span> <span class='game say'>beeps, \"[message]\"</span>")
+
+/obj/machinery/vending/proc/ghostwhine() // SHINE when ghosts malf it
+	if(stat & (BROKEN|NOPOWER))
+		return
+	visible_message("<span class='name'>[src]</span> <span class='game say'>beeps, \"Unknown Error! Please contact maintainence.\"</span>")
 
 
 /obj/machinery/vending/power_change()

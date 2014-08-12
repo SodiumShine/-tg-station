@@ -88,6 +88,10 @@
 	orient2hud(user)
 	show_to(user)
 
+/obj/structure/piano/attack_ghost(mob/user as mob)
+	attack_hand(user)
+
+
 // -------------------------------------------
 // This was supposed to be used by adminghosts
 // I think it is a *terrible* idea
@@ -98,5 +102,4 @@
 	if(!user || !user.client || !user.client.holder)
 		return
 	attack_hand(user)
-
 */
