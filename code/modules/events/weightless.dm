@@ -1,8 +1,8 @@
 /datum/round_event_control/weightless
 	name = "Gravity Systems Failure"
 	typepath = /datum/round_event/weightless
-	max_occurrences = 1
-	weight = 15
+	max_occurrences = 2
+	weight = 10
 
 /datum/round_event/weightless
 	startWhen = 1

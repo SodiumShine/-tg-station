@@ -10,13 +10,13 @@ In my current plan for it, 'solid' will be defined as anything with density == 1
 /datum/round_event_control/immovable_rod
 	name = "Immovable Rod"
 	typepath = /datum/round_event/immovable_rod
-	max_occurrences = 5
+	max_occurrences = 3
 
 /datum/round_event/immovable_rod
 	announceWhen = 5
 
 /datum/round_event/immovable_rod/announce()
-	priority_announce("What the fuck was that?!", "General Alert")
+	priority_announce("What the fuck was that?! Something just tore through the station!", "General Alert")
 
 /datum/round_event/immovable_rod/start()
 	var/startx = 0

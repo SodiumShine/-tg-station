@@ -54,7 +54,6 @@
 /datum/disease/advance/migraine/New(var/process = 1, var/datum/disease/advance/D, var/copy = 0)
 	if(!D)
 		name = "Space brain"
-		desc = "Space got into the brain."
 		symptoms = list(new/datum/symptom/headache, new/datum/symptom/dizzy)
 	..(process, D, copy)
 
@@ -62,6 +61,5 @@
 /datum/disease/advance/dorf/New(var/process = 1, var/datum/disease/advance/D, var/copy = 0)
 	if(!D)
 		name = "Ambradorf Syndrome"
-		desc = "A fungus that grows hair around the neck region, inside and out."
 		symptoms = list(new/datum/symptom/cough, new/datum/symptom/beard, new/datum/symptom/choking)
 	..(process, D, copy)

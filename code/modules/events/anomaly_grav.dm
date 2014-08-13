@@ -1,13 +1,13 @@
 /datum/round_event_control/anomaly/anomaly_grav
 	name = "Gravitational Anomaly"
 	typepath = /datum/round_event/anomaly/anomaly_grav
-	max_occurrences = 2
+	max_occurrences = 3
 	weight = 15
 
 /datum/round_event/anomaly/anomaly_grav
-	startWhen = 3
+	startWhen = 10
 	announceWhen = 1
-	endWhen = 50
+	endWhen = 120 // SHINE this one might as well last long to actually make it a problem
 
 
 /datum/round_event/anomaly/anomaly_grav/announce()

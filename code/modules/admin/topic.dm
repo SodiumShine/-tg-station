@@ -1765,11 +1765,11 @@
 				feedback_add_details("admin_secrets_fun_used","PB")
 				message_admins("[key_name_admin(usr)] has allowed a prison break", 1)
 				E = new /datum/round_event/prison_break()
-			if("lightsout")
+			/*if("lightsout")
 				feedback_inc("admin_secrets_fun_used",1)
 				feedback_add_details("admin_secrets_fun_used","LO")
 				message_admins("[key_name_admin(usr)] has broke a lot of lights", 1)
-				E = new /datum/round_event/electrical_storm{lightsoutAmount = 2}()
+				E = new /datum/round_event/electrical_storm{lightsoutAmount = 2}()*/
 			if("blackout")
 				feedback_inc("admin_secrets_fun_used",1)
 				feedback_add_details("admin_secrets_fun_used","BO")

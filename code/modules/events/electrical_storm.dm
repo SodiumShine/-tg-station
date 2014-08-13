@@ -2,7 +2,7 @@
 	name = "Electrical Storm"
 	typepath = /datum/round_event/electrical_storm
 	earliest_start = 6000
-	weight = 40
+	weight = 0 // SHINE 40 to 0 because it doesn't do anything
 
 /datum/round_event/electrical_storm
 	var/lightsoutAmount	= 1
