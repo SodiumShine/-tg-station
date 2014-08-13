@@ -349,6 +349,10 @@
 	name = "paper- Smelting Operations Closed"
 	info = "<B>**NOTICE**</B><BR><BR>Smelting operations moved on-station.<BR><BR>Take your unrefined ore to the Redeption Machine in the Delivery Office to redeem points.<BR><BR>--SS13 Command"
 
+/obj/item/weapon/paper/praying
+	name = "paper- Priest's notes"
+	info = "The gods are fickle things... it's been so hard to please them and half the time I think they're just ignoring me anyway.<BR> Anyway, to whoever is replacing me as the station's Chaplain, I have some advice you should really make note of-<BR> Gods love flattery. It takes a lot more than a \"Please save me!\" to get their attention let me tell you. Gotta butter those assholes up. <BR> Oh and try making offerings, or promise really hard to follow their bible or whatever stupid thing they call their personal existance manual.<BR> And for Glob's sake address them by their name!<BR><BR> - <i>Father Underhill</i>"
+
 /obj/item/weapon/paper/crumpled
 	name = "paper scrap"
 	icon_state = "scrap"
