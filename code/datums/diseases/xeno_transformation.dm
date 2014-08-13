@@ -8,9 +8,10 @@
 	cure = "Spaceacillin & Glycerol"
 	cure_id = list("spaceacillin", "glycerol")
 	cure_chance = 5
-	agent = "Rip-LEY Alien Microbes"
+	agent = "LV-426 Xeno Microbes"
 	affected_species = list("Human")
 	var/gibbed = 0
+	desc = "Xeno microbes that alter and take over the subject's DNA, turning the subject into one of them."
 
 /datum/disease/xeno_transformation/stage_act()
 	..()
@@ -53,7 +54,7 @@
 			affected_mob.updatehealth()
 			if(prob(40))
 				if(gibbed != 0) return 0
-				var/turf/T = find_loc(affected_mob)
+				var/turf/T = affected_mob.loc
 				gibs(T)
 				gibbed = 1
 				affected_mob:Alienize()

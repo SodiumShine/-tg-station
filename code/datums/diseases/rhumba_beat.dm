@@ -8,6 +8,7 @@
 	agent = "Unknown"
 	affected_species = list("Human")
 	permeability_mod = 1
+	desc = "If left untreated the victim will dance themselves to death."
 
 /datum/disease/rhumba_beat/stage_act()
 	..()

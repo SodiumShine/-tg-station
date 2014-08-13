@@ -174,7 +174,7 @@
 
 
 /datum/song/Topic(href, href_list)
-//	if(!usr.canUseTopic(instrumentObj))
+//	if(!usr.canUseTopic(instrumentObj)) // SHINE removed this bit to let anyone use pianos but this is not a good idea
 //		usr << browse(null, "window=instrument")
 //		usr.unset_machine()
 //		return

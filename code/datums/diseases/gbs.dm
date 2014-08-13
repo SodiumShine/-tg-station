@@ -10,6 +10,7 @@
 	affected_species = list("Human")
 	curable = 0
 	permeability_mod = 1
+	desc = "If left untreated the subject will explode violently."
 
 /datum/disease/gbs/stage_act()
 	..()

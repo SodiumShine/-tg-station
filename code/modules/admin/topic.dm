@@ -1844,11 +1844,11 @@
 					if("Make Your Own")
 						AdminCreateVirus(usr.client)
 					if("Random")
-						E = new /datum/round_event/disease_outbreak()
+						E = new /datum/round_event/disease_outbreak_major()
 					if("Choose")
 						var/virus = input("Choose the virus to spread", "BIOHAZARD") as null|anything in typesof(/datum/disease)
-						E = new /datum/round_event/disease_outbreak{}()
-						var/datum/round_event/disease_outbreak/DO = E
+						E = new /datum/round_event/disease_outbreak_major{}()
+						var/datum/round_event/disease_outbreak_major/DO = E
 						DO.virus_type = virus
 			if("retardify")
 				feedback_inc("admin_secrets_fun_used",1)

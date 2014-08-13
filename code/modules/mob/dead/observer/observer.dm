@@ -233,6 +233,9 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 			else
 				A << "This mob is not located in the game world."
 
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+///GHOST TRICKS///
+//////////////////
 /mob/dead/observer/verb/boo() // SHINE UNCOMMENTED
 	set category = "Ghost"
 	set name = "Flicker lights"
@@ -247,6 +250,9 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		bootime = world.time + 400
 		playsound(src.loc, pick('sound/effects/ghost.ogg','sound/effects/ghost2.ogg'), 10, 1)
 		return
+	if(!L)
+		src << "You need to be closer to a light..."
+		return
 	else
 	//Maybe in the future we can add more <i>spooky</i> code here!
 		return
@@ -254,8 +260,8 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 // SHINE ghosts make vending machines throw
 /mob/dead/observer/verb/vend()
 	set category = "Ghost"
-	set name = "Malfunction Vending Machine"
-	set desc = "Make a vending machine spit stuff out at people"
+	set name = "Haunt Vending Machine"
+	set desc = "Make a vending machine spit stuff out at people."
 
 	if(vendtime > world.time)
 		src << "You have to wait before you can do that again."
@@ -267,9 +273,14 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		playsound(src.loc, pick('sound/effects/ghost.ogg','sound/effects/ghost2.ogg'), 10, 1)
 		V.ghostwhine()
 		return
+	if(!V)
+		src << "You need to be closer to a vending machine..."
+		return
 	else
 		return
 
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
 /mob/dead/observer/memory()
 	set hidden = 1
 	src << "\red You are dead! You have no mind to store memory!"

@@ -44,7 +44,7 @@
 				affected_mob << "\red Your skin feels very loose."
 				affected_mob.take_organ_damage(8)
 			if (prob(20))
-				affected_mob.say(pick("beep, beep!", "Boop bop boop beep.", "kkkiiiill mmme", "I wwwaaannntt tttoo dddiiieeee..."))
+				affected_mob.say(pick("beep, beep!", "Boop bop boop beep.", "How may I serve you?", "Error!"))
 			if (prob(8))
 				affected_mob << "\red You can feel... something...inside you."
 		if(5)
@@ -53,7 +53,7 @@
 			affected_mob.updatehealth()
 			if(prob(40)) //So everyone can feel like robot Seth Brundle
 				if(src.gibbed != 0) return 0
-				var/turf/T = find_loc(affected_mob)
+				var/turf/T = affected_mob.loc
 				gibs(T)
 				gibbed = 1
 				var/mob/living/carbon/human/H = affected_mob

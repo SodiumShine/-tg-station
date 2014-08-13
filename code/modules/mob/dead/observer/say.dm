@@ -34,9 +34,9 @@
 					if(prob(30))
 						playsound(src.loc, pick('sound/effects/ghost.ogg','sound/effects/ghost2.ogg'), 10, 1)
 			else
-				if (prob(75))
+				if (prob(80))
 					return
-				else if (prob (80))
+				else if (prob (75))
 					M.show_message("<span class='game'><i>You hear muffled susurration... but nothing is there...</i></span>", 2)
 					if(prob(20))
 						playsound(src.loc, pick('sound/effects/ghost.ogg','sound/effects/ghost2.ogg'), 10, 1)

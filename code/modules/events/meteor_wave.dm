@@ -2,11 +2,11 @@
 	name = "Meteor Wave"
 	typepath = /datum/round_event/meteor_wave
 	weight = 5
-	max_occurrences = 3
+	max_occurrences = 1
 
 /datum/round_event/meteor_wave
 	startWhen		= 6
-	endWhen			= 33 //SHINE nerfed to 33 from 55
+	endWhen			= 40 //SHINE nerfed to 40 from 55
 	var/announce = 1
 
 /datum/round_event/meteor_wave/New(should_announce = 1)

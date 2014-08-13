@@ -31,7 +31,8 @@ Bonus
 		switch(A.stage)
 			if(1, 2, 3, 4)
 				M << "<span class='notice'>[pick("You feel dizzy.", "Your head starts spinning.")]</span>"
+				M.Dizzy(5)
 			else
 				M << "<span class='notice'>You are unable to look straight!</span>"
-				M.Dizzy(5)
+				M.Dizzy(50)
 	return

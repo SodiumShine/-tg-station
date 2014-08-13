@@ -1,7 +1,7 @@
 /datum/round_event_control/radiation_storm
 	name = "Radiation Storm"
 	typepath = /datum/round_event/radiation_storm
-	max_occurrences = 1
+	max_occurrences = 3 // SHINE 1 to 3
 
 /datum/round_event/radiation_storm
 	var/list/protected_areas = list(/area/maintenance, /area/turret_protected/ai_upload, /area/turret_protected/ai_upload_foyer, /area/turret_protected/ai)
