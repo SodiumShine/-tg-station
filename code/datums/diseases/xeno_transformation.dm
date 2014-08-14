@@ -28,10 +28,6 @@
 			if (prob(8))
 				affected_mob << "\red Your throat feels very scratchy."
 				affected_mob.take_organ_damage(1)
-			/*
-			if (prob(8))
-				affected_mob.say(pick("Beep, boop", "beep, beep!", "Boop...bop"))
-			*/
 			if (prob(10))
 				affected_mob << "Your skin feels tight."
 				affected_mob.take_organ_damage(5)
