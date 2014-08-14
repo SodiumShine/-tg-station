@@ -370,7 +370,7 @@ proc/process_ghost_teleport_locs()
 
 /area/planet/clown
 	name = "\improper Clown Planet"
-	icon_state = "honk"
+	icon_state = "yellow"
 	requires_power = 0
 
 /area/telesciareas
