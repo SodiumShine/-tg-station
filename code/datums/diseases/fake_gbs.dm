@@ -5,10 +5,12 @@
 	spread_type = CONTACT_GENERAL
 	cure = "Synaptizine & Sulfur"
 	cure_id = list("synaptizine","sulfur")
+	cure_chance = 15//higher chance to cure, since two reagents are required
 	agent = "Gravitokinetic Bipotential SADS-"
 	affected_species = list("Human", "Monkey")
 	desc = "If left untreated death will occur."
 	severity = "Major"
+	desc = "If left untreated the subject will explode violently."
 
 /datum/disease/fake_gbs/stage_act()
 	..()
@@ -28,5 +30,4 @@
 				affected_mob.emote("cough")
 
 		if(5)
-			if(prob(10))
-				affected_mob.emote("cough")
+			affected_mob << "\red Your body feels as if it's trying to rip itself open..."

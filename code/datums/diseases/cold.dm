@@ -24,10 +24,10 @@
 				affected_mob << "\blue You feel better."
 				cure()
 				return
-			if(prob(1) && prob(5))
-				affected_mob << "\blue You feel better."
-				cure()
-				return
+//			if(prob(1) && prob(5))
+//				affected_mob << "\blue You feel better."
+//				cure()
+//				return
 			if(prob(1))
 				affected_mob.emote("sneeze")
 			if(prob(1))
@@ -47,10 +47,10 @@
 				affected_mob << "\blue You feel better."
 				cure()
 				return
-			if(prob(1) && prob(1))
-				affected_mob << "\blue You feel better."
-				cure()
-				return
+//			if(prob(1) && prob(1))
+//				affected_mob << "\blue You feel better."
+//				cure()
+//				return
 			if(prob(1))
 				affected_mob.emote("sneeze")
 			if(prob(1))

@@ -1,13 +1,14 @@
 /datum/disease/wizarditis
 	name = "Wizarditis"
 	max_stages = 4
-	spread = "Airborne"
-	cure = "The Manly Dorf"
-	cure_id = "manlydorf"
-	cure_chance = 100
+	spread = "Syringe"
+	spread_type = SPECIAL
+	cure = "The Manly Dorf & Iron"
+	cure_id = list("manlydorf","iron")
+	cure_chance = 15
 	agent = "Rincewindus Vulgaris"
 	affected_species = list("Human")
-	curable = 1
+	curable = 0
 	permeability_mod = 0.75
 	desc = "Some speculate, that this virus is the cause of Wizard Federation existance. Subjects affected show the signs of mental retardation, yelling obscure sentences or total gibberish. On late stages subjects sometime express the feelings of inner power, and, cite, 'the ability to control the forces of cosmos themselves!' A gulp of strong, manly spirits usually reverts them to normal, humanlike, condition."
 	severity = "Major"
@@ -33,24 +34,30 @@ STI KALY - blind
 				affected_mob.say(pick("You shall not pass!", "Expeliarmus!", "By Merlins beard!", "Feel the power of the Dark Side!"))
 			if(prob(1)&&prob(50))
 				affected_mob << "\red You feel [pick("that you don't have enough mana.", "that the winds of magic are gone.", "an urge to summon familiar.")]"
-
-
+			if(H.facial_hair_style == "Shaved")
+				H.facial_hair_style = "Adam Jensen Beard"
+				H.update_hair()
 		if(3)
 			if(prob(1)&&prob(50))
 				affected_mob.say(pick("NEC CANTIO!","AULIE OXIN FIERA!", "STI KALY!", "TARCOL MINTI ZHERI!"))
 			if(prob(1)&&prob(50))
 				affected_mob << "\red You feel [pick("the magic bubbling in your veins","that this location gives you a +1 to INT","an urge to summon familiar.")]."
-
+			if(!(H.facial_hair_style == "Dwarf Beard") && !(H.facial_hair_style == "Very Long Beard") && !(H.facial_hair_style == "Full Beard"))
+				H.facial_hair_style = "Full Beard"
+				H.update_hair()
 		if(4)
-
-			if(prob(1))
-				affected_mob.say(pick("NEC CANTIO!","AULIE OXIN FIERA!","STI KALY!","EI NATH!"))
+			if(prob(5))
+				affected_mob.say(pick("NEC CANTIO!","AULIE OXIN FIERA!","STI KALY!","EI NATH!", "TARCOL MINTI ZHERI!"))
 				return
-			if(prob(1)&&prob(50))
+			if(prob(10))
 				affected_mob << "\red You feel [pick("the tidal wave of raw power building inside","that this location gives you a +2 to INT and +1 to WIS","an urge to teleport")]."
+			if(prob(50))
 				spawn_wizard_clothes(50)
-			if(prob(1)&&prob(1))
+			if(prob(1))
 				teleport()
+			if(!(H.facial_hair_style == "Dwarf Beard") && !(H.facial_hair_style == "Very Long Beard"))
+				H.facial_hair_style = pick("Dwarf Beard", "Very Long Beard")
+				H.update_hair()
 	return
 
 

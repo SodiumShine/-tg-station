@@ -9,7 +9,7 @@
 	affected_species = list("Human", "Monkey")
 	permeability_mod = 0.75
 	desc = "If left untreated the subject will feel quite unwell."
-	severity = "Medium"
+	severity = "Moderate"
 
 /datum/disease/flu/stage_act()
 	..()

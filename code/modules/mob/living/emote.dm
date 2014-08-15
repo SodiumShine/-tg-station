@@ -62,8 +62,12 @@
 
 		if ("dance")
 			if (!src.restrained())
-				message = "<B>[src]</B> dances around happily."
+				message = "<B>[src]</B> dances!"
 				m_type = 1
+				spawn(0)
+					for(var/i in list(1,2,4,8,4,2,1,2,4,8,4,2,1,2,4,8,4,2))
+						src.dir = i
+						sleep(1)
 
 		if ("deathgasp")
 			message = "<B>[src]</B> seizes up and falls limp, its eyes dead and lifeless..."

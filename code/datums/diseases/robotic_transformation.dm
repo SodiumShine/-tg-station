@@ -18,39 +18,37 @@
 	..()
 	switch(stage)
 		if(2)
-			if (prob(8))
+			if (prob(1))
 				affected_mob << "Your joints feel stiff."
-				affected_mob.take_organ_damage(1)
-			if (prob(9))
+			if (prob(1))
 				affected_mob << "\red Beep...boop.."
-			if (prob(9))
+			if (prob(1))
 				affected_mob << "\red Bop...beeep..."
 		if(3)
-			if (prob(8))
+			if (prob(3))
 				affected_mob << "\red Your joints feel very stiff."
-				affected_mob.take_organ_damage(1)
-			if (prob(8))
+			if (prob(5))
 				affected_mob.say(pick("Beep, boop", "beep, beep!", "Boop...bop"))
-			if (prob(10))
+			if (prob(3))
 				affected_mob << "Your skin feels loose."
-				affected_mob.take_organ_damage(5)
-			if (prob(4))
+			if (prob(3))
 				affected_mob << "\red You feel a stabbing pain in your head."
 				affected_mob.Paralyse(2)
-			if (prob(4))
+			if (prob(3))
 				affected_mob << "\red You can feel something move...inside."
+			if (prob(3))
+				playsound(affected_mob.loc, "sparks", 75, 1, -1)
 		if(4)
-			if (prob(10))
+			if (prob(5))
 				affected_mob << "\red Your skin feels very loose."
-				affected_mob.take_organ_damage(8)
-			if (prob(20))
+			if (prob(10))
 				affected_mob.say(pick("beep, beep!", "Boop bop boop beep.", "How may I serve you?", "Error!"))
-			if (prob(8))
+			if (prob(5))
 				affected_mob << "\red You can feel... something...inside you."
+			if (prob(5))
+				playsound(affected_mob.loc, "sparks", 75, 1, -1)
 		if(5)
-			affected_mob <<"\red Your skin feels as if it's about to burst off..."
-			affected_mob.adjustToxLoss(10)
-			affected_mob.updatehealth()
+			affected_mob <<"\red Your skin feels as if it's about to burst off!"
 			if(prob(40)) //So everyone can feel like robot Seth Brundle
 				if(src.gibbed != 0) return 0
 				var/turf/T = affected_mob.loc

@@ -3,13 +3,14 @@
 	max_stages = 4
 	spread = "Airborne"
 	cure = "Iron"
-	cure_id = "iron"
-	agent = "Fukkos Miracos"
+	cure_id = list("iron")
+	cure_chance = 5
+	agent = "ICP-JJ virus"
 	affected_species = list("Human")
 	curable = 0
 	permeability_mod = 0.75
-	desc = "This disease disrupts the magnetic field of your body, making it act as if a powerful magnet. Injections of iron help stabilize the field."
-	severity = "Medium"
+	desc = "No one is quite sure how this virus works."
+	severity = "Minor"
 
 /datum/disease/magnitis/stage_act()
 	..()
@@ -17,7 +18,7 @@
 		if(2)
 			if(prob(2))
 				affected_mob << "\red You feel a slight shock course through your body."
-			if(prob(2))
+			if(prob(5))
 				for(var/obj/M in orange(2,affected_mob))
 					if(!M.anchored && (M.flags & CONDUCT))
 						step_towards(M,affected_mob)
@@ -35,11 +36,11 @@
 							M.y++
 						*/
 		if(3)
-			if(prob(2))
+			if(prob(1))
 				affected_mob << "\red You feel a strong shock course through your body."
-			if(prob(2))
-				affected_mob << "\red You feel like clowning around."
-			if(prob(4))
+				affected_mob.Stun(5)
+				playsound(affected_mob.loc, "sparks", 75, 1, -1)
+			if(prob(10))
 				for(var/obj/M in orange(4,affected_mob))
 					if(!M.anchored && (M.flags & CONDUCT))
 						var/i
@@ -65,9 +66,11 @@
 		if(4)
 			if(prob(2))
 				affected_mob << "\red You feel a powerful shock course through your body."
-			if(prob(2))
+				affected_mob.Stun(10)
+				playsound(affected_mob.loc, "sparks", 75, 1, -1)
+			if(prob(3))
 				affected_mob << "\red You query upon the nature of miracles."
-			if(prob(8))
+			if(prob(20))
 				for(var/obj/M in orange(6,affected_mob))
 					if(!M.anchored && (M.flags & CONDUCT))
 						var/i
@@ -91,3 +94,5 @@
 							M.y+=rand(1,min(5,affected_mob.y-M.y))
 						*/
 	return
+
+// SHINE consider making subject get zapped like touching a wire, with sparks and all

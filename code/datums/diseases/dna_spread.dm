@@ -1,9 +1,9 @@
 /datum/disease/dnaspread
-	name = "Space Retrovirus"
+	name = "Retrovirus"
 	max_stages = 4
 	spread = "On contact"
 	spread_type = CONTACT_GENERAL
-	cure = "ryetalyn"
+	cure = "Ryetalyn"
 	cure_id = "ryetalyn" // SHINE fixed cure to cure_id
 	curable = 0
 	agent = "S4E1 retrovirus"
@@ -11,7 +11,7 @@
 	var/list/original_dna = list()
 	var/transformed = 0
 	desc = "This disease transplants the genetic code of the intial vector into new hosts."
-	severity = "Medium"
+	severity = "Moderate"
 
 
 /datum/disease/dnaspread/stage_act()
@@ -28,9 +28,6 @@
 					affected_mob.take_organ_damage(1)
 			if(prob(1))
 				affected_mob << "\red Your stomach hurts."
-				if(prob(20))
-					affected_mob.adjustToxLoss(2)
-					affected_mob.updatehealth()
 		if(4)
 			if(!src.transformed)
 				if ((!strain_data["name"]) || (!strain_data["UI"]) || (!strain_data["SE"]))

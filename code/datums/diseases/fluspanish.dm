@@ -1,17 +1,18 @@
 /datum/disease/fluspanish
-	name = "Spanish inquisition Flu"
-	max_stages = 3
+	name = "Spanish Inquisition Flu"
+	max_stages = 4
 	spread = "Airborne"
-	cure = "Spaceacillin & Anti-bodies to the common flu"
-	cure_id = "spaceacillin"
+	cure = "Holy Water"
+	cure_id = "holywater"
 	cure_chance = 10
-	agent = "1nqu1s1t10n flu virion"
+	agent = "Unexpected flu virion"
 	affected_species = list("Human")
 	permeability_mod = 0.75
-	desc = "If left untreated the subject will burn to death for being a heretic."
-	severity = "Serious"
+	desc = "Often unexpected, the Spanish Inquisition Flu sets fire to the subject for being a heretic."
+	severity = "Major"
+	can_carry = 0
 
-/datum/disease/inquisition/stage_act()
+/datum/disease/fluspanish/stage_act()
 	..()
 	switch(stage)
 		if(2)
@@ -21,16 +22,21 @@
 			if(prob(5))
 				affected_mob.emote("cough")
 			if(prob(1))
-				affected_mob << "\red You're burning in your own skin!"
-				affected_mob.take_organ_damage(0,5)
-
+				affected_mob << "\red Your skin feels hot!"
+//				affected_mob.take_organ_damage(0,3)
 		if(3)
-			affected_mob.bodytemperature += 20
+			affected_mob.bodytemperature += 15
 			if(prob(5))
 				affected_mob.emote("sneeze")
 			if(prob(5))
 				affected_mob.emote("cough")
-			if(prob(5))
-				affected_mob << "\red You're burning in your own skin!"
-				affected_mob.take_organ_damage(0,5)
+			if(prob(1))
+				affected_mob << "\red Your skin feels like it's burning!"
+		if(4)
+			if(prob(25))
+				affected_mob.on_fire = 1
+				affected_mob.AddLuminosity(3)
+				affected_mob.update_fire()
+				affected_mob.bodytemperature += 20
+//				affected_mob.take_organ_damage(0,5)
 	return
