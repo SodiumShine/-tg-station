@@ -434,3 +434,69 @@
 	icon_state = "puddle-splash"
 	..()
 	icon_state = "puddle"
+
+
+
+/////////////////////////
+///Holy water fountain///
+/////////////////////////
+/obj/structure/sink/holy/
+	name = "Holy Water Fountain"
+	icon
+	desc = "It may look like a regular sink but it produces holy water... somehow"
+
+/obj/structure/sink/holy/attackby(obj/item/O, mob/user)
+	if(busy)
+		user << "<span class='notice'>Someone's already washing here.</span>"
+		return
+
+	if(istype(O, /obj/item/trash))
+		user.drop_item()
+		user << "<span class='notice'>You wash up [O].</span>"	//sims!!!
+		qdel(O)
+
+	if(istype(O, /obj/item/weapon/reagent_containers))
+		var/obj/item/weapon/reagent_containers/RG = O
+		RG.reagents.add_reagent("holywater", min(RG.volume - RG.reagents.total_volume, RG.amount_per_transfer_from_this))
+		user << "<span class='notice'>You fill [RG] from [src].</span>"
+		return
+
+	else if(istype(O, /obj/item/weapon/melee/baton))
+		var/obj/item/weapon/melee/baton/B = O
+		if(B.bcell)
+			if(B.bcell.charge > 0 && B.status == 1)
+				flick("baton_active", src)
+				user.Stun(10)
+				user.stuttering = 10
+				user.Weaken(10)
+				if(isrobot(user))
+					var/mob/living/silicon/robot/R = user
+					R.cell.charge -= 20
+				else
+					B.deductcharge(B.hitcost)
+				user.visible_message( \
+					"<span class='danger'>[user] was stunned by \his wet [O]!</span>", \
+					"<span class='userdanger'>[user] was stunned by \his wet [O]!</span>")
+				return
+
+	var/turf/location = user.loc
+	if(!isturf(location)) return
+
+	var/obj/item/I = O
+	if(!I || !istype(I,/obj/item)) return
+
+	usr << "<span class='notice'>You start washing [I].</span>"
+
+	busy = 1
+	sleep(40)
+	busy = 0
+
+	if(user.loc != location) return				//User has moved
+	if(!I) return 								//Item's been destroyed while washing
+	if(user.get_active_hand() != I) return		//Person has switched hands or the item in their hands
+
+	O.clean_blood()
+	user.visible_message( \
+		"<span class='notice'>[user] washes [I] using [src].</span>", \
+		"<span class='notice'>You wash [I] using [src].</span>")
+
