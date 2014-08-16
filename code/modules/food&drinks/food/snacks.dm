@@ -999,7 +999,8 @@
 		reagents.add_reagent("nutriment", 5)
 		bitesize = 2
 
-/* No more of this
+// No more of this // SHINE re-adding telebacon because fuck yeah
+/*
 /obj/item/weapon/reagent_containers/food/snacks/telebacon
 	name = "tele bacon"
 	desc = "It tastes a little odd but it is still delicious."

@@ -289,6 +289,16 @@
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/vegetablepizza
 
+/datum/recipe/pizza/seamonster
+	reagents = list("flour" = 10)
+	items = list(
+		/obj/item/weapon/reagent_containers/food/snacks/grown/tomato,
+		/obj/item/weapon/reagent_containers/food/snacks/carpmeat,
+		/obj/item/weapon/reagent_containers/food/snacks/carpmeat,
+		// add crab meat here SHINE
+		)
+	result = /obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/seamonster
+
 
 
 ////////////////////////////////////////////////SALADS////////////////////////////////////////////////

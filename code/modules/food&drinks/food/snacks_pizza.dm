@@ -76,6 +76,23 @@
 	icon_state = "vegetablepizzaslice"
 	bitesize = 2
 
+/obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/seamonster
+	name = "sea monster pizza"
+	desc = "It's the only real choice here."
+	icon_state = "mushroompizzaslice"
+	slices_num = 6
+	New()
+		..()
+		reagents.add_reagent("nutriment", 40)
+		reagents.add_reagent("carpotoxin", 1)
+		bitesize = 2
+
+/obj/item/weapon/reagent_containers/food/snacks/seamonsterpizzaslice
+	name = "sea monster pizza slice"
+	desc = "Sea monster fresh from the bay."
+	icon_state = "mushroompizzaslice"
+	bitesize = 2
+
 /obj/item/pizzabox
 	name = "pizza box"
 	desc = "A box suited for pizzas."
