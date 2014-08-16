@@ -7,6 +7,27 @@
 	var/new_organ = null 			//Used for multilocation operations
 	var/list/allowed_organs = list()//Allowed organs, see Handle_Multi_Loc below - RR
 
+datum/surgery_step/proc/pain(mob/living/carbon/human/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
+	if(target.stat == DEAD)
+//		world << "Ded"
+		return
+	if(target.sleeping)
+//		world << "Yup asleep"
+		return
+	if (!target.sleeping)
+		target << pick("<span class='userdanger'>OH GOD THE PAIN!</span>","<span class='userdanger'>You probably shouldn\'t be awake for this!</span>","<span class='userdanger'>You can feel the [tool]. It hurts!</span>","<span class='userdanger'>Malpractice! Malpractice!</span>","<span class='userdanger'>You start to question whether they\'re a qualified surgeon...</span>")
+		target.apply_damage(10,BRUTE,"[target_zone]",0)
+	if(!istype(user.gloves, /obj/item/clothing/gloves/latex))
+		target.apply_damage(5,TOX,"[target_zone]",0)
+//		world << "Not wearing gloves!"
+	if(!istype(user.wear_mask, /obj/item/clothing/mask/surgical))
+		target.apply_damage(5,TOX,"[target_zone]",0)
+//		world << "Not wearing mask!"
+	if(!istype(user.wear_suit, /obj/item/clothing/suit/apron/surgical))
+		target.apply_damage(5,TOX,"[target_zone]",0)
+//		world << "Not wearing apron!"
+	else
+		return
 
 /datum/surgery_step/proc/try_op(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	var/success = 0
@@ -62,6 +83,8 @@
 			if(surgery.status > surgery.steps.len)
 				surgery.complete(target)
 
+	pain(user, target, target_zone, tool, surgery)
+
 	surgery.step_in_progress = 0
 
 
@@ -76,7 +99,7 @@
 /datum/surgery_step/saw/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	if(ishuman(target))
 		var/mob/living/carbon/human/H = target
-		H.apply_damage(75,"brute","[target_zone]")
+		H.apply_damage(50,"brute","[target_zone]")
 		user.visible_message("<span class='notice'>[user] saws [target]'s [target_zone] open!")
 	return 1
 
