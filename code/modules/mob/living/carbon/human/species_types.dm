@@ -128,21 +128,40 @@
 	armor = -10 //shine
 
 /datum/species/shadow/spec_life(mob/living/carbon/human/H)
-	var/light_amount = 0
+	var/light_amount
+	var/L
+	var/C
+//	var/PR = 0
 	if(isturf(H.loc))
 		var/turf/T = H.loc
 		var/area/A = T.loc
 		if(A)
-			if(A.lighting_use_dynamic)	light_amount = T.lighting_lumcount
-			else						light_amount =  10
-		if(light_amount > 3)
-			H.take_overall_damage(0,2)
-		else if(light_amount > 2) //if there's enough light, start dying
-			H.take_overall_damage(0,1)
+			if(A.lighting_use_dynamic)
+				light_amount = T.lighting_lumcount
+			else
+				light_amount =  10
+/*
+		var/obj/item/clothing/CL
+		if(H.head.CL.body_parts_covered == 1)
+			world << "Yup it's covered"
+			PR = 1
+		if(H.head.CL.body_parts_covered == 0)
+			world << "Nope, not covered"
+			PR = 0
+*/
+		if(light_amount > 3) //if there's enough light, start dying
+			L = light_amount / 2
+//			if(PR == 1)
+//				L -= 1
+			H.take_overall_damage(0,L)
+//			world << "Take [L] damage"
+		else if(light_amount < 3 && light_amount > 2)
+//			world << "No light stuff"
 		else if (light_amount < 2) //heal in the dark
-			H.heal_overall_damage(0,1)
-		else if (light_amount < 1) //Heal more in very dark
-			H.heal_overall_damage(0.1,1.3)
+			L = light_amount
+			C = 2 - L
+			H.heal_overall_damage(0,C)
+//			world << "Heal [C]"
 
 /*
  SLIMEPEOPLE
@@ -160,7 +179,7 @@
 	hair_alpha = 150
 	ignored_by = list(/mob/living/carbon/slime)
 	roundstart = 1 // SHINE ADD
-
+	coldmod = 2
 /*
  JELLYPEOPLE
 */
