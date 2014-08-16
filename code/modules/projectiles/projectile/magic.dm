@@ -6,6 +6,9 @@
 	nodamage = 1
 	flag = "magic"
 
+/obj/item/projectile/magic/fakewizard
+	name = "bolt of magic"
+
 /obj/item/projectile/magic/death
 	name = "bolt of death"
 	icon_state = "pulse1_bl"

@@ -3,6 +3,9 @@
 	desc = "I didn't even know magic needed ammo..."
 	projectile_type = /obj/item/projectile/magic
 
+/obj/item/ammo_casing/magic/fakewizard
+	projectile_type = /obj/item/projectile/magic/fakewizard
+
 /obj/item/ammo_casing/magic/change
 	projectile_type = /obj/item/projectile/magic/change
 

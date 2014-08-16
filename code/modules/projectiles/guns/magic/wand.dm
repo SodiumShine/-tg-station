@@ -131,3 +131,11 @@
 	explosion(user.loc, -1, 0, 2, 3, 0, flame_range = 2)
 	charges--
 	..()
+
+/obj/item/weapon/gun/magic/wand/fakewizard
+	name = "wizards staff"
+	desc = "A +1 magic weapon"
+	icon = 'icons/obj/wizard.dmi'
+	icon_state = "staff"
+	item_state = "staff"
+	ammo_type = /obj/item/ammo_casing/magic/fakewizard

@@ -27,38 +27,40 @@ STI KALY - blind
 
 /datum/disease/wizarditis/stage_act()
 	..()
-
-	switch(stage)
-		if(2)
-			if(prob(1)&&prob(50))
-				affected_mob.say(pick("You shall not pass!", "Expeliarmus!", "By Merlins beard!", "Feel the power of the Dark Side!"))
-			if(prob(1)&&prob(50))
-				affected_mob << "\red You feel [pick("that you don't have enough mana.", "that the winds of magic are gone.", "an urge to summon familiar.")]"
-			if(H.facial_hair_style == "Shaved")
-				H.facial_hair_style = "Adam Jensen Beard"
-				H.update_hair()
-		if(3)
-			if(prob(1)&&prob(50))
-				affected_mob.say(pick("NEC CANTIO!","AULIE OXIN FIERA!", "STI KALY!", "TARCOL MINTI ZHERI!"))
-			if(prob(1)&&prob(50))
-				affected_mob << "\red You feel [pick("the magic bubbling in your veins","that this location gives you a +1 to INT","an urge to summon familiar.")]."
-			if(!(H.facial_hair_style == "Dwarf Beard") && !(H.facial_hair_style == "Very Long Beard") && !(H.facial_hair_style == "Full Beard"))
-				H.facial_hair_style = "Full Beard"
-				H.update_hair()
-		if(4)
-			if(prob(5))
-				affected_mob.say(pick("NEC CANTIO!","AULIE OXIN FIERA!","STI KALY!","EI NATH!", "TARCOL MINTI ZHERI!"))
-				return
-			if(prob(10))
-				affected_mob << "\red You feel [pick("the tidal wave of raw power building inside","that this location gives you a +2 to INT and +1 to WIS","an urge to teleport")]."
-			if(prob(50))
-				spawn_wizard_clothes(50)
-			if(prob(1))
-				teleport()
-			if(!(H.facial_hair_style == "Dwarf Beard") && !(H.facial_hair_style == "Very Long Beard"))
-				H.facial_hair_style = pick("Dwarf Beard", "Very Long Beard")
-				H.update_hair()
-	return
+	var/mob/living/M = affected_mob
+	if(istype(M, /mob/living/carbon/human))
+		var/mob/living/carbon/human/H = M
+		switch(stage)
+			if(2)
+				if(prob(1)&&prob(50))
+					affected_mob.say(pick("You shall not pass!", "Expeliarmus!", "By Merlins beard!", "Feel the power of the Dark Side!"))
+				if(prob(1)&&prob(50))
+					affected_mob << "\red You feel [pick("that you don't have enough mana.", "that the winds of magic are gone.", "an urge to summon familiar.")]"
+				if(H.facial_hair_style == "Shaved")
+					H.facial_hair_style = "Adam Jensen Beard"
+					H.update_hair()
+			if(3)
+				if(prob(1)&&prob(50))
+					affected_mob.say(pick("NEC CANTIO!","AULIE OXIN FIERA!", "STI KALY!", "TARCOL MINTI ZHERI!"))
+				if(prob(1)&&prob(50))
+					affected_mob << "\red You feel [pick("the magic bubbling in your veins","that this location gives you a +1 to INT","an urge to summon familiar.")]."
+				if(!(H.facial_hair_style == "Dwarf Beard") && !(H.facial_hair_style == "Very Long Beard") && !(H.facial_hair_style == "Full Beard"))
+					H.facial_hair_style = "Full Beard"
+					H.update_hair()
+			if(4)
+				if(prob(5))
+					affected_mob.say(pick("NEC CANTIO!","AULIE OXIN FIERA!","STI KALY!","EI NATH!", "TARCOL MINTI ZHERI!"))
+					return
+				if(prob(10))
+					affected_mob << "\red You feel [pick("the tidal wave of raw power building inside","that this location gives you a +2 to INT and +1 to WIS","an urge to teleport")]."
+				if(prob(50))
+					spawn_wizard_clothes(50)
+				if(prob(1))
+					teleport()
+				if(!(H.facial_hair_style == "Dwarf Beard") && !(H.facial_hair_style == "Very Long Beard"))
+					H.facial_hair_style = pick("Dwarf Beard", "Very Long Beard")
+					H.update_hair()
+		return
 
 
 
@@ -83,13 +85,12 @@ STI KALY - blind
 					qdel(H.shoes)
 			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/sandal(H), slot_shoes)
 			return
-	else
-		var/mob/living/carbon/H = affected_mob
 		if(prob(chance))
-			if(!istype(H.r_hand, /obj/item/weapon/staff))
+			world << "Staff chance done"
+			if(!istype(H.r_hand, /obj/item/weapon/gun/magic/wand/fakewizard))
+				world << "Type check for r_hand done"
 				H.drop_r_hand()
-				H.put_in_r_hand( new /obj/item/weapon/staff(H) )
-			return
+				H.put_in_r_hand(new /obj/item/weapon/gun/magic/wand/fakewizard(H), slot_r_hand)
 	return
 
 
