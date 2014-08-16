@@ -53,3 +53,6 @@
 
 /datum/job/cyborg/config_check()
 	return 0
+
+/datum/job/chemist/config_check()
+	return 0

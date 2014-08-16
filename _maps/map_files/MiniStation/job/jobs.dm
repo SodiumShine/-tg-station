@@ -48,16 +48,16 @@
 	total_positions = 2 // SHINE 4 to 2
 	spawn_positions = 2
 	access = list(access_medical, access_morgue, access_surgery, access_chemistry, access_virology, access_genetics)
-	minimal_access = list(access_medical, access_morgue, access_surgery)
+	minimal_access = list(access_medical, access_morgue, access_surgery, access_chemistry, access_genetics)
 
-
+/*
 /datum/job/chemist/New()
 	..()
 	total_positions = 1
 	spawn_positions = 1
 	access = list(access_medical, access_morgue, access_surgery, access_chemistry, access_virology, access_genetics)
 	minimal_access = list(access_medical, access_chemistry)
-
+*/
 // Science
 
 /datum/job/scientist/New()
