@@ -63,6 +63,9 @@
 
 	var/mob/living/list/ignored_by = list()	// list of mobs that will ignore this species
 
+	var/stomachgrumbled3 = 0
+	var/stomachgrumbled4 = 0
+
 	///////////
 	// PROCS //
 	///////////
@@ -522,13 +525,34 @@
 							if(0 to 20)				H.healths.icon_state = "health5"
 							else					H.healths.icon_state = "health6"
 
+/////////////////////
+///Nutrition icons///
+/////////////////////
 		if(H.nutrition_icon)
 			switch(H.nutrition)
-				if(450 to INFINITY)				H.nutrition_icon.icon_state = "nutrition0"
-				if(350 to 450)					H.nutrition_icon.icon_state = "nutrition1"
-				if(250 to 350)					H.nutrition_icon.icon_state = "nutrition2"
-				if(150 to 250)					H.nutrition_icon.icon_state = "nutrition3"
-				else							H.nutrition_icon.icon_state = "nutrition4"
+				if(450 to INFINITY)
+					H.nutrition_icon.icon_state = "nutrition0"
+				if(350 to 450)
+					H.nutrition_icon.icon_state = "nutrition1"
+				if(250 to 350)
+					H.nutrition_icon.icon_state = "nutrition2"
+					stomachgrumbled3 = 0
+				if(150 to 250)
+					stomachgrumbled4 = 0
+					H.nutrition_icon.icon_state = "nutrition3"
+					if(stomachgrumbled3 == 0)
+						H << "\red Your stomach grumbles. Hungry!"
+						stomachgrumbled3 = 1
+				else
+					H.nutrition_icon.icon_state = "nutrition4"
+					if(stomachgrumbled4 == 0)
+						H << "\red Your stomach complains loudly. Starving!"
+						H.visible_message("[H]'s stomach rumbles.")
+						stomachgrumbled4 = 1
+						stomachgrumbled3 = 1
+					if(prob(1))
+						H << "\red Your stomach complains loudly. Still Starving!"
+						H.visible_message("[H]'s stomach rumbles.")
 
 		if(H.pressure)
 			H.pressure.icon_state = "pressure[H.pressure_alert]"
