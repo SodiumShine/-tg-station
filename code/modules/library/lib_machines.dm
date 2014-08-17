@@ -134,7 +134,7 @@ datum/borrowbook // Datum used to keep track of who has borrowed what when and f
 	var/checkoutperiod = 5 // In minutes
 	var/obj/machinery/libraryscanner/scanner // Book scanner that will be used when uploading books to the Archive
 
-	var/bibledelay = 0 // LOL NO SPAM (1 minute delay) -- Doohl
+//	var/bibledelay = 0 // LOL NO SPAM (1 minute delay) -- Doohl
 
 /obj/machinery/librarycomp/attack_hand(var/mob/user as mob)
 	usr.set_machine(src)
@@ -209,7 +209,7 @@ datum/borrowbook // Datum used to keep track of who has borrowed what when and f
 					var/author = query.item[2]
 					var/title = query.item[3]
 					var/category = query.item[4]
-					dat += "<tr><td>[author]</td><td>[title]</td><td>[category]</td><td><A href='?src=\ref[src];targetid=[id]'>\[Order\]</A></td></tr>"
+					dat += "<tr><td>[id]</td><td>[author]</td><td>[title]</td><td>[category]</td><td><A href='?src=\ref[src];targetid=[id]'>\[Order\]</A></td></tr>"
 				dat += "</table>"
 			dat += "<BR><A href='?src=\ref[src];switchscreen=0'>(Return to main menu)</A><BR>"
 		if(5)
@@ -278,22 +278,22 @@ datum/borrowbook // Datum used to keep track of who has borrowed what when and f
 			if("5")
 				screenstate = 5
 			if("6")
-				if(!bibledelay)
+//				if(!bibledelay)
 
-					var/obj/item/weapon/storage/book/bible/B = new /obj/item/weapon/storage/book/bible(src.loc)
-					if(ticker && ( ticker.Bible_icon_state && ticker.Bible_item_state) )
-						B.icon_state = ticker.Bible_icon_state
-						B.item_state = ticker.Bible_item_state
-						B.name = ticker.Bible_name
-						B.deity_name = ticker.Bible_deity_name
+				var/obj/item/weapon/storage/book/bible/B = new /obj/item/weapon/storage/book/bible(src.loc)
+				if(ticker && ( ticker.Bible_icon_state && ticker.Bible_item_state) )
+					B.icon_state = ticker.Bible_icon_state
+					B.item_state = ticker.Bible_item_state
+					B.name = ticker.Bible_name
+					B.deity_name = ticker.Bible_deity_name
 
-					bibledelay = 1
-					spawn(60)
-						bibledelay = 0
+//					bibledelay = 1
+//					spawn(60)
+//						bibledelay = 0
 
-				else
-					for (var/mob/V in hearers(src))
-						V.show_message("<b>[src]</b>'s monitor flashes, \"Bible printer currently unavailable, please wait a moment.\"")
+//			else
+//				for (var/mob/V in hearers(src))
+//					V.show_message("<b>[src]</b>'s monitor flashes, \"Bible printer currently unavailable, please wait a moment.\"")
 
 			if("7")
 				screenstate = 7
@@ -363,13 +363,13 @@ datum/borrowbook // Datum used to keep track of who has borrowed what when and f
 		establish_db_connection()
 		if(!dbcon.IsConnected())
 			alert("Connection to Archive has been severed. Aborting.")
-		if(bibledelay)
-			for (var/mob/V in hearers(src))
-				V.show_message("<b>[src]</b>'s monitor flashes, \"Printer unavailable. Please allow a short time before attempting to print.\"")
+//		if(bibledelay)
+//			for (var/mob/V in hearers(src))
+//				V.show_message("<b>[src]</b>'s monitor flashes, \"Printer unavailable. Please allow a short time before attempting to print.\"")
 		else
-			bibledelay = 1
-			spawn(60)
-				bibledelay = 0
+//			bibledelay = 1
+//			spawn(60)
+//				bibledelay = 0
 			var/DBQuery/query = dbcon.NewQuery("SELECT * FROM erro_library WHERE id=[sqlid] AND isnull(deleted)")
 			query.Execute()
 
