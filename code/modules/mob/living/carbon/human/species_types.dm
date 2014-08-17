@@ -131,7 +131,7 @@
 	var/light_amount
 	var/L
 	var/C
-//	var/PR = 0
+	var/PR
 	if(isturf(H.loc))
 		var/turf/T = H.loc
 		var/area/A = T.loc
@@ -140,19 +140,18 @@
 				light_amount = T.lighting_lumcount
 			else
 				light_amount =  10
-/*
-		var/obj/item/clothing/CL
-		if(H.head.CL.body_parts_covered == 1)
-			world << "Yup it's covered"
+
+		if(istype(H.r_hand, /obj/item/weapon/umbrella) || istype(H.l_hand, /obj/item/weapon/umbrella))
+//			world << "Yup it's covered"
 			PR = 1
-		if(H.head.CL.body_parts_covered == 0)
-			world << "Nope, not covered"
+		if(!istype(H.r_hand, /obj/item/weapon/umbrella) && !istype(H.l_hand, /obj/item/weapon/umbrella))
+//			world << "Nope, not covered"
 			PR = 0
-*/
+
 		if(light_amount > 3) //if there's enough light, start dying
 			L = light_amount / 2
-//			if(PR == 1)
-//				L -= 1
+			if(PR == 1)
+				L = 0
 			H.take_overall_damage(0,L)
 //			world << "Take [L] damage"
 		else if(light_amount < 3 && light_amount > 2)
