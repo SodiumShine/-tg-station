@@ -16,6 +16,11 @@
 	var/open_panel = 0
 	var/image_overlay = null
 
+/obj/item/weapon/plastique/security
+	name = "breaching charges"
+	desc = "In case a warrant wasn't enough."
+	origin_tech = null
+
 /obj/item/weapon/plastique/New()
 	wires = new(src)
 	image_overlay = image('icons/obj/assemblies.dmi', "plastic-explosive2")

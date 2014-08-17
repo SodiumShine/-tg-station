@@ -65,5 +65,19 @@
 	name = "Atmosphere replacement canister"
 	contains = list(/obj/machinery/portable_atmospherics/canister/superair)
 	cost = 115
-	containername = "Atmosphere replacement canister"
+	containername = "Atmosphere replacement canister crate"
 	containertype = /obj/structure/closet/crate/secure
+
+/datum/supply_packs/engineering/pipedispenser
+	name = "Atmospheric Pipe Dispensor"
+	contains = list(/obj/machinery/pipedispenser)
+	cost = 60
+	containername = "Pipe Dispenser crate"
+	containertype = /obj/structure/largecrate
+
+/datum/supply_packs/security/charges
+	name = "Breaching Charges"
+	cost = 30
+	contains = list(/obj/item/weapon/plastique/security,/obj/item/weapon/plastique/security,/obj/item/weapon/plastique/security)
+	containertype = /obj/structure/closet/crate/secure
+	containername = "Explosives crate"
