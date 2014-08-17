@@ -5,8 +5,7 @@
 	icon = 'icons/mob/human.dmi'
 	icon_state = "caucasian1_m_s"
 	var/list/hud_list = list()
-
-
+	var/obj/item/organ/brain/B = null
 
 /mob/living/carbon/human/dummy
 	real_name = "Test Dummy"
@@ -37,10 +36,25 @@
 
 	..()
 
+	B = new(src)
+	B.name = "[src.real_name]'s brain"
+	B.brainmob = new(src)
+	B.brainmob.name = src.real_name
+	B.brainmob.real_name = src.real_name
+
 /mob/living/carbon/human/Destroy()
+	if(B && mind)//Safety for when a cyborg gets dust()ed. Or there is no MMI inside.
+		var/turf/T = get_turf(loc)//To hopefully prevent run time errors.
+		if(T)
+			B.loc = T
+		mind.transfer_to(B.brainmob)
+		B = null
+	..()
+
 	for(var/atom/movable/organelle in organs)
 		qdel(organelle)
-	return ..()
+
+
 
 /mob/living/carbon/human/Bump(atom/movable/AM as mob|obj, yes)
 	if ((!( yes ) || now_pushing))
