@@ -79,11 +79,11 @@
 /obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/seamonster
 	name = "sea monster pizza"
 	desc = "It's the only real choice here."
-	icon_state = "mushroompizzaslice"
+	icon_state = "seamonster"
 	slices_num = 6
 	New()
 		..()
-		reagents.add_reagent("nutriment", 40)
+		reagents.add_reagent("nutriment", 50)
 		reagents.add_reagent("carpotoxin", 1)
 		bitesize = 2
 
