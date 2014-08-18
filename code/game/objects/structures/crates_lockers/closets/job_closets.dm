@@ -81,7 +81,7 @@
 	new /obj/item/device/lightreplacer(src)
 	new /obj/item/weapon/storage/bag/trash(src)
 	new /obj/item/clothing/shoes/galoshes(src)
-	new /obj/item/weapon/watertank/janitor(src)
+	new /obj/item/weapon/reagent_containers/spray/cleaner(src)
 	new /obj/item/weapon/storage/belt/janitor(src)
 
 /*
