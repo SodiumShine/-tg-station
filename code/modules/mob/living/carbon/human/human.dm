@@ -37,12 +37,14 @@
 	..()
 
 	B = new(src)
-	B.name = "[src.real_name]'s brain"
 	B.brainmob = new(src)
+
+/mob/living/carbon/human/Destroy()
+
+	B.name = "[src.real_name]'s brain"
 	B.brainmob.name = src.real_name
 	B.brainmob.real_name = src.real_name
 
-/mob/living/carbon/human/Destroy()
 	if(B && mind)//Safety for when a cyborg gets dust()ed. Or there is no MMI inside.
 		var/turf/T = get_turf(loc)//To hopefully prevent run time errors.
 		if(T)
