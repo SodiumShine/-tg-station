@@ -4,15 +4,15 @@
 /datum/round_event_control/ion_storm
 	name = "Ion Storm"
 	typepath = /datum/round_event/ion_storm
-	weight = 10 // SHINE 0 to 15 because no AI
+	weight = 15
 
 /datum/round_event/ion_storm
-	var/botEmagChance = 10
+	var/botEmagChance = 50
 	var/announceEvent = ION_RANDOM // -1 means don't announce, 0 means have it randomly announce, 1 means
 	var/ionMessage = null
 	var/ionAnnounceChance = 33
 
-/datum/round_event/ion_storm/New(var/botEmagChance = 10, var/announceEvent = ION_RANDOM, var/ionMessage = null, var/ionAnnounceChance = 33)
+/datum/round_event/ion_storm/New(var/botEmagChance = 50, var/announceEvent = ION_RANDOM, var/ionMessage = null, var/ionAnnounceChance = 33)
 	src.botEmagChance = botEmagChance
 	src.announceEvent = announceEvent
 	src.ionMessage = ionMessage
@@ -34,6 +34,15 @@
 				M << "<br>"
 				M << "\red [message] ...LAWS UPDATED"
 				M << "<br>"
+
+	for(var/mob/living/silicon/robot/R in living_mob_list)
+		if(R.stat != 2)
+			var/Rmessage = generate_ion_law(ionMessage)
+			if(Rmessage)
+				R.add_ion_law(Rmessage)
+				R << "<br>"
+				R << "\red [Rmessage] ...LAWS UPDATED"
+				R << "<br>"
 
 	if(botEmagChance)
 		for(var/obj/machinery/bot/bot in machines)

@@ -1,8 +1,8 @@
 /datum/round_event_control/alien_infestation
 	name = "Alien Infestation"
 	typepath = /datum/round_event/alien_infestation
-	weight = 5
-	max_occurrences = 1
+	weight = 10
+	max_occurrences = 2
 
 /datum/round_event/alien_infestation
 	announceWhen	= 400
