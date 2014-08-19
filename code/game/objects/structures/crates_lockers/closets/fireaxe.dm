@@ -41,7 +41,7 @@
 				return
 			else
 				playsound(user, 'sound/effects/Glasshit.ogg', 100, 1) //We don't want this playing every time
-			if(W.force < 15)
+			if(W.force < 10) // SHINE 15 to 10
 				user << "<span class = 'warning'> The cabinet's protective glass glances off the hit.</span>"
 			else
 				src.hitstaken++
