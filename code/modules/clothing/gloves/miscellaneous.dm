@@ -60,3 +60,17 @@
 	item_state = "fingerless"
 	item_color = null	//So they don't wash.
 	transfer_prints = TRUE
+
+/obj/item/clothing/gloves/security
+	name = "tactical security gloves"
+	desc = "Tough, tactical gloves that will protect your hands while robusting assistants."
+	icon_state = "security"
+	item_state = "security"
+	item_color = "security"
+	siemens_coefficient = 0.50
+	min_cold_protection_temperature = GLOVES_MIN_TEMP_PROTECT
+	heat_protection = HANDS
+	max_heat_protection_temperature = GLOVES_MAX_TEMP_PROTECT
+
+	New()
+		name = pick("tactical security gloves","tacticool security gloves")
