@@ -868,6 +868,7 @@
 #include "code\modules\events\brand_intelligence.dm"
 #include "code\modules\events\carp_migration.dm"
 #include "code\modules\events\communications_blackout.dm"
+#include "code\modules\events\cyborg_delivery.dm"
 #include "code\modules\events\disease_outbreak_major.dm"
 #include "code\modules\events\disease_outbreak_minor.dm"
 #include "code\modules\events\dust.dm"

@@ -122,7 +122,7 @@ GUEST_BAN
 # GITHUBURL https://www.github.com/tgstation/-tg-station
 
 ## Ban appeals URL - usually for a forum or wherever people should go to contact your admins.
-# BANAPPEALS http://justanotherday.example.com
+BANAPPEALS http://zebra-station.tumblr.com/ask
 
 #TUMBLRURL http://zebra-station.tumblr.com/
 
