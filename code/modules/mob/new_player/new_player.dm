@@ -28,24 +28,24 @@
 
 	else
 		output += "<p><a href='byond://?src=\ref[src];late_join=1'>Join Game!</A></p>"
-			output += "<p><a href='byond://?src=\ref[src];manifest=1'>Crew Manifest</A></p>" // SHINE ADD
+		output += "<p><a href='byond://?src=\ref[src];manifest=1'>Crew Manifest</A></p>"
 
 	output += "<p><a href='byond://?src=\ref[src];observe=1'>Observe</A></p>"
-
+/*
 	if(!IsGuestKey(src.key))
 		establish_db_connection()
 
-			if(dbcon.IsConnected())
-				var/isadmin = 0
-				if(src.client && src.client.holder)
-					isadmin = 1
-				var/DBQuery/query = dbcon.NewQuery("SELECT id FROM erro_poll_question WHERE [(isadmin ? "" : "adminonly = false AND")] Now() BETWEEN starttime AND endtime AND id NOT IN (SELECT pollid FROM erro_poll_vote WHERE ckey = \"[ckey]\") AND id NOT IN (SELECT pollid FROM erro_poll_textreply WHERE ckey = \"[ckey]\")")
-				query.Execute()
-//				var/newpoll = 0 //SHINE REMOVED
-				while(query.NextRow())
-//					newpoll = 1 //SHINE removed
-					break
-/* SHINE removed?
+		if(dbcon.IsConnected())
+			var/isadmin = 0
+			if(src.client && src.client.holder)
+				isadmin = 1
+			var/DBQuery/query = dbcon.NewQuery("SELECT id FROM erro_poll_question WHERE [(isadmin ? "" : "adminonly = false AND")] Now() BETWEEN starttime AND endtime AND id NOT IN (SELECT pollid FROM erro_poll_vote WHERE ckey = \"[ckey]\") AND id NOT IN (SELECT pollid FROM erro_poll_textreply WHERE ckey = \"[ckey]\")")
+			query.Execute()
+			var/newpoll = 0
+			while(query.NextRow())
+				newpoll = 1
+				break
+
 			if(newpoll)
 				output += "<p><b><a href='byond://?src=\ref[src];showpoll=1'>Show Player Polls</A> (NEW!)</b></p>"
 			else
@@ -273,7 +273,7 @@
 	if(config.allow_latejoin_antagonists && emergency_shuttle.timeleft() > 300) //Don't make them antags if the station is evacuating
 		ticker.mode.make_antag_chance(character)
 	qdel(src)
-*/
+
 /*
 /mob/new_player/proc/AnnounceArrival(var/mob/living/carbon/human/character, var/rank)
 	if (ticker.current_state == GAME_STATE_PLAYING)
@@ -287,10 +287,10 @@
 					announcer.say("[character.real_name] has signed up as [rank].")
 */
 /mob/new_player/proc/AnnounceArrival(var/mob/living/carbon/human/character, var/rank)
-		if (ticker.current_state == GAME_STATE_PLAYING)
-			if(character.mind)
-				if((character.mind.assigned_role != "Cyborg") && (character.mind.special_role != "MODE"))
-					world << "<b>A new crew member has arrived on the station.</b>"
+	if (ticker.current_state == GAME_STATE_PLAYING)
+		if(character.mind)
+			if((character.mind.assigned_role != "Cyborg") && (character.mind.special_role != "MODE"))
+				world << "<b>[character.real_name] the [rank] has arrived on the station.</b>"
 
 /mob/new_player/proc/LateChoices()
 	var/mills = world.time // 1/10 of a second, not real milliseconds but whatever
@@ -383,3 +383,4 @@
 	src << browse(null, "window=preferences") //closes job selection
 	src << browse(null, "window=mob_occupation")
 	src << browse(null, "window=latechoices") //closes late job selection
+	src << browse(null, "window=manifest")
