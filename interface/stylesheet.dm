@@ -23,6 +23,7 @@ em						{font-style: normal;	font-weight: bold;}
 .name					{					font-weight: bold;}
 
 .say					{}
+.whisper				{font-size: xx-small;}
 .deadsay				{color: #5c00e6;}
 .radio					{color: #008000;}
 .sciradio				{color: #993399;}

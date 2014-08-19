@@ -63,6 +63,7 @@ Works together with spawning an observer, noted above.
 			var/mob/dead/observer/ghost = new(src)	//Transfer safety to observer spawning proc.
 			ghost.can_reenter_corpse = can_reenter_corpse
 			ghost.key = key
+			ghost << "*---<b>You are now a ghost</b>---* <br>You're dead, which you probably should have expected. <br>Don't worry though, there are many things you can do to torture those who wronged you in life, such as flickering lights menacingly, spin chairs spookily, or have your favorite vending machine distribute goods to a passerby. <br><br>Communicating with others whose souls are trapped in this forsaken Station is possible as well. <br>If you keep trying, maybe you can even communicate with the living again. <br><br>If you wait long enough you might be reincarnated as something fun, or someone might be kind enough to find your poor lifeless body and clone you.If you still have a body at all. If there's at least a brain you could be recycled as a cyborg. <br>(If you get really bored, use \red adminhelp \black and see if they'll let you have some fun) <br>*--------------------------*"
 			return ghost
 
 /*
@@ -247,8 +248,9 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	var/obj/machinery/light/L = locate(/obj/machinery/light) in view(1, src)
 	if(L)
 		L.flicker()
-		bootime = world.time + 400
-		playsound(src.loc, pick('sound/effects/ghost.ogg','sound/effects/ghost2.ogg'), 10, 1)
+		bootime = world.time + 600
+		if(prob(25))
+			playsound(src.loc, pick('sound/effects/ghost.ogg','sound/effects/ghost2.ogg'), 10, 1)
 		return
 	if(!L)
 		src << "You need to be closer to a light..."
@@ -261,7 +263,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 /mob/dead/observer/verb/vend()
 	set category = "Ghost"
 	set name = "Haunt Vending Machine"
-	set desc = "Make a vending machine spit stuff out at people."
+	set desc = "Make a vending machine spit stuff out at people, out of spite."
 
 	if(vendtime > world.time)
 		src << "You have to wait before you can do that again."
@@ -269,8 +271,9 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	var/obj/machinery/vending/V = locate(/obj/machinery/vending) in view(1, src)
 	if(V)
 		V.throw_item()
-		vendtime = world.time + 800
-		playsound(src.loc, pick('sound/effects/ghost.ogg','sound/effects/ghost2.ogg'), 10, 1)
+		vendtime = world.time + 1200
+		if(prob(25))
+			playsound(src.loc, pick('sound/effects/ghost.ogg','sound/effects/ghost2.ogg'), 10, 1)
 		V.ghostwhine()
 		return
 	if(!V)

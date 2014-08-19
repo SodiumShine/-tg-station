@@ -156,7 +156,7 @@ var/list/department_radio_keys = list(
 				for(var/i=0,i<bzz,i++)
 					message += "Z"
 */
-	
+
 	if(message_mode == "changeling")
 		if(mind && mind.changeling)
 			log_say("[mind.changeling.changelingID]/[src.key] : [message]")
@@ -164,7 +164,7 @@ var/list/department_radio_keys = list(
 				if((Changeling.mind && Changeling.mind.changeling) || istype(Changeling, /mob/dead/observer))
 					Changeling << "<i><font color=#800080><b>[mind.changeling.changelingID]:</b> [message]</font></i>"
 			return
-	
+
 	if (message_mode == "alientalk")
 		if(alien_talk_understand || hivecheck())
 		//message = trim(copytext(sanitize(message), 1, MAX_MESSAGE_LEN)) //seems redundant
@@ -173,7 +173,7 @@ var/list/department_radio_keys = list(
 
 	if(is_muzzled()) // Intentionally after changeling hivemind check
 		return
-	
+
 	var/list/obj/item/used_radios = new
 
 	switch (message_mode)
@@ -220,7 +220,7 @@ var/list/department_radio_keys = list(
 
 		//I see no reason to restrict such way of whispering
 		if ("whisper")
-			whisper(message)
+			whisper("<span class='whisper'>[message]</span>")
 			return
 
 		if ("binary")

@@ -104,7 +104,7 @@
 		if (italics)
 			message_a = "<i>[message_a]</i>"
 		//This appears copied from carbon/living say.dm so the istype check for mob is probably not needed. Appending for src is also not needed as the game will check that automatically.
-		rendered = "<span class='game say'><span class='name'>[GetVoice()]</span>[alt_name] [whispers], <span class='message'>\"[message_a]\"</span></span>"
+		rendered = "<span class='game say'><span class='name'>[GetVoice()]</span>[alt_name] [whispers], <span class='message'>\"<span class='whisper'>[message_a]\"</span></span></span>"
 
 		for (var/mob/M in heard_a)
 			M.show_message(rendered, 2)
@@ -120,7 +120,7 @@
 		if (italics)
 			message_b = "<i>[message_b]</i>"
 
-		rendered = "<span class='game say'><span class='name'>[src.voice_name]</span> [whispers], <span class='message'>\"[message_b]\"</span></span>"
+		rendered = "<span class='game say'><span class='name'>[src.voice_name]</span> [whispers], <span class='message'>\"<span class='whisper'>[message_b]</span>\"</span></span>"
 
 		for (var/mob/M in heard_b)
 			M.show_message(rendered, 2)
@@ -129,7 +129,7 @@
 		if (M.say_understands(src))
 			var/message_c
 			message_c = stars(message)
-			rendered = "<span class='game say'><span class='name'>[GetVoice()]</span>[alt_name] [whispers], <span class='message'>\"[message_c]\"</span></span>"
+			rendered = "<span class='game say'><span class='name'>[GetVoice()]</span>[alt_name] [whispers], <span class='message'>\"<span class='whisper'>[message_c]</span>\"</span></span>"
 			M.show_message(rendered, 2)
 		else
 			rendered = "<span class='game say'><span class='name'>[src.voice_name]</span> [whispers] something.</span>"
@@ -137,7 +137,7 @@
 
 	if (italics)
 		message = "<i>[message]</i>"
-	rendered = "<span class='game say'><span class='name'>[GetVoice()]</span>[alt_name] [whispers], <span class='message'>\"[message]\"</span></span>"
+	rendered = "<span class='game say'><span class='name'>[GetVoice()]</span>[alt_name] [whispers], <span class='message'>\"<span class='whisper'>[message]</span>\"</span></span>"
 
 	for (var/mob/M in dead_mob_list)
 		if (!(M.client))

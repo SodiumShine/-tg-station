@@ -26,21 +26,16 @@
 			if(M.job == "Chaplain")
 				if (prob (49))
 					M.show_message("<span class='game'><i>You hear muffled susurration... the departed are trying to communicate...</i></span>", 2)
-					if(prob(20))
-						playsound(src.loc, pick('sound/effects/ghost.ogg','sound/effects/ghost2.ogg'), 10, 1)
 				else
-					M.show_message("<span class='game'><i>You hear muffled speech... you can almost make out some words...</i></span>", 2)
-					M.show_message("<span class='game'><i>[stutter(message)]</i></span>", 2)
-					if(prob(30))
-						playsound(src.loc, pick('sound/effects/ghost.ogg','sound/effects/ghost2.ogg'), 10, 1)
+					M.show_message("<span class='game'><i>The departed are trying to communicate with you... you can almost make out some words...</i></span>", 2)
+					M.show_message("<span class='game'><span class='whisper'><i>[stutter(message)]</i></span></span>", 2)
+					playsound(src.loc, pick('sound/effects/ghost.ogg','sound/effects/ghost2.ogg'), 10, 1)
 			else
 				if (prob(80))
 					return
-				else if (prob (75))
+				else if (prob (80))
 					M.show_message("<span class='game'><i>You hear muffled susurration... but nothing is there...</i></span>", 2)
-					if(prob(20))
-						playsound(src.loc, pick('sound/effects/ghost.ogg','sound/effects/ghost2.ogg'), 10, 1)
 				else
 					M.show_message("<span class='game'><i>You hear muffled speech... you can almost make out some words...</i></span>", 2)
-					M.show_message("<span class='game'><i>[stutter(message)]</i></span>", 2)
+					M.show_message("<span class='game'><span class='whisper'><i>[stutter(message)]</i></span></span>", 2)
 					playsound(src.loc, pick('sound/effects/ghost.ogg','sound/effects/ghost2.ogg'), 10, 1)
