@@ -19,4 +19,5 @@
 /datum/round_event/carp_migration/start()
 	for(var/obj/effect/landmark/C in landmarks_list)
 		if(C.name == "carpspawn")
-			new /mob/living/simple_animal/hostile/carp(C.loc)
+			if(prob(70))
+				new /mob/living/simple_animal/hostile/carp(C.loc)

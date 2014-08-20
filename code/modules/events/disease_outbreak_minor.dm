@@ -8,13 +8,21 @@
 	announceWhen	= 15
 
 	var/virus_type
-
+	var/successSpawn = 0
 
 ///datum/round_event/disease_outbreak_minor/announce()
 //	priority_announce("Confirmed outbreak of level 6 viral biohazard aboard [station_name()]. All personnel must contain the outbreak.", "Biohazard Alert", 'sound/AI/outbreak7.ogg')
 
+
+
 /datum/round_event/disease_outbreak_minor/setup()
 	announceWhen = rand(15, 30)
+
+/datum/round_event/disease_outbreak_minor/kill()
+	if(!successSpawn && control)
+		message_admins("Minor outbreak failed")
+		control.occurrences--
+	return ..()
 
 /datum/round_event/disease_outbreak_minor/start()
 	if(!virus_type)
@@ -49,4 +57,6 @@
 		D.holder = H
 		D.affected_mob = H
 		H.viruses += D
+		message_admins("Minor outbreak infected [H]")
+		successSpawn = 1
 		break

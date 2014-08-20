@@ -18,6 +18,7 @@
 /datum/round_event/alien_infestation/kill()
 	if(!successSpawn && control)
 		control.occurrences--
+		message_admins("Alien infestation failed")
 	return ..()
 
 /datum/round_event/alien_infestation/announce()

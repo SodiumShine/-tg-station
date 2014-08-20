@@ -1,14 +1,14 @@
 /datum/disease/fake_gbs
 	name = "GBS"
 	max_stages = 5
-	spread = "On contact"
+	spread = "Blood"
 	spread_type = CONTACT_GENERAL
 	cure = "Synaptizine & Sulfur"
 	cure_id = list("synaptizine","sulfur")
 	cure_chance = 15//higher chance to cure, since two reagents are required
 	agent = "Gravitokinetic Bipotential SADS-"
 	affected_species = list("Human", "Monkey")
-	desc = "If left untreated death will occur."
+//	desc = "If left untreated death will occur."
 	severity = "Major"
 	desc = "If left untreated the subject will explode violently."
 

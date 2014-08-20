@@ -86,9 +86,9 @@ STI KALY - blind
 			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/sandal(H), slot_shoes)
 			return
 		if(prob(chance))
-			world << "Staff chance done"
+//			world << "Staff chance done"
 			if(!istype(H.r_hand, /obj/item/weapon/gun/magic/wand/fakewizard))
-				world << "Type check for r_hand done"
+//				world << "Type check for r_hand done"
 				H.drop_r_hand()
 				H.put_in_r_hand(new /obj/item/weapon/gun/magic/wand/fakewizard(H), slot_r_hand)
 	return

@@ -29,14 +29,14 @@ var/const/CYBORG_AFK_BRACKET = 450
 
 /datum/round_event/cyborg_delivery/announce()
 	if(successSpawn)
-		priority_announce("We've sent some cyborgs to [station_name()] to assist the crew. They're cheaper than actual staff.")
+		priority_announce("We've sent a cyborg to [station_name()] to assist the crew. They're uh, cheaper than human staff.")
 
 
 /datum/round_event/cyborg_delivery/start()
 	message_admins("Starting...")
 	var/list/chairs = list()
 	for(var/area/A in shuttleAreas)
-		for(var/obj/structure/stool/bed/chair/temp_seat in A)
+		for(var/obj/effect/landmark/temp_seat in A)
 //			message_admins("Found temp_seat in A")
 			if(temp_seat.loc.z == 1)
 				chairs += temp_seat
@@ -52,6 +52,6 @@ var/const/CYBORG_AFK_BRACKET = 450
 
 		var/mob/living/silicon/robot/new_robot = new(chair.loc)
 		new_robot.key = C.key
-		new_robot << "<span class='notice'><b>You have been sent to [station_name()] to assist the crew.</b></span>"
+		new_robot << "<span class='notice'><b>You are now a cyborg, sent directly from Central Command to [station_name()] to assist the crew.</b></span>"
 		spawncount--
 		successSpawn = 1

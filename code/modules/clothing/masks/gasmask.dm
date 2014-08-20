@@ -212,9 +212,38 @@
 				pick_list += i
 			for(var/i=1, i <= abs(temp_message.len/3), i++)
 				var/H = pick(pick_list)
-				if(findtext(temp_message[H], "*") || findtext(temp_message[H], ";") || findtext(temp_message[H], ":")) continue
+				if(findtext(temp_message[H], "*") || findtext(temp_message[H], ";") || findtext(temp_message[H], ":"))
+					continue
 				temp_message[H] = ninjaspeak(temp_message[H])
 				pick_list -= H
+				message = list2text(temp_message, " ")
+				message = replacetext(message, "l", "r")
+				message = replacetext(message, "rr", "ru")
+				message = replacetext(message, "v", "b")
+				message = replacetext(message, "f", "hu")
+				message = replacetext(message, "'t", "")
+				message = replacetext(message, "t ", "to ")
+				message = replacetext(message, "I ", " Ai ")
+				message = replacetext(message, " I ", " Ai ")
+				message = replacetext(message, "th", "z")
+				message = replacetext(message, "ish", "isu")
+				message = replacetext(message, "is", "izu")
+				message = replacetext(message, "ziz", "zis")
+				message = replacetext(message, "se", "su")
+				message = replacetext(message, "br", "bur")
+				message = replacetext(message, "ry", "ri")
+				message = replacetext(message, "you", "yuu")
+				message = replacetext(message, "ck", "cku")
+				message = replacetext(message, "eu", "uu")
+				message = replacetext(message, "ow", "au")
+				message = replacetext(message, "are", "aa")
+				message = replacetext(message, "ay", "ayu")
+				message = replacetext(message, "ea", "ii")
+				message = replacetext(message, "ch", "chi")
+				message = replacetext(message, "than", "sen")
+//				message = replacetext(message, ".", "")
+//				message = lowertext(message)
+/* //SHINE HAHAHAHA
 			message = list2text(temp_message, " ")
 			message = replacetext(message, "o", "¤")
 			message = replacetext(message, "p", "þ")
@@ -222,6 +251,7 @@
 			message = replacetext(message, "s", "§")
 			message = replacetext(message, "u", "µ")
 			message = replacetext(message, "b", "ß")
+*/
 	return message
 
 

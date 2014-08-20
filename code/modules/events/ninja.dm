@@ -5,6 +5,7 @@
 	name = "Space Ninja"
 	typepath = /datum/round_event/ninja
 	max_occurrences = 1
+	weight = 10
 
 /datum/round_event/ninja
 	var/success_spawn = 0
@@ -21,6 +22,7 @@
 
 /datum/round_event/ninja/kill()
 	if(!success_spawn && control)
+		message_admins("Ninja event failed")
 		control.occurrences--
 	return ..()
 
