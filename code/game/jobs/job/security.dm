@@ -168,13 +168,17 @@ Security Officer
 	minimal_access = list(access_security, access_sec_doors, access_brig, access_court, access_weapons) //But see /datum/job/warden/get_access()
 
 /datum/job/officer/equip_items(var/mob/living/carbon/human/H)
-	assign_sec_to_department(H)
-
+//	assign_sec_to_department(H)
+	if(H.gender == "female")
+		H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/security/secskirt(H), slot_w_uniform)
+	else
+		H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/security(H), slot_w_uniform)
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/jackboots(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/suit/armor/vest(H), slot_wear_suit)
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet(H), slot_head)
 	H.equip_to_slot_or_del(new /obj/item/weapon/handcuffs(H), slot_s_store)
 	H.equip_to_slot_or_del(new /obj/item/device/flash(H), slot_l_store)
+	H.equip_to_slot_or_del(new /obj/item/clothing/gloves/security(H), slot_gloves)
 
 	if(H.backbag == 1)
 		H.equip_to_slot_or_del(new /obj/item/weapon/handcuffs(H), slot_r_store)
@@ -194,7 +198,7 @@ Security Officer
 	L |= ..() | check_config_for_sec_maint()
 	dep_access = null;
 	return L
-
+/* // SHINE removed this because small station
 var/list/sec_departments = list("engineering", "supply", "medical", "science")
 
 /datum/job/officer/proc/assign_sec_to_department(var/mob/living/carbon/human/H)
@@ -242,7 +246,7 @@ var/list/sec_departments = list("engineering", "supply", "medical", "science")
 					break
 		H << "<b>You have been assigned to [department]!</b>"
 		return
-
+*/
 /obj/item/device/radio/headset/headset_sec/department/New()
 	wires = new(src)
 	secure_radio_connections = new
