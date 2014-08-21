@@ -371,7 +371,7 @@
 "ahg" = (/obj/machinery/door/airlock/research{name = "Xenobiology Lab"; req_access_txt = "7"},/turf/simulated/floor{icon_state = "white"},/area/medical/research{name = "Research Division"})
 "ahh" = (/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,/turf/simulated/wall,/area/medical/research{name = "Research Division"})
 "ahi" = (/obj/machinery/atmospherics/pipe/simple/supply/hidden,/turf/simulated/wall,/area/medical/research{name = "Research Division"})
-"ahj" = (/obj/machinery/computer/rdconsole/robotics,/turf/simulated/floor,/area/medical/research{name = "Research Division"})
+"ahj" = (/obj/machinery/computer/mecha,/turf/simulated/floor,/area/medical/research{name = "Research Division"})
 "ahk" = (/obj/machinery/computer/robotics,/turf/simulated/floor,/area/medical/research{name = "Research Division"})
 "ahl" = (/obj/machinery/atmospherics/unary/vent_pump{dir = 2; external_pressure_bound = 120; icon_state = "in"; initialize_directions = 1; internal_pressure_bound = 4000; on = 1; pressure_checks = 2; pump_direction = 0},/obj/structure/sign/securearea{desc = "A warning sign which reads 'SERVER ROOM'."; name = "SERVER ROOM"; pixel_y = 32},/turf/simulated/floor/bluegrid,/area/medical/research{name = "Research Division"})
 "ahm" = (/obj/machinery/r_n_d/server/core,/obj/machinery/light/small{dir = 1},/obj/machinery/alarm/server{dir = 2; pixel_x = 0; pixel_y = 22},/turf/simulated/floor{icon_state = "dark"},/area/medical/research{name = "Research Division"})
