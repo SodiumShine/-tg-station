@@ -133,7 +133,7 @@
 /mob/living/silicon/robot/proc/pick_module()
 	if(module)
 		return
-	designation = input("Please, select a module!", "Robot", null, null) in list("Standard", "Engineering", "Medical", "Miner", "Janitor","Service", "Security")
+	designation = input("Please, select a module!", "Robot", null, null) in list("Standard", "Engineering", "Medical", "Miner", "Janitor","Service", "Security","Science","CANCEL")
 	var/animation_length=0
 	if(module)
 		return
@@ -149,13 +149,11 @@
 		if("Service")
 			module = new /obj/item/weapon/robot_module/butler(src)
 			hands.icon_state = "service"
-			var/icontype = input("Select an icon!", "Robot", null, null) in list("Waitress", "Bro", "Butler", "Kent", "Rich")
+			var/icontype = input("Select an icon!", "Robot", null, null) in list("Waitress", "Bro", "Butler", "Rich")
 			switch(icontype)
 				if("Waitress")
 					icon_state = "service_female"
 					animation_length=45
-				if("Kent")
-					icon_state = "toiletbot"
 				if("Bro")
 					icon_state = "brobot"
 					animation_length=54
@@ -210,6 +208,15 @@
 			animation_length = 22
 			modtype = "Jan"
 			feedback_inc("cyborg_janitor",1)
+		if("Science")
+			module = new /obj/item/weapon/robot_module/science(src)
+			hands.icon_state = "science"
+			icon_state = "sciborg"
+			animation_length = 0
+			modtype = "Sci"
+			feedback_inc("cyborg_science",1)
+		if("CANCEL")
+			return
 
 	overlays -= "eyes" //Takes off the eyes that it started with
 
@@ -822,6 +829,9 @@
 		if(icon_state =="syndie_bloodhound")
 			overlays.Cut()
 			overlays+= "eyes-syndie_bloodhound"
+		if(icon_state == "sciborg")
+			overlays.Cut()
+			overlays += "eyes-sciborg"
 	else
 		overlays -= "eyes"
 

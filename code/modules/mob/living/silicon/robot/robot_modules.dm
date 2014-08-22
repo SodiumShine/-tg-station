@@ -68,6 +68,8 @@
 	modules += new /obj/item/weapon/wrench(src)
 	modules += new /obj/item/weapon/crowbar(src)
 	modules += new /obj/item/device/healthanalyzer(src)
+	modules += new /obj/item/weapon/soap/nanotrasen(src)
+	modules += new /obj/item/weapon/pen(src)
 	emag = new /obj/item/weapon/melee/energy/sword(src)
 
 
@@ -151,6 +153,7 @@
 	modules += new /obj/item/weapon/melee/baton/loaded(src)
 	modules += new /obj/item/weapon/gun/energy/taser/cyborg(src)
 	modules += new /obj/item/clothing/mask/gas/sechailer/cyborg(src)
+	modules += new /obj/item/device/detective_scanner(src)
 	emag = new /obj/item/weapon/gun/energy/laser/cyborg(src)
 
 
@@ -163,6 +166,8 @@
 	modules += new /obj/item/weapon/storage/bag/trash/cyborg(src)
 	modules += new /obj/item/weapon/mop/cyborg(src)
 	modules += new /obj/item/device/lightreplacer/cyborg(src)
+	modules += new /obj/item/weapon/reagent_containers/spray/cleaner(src)
+	modules += new /obj/item/weapon/reagent_containers/glass/bucket(src)
 	emag = new /obj/item/weapon/reagent_containers/spray(src)
 
 	emag.reagents.add_reagent("lube", 250)
@@ -219,6 +224,19 @@
 	modules += new /obj/item/weapon/pickaxe/diamonddrill(src)
 	rebuild()
 
+/obj/item/weapon/robot_module/science
+	name = "science robot module"
+/obj/item/weapon/robot_module/science/New()
+	..()
+	modules += new /obj/item/weapon/extinguisher(src)
+	modules += new /obj/item/weapon/reagent_containers/glass/beaker/large(src)
+	modules += new /obj/item/weapon/reagent_containers/dropper(src)
+	modules += new /obj/item/weapon/reagent_containers/syringe(src)
+	modules += new /obj/item/device/analyzer(src)
+	modules += new /obj/item/weapon/screwdriver(src)
+	modules += new /obj/item/weapon/wrench(src)
+	modules += new /obj/item/device/assembly/signaler(src)
+	modules += new /obj/item/weapon/storage/bag/tray/claw(src)
 
 /obj/item/weapon/robot_module/syndicate
 	name = "syndicate robot module"
@@ -232,6 +250,7 @@
 	modules += new /obj/item/weapon/tank/jetpack/carbondioxide(src)
 	modules += new /obj/item/weapon/crowbar(src)
 	emag = null
+
 
 /datum/robot_energy_storage
 	var/name = "Generic energy storage"

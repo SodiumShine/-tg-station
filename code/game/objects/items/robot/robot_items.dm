@@ -28,6 +28,20 @@
 	icon = 'icons/obj/decals.dmi'
 	icon_state = "shock"
 
+/obj/item/weapon/storage/bag/tray/claw // used by sciborgs to pick stuff up
+	name = "manipulator"
+	icon = 'icons/mob/robot_items.dmi'
+	icon_state = "claw"
+	desc = "A claw for picking stuff up. It works with the desctructive analyzer."
+	force = 5
+	w_class = 4.0
+	flags = CONDUCT
+	m_amt = 3000
+	preposition = "on"
+	storage_slots = 1
+	allow_quick_gather = 0
+	collection_mode = 0
+
 /**********************************************************************
 						HUD/SIGHT things
 ***********************************************************************/

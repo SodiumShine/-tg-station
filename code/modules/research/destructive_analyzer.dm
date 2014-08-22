@@ -59,6 +59,28 @@ Note: Must be placed within 3 tiles of the R&D Console
 		user << "<span class='warning'> The protolathe is busy right now.</span>"
 		return
 	if (istype(O, /obj/item) && !loaded_item)
+
+
+		if(istype(O, /obj/item/weapon/storage/bag/tray/claw))
+			for(var/obj/J in O.contents)
+				if(!J.origin_tech)
+					user << "<span class='warning'> This doesn't seem to have a tech origin!</span>"
+					return
+				var/list/temp_tech = ConvertReqString2List(J.origin_tech)
+				if (temp_tech.len == 0)
+					user << "<span class='warning'> You cannot deconstruct this item! </span>"
+					return
+				busy = 1
+				J.loc = src
+				loaded_item = J
+				user << "<span class='notice'>You add the [J.name] to the machine!</span>"
+				flick("d_analyzer_la", src)
+				spawn(10)
+					icon_state = "d_analyzer_l"
+					busy = 0
+			return
+
+
 		if(!O.origin_tech)
 			user << "<span class='warning'> This doesn't seem to have a tech origin!</span>"
 			return
