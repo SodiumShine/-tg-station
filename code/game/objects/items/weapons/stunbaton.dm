@@ -13,6 +13,7 @@
 	var/status = 0
 	var/obj/item/weapon/stock_parts/cell/high/bcell = null
 	var/hitcost = 1000
+	specialthrow = 1
 
 /obj/item/weapon/melee/baton/suicide_act(mob/user)
 	user.visible_message("<span class='suicide'>[user] is putting the live [name] in \his mouth! It looks like \he's trying to commit suicide.</span>")
@@ -153,6 +154,44 @@
 		if(bcell.reliability != 100 && prob(50/severity))
 			bcell.reliability -= 10 / severity
 	..()
+
+/obj/item/weapon/melee/baton/SpecialThrow(mob/living/carbon/M as mob)
+//	world << "stun baton special! [M]"
+	if(isrobot(M))
+		..()
+		return
+	if(!isliving(M))
+		return
+
+	var/mob/living/L = M
+
+	if(!status)
+		L.visible_message("<span class='warning'>[L] has been hit by the thrown [src]. Luckily it was off.</span>")
+		return
+
+	if(status)
+//		user.lastattacked = L
+//		L.lastattacker = user
+//		world << "stun baton special status is yes!"
+		L.Stun(stunforce)
+		L.Weaken(stunforce)
+		L.apply_effect(STUTTER, stunforce)
+
+		L.visible_message("<span class='danger'>[L] has been stunned by the thrown [src]!</span>")
+		playsound(loc, 'sound/weapons/Egloves.ogg', 50, 1, -1)
+
+		if(isrobot(loc))
+			var/mob/living/silicon/robot/R = loc
+			if(R && R.cell)
+				R.cell.use(hitcost)
+		else
+			deductcharge(hitcost)
+
+		if(ishuman(L))
+			var/mob/living/carbon/human/H = L
+			H.forcesay(hit_appends)
+
+//		add_logs(user, L, "stunned")
 
 //Makeshift stun baton. Replacement for stun gloves.
 /obj/item/weapon/melee/baton/cattleprod

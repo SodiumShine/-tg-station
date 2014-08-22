@@ -33,6 +33,7 @@
 	var/reflect_chance = 0 //This var dictates what % of a time an object will reflect an energy based weapon's shot
 
 	var/list/species_exception = list()	// even if a species cannot put items in a certain slot, if the species id is in the item's exception list, it will be able to wear that item
+	var/specialthrow = 0 // SHINE determines if the item does special things on throw.
 
 /obj/item/device
 	icon = 'icons/obj/device.dmi'
@@ -388,3 +389,7 @@
 	if(.)
 		transfer_blood = 0
 		bloody_hands_mob = null
+
+/obj/item/proc/SpecialThrow(mob/living/carbon/M as mob)
+	if(src.specialthrow == 0)
+		return
