@@ -15,7 +15,7 @@ datum/objective/proc/check_completion()
 
 datum/objective/proc/is_unique_objective(possible_target)
 	for(var/datum/objective/O in owner.objectives)
-		if(istype(O, type) && O.get_target() == possible_target)
+		if(O.get_target() == possible_target)
 			return 0
 	return 1
 
@@ -34,7 +34,7 @@ datum/objective/proc/find_target()
 
 datum/objective/proc/find_target_by_role(role, role_type=0)//Option sets either to check assigned role or special role. Default to assigned.
 	for(var/datum/mind/possible_target in ticker.minds)
-		if((possible_target != owner) && ishuman(possible_target.current) && ((role_type ? possible_target.special_role : possible_target.assigned_role) == role) )
+		if((possible_target != owner) && ishuman(possible_target.current) && ((role_type ? possible_target.special_role : possible_target.assigned_role) == role))
 			target = possible_target
 			break
 	update_explanation_text()

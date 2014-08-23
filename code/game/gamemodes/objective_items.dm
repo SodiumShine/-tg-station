@@ -133,17 +133,17 @@ datum/objective_item/slime/check_special_completion(var/obj/item/slime_extract/E
 		return 1
 	return 0
 
-// SHINE ADD THIS SECTION
+//////////SHINE ADDED THIS SECTION
 datum/objective_item/steal/monitorkey
-	name = "the key for the message monitors. Intel suggests you can find this in the Telecoms control room"
+	name = "the key for the station's message monitors. Intel suggests you can find this in the Telecoms control room"
 	targetitem = /obj/item/weapon/paper/monitorkey
 	difficulty = 5
-
+/*
 datum/objective_item/steal/shotgun
 	name = "the bartender's shotgun. Intel suggests it can be found in the Bar"
 	targetitem = /obj/item/weapon/gun/projectile/revolver/doublebarrel
 	difficulty = 3
-
+*/
 datum/objective_item/steal/detectivegun
 	name = "the detective's revolver. Intel suggests it can be found in the Detective Office"
 	targetitem = /obj/item/weapon/gun/projectile/revolver/detective
@@ -153,6 +153,12 @@ datum/objective_item/steal/loyaltybox
 	name = "the box of loyalty implants. Intel suggests they are stored in the Brig"
 	targetitem = /obj/item/weapon/storage/lockbox/loyalty
 	difficulty = 5
+
+/datum/objective_item/steal/powercrystal
+	name = "the aurichalcum shard. Intel suggests it is kept in the cargo bay."
+	targetitem = /obj/item/weapon/uniquesteal/powercrystal
+	difficulty = 3
+//////////
 
 //Unique Objectives
 datum/objective_item/unique/docs_red
