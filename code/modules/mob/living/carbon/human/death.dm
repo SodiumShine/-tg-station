@@ -13,6 +13,7 @@
 	else
 		hgibs(loc, viruses, null)
 
+
 /mob/living/carbon/human/spawn_dust()
 	new /obj/effect/decal/remains/human(loc)
 

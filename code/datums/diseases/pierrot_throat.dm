@@ -2,9 +2,9 @@
 	name = "Pierrot's Throat"
 	max_stages = 4
 	spread = "Airborne"
-	cure = "Banana products"
-	cure_id = "banana"
-	cure_chance = 10
+	cure = "Banana products and Spaceacillin"
+	cure_id = list("banana","spaceacillin")
+	cure_chance = 15
 	agent = "HONK"
 	affected_species = list("Human")
 	permeability_mod = 0.75
