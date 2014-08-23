@@ -10,6 +10,7 @@
 
 
 /mob/living/carbon/alien/humanoid/sentinel/New()
+	storedPlasma = 100
 	create_reagents(100)
 	if(name == "alien sentinel")
 		name = text("alien sentinel ([rand(1, 1000)])")

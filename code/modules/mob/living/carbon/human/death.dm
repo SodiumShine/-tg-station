@@ -1,3 +1,5 @@
+
+
 /mob/living/carbon/human/gib_animation(var/animate)
 	..(animate, "gibbed-h")
 
@@ -5,6 +7,8 @@
 	..(animate, "dust-h")
 
 /mob/living/carbon/human/dust(var/animation = 1)
+	if(braingib)
+		qdel(braingib)
 	..()
 
 /mob/living/carbon/human/spawn_gibs()
