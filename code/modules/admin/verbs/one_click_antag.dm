@@ -253,7 +253,7 @@ client/proc/one_click_antag()
 				agentcount++
 				break
 		//Making sure we have atleast 3 Nuke agents, because less than that is kinda bad
-		if(agentcount < 3)
+		if(agentcount < 1) // SHINE 3 to 1 for fun
 			return 0
 		else
 			for(var/mob/c in chosen)
@@ -341,9 +341,9 @@ client/proc/one_click_antag()
 		if(!G.key)
 			candidates.Remove(G)
 
-	if(candidates.len >= 3) //Minimum 3 to be considered a squad
+	if(candidates.len >= 1) //Minimum 3 to be considered a squad // SHINE 3 to 1
 		//Pick the lucky players
-		var/numagents = min(5,candidates.len) //How many commandos to spawn
+		var/numagents = min(3,candidates.len) //How many commandos to spawn
 		while(numagents && deathsquadspawn.len && candidates.len)
 			var/spawnloc = deathsquadspawn[1]
 			var/mob/dead/observer/chosen_candidate = pick(candidates)
