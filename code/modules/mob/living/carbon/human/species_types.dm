@@ -32,6 +32,7 @@
 	attack_verb = "slash"
 	attack_sound = 'sound/weapons/slash.ogg'
 	miss_sound = 'sound/weapons/slashmiss.ogg'
+	meat = /obj/item/weapon/reagent_containers/food/snacks/meat/human/mutant/lizard
 
 /datum/species/lizard/handle_speech(message)
 	// jesus christ why
@@ -55,6 +56,7 @@
 	miss_sound = 'sound/weapons/slashmiss.ogg'
 	burnmod = 1.25
 	heatmod = 1.5
+	meat = /obj/item/weapon/reagent_containers/food/snacks/meat/human/mutant/plant
 	roundstart = 1 // SHINE
 
 /datum/species/plant/handle_chemicals(datum/reagent/chem, mob/living/carbon/human/H)
@@ -124,6 +126,7 @@
 	darksight = 8
 	sexes = 0
 	ignored_by = list(/mob/living/simple_animal/hostile/faithless)
+	meat = /obj/item/weapon/reagent_containers/food/snacks/meat/human/mutant/shadow
 	roundstart = 1 // SHINE
 	armor = -10 //shine
 
@@ -177,6 +180,8 @@
 	hair_color = "mutcolor"
 	hair_alpha = 150
 	ignored_by = list(/mob/living/carbon/slime)
+	meat = /obj/item/weapon/reagent_containers/food/snacks/meat/human/mutant/slime
+
 	roundstart = 1 // SHINE ADD
 	coldmod = 2
 /*
@@ -191,6 +196,7 @@
 	say_mod = "chirps"
 	eyes = "jelleyes"
 	specflags = list(MUTCOLORS,EYECOLOR)
+	meat = /obj/item/weapon/reagent_containers/food/snacks/meat/human/mutant/slime
 
 /*
  GOLEMS
@@ -206,7 +212,9 @@
 	punchmod = 5
 	no_equip = list(slot_wear_mask, slot_wear_suit, slot_gloves, slot_shoes, slot_head, slot_w_uniform)
 	nojumpsuit = 1
+	meat = /obj/item/weapon/reagent_containers/food/snacks/meat/human/mutant/golem
 	roundstart = 1 // SHINE
+
 
 /*
  ADAMANTINE GOLEMS
@@ -215,6 +223,7 @@
 /datum/species/golem/adamantine
 	name = "Adamantine Golem"
 	id = "adamantine"
+	meat = /obj/item/weapon/reagent_containers/food/snacks/meat/human/mutant/golem/adamantine
 	roundstart = 0
 
 /*
@@ -226,6 +235,7 @@
 	name = "Human?" // SHINE changed Human? to Flyperson
 	id = "fly"
 	say_mod = "buzzes"
+	meat = /obj/item/weapon/reagent_containers/food/snacks/meat/human/mutant/fly
 	roundstart = 0 // SHINE
 
 /datum/species/fly/handle_chemicals(datum/reagent/chem, mob/living/carbon/human/H)
@@ -249,3 +259,4 @@
 	name = "Spooky Scary Skeleton"
 	id = "skeleton"
 	sexes = 0
+	meat = /obj/item/weapon/reagent_containers/food/snacks/meat/human/mutant/skeleton
