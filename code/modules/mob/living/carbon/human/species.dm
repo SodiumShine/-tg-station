@@ -542,16 +542,22 @@
 					stomachgrumbled4 = 0
 					H.nutrition_icon.icon_state = "nutrition3"
 					if(stomachgrumbled3 == 0)
+						if(H.stat == DEAD || H.stat == 1)
+							return
 						H << "\red Your stomach grumbles. Hungry!"
 						stomachgrumbled3 = 1
 				else
 					H.nutrition_icon.icon_state = "nutrition4"
 					if(stomachgrumbled4 == 0)
+						if(H.stat == DEAD || H.stat == 1)
+							return
 						H << "\red Your stomach complains loudly. Starving!"
 						H.visible_message("[H]'s stomach rumbles.")
 						stomachgrumbled4 = 1
 						stomachgrumbled3 = 1
 					if(prob(1))
+						if(H.stat == DEAD || H.stat == 1)
+							return
 						H << "\red Your stomach complains loudly. Still Starving!"
 						H.visible_message("[H]'s stomach rumbles.")
 	if(H.pressure)
