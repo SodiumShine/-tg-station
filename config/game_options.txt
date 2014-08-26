@@ -82,17 +82,17 @@ ALERT_DELTA The station's self-destruct mechanism has been engaged. All crew are
 ## Default probablity is 1, increase to make that mode more likely to be picked.
 ## Set to 0 to disable that mode.
 
-PROBABILITY TRAITOR 3
-PROBABILITY TRAITORCHAN 0
+PROBABILITY TRAITOR 5
+PROBABILITY TRAITORCHAN 1
 PROBABILITY DOUBLE_AGENTS 0
 PROBABILITY NUCLEAR 0
 PROBABILITY REVOLUTION 0
 PROBABILITY CULT 0
-PROBABILITY CHANGELING 0
+PROBABILITY CHANGELING 5
 PROBABILITY WIZARD 0
 PROBABILITY MALFUNCTION 0
 PROBABILITY BLOB 0
-PROBABILITY MONKEY 1
+PROBABILITY MONKEY 0
 PROBABILITY METEOR 0
 PROBABILITY EXTENDED 0
 
@@ -113,7 +113,7 @@ SHUTTLE_REFUEL_DELAY 7000
 ## Used as (Antagonists = Population / Coeff)
 ## Set to 0 to disable scaling and use default numbers instead.
 TRAITOR_SCALING_COEFF 4
-CHANGELING_SCALING_COEFF 7
+CHANGELING_SCALING_COEFF 4
 
 ## Variables calculate how number of open security officer positions will scale to population.
 ## Used as (Officers = Population / Coeff)

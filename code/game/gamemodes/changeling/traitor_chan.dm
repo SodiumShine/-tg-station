@@ -3,9 +3,9 @@
 	config_tag = "traitorchan"
 	traitors_possible = 3 //hard limit on traitors if scaling is turned off
 	restricted_jobs = list("AI", "Cyborg")
-	required_players = 20
+	required_players = 0
 	required_enemies = 1	// how many of each type are required
-	recommended_enemies = 3
+	recommended_enemies = 2
 
 	var/list/possible_changelings = list()
 	var/const/changeling_amount = 1 //hard limit on changelings if scaling is turned off

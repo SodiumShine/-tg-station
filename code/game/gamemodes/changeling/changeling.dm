@@ -9,10 +9,10 @@ var/list/possible_changeling_IDs = list("Alpha","Beta","Gamma","Delta","Epsilon"
 	config_tag = "changeling"
 	antag_flag = BE_CHANGELING
 	restricted_jobs = list("AI", "Cyborg")
-	protected_jobs = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain")
-	required_players = 15
+	protected_jobs = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Head of Personnel")
+	required_players = 0 // SHINE 15 to 6
 	required_enemies = 1
-	recommended_enemies = 4
+	recommended_enemies = 2 //SHINE 4 to 1
 
 	uplink_welcome = "Syndicate Uplink Console:"
 	uplink_uses = 10
@@ -97,7 +97,7 @@ var/list/possible_changeling_IDs = list("Alpha","Beta","Gamma","Delta","Epsilon"
 
 	var/datum/objective/absorb/absorb_objective = new
 	absorb_objective.owner = changeling
-	absorb_objective.gen_amount_goal(6, 8)
+	absorb_objective.gen_amount_goal(4, 6)//(6, 8) // SHINE 4,6 instead of 6, 8
 	changeling.objectives += absorb_objective
 
 	var/datum/objective/assassinate/kill_objective = new
@@ -106,7 +106,7 @@ var/list/possible_changeling_IDs = list("Alpha","Beta","Gamma","Delta","Epsilon"
 	changeling.objectives += kill_objective
 
 	switch(rand(1,100))
-		if(1 to 60)
+		if(1 to 80)
 			var/datum/objective/steal/steal_objective = new
 			steal_objective.owner = changeling
 			steal_objective.find_target()
@@ -127,7 +127,7 @@ var/list/possible_changeling_IDs = list("Alpha","Beta","Gamma","Delta","Epsilon"
 /datum/game_mode/proc/greet_changeling(var/datum/mind/changeling, var/you_are=1)
 	if (you_are)
 		changeling.current << "<b>\red You are a changeling! You have absorbed and taken the form of a human.</b>"
-	changeling.current << "<b>\red Use say \":g message\" to communicate with your fellow changelings.</b>"
+	changeling.current << "<b>\red Use say \":g message\" to communicate with your fellow changelings, if there are any around.</b>"
 	changeling.current << "<b>You must complete the following tasks:</b>"
 
 	if (changeling.current.mind)
@@ -219,11 +219,11 @@ var/list/possible_changeling_IDs = list("Alpha","Beta","Gamma","Delta","Epsilon"
 	var/chem_storage = 50
 	var/chem_recharge_rate = 0.5
 	var/chem_recharge_slowdown = 0
-	var/sting_range = 2
+	var/sting_range = 1
 	var/changelingID = "Changeling"
 	var/geneticdamage = 0
 	var/isabsorbing = 0
-	var/geneticpoints = 5
+	var/geneticpoints = 3 // SHINE 5 to 3
 	var/purchasedpowers = list()
 	var/mimicing = ""
 	var/canrespec = 0

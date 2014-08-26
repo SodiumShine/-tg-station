@@ -112,7 +112,7 @@ var/round_start_time = 0
 			modes+=M.name
 		modes = sortList(modes)
 		world << "<B>The current game mode is - Secret!</B>"
-		world << "<B>Possibilities:</B> [english_list(modes)]"
+		message_admins("<B>Possible game modes:</B> [english_list(modes)]")
 	else
 		src.mode.announce()
 
