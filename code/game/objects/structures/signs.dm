@@ -1,5 +1,6 @@
 /obj/structure/sign
 	icon = 'icons/obj/decals.dmi'
+	icon_state = "sign"
 	anchored = 1
 	opacity = 0
 	density = 0
@@ -136,3 +137,41 @@
 	name = "\improper HYDROPONICS"
 	desc = "A warning sign which reads 'HYDROPONICS'"
 	icon_state = "hydro1"
+
+/obj/structure/sign/hop
+	name = "\improper HEAD OF PERSONNEL"
+	desc = "This is where the HoP resides, assigns jobs, and denies everyone access."
+	icon_state = "hop"
+
+/obj/structure/sign/custodial
+	name = "\improper CUSTODIAL CLOSET"
+	desc = "A walk in closet that contains cleaning supplies, and also the Janitor."
+	icon_state = "custodial2"
+
+/obj/structure/sign/cargo
+	name = "\improper CARGO BAY"
+	desc = "Where deliveries are made."
+	icon_state = "cargo"
+
+/obj/structure/sign/security
+	name = "\improper BRIG"
+	desc = "Department of security, defence, and off-record beatings."
+	icon_state = "security"
+
+/obj/structure/sign/engine
+	name = "\improper ENGINEERING"
+	desc = "The people inside are responsible for the power going out."
+	icon_state = "engine"
+
+/obj/structure/sign/eva
+	name = "\improper EXTRA VEHICULAR ACTIVITY"
+	desc = "Storage for space suits and emergency supplies."
+	icon_state = "eva"
+
+/obj/structure/sign/bathroom
+	name = "\improper BATHROOM"
+	desc = "Strangely enough, no actual baths."
+	icon_state = "toilet"
+
+/obj/structure/sign/bathroom/New()
+	src.transform *= 0.5
