@@ -10,7 +10,7 @@
 	affected_species = list("Human","Monkey")
 	curable = 0
 	permeability_mod = 1
-	stage_prob = 3
+	stage_prob = 2
 	desc = "If left untreated the subject will explode violently."
 	severity = "Major"
 
@@ -31,8 +31,9 @@
 			if(prob(10))
 				affected_mob.emote("cough")
 		if(5)
-			affected_mob << "\red Your body feels as if it's trying to rip itself open!"
 			if(prob(50))
+				affected_mob << "\red Your body feels as if it's trying to rip itself open!"
+			else if(prob(50))
 				affected_mob.gib()
 		else
 			return

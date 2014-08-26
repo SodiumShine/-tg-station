@@ -32,9 +32,9 @@ STI KALY - blind
 		var/mob/living/carbon/human/H = M
 		switch(stage)
 			if(2)
-				if(prob(1)&&prob(50))
+				if(prob(3))
 					affected_mob.say(pick("You shall not pass!", "Expeliarmus!", "By Merlins beard!", "Feel the power of the Dark Side!"))
-				if(prob(1)&&prob(50))
+				else if(prob(3))
 					affected_mob << "\red You feel [pick("that you don't have enough mana.", "that the winds of magic are gone.", "an urge to summon familiar.")]"
 				if(H.facial_hair_style == "Shaved")
 					H.facial_hair_style = "Adam Jensen Beard"
@@ -48,11 +48,11 @@ STI KALY - blind
 					H.facial_hair_style = "Full Beard"
 					H.update_hair()
 			if(4)
-				if(prob(5))
+				if(prob(10) && prob(50))
 					affected_mob.say(pick("NEC CANTIO!","AULIE OXIN FIERA!","STI KALY!","EI NATH!", "TARCOL MINTI ZHERI!"))
 					return
-				if(prob(10))
-					affected_mob << "\red You feel [pick("the tidal wave of raw power building inside","that this location gives you a +2 to INT and +1 to WIS","an urge to teleport")]."
+				else if(prob(10))
+					affected_mob << "\red You feel [pick("the tidal wave of raw power building inside","that this location gives you a +2 to INT and +1 to WIS","an urge to teleport","an urge to summon familiar.","the magic bubbling in your veins")]."
 				if(prob(50))
 					spawn_wizard_clothes(50)
 				if(prob(1))
