@@ -63,6 +63,11 @@ obj/item/weapon/gun/energy/laser/retro
 /obj/item/weapon/gun/energy/laser/cyborg/emp_act()
 	return
 
+/obj/item/weapon/gun/energy/laser/cyborg/light
+	name = "laser gun"
+	desc = "An energy-based laser gun that draws power from the cyborg's internal energy cell directly. It's weaker than a normal models."
+	ammo_type = list(/obj/item/ammo_casing/energy/lite)
+
 /obj/item/weapon/gun/energy/laser/scatter
 	name = "scatter laser gun"
 	desc = "A laser gun equipped with a refraction kit that spreads bolts."

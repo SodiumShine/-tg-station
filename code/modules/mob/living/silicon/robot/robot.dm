@@ -133,7 +133,7 @@
 /mob/living/silicon/robot/proc/pick_module()
 	if(module)
 		return
-	designation = input("Please, select a module!", "Robot", null, null) in list("Standard", "Engineering", "Medical", "Miner", "Janitor","Service", "Security","Science","CANCEL")
+	designation = input("Please, select a new module! Please note your selected module cannot be changed back easily.", "Robot", null, null)as null|anything in list("Standard", "Engineering", "Medical", "Miner", "Janitor","Service", "Security","Science")
 	var/animation_length=0
 	if(module)
 		return
@@ -200,7 +200,6 @@
 			animation_length = 45
 			modtype = "Eng"
 			feedback_inc("cyborg_engineering",1)
-
 		if("Janitor")
 			module = new /obj/item/weapon/robot_module/janitor(src)
 			hands.icon_state = "janitor"
@@ -215,7 +214,7 @@
 			animation_length = 0
 			modtype = "Sci"
 			feedback_inc("cyborg_science",1)
-		if("CANCEL")
+		if(null)
 			return
 
 	overlays -= "eyes" //Takes off the eyes that it started with

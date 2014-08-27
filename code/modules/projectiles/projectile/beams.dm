@@ -18,6 +18,12 @@
 	flag = "laser"
 	eyeblur = 2
 
+/obj/item/projectile/beam/lite
+	name = "light laser"
+	icon_state = "scatterlaser"
+	damage = 12
+
+
 /obj/item/projectile/beam/scatter
 	name = "laser pellet"
 	icon_state = "scatterlaser"

@@ -148,12 +148,14 @@
 
 /obj/item/weapon/robot_module/security/New()
 	..()
+	modules += new /obj/item/device/flashlight/seclite(src)
 	modules += new /obj/item/borg/sight/hud/sec(src)
 	modules += new /obj/item/weapon/handcuffs/cyborg(src)
 	modules += new /obj/item/weapon/melee/baton/loaded(src)
 	modules += new /obj/item/weapon/gun/energy/taser/cyborg(src)
 	modules += new /obj/item/clothing/mask/gas/sechailer/cyborg(src)
 	modules += new /obj/item/device/detective_scanner(src)
+	modules += new /obj/item/weapon/gun/energy/laser/cyborg/light(src)
 	emag = new /obj/item/weapon/gun/energy/laser/cyborg(src)
 
 
@@ -237,6 +239,7 @@
 	modules += new /obj/item/weapon/wrench(src)
 	modules += new /obj/item/device/assembly/signaler(src)
 	modules += new /obj/item/weapon/storage/bag/tray/claw(src)
+	emag = null
 
 /obj/item/weapon/robot_module/syndicate
 	name = "syndicate robot module"
