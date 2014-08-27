@@ -155,16 +155,26 @@
 		target.mind.remove_traitor()
 		message_admins("[key_name(usr)] has de-traitor'ed [target].")
 		log_admin("[key_name(usr)] has de-traitor'ed [target].")
-		target << "<span class='warning'>Your head hurts like crazy!</span>"
+		target << "<span class='warning'>Your head hurts like crazy as you feel the implant's influence burrow into your mind!</span>"
 		target << "\red <FONT size = 3><B>You have been brainwashed! You are no longer a traitor, and feel a surge of loyalty towards Nanotrasen!</B></FONT>"
 		return 1
+	if(target.mind in ticker.mode.changelings)
+		message_admins("[key_name(usr)] has attempted to un-changling [target].")
+		target << "<span class='notice'>We feel the implant trying to puppet our mind. We are too strong for this pathetic attempt.</span>"
+		return 0
 	else
-		target << "<span class='warning'>Your head hurts like crazy!</span>"
-		target << "\red <FONT size = 3><B>The loyalty implant causes your already loyal brain to overload! You realise Nanotrasen is bullshit. <i>Fuck</i> Nanotrasen.</B></FONT>"
+		for(var/obj/item/weapon/implant/loyalty/existing_implant in target.contents)
+			if(existing_implant.imp_in)
+				message_admins("[key_name(usr)] has attempted to implant already loyal [target].")
+				target.visible_message("<span class='danger'>[target] already had a Loyalty Implant! The nanobots overload!</span>")
+				explosion(target, -1, 0, 2, 3, 0)
+				return 0
+		target << "<span class='warning'>Your head hurts like crazy as you feel the implant's influence burrow into your mind!</span>"
+		target << "<span class='warning'>The loyalty implant nanobots suffer a critical error. You realise Nanotrasen is bullshit. <i>Fuck</i> Nanotrasen.</span>"
 		if(!(src in ticker.mode.traitors))
 			ticker.mode.traitors += target.mind
 			target.mind.special_role = "traitor"
-			target << "<B>\red You are now a traitor!</B>"
+			target << "<FONT size = 3><B>\red You are now a traitor!</B></FONT>"
 			message_admins("[key_name(usr)] has traitor'ed [target].")
 			log_admin("[key_name(usr)] has traitor'ed [target].")
 			ticker.mode.forge_traitor_objectives(target.mind)
