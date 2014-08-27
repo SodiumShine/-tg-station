@@ -23,7 +23,21 @@
 	m_amt = 10
 	pressure_resistance = 2
 	var/colour = "black"	//what colour the ink is!
+	var/clicks = 0
+	var/broken = 0
 
+/obj/item/weapon/pen/attack_self(mob/user)
+	if(broken)
+		usr << "<span class='notice'> Too much clicking has broken this pen...</span>"
+		return
+	else
+		playsound(user, 'sound/weapons/empty.ogg', 10, 1)
+		clicks += 1
+		if(clicks > 100)
+			if(prob(3))
+				broken = 1
+
+	return
 
 /obj/item/weapon/pen/blue
 	desc = "It's a normal blue ink pen."
