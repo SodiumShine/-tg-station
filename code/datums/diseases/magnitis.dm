@@ -17,7 +17,7 @@
 	switch(stage)
 		if(2)
 			if(prob(2))
-				affected_mob << "\red You feel a slight shock course through your body."
+				affected_mob << "<span class='danger'>You feel a slight shock course through your body.</span>"
 			if(prob(5))
 				for(var/obj/M in orange(2,affected_mob))
 					if(!M.anchored && (M.flags & CONDUCT))
@@ -37,7 +37,7 @@
 						*/
 		if(3)
 			if(prob(1))
-				affected_mob << "\red You feel a strong shock course through your body."
+				affected_mob << "<span class='danger'>You feel a strong shock course through your body.</span>"
 				affected_mob.Stun(5)
 				playsound(affected_mob.loc, "sparks", 75, 1, -1)
 			if(prob(10))
@@ -65,11 +65,11 @@
 						*/
 		if(4)
 			if(prob(2))
-				affected_mob << "\red You feel a powerful shock course through your body."
+				affected_mob << "<span class='danger'>You feel a powerful shock course through your body.</span>"
 				affected_mob.Stun(10)
 				playsound(affected_mob.loc, "sparks", 75, 1, -1)
 			if(prob(3))
-				affected_mob << "\red You query upon the nature of miracles."
+				affected_mob << "<span class='danger'>You query upon the nature of miracles.</span>"
 			if(prob(20))
 				for(var/obj/M in orange(6,affected_mob))
 					if(!M.anchored && (M.flags & CONDUCT))
@@ -94,5 +94,3 @@
 							M.y+=rand(1,min(5,affected_mob.y-M.y))
 						*/
 	return
-
-// SHINE consider making subject get zapped like touching a wire, with sparks and all

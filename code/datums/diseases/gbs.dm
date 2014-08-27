@@ -26,13 +26,13 @@
 			else if(prob(5))
 				affected_mob.emote("gasp")
 			if(prob(10))
-				affected_mob << "\red You're starting to feel very weak..."
+				affected_mob << "<span class='danger'>You're starting to feel very weak...</span>"
 		if(4)
 			if(prob(10))
 				affected_mob.emote("cough")
 		if(5)
 			if(prob(50))
-				affected_mob << "\red Your body feels as if it's trying to rip itself open!"
+				affected_mob << "<span class='danger'>Your body feels as if it's trying to rip itself open...</span>"
 			else if(prob(50))
 				affected_mob.gib()
 		else

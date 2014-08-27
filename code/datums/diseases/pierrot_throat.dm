@@ -17,25 +17,25 @@
 	switch(stage)
 		if(1)
 			if(prob(3))
-				affected_mob << "\red You feel a little silly."
+				affected_mob << "<span class='danger'> You feel a little silly.</span>"
 		if(2)
 			if(prob(1))
-				affected_mob << "\red You start seeing rainbows."
+				affected_mob << "<span class='danger'> You start seeing rainbows.</span>"
 				affected_mob.druggy = max(affected_mob.druggy, 5)
 		if(3)
 			if(prob(1))
-				affected_mob << "\red Your vision is clouded by rainbows!"
+				affected_mob << "<span class='danger'> Your vision is clouded by rainbows!</span>"
 				affected_mob.druggy = max(affected_mob.druggy, 10)
 			if(prob(3))
-				affected_mob << "\red Your thoughts are interrupted by a loud <b>HONK!</b>"
+				affected_mob << "<span class='danger'> Your thoughts are interrupted by a loud <b>HONK!</b></span>"
 		if(4)
 			if(prob(5))
 				affected_mob.say( pick( list("HONK!", "Honk!", "Honk.", "Honk?", "Honk!!", "Honk?!", "Honk...") ) )
 			if(prob(2))
-				affected_mob << "\red Rainbows~"
+				affected_mob << "<span class='danger'> Rainbows~</span>"
 				affected_mob.druggy = max(affected_mob.druggy, 10)
 			if(prob(5))
-				affected_mob << "\red <b>HONK!</b>"
+				affected_mob << "<span class='danger'> <b>HONK!</b></span>"
 
 
 //M.druggy = max(M.druggy, 35)

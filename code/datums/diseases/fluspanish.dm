@@ -22,7 +22,7 @@
 			if(prob(5))
 				affected_mob.emote("cough")
 			if(prob(1))
-				affected_mob << "\red Your skin feels hot!"
+				affected_mob << "<span class='danger'>Your skin feels hot!</span>"
 //				affected_mob.take_organ_damage(0,3)
 		if(3)
 			affected_mob.bodytemperature += 15
@@ -31,7 +31,7 @@
 			if(prob(5))
 				affected_mob.emote("cough")
 			if(prob(1))
-				affected_mob << "\red Your skin feels like it's burning!"
+				affected_mob << "<span class='danger'> Your skin feels like it's burning!</span>"
 		if(4)
 			if(prob(25))
 				affected_mob.on_fire = 1
