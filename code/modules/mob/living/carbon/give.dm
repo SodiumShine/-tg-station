@@ -49,9 +49,11 @@
 					if(src.r_hand == null)
 						src.r_hand = I
 						usr.drop_item()
-					if(src.l_hand == null)
+					else if(src.l_hand == null)
 						src.l_hand = I
 						usr.drop_item()
+					else
+						usr.visible_message("[src] has their hands full.")
 
 				I.loc = src
 				I.layer = 20
