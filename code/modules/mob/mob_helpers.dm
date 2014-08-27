@@ -231,7 +231,7 @@ proc/isorgan(A)
 		message = uppertext(message)
 		message += "[stutter(pick("!", "!!", "!!!"))]"
 	if(!stuttering && prob(15))
-		message = stutter(message)
+		message = NewStutter(message)
 	return message
 
 

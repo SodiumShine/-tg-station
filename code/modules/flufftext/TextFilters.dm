@@ -24,6 +24,7 @@ proc/Intoxicated(phrase)
 	return newphrase
 
 proc/NewStutter(phrase,stunned)
+	world << "Stutter test"
 	phrase = html_decode(phrase)
 
 	var/list/split_phrase = text2list(phrase," ") //Split it up into words.

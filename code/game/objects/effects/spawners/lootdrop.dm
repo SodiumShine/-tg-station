@@ -26,7 +26,8 @@
 				/obj/item/weapon/gun/projectile/automatic/pistol = 8,
 				/obj/item/weapon/gun/projectile/shotgun/combat = 5,
 				/obj/item/weapon/gun/projectile/revolver/mateba,
-				/obj/item/weapon/gun/projectile/automatic/deagle
+				/obj/item/weapon/gun/projectile/automatic/deagle,
+				/obj/item/weapon/reagent_containers/food/drinks/bottle/zorkrye
 				)
 
 /obj/effect/spawner/lootdrop/maintenance

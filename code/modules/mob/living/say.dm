@@ -145,8 +145,10 @@ var/list/department_radio_keys = list(
 		message = derpspeech(message, stuttering)
 
 	if (stuttering)
-		message = stutter(message)
+		message = NewStutter(message)
 
+	if(drunk)
+		message = Intoxicated(message)
 /* //qw do not have beesease atm.
 	if(virus)
 		if(virus.name=="beesease" && virus.stage>=2)

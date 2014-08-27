@@ -581,6 +581,9 @@
 		if(stuttering)
 			stuttering = max(stuttering-1, 0)
 
+		if(drunk)
+			drunk = max(drunk-1, 0)
+
 		if(silent)
 			silent = max(silent-1, 0)
 

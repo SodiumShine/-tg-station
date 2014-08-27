@@ -2872,10 +2872,10 @@ datum/reagent/ethanol/on_mob_life(var/mob/living/M as mob)
 	data++
 	M.jitteriness = max(M.jitteriness-5,0)
 	if(data >= boozepwr)
-		if (!M.stuttering) M.stuttering = 1
-		M.stuttering += 4
+		if (!M.drunk) M.drunk = 1
+		M.drunk += 4
 		M.Dizzy(5)
-	if(data >= boozepwr*2.5 && prob(33))
+	if(data >= boozepwr*2.5 && prob(50))
 		if (!M.confused) M.confused = 1
 		M.confused += 3
 	if(data >= boozepwr*10 && prob(33))
@@ -3164,10 +3164,10 @@ datum/reagent/ethanol/beepsky_smash
 	description = "Deny drinking this and prepare for THE LAW."
 	reagent_state = LIQUID
 	color = "#664300" // rgb: 102, 67, 0
-	boozepwr = 25
+	boozepwr = 20
 
 datum/reagent/ethanol/beepsky_smash/on_mob_life(var/mob/living/M as mob)
-	M.Stun(2)
+	M.Weaken(2)
 	..()
 	return
 
@@ -3479,6 +3479,14 @@ datum/reagent/ethanol/silencer/on_mob_life(var/mob/living/M as mob)
 		M.heal_organ_damage(1,1)
 		..()
 		return
+
+
+/datum/reagent/ethanol/zork
+	name = "Zork Rye"
+	id = "zorkrye"
+	description = "Want some rye? Course ya do."
+	boozepwr = 5
+	color = "#7F5217"
 
 // Undefine the alias for REAGENTS_EFFECT_MULTIPLER
 #undef REM

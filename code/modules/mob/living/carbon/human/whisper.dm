@@ -61,7 +61,7 @@
 		message = wear_mask.speechModification(message)
 
 	if (src.stuttering)
-		message = stutter(message)
+		message = NewStutter(message)
 
 	for (var/obj/O in view(message_range, src))
 		spawn (0)
