@@ -50,13 +50,13 @@ datum/objective_item/steal/capmedal
 	targetitem = /obj/item/clothing/tie/medal/gold/captain
 	difficulty = 5
 	excludefromjob = list("Captain")
-
+/*
 datum/objective_item/steal/hypo
 	name = "the hypospray. Intel suggests it's stored in the Medbay"
 	targetitem = /obj/item/weapon/reagent_containers/hypospray
 	difficulty = 5
 	excludefromjob = list("Chief Medical Officer", "Medical Doctor", "Chemist") //SHINE added medical doctor and chemist
-
+*/
 datum/objective_item/steal/nukedisc
 	name = "the nuclear authentication disk. Intel suggests it's kept on the Bridge"
 	targetitem = /obj/item/weapon/disk/nuclear
@@ -143,20 +143,25 @@ datum/objective_item/steal/shotgun
 	name = "the bartender's shotgun. Intel suggests it can be found in the Bar"
 	targetitem = /obj/item/weapon/gun/projectile/revolver/doublebarrel
 	difficulty = 3
-*/
+
 datum/objective_item/steal/detectivegun
 	name = "the detective's revolver. Intel suggests it can be found in the Detective Office"
 	targetitem = /obj/item/weapon/gun/projectile/revolver/detective
 	difficulty = 5
-
+*/
 datum/objective_item/steal/loyaltybox
 	name = "the box of loyalty implants. Intel suggests they are stored in the Brig"
 	targetitem = /obj/item/weapon/storage/lockbox/loyalty
 	difficulty = 5
 
 /datum/objective_item/steal/powercrystal
-	name = "the aurichalcum shard. Intel suggests it is kept in the cargo bay."
+	name = "the aurichalcum shard. Intel suggests it is on display in the cargo bay."
 	targetitem = /obj/item/weapon/uniquesteal/powercrystal
+	difficulty = 3
+
+/datum/objective_item/steal/can
+	name = "the can of spacecarp caviar. Intel suggests it is on display in the kitchen."
+	targetitem = /obj/item/weapon/uniquesteal/can
 	difficulty = 3
 //////////
 
