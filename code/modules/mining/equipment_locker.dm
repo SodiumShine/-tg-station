@@ -10,7 +10,8 @@
 	anchored = 1.0
 	input_dir = NORTH
 	output_dir = SOUTH
-	req_access = list(access_mineral_storeroom)
+//	req_access = list(access_mineral_storeroom)
+	req_one_access = list(access_mineral_storeroom,access_research)
 	var/stk_types = list()
 	var/stk_amt   = list()
 	var/stack_list[0] //Key: Type.  Value: Instance of type.
