@@ -1,6 +1,6 @@
 /obj/machinery/computer/kitchen
 	name = "Bar computer"
-	desc = "This computer tells you how to make stuff that people will then put in their mouth."
+	desc = "This computer tells you how to make stuff that people enjoy putting in their mouths."
 	icon_state = "bar"
 	icon = 'icons/obj/barcomputer.dmi'
 	var/temp = null
