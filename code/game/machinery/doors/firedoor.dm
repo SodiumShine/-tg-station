@@ -12,6 +12,10 @@
 	var/blocked = 0
 	var/nextstate = null
 
+/obj/machinery/door/New()
+	..()
+	if(!density)
+		src.layer = 2.6
 
 /obj/machinery/door/firedoor/Bumped(atom/AM)
 	if(p_open || operating)	return
@@ -83,6 +87,7 @@
 /obj/machinery/door/firedoor/open()
 	..()
 	latetoggle()
+	src.layer = 2.6
 	return
 
 /obj/machinery/door/firedoor/close()

@@ -171,6 +171,20 @@
 	desc = "This cone is trying to warn you of something!"
 	name = "warning cone"
 	icon_state = "cone"
+	icon = 'icons/obj/caution.dmi'
+	attack_verb = list("warned", "cautioned", "smacked")
+
+/obj/item/weapon/caution/cone/engineering
+	desc = "This cone is trying to warn you of construction work!"
+	name = "construction cone"
+	icon_state = "engineering"
+	attack_verb = list("warned", "cautioned", "smacked")
+
+/obj/item/weapon/caution/cone/security
+	desc = "This cone is trying to warn you of a restricted area!"
+	name = "security cone"
+	icon_state = "security"
+	attack_verb = list("warned", "cautioned", "smacked")
 
 /obj/item/weapon/rack_parts
 	name = "rack parts"
