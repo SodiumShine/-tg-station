@@ -370,8 +370,9 @@ Auto Patrol: []"},
 		if(SECBOT_PATROL)		// patrol mode
 
 			patrol_step()
-			spawn(5)
+			spawn(0) // SHINE TRY 0 instead of 5
 				if(mode == SECBOT_PATROL)
+					sleep(2)
 					patrol_step()
 
 		if(SECBOT_SUMMON)		// summoned to PDA
@@ -439,13 +440,16 @@ Auto Patrol: []"},
 	send_status()
 	if(awaiting_beacon)			// awaiting beacon response
 		awaiting_beacon++
-		if(awaiting_beacon > 5)	// wait 5 secs for beacon response
+		if(awaiting_beacon > 5)	// wait 5 secs for beacon response // SHINE 5 to 10
+			src.visible_message("<span class='game say'><span class='name'>[src]</span> beeps, \"Awaiting beacon time out, finding nearest beacon\"</span>")
 			find_nearest_beacon()	// then go to nearest instead
 		return
 
 	if(next_destination)
+//		src.visible_message("<span class='game say'><span class='name'>[src]</span> beeps, \"Moving to [next_destination]\"</span>")
 		set_destination(next_destination)
 	else
+		src.visible_message("<span class='game say'><span class='name'>[src]</span> beeps, \"Cannot find next destination, finding nearest beacon\"</span>")
 		find_nearest_beacon()
 	return
 

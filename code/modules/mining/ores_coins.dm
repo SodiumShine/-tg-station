@@ -191,6 +191,12 @@
 	if(cmineral)
 		name = "[cmineral] coin"
 
+/obj/item/weapon/coin/random
+
+/obj/item/weapon/coin/random/New()
+	cmineral = pick("gold","silver","diamond","iron")
+	..()
+
 /obj/item/weapon/coin/gold
 	cmineral = "gold"
 	value = 160
