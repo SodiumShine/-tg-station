@@ -1,7 +1,7 @@
 /datum/round_event_control/radiation_storm
 	name = "Radiation Storm"
 	typepath = /datum/round_event/radiation_storm
-	max_occurrences = 3 // SHINE 1 to 3
+	max_occurrences = 5 // SHINE 1 to 3
 
 /datum/round_event/radiation_storm
 	var/list/protected_areas = list(/area/maintenance, /area/turret_protected/ai_upload, /area/turret_protected/ai_upload_foyer, /area/turret_protected/ai)
@@ -12,7 +12,7 @@
 	endWhen = startWhen + 5
 
 /datum/round_event/radiation_storm/announce()
-	priority_announce("High levels of radiation detected near the station. Maintenance is best shielded from radiation.", "Anomaly Alert", 'sound/AI/radiation.ogg')
+	priority_announce("High levels of radiation detected near the station. Please report to the medbay, if you feel strange.", "Anomaly Alert", 'sound/AI/radiation.ogg')
 	//sound not longer matches the text, but an audible warning is probably good
 
 

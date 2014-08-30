@@ -4,7 +4,7 @@
 /datum/round_event_control/ion_storm
 	name = "Ion Storm"
 	typepath = /datum/round_event/ion_storm
-	weight = 15
+	weight = 20
 
 /datum/round_event/ion_storm
 	var/botEmagChance = 50
@@ -20,9 +20,9 @@
 	..()
 
 /datum/round_event/ion_storm/announce()
-	if(announceEvent == ION_ANNOUNCE || (announceEvent == ION_RANDOM && prob(ionAnnounceChance)))
-		priority_announce("Ion storm detected near the station. Please check all AI-controlled equipment for errors.", "Anomaly Alert", 'sound/AI/ionstorm.ogg')
-
+//	if(announceEvent == ION_ANNOUNCE || (announceEvent == ION_RANDOM && prob(ionAnnounceChance)))
+//		priority_announce("Ion storm detected near the station. Please check all AI-controlled equipment for errors.", "Anomaly Alert", 'sound/AI/ionstorm.ogg')
+	message_admins("Ion storm occured")
 
 /datum/round_event/ion_storm/start()
 	//AI laws

@@ -6,7 +6,7 @@
 	typepath = /datum/round_event/ninja
 	max_occurrences = 1
 	earliest_start = 30000 // 1 hour
-	weight = 15
+	weight = 20
 
 /datum/round_event/ninja
 	var/success_spawn = 0

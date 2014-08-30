@@ -1,22 +1,17 @@
 /datum/round_event_control/disease_outbreak_minor
 	name = "Minor Disease Outbreak"
 	typepath = /datum/round_event/disease_outbreak_minor
-	max_occurrences = 5
+	max_occurrences = 10
 	weight = 15
+	earliest_start = 600
 
 /datum/round_event/disease_outbreak_minor
-	announceWhen	= 15
 
 	var/virus_type
 	var/successSpawn = 0
 
 ///datum/round_event/disease_outbreak_minor/announce()
 //	priority_announce("Confirmed outbreak of level 6 viral biohazard aboard [station_name()]. All personnel must contain the outbreak.", "Biohazard Alert", 'sound/AI/outbreak7.ogg')
-
-
-
-/datum/round_event/disease_outbreak_minor/setup()
-	announceWhen = rand(15, 30)
 
 /datum/round_event/disease_outbreak_minor/kill()
 	if(!successSpawn && control)

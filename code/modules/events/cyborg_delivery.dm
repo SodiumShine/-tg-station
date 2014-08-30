@@ -3,8 +3,9 @@ var/const/CYBORG_AFK_BRACKET = 450
 /datum/round_event_control/cyborg_delivery
 	name = "Cyborg Delivery"
 	typepath = /datum/round_event/cyborg_delivery
-	weight = 10
-	max_occurrences = 10
+	weight = 15
+	max_occurrences = 1
+	earliest_start = 6000
 
 /datum/round_event/cyborg_delivery
 	announceWhen	= 10
@@ -29,7 +30,7 @@ var/const/CYBORG_AFK_BRACKET = 450
 
 /datum/round_event/cyborg_delivery/announce()
 	if(successSpawn)
-		priority_announce("We've sent a cyborg to [station_name()] to assist the crew. They're uh, cheaper than human staff.")
+		priority_announce("We've sent a cyborg to [station_name()] to assist the crew. They're cheaper than human staff.","Centcom Workforce Management.")
 
 
 /datum/round_event/cyborg_delivery/start()

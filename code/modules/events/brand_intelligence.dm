@@ -3,10 +3,11 @@
 	typepath = /datum/round_event/brand_intelligence
 	weight = 5
 	max_occurrences = 1
+	earliest_start = 36000
 
 /datum/round_event/brand_intelligence
 	startWhen = 1
-	announceWhen = 2 // SHINE changed to give time to react
+	announceWhen = 5 // SHINE changed to give time to react
 	endWhen = 1000	//Ends when all vending machines are subverted anyway.
 
 	var/list/obj/machinery/vending/vendingMachines = list()
