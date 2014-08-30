@@ -80,6 +80,9 @@ var/global/pipe_processing_killed = 0
 		if(ticker)
 			ticker.pregame()
 
+	transfer_controller = new
+
+
 /datum/controller/game_controller/proc/setup_objects()
 	world << "<span class='userdanger'>Initializing objects...</span>"
 	sleep(-1)

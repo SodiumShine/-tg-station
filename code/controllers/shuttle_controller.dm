@@ -32,7 +32,7 @@ var/global/datum/shuttle_controller/emergency_shuttle/emergency_shuttle
 	var/always_fake_recall = 0
 
 	var/pods = list("escape", "pod1", "pod2", "pod3", "pod4")
-
+	var/hometime = 0 // SHINE used to say its the last shuttle and it cant be recalled
 
 	// call the shuttle
 	// if not called before, set the endtime to T+600 seconds
@@ -57,6 +57,9 @@ var/global/datum/shuttle_controller/emergency_shuttle/emergency_shuttle
 				fake_recall = rand(SHUTTLEARRIVETIME / 2, SHUTTLEARRIVETIME - 100)
 
 /datum/shuttle_controller/proc/recall(var/signal_origin)
+	if(hometime)
+		return
+
 	if(direction == 1)
 		var/timeleft = timeleft()
 		if(timeleft >= SHUTTLEARRIVETIME)
