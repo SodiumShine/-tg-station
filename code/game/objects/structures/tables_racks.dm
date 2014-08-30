@@ -541,12 +541,12 @@
 			user << "<span class='notice'>You're buckled to a chair! You can't climb like that.</span>"
 			return
 		else if(user.a_intent == "grab")
-			visible_message("<span class='danger'>[user] is trying to climb onto the table</span>")
+			visible_message("<span class='danger'>[user] is trying to climb onto the [src.name].</span>")
 			if(do_after(user, 50))
 				user.loc = src.loc
-				visible_message("[user] climbed onto the table")
+				visible_message("[user] climbed onto the [src.name].")
 		else
-			user << "You need to get a better hold of the table to climb it. (Use grab intent)"
+			user << "You need to get a better hold to climb that. (Use grab intent)"
 			return
 		..()
 

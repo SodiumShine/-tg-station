@@ -42,3 +42,20 @@
 			check_patient()
 			qdel(W)
 			return
+
+/obj/structure/optable/attack_hand(mob/user)
+	if(user.buckled)
+		user << "<span class='notice'>You're buckled to a chair! You can't climb like that.</span>"
+		return
+	else if(user.a_intent == "grab")
+		visible_message("<span class='danger'>[user] is trying to climb onto the operating table.</span>")
+		if(do_after(user, 10))
+			user.loc = src.loc
+			user.resting = 1
+			patient = user
+			check_patient()
+			visible_message("<span class='notice'>[user] climbed onto the operating table.</span>")
+	else
+		user << "You need to get a better hold of the table to climb it. (Use grab intent)"
+		return
+	..()
