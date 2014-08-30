@@ -555,7 +555,7 @@
 						H.visible_message("[H]'s stomach rumbles.")
 						stomachgrumbled4 = 1
 						stomachgrumbled3 = 1
-					if(prob(1))
+					if(prob(50) && prob(1))
 						if(H.stat == DEAD || H.stat == 1)
 							return
 						H << "\red Your stomach complains loudly. Still Starving!"
