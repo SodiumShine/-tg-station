@@ -21,7 +21,7 @@ var/list/admin_verbs_admin = list(
 	/client/proc/player_panel,			/*shows an interface for all players, with links to various panels (old style)*/
 	/client/proc/player_panel_new,		/*shows an interface for all players, with links to various panels*/
 	/client/proc/invisimin,				/*allows our mob to go invisible/visible*/
-//	/datum/admins/proc/show_traitor_panel,	/*interface which shows a mob's mind*/ -Removed due to rare practical use. Moved to debug verbs ~Errorage
+	/datum/admins/proc/show_traitor_panel,	/*interface which shows a mob's mind*/ //-Removed due to rare practical use. Moved to debug verbs ~Errorage // SHINE re-added
 	/datum/admins/proc/show_player_panel,	/*shows an interface for individual players, with various links (links require additional flags*/
 	/client/proc/game_panel,			/*game panel, allows to change game-mode etc*/
 	/client/proc/check_ai_laws,			/*shows AI and borg laws*/
@@ -57,7 +57,9 @@ var/list/admin_verbs_admin = list(
 	/client/proc/cmd_admin_world_narrate,	/*sends text to all players with no padding*/
 	/client/proc/cmd_admin_create_centcom_report,
 	/client/proc/check_words,			/*displays cult-words*/
-	/client/proc/cmd_admin_syndie_message	/*SHINE sends a syndicate messsage */
+	/client/proc/cmd_admin_syndie_message,	/*SHINE sends a syndicate messsage */
+//	/client/proc/fixstep /*SHINE fixes step errors*/
+//	/datum/controller/transfer_controller/proc/check_time_left /*SHINE check time left in the round */
 	)
 var/list/admin_verbs_ban = list(
 	/client/proc/unban_panel,
