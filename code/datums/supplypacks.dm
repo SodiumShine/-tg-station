@@ -77,8 +77,6 @@ var/list/all_supply_groups = list(supply_emergency,supply_security,supply_engine
 /datum/supply_packs/emergency/evac
 	name = "Emergency equipment"
 	contains = list(/obj/machinery/bot/floorbot,
-					/obj/machinery/bot/floorbot,
-					/obj/machinery/bot/medbot,
 					/obj/machinery/bot/medbot,
 					/obj/item/weapon/tank/air,
 					/obj/item/weapon/tank/air,
@@ -90,7 +88,7 @@ var/list/all_supply_groups = list(supply_emergency,supply_security,supply_engine
 					/obj/item/clothing/mask/gas,
 					/obj/item/clothing/mask/gas,
 					/obj/item/clothing/mask/gas)
-	cost = 35
+	cost = 50
 	containertype = /obj/structure/closet/crate/internals
 	containername = "emergency crate"
 	group = supply_emergency
@@ -732,6 +730,11 @@ var/list/all_supply_groups = list(supply_emergency,supply_security,supply_engine
 	containertype = /obj/structure/closet/critter/pug
 	containername = "pug crate"
 
+/datum/supply_packs/organic/crab
+	name = "Crab crate"
+	cost = 50
+	containertype = /obj/structure/closet/critter/crab
+	containername = "crab crate"
 ////// hippy gear
 
 /datum/supply_packs/organic/hydroponics // -- Skie

@@ -2,7 +2,7 @@
 #define RUSKY_PARTY 2
 #define SPIDER_GIFT 3
 #define DEPARTMENT_RESUPPLY 4
-
+#define FREE_CRABS 5
 /datum/round_event_control/shuttle_loan
 	name = "Shuttle loan"
 	typepath = /datum/round_event/shuttle_loan
@@ -13,14 +13,18 @@
 	endWhen = 500
 	var/dispatch_type = 4
 	var/bonus_points = 100
-	var/thanks_msg = "Have some supply points as thanks (the shuttle will be returned in 5 minutes)."
+//	var/thanks_msg = "Have some supply points as thanks (the shuttle will be returned in 5 minutes)."
+	var/thanks_msg = "The supply shuttle will dock in 2 minutes."
 	var/dispatched = 0
 
 /datum/round_event/shuttle_loan/start()
-	dispatch_type = pick(HIJACK_SYNDIE, RUSKY_PARTY, SPIDER_GIFT, DEPARTMENT_RESUPPLY)
+	dispatch_type = pick(HIJACK_SYNDIE, RUSKY_PARTY, SPIDER_GIFT, DEPARTMENT_RESUPPLY, FREE_CRABS)
 
 /datum/round_event/shuttle_loan/announce()
 	supply_shuttle.shuttle_loan = src
+	priority_announce("Unregistered supply shuttle is requesting permission to dock with the station. Cargo contents are unknown.","Centcom Supply Department.")
+
+	/*
 	switch(dispatch_type)
 		if(HIJACK_SYNDIE)
 			priority_announce("The syndicate are trying to infiltrate your station. If you let them hijack your shuttle, you'll save us a headache.","Centcom Counter Intelligence")
@@ -32,16 +36,21 @@
 			priority_announce("Seems we've ordered doubles of our department resupply packages this month. Can we send them to you?","Centcom Supply Department")
 			thanks_msg = "The shuttle will be returned in 5 minutes."
 			bonus_points = 0
+	*/
+
+
 
 /datum/round_event/shuttle_loan/proc/loan_shuttle()
-	priority_announce(thanks_msg, "Cargo shuttle commandeered by Centcom.")
-
+//	priority_announce(thanks_msg, "Cargo shuttle commandeered by Centcom.")
+	priority_announce(thanks_msg, "Unregistered supply shuttle incoming.")
 	dispatched = 1
 	supply_shuttle.points += bonus_points
 	endWhen = activeFor + 1
-	supply_shuttle.eta_timeofday = (world.timeofday + 3000) % 2160000
+	supply_shuttle.eta_timeofday = (world.timeofday + 1200) % 2160000
 	supply_shuttle.moving = 1
 
+	supply_shuttle.centcom_message += "<font color=red>Unregistered supply shuttle incoming.</font>"
+	/*
 	switch(dispatch_type)
 		if(HIJACK_SYNDIE)
 			supply_shuttle.centcom_message += "<font color=blue>Syndicate hijack team incoming.</font>"
@@ -51,7 +60,7 @@
 			supply_shuttle.centcom_message += "<font color=blue>Spider Clan gift incoming.</font>"
 		if(DEPARTMENT_RESUPPLY)
 			supply_shuttle.centcom_message += "<font color=blue>Department resupply incoming.</font>"
-
+	*/
 /datum/round_event/shuttle_loan/tick()
 	if(dispatched)
 		if(supply_shuttle.moving)
@@ -184,6 +193,28 @@
 					var/spawn_type = pick(/obj/effect/decal/cleanable/flour, /obj/effect/decal/cleanable/robot_debris, /obj/effect/decal/cleanable/oil)
 					new spawn_type(T)
 
+			if(FREE_CRABS)
+				var/datum/supply_order/O = new /datum/supply_order()
+				O.ordernum = supply_shuttle.ordernum
+				O.object = new /datum/supply_packs/organic/crab()
+				O.orderedby = "Crab Nicholson"
+				supply_shuttle.shoppinglist += O
+
+				shuttle_spawns.Add(/mob/living/simple_animal/crab)
+				shuttle_spawns.Add(/mob/living/simple_animal/crab)
+				shuttle_spawns.Add(/mob/living/simple_animal/crab)
+				shuttle_spawns.Add(/mob/living/simple_animal/crab)
+				shuttle_spawns.Add(/mob/living/simple_animal/crab)
+				shuttle_spawns.Add(/mob/living/simple_animal/crab)
+				shuttle_spawns.Add(/mob/living/simple_animal/crab)
+				shuttle_spawns.Add(/mob/living/simple_animal/crab)
+				shuttle_spawns.Add(/mob/living/simple_animal/crab)
+				shuttle_spawns.Add(/mob/living/simple_animal/crab)
+				shuttle_spawns.Add(/mob/living/simple_animal/crab)
+				shuttle_spawns.Add(/mob/living/simple_animal/crab)
+				shuttle_spawns.Add(/mob/living/simple_animal/crab)
+
+
 		var/false_positive = 0
 		while(shuttle_spawns.len > 0 && empty_shuttle_turfs.len > 0)
 			var/turf/T = pick(empty_shuttle_turfs)
@@ -204,3 +235,4 @@
 #undef RUSKY_PARTY
 #undef SPIDER_GIFT
 #undef DEPARTMENT_RESUPPLY
+#undef FREE_CRABS

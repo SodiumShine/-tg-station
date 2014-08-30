@@ -34,6 +34,11 @@
 			if(prob(50))
 				content_mob = /mob/living/simple_animal/cat/Proc
 			new content_mob(loc)
+
+		else if(content_mob == /mob/living/simple_animal/crab)
+			if(prob(50))
+				content_mob = /mob/living/simple_animal/crab/Coffee
+			new content_mob(loc)
 		else
 			new content_mob(loc)
 		already_opened = 1
@@ -77,3 +82,7 @@
 /obj/structure/closet/critter/pug
 	name = "pug crate"
 	content_mob = /mob/living/simple_animal/pug
+
+/obj/structure/closet/critter/crab
+	name = "crab crate"
+	content_mob = /mob/living/simple_animal/crab
