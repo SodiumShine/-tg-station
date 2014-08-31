@@ -225,7 +225,7 @@ var/list/possible_changeling_IDs = list("Alpha","Beta","Gamma","Delta","Epsilon"
 
 /datum/changeling //stores changeling powers, changeling recharge thingie, changeling absorbed DNA and changeling ID (for changeling hivemind)
 	var/list/absorbed_dna = list()
-	var/dna_max = 4 //How many extra DNA strands the changeling can store for transformation.
+	var/dna_max = 10 //How many extra DNA strands the changeling can store for transformation.
 	var/absorbedcount = 1 //We would require at least 1 sample of compatible DNA to have taken on the form of a human.
 	var/chem_charges = 20
 	var/chem_storage = 50
@@ -285,5 +285,8 @@ var/list/possible_changeling_IDs = list("Alpha","Beta","Gamma","Delta","Epsilon"
 			return
 	if(!check_dna_integrity(target))
 		user << "<span class='warning'>[target] is not compatible with our biology.</span>"
+		return
+	if(!target.mind)
+		user << "<span class='warning'>There's something wrong with this one...</span>"
 		return
 	return 1

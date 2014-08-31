@@ -170,7 +170,7 @@
 
 	clonemind.transfer_to(H)
 	H.ckey = ckey
-	H << "<span class='notice'><b>Consciousness slowly creeps over you as your body regenerates.</b><br><i>So this is what cloning feels like?</i></span>"
+	H << "<span class='notice'><b>Consciousness slowly creeps over you as your body regenerates.</b><br><i>You're not sure where you are, or how you got here... Memory is foggy too, but you're sure it will come back in time.</i></span>"
 
 	// -- Mode/mind specific stuff goes here
 
