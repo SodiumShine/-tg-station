@@ -41,6 +41,7 @@
 /datum/round_event/weightless
 	startWhen = 5
 	endWhen = 65
+	announceWhen	= 1
 	var/obj/machinery/gravity_generator/main/gravMachine
 
 /datum/round_event/weightless/setup()
