@@ -100,8 +100,11 @@
 
 	log_ooc("(LOCAL) [mob.name]/[key] : [msg]")
 
-	var/list/heard = get_mobs_in_view(7, src.mob)
+	var/list/heard //= get_mobs_in_view(7, src.mob)
 	var/mob/S = src.mob
+
+	for(var/mob/mobs in view(7,S))
+		heard += mobs
 
 	var/display_name = S.key
 	if(S.stat != DEAD)
