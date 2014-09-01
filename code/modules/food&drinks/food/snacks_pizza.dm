@@ -83,6 +83,7 @@
 /obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/seamonster
 	name = "sea monster pizza"
 	desc = "It's the only real choice here."
+	icon = 'icons/obj/foodcustom.dmi'
 	icon_state = "seamonster"
 	slices_num = 6
 	New()
@@ -94,7 +95,8 @@
 /obj/item/weapon/reagent_containers/food/snacks/seamonsterpizzaslice
 	name = "sea monster pizza slice"
 	desc = "Sea monster fresh from the bay."
-	icon_state = "mushroompizzaslice"
+	icon = 'icons/obj/foodcustom.dmi'
+	icon_state = "seamonsterslice"
 	bitesize = 2
 
 /obj/item/pizzabox
