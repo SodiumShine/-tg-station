@@ -836,6 +836,14 @@ var/list/all_supply_groups = list(supply_emergency,supply_security,supply_engine
 	cost = 15
 	containername = "cigarette supply crate"
 
+
+/datum/supply_packs/organic/contraband/liquor
+	contains = list(/obj/item/weapon/reagent_containers/food/drinks/bottle/zorkrye)
+	name = "Contraband liquor crate"
+	cost = 25
+	contraband = 1
+	containername = "crate"
+
 //////////////////////////////////////////////////////////////////////////////
 //////////////////////////// Materials ///////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////
@@ -939,16 +947,13 @@ var/list/all_supply_groups = list(supply_emergency,supply_security,supply_engine
 					/obj/item/clothing/head/chaplain_hood,
 					/obj/item/clothing/suit/chaplain_hoodie,
 					/obj/item/clothing/head/chaplain_hood)
-	cost = 40	// it costs so much because the Space Church is ran by Space Jews
+	cost = 40	// it costs so much because the Space Church is run by Space Jews
 	containername = "religious supplies crate"
 
-/datum/supply_packs/misc/posters
+/datum/supply_packs/misc/randomised/posters
 	name = "Corporate Posters Crate"
-	contains = list(/obj/item/weapon/contraband/poster/legit,
-					/obj/item/weapon/contraband/poster/legit,
-					/obj/item/weapon/contraband/poster/legit,
-					/obj/item/weapon/contraband/poster/legit,
-					/obj/item/weapon/contraband/poster/legit)
+	num_contained = 5
+	contains = list(/obj/item/weapon/contraband/poster/legit)
 	cost = 8
 	containername = "Corporate Posters Crate"
 
@@ -1085,7 +1090,7 @@ var/list/all_supply_groups = list(supply_emergency,supply_security,supply_engine
 					/obj/item/clothing/head/collectable/xenom,
 					/obj/item/clothing/head/collectable/petehat)
 	name = "Collectable hat crate!"
-	cost = 200
+	cost = 100
 	containername = "collectable hats crate! Brought to you by Bass.inc!"
 
 /datum/supply_packs/misc/randomised/New()
@@ -1098,8 +1103,16 @@ var/list/all_supply_groups = list(supply_emergency,supply_security,supply_engine
 	contains = list(/obj/item/weapon/contraband/poster,
 					/obj/item/weapon/storage/fancy/cigarettes/dromedaryco,
 					/obj/item/weapon/lipstick/random)
-	name = "Contraband crate"
+	name = "Mixed Contraband crate"
 	cost = 30
+	containername = "crate"	//let's keep it subtle, eh?
+	contraband = 1
+
+/datum/supply_packs/misc/randomised/contraband/posters
+	num_contained = 3
+	contains = list(/obj/item/weapon/contraband/poster)
+	name = "Contraband Posters crate"
+	cost = 35
 	containername = "crate"	//let's keep it subtle, eh?
 	contraband = 1
 

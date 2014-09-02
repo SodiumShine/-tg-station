@@ -289,10 +289,16 @@
 	..()
 	reagents.add_reagent("limejuice", 100)
 
+
+
+
+
+/// ZORK RYE ///
 /obj/item/weapon/reagent_containers/food/drinks/bottle/zorkrye
-	name = "Old Boos' Zork Rye"
-	desc = "Want some rye? Course ya do."
-	icon_state = "whiskeybottle"
+	name = "Old Boo's Zork Rye"
+	desc = "Want some rye? Course ya do. (This drink is considered contraband)"
+	icon = 'icons/obj/foodcustom.dmi'
+	icon_state = "zorkrye"
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/zorkrye/New()
 	..()

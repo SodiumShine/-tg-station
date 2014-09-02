@@ -27,8 +27,18 @@
 				/obj/item/weapon/gun/projectile/shotgun/combat,
 				/obj/item/weapon/gun/projectile/revolver/mateba,
 				/obj/item/weapon/gun/projectile/automatic/deagle,
-				/obj/item/weapon/reagent_containers/food/drinks/bottle/zorkrye,
 				/obj/item/weapon/flamethrower/full/tank
+				)
+
+/obj/effect/spawner/lootdrop/armory_contraband/other
+	name = "armory contraband spawner"
+	lootdoubles = 0
+
+	loot = list(
+				/obj/item/weapon/reagent_containers/food/drinks/bottle/zorkrye,
+				/obj/item/weapon/contraband/poster,
+				/obj/item/weapon/storage/fancy/cigarettes/dromedaryco,
+				/obj/item/weapon/lipstick/random
 				)
 
 /obj/effect/spawner/lootdrop/maintenance
