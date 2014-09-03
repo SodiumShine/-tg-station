@@ -13,6 +13,8 @@
 	var/icon_off = "secureoff"
 	wall_mounted = 0 //never solid (You can always pass over it)
 	health = 200
+	var/panel_open = 0
+	var/pulsed = 0
 
 /obj/structure/closet/secure_closet/can_open()
 	if(src.locked || src.welded)
@@ -23,6 +25,8 @@
 	..()
 	if(broken)
 		icon_state = src.icon_off
+	if(pulsed)
+		icon_state = src.icon_broken
 	return 1
 
 /obj/structure/closet/secure_closet/emp_act(severity)
@@ -41,6 +45,9 @@
 	..()
 
 /obj/structure/closet/secure_closet/proc/togglelock(mob/user as mob)
+	if(pulsed == 1)
+		user << "<span class='danger'>The lock is malfunctioning. It will need to be fixed first.</span>"
+		return
 	if(src.allowed(user))
 		src.locked = !src.locked
 		add_fingerprint(user)
@@ -65,6 +72,68 @@
 	if(!src.opened && src.broken)
 		user << "<span class='notice'>The locker appears to be broken.</span>"
 		return
+
+	if(istype(W, /obj/item/weapon/screwdriver) && !src.broken && !src.opened)
+		if(panel_open == 1)
+			user << "<span class='notice'>You screw the access panel closed.</span>"
+			panel_open = 0
+			return
+		else if(panel_open == 0)
+			user << "<span class='notice'>You screw the access panel open</span>"
+			panel_open = 1
+			return
+
+	if(istype(W, /obj/item/device/multitool) && !src.broken && !src.opened)
+		if(locked == 0)
+			user << "<span class='notice'>[src] is already unlocked.</span>"
+			return
+		else if(panel_open == 1)
+			if(pulsed == 0)
+				user << "<span class='notice'>You start to rapidly pulse the ID checking system... This may take a moment.</span>"
+				add_fingerprint(user)
+				if(do_after(user, 120))
+					user << "<span class='notice'>You overload the lock</span>"
+					icon_state = icon_broken
+					pulsed = 1
+					return
+				else
+					user << "<span class='warning'>You moved the multitool away..</span>"
+					return
+			if(pulsed == 1)
+				user << "<span class='notice'>You reset the malfunctioning lock</span>"
+				pulsed = 0
+				icon_state = icon_closed
+				return
+		else
+			user << "<span class='notice'>The access panel needs to be open first</span>"
+			return
+
+	if(istype(W, /obj/item/weapon/crowbar) && !src.broken && !src.opened)
+		if(welded == 1)
+			user << "<span class='danger'>You can't force it open when it's welded shut!</span>"
+			return
+		else if(pulsed == 1)
+			user.visible_message("<span class='warning'>[user] starts trying to crowbar the [src.name] open!</span>")
+			if(do_after(user, 50))
+				playsound(src.loc, 'sound/effects/bin_open.ogg',200,1)
+				user.visible_message("<span class='danger'>[user] manages to force open the [src.name], breaking the lock in the process!</span>")
+				broken = 1
+				locked = 0
+				opened = 1
+				pulsed = 0
+				desc = "It appears to be have been broken by force."
+				icon_state = icon_opened
+				src.dump_contents()
+				src.density = 0
+				return
+			else
+				user << "<span class='warning'>You give up on trying to force it open.</span>"
+				return
+		else
+			user << "<span class='notice'>You try to force it open but it's locked tight.</span>"
+			return
+
+
 	else if((istype(W, /obj/item/weapon/card/emag)||istype(W, /obj/item/weapon/melee/energy/blade)) && !src.broken)
 		broken = 1
 		locked = 0
@@ -137,5 +206,7 @@
 			icon_state = icon_closed
 		if(welded)
 			overlays += "welded"
+		if(pulsed == 1)
+			icon_state = icon_broken
 	else
 		icon_state = icon_opened
