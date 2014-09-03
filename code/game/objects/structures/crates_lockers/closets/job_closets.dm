@@ -83,7 +83,7 @@
 	new /obj/item/clothing/shoes/galoshes(src)
 	new /obj/item/weapon/reagent_containers/spray/cleaner(src)
 	new /obj/item/weapon/storage/belt/janitor(src)
-
+	new /obj/item/weapon/plunger(src)
 /*
  * Lawyer
  */

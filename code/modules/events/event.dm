@@ -1,6 +1,6 @@
 //this datum is used by the events controller to dictate how it selects events
 /datum/round_event_control
-	var/name					//The name human-readable name of the event
+	var/name = "Default event name"//The name human-readable name of the event
 	var/typepath				//The typepath of the event datum /datum/round_event
 
 	var/weight = 10				//The weight this event has in the random-selection process.
@@ -25,7 +25,7 @@
 	occurrences++
 
 	testing("[time2text(world.time, "hh:mm:ss")] [E.type]")
-
+	message_admins("[name] event is starting")
 	return E
 
 /datum/round_event	//NOTE: Times are measured in master controller ticks!

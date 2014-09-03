@@ -25,6 +25,8 @@
 	//3: Do not pass either
 
 	var/welded = 0
+	var/clogged = 0
+	var/clogcolour = null
 
 	var/frequency = 1439
 	var/datum/radio_frequency/radio_connection
@@ -65,6 +67,28 @@
 	..()
 	air_contents.volume = 1000
 
+
+/obj/machinery/atmospherics/unary/vent_pump/update_icon()
+//	message_admins("update icon")
+	if(welded)
+		icon_state = "[level == 1 && istype(loc, /turf/simulated) ? "h" : "" ]weld"
+		return
+	if(clogged == 1)
+		if(!clogcolour)
+			clogcolour = pick("white","yellow","blue","pink")
+		icon_state ="[level == 1 && istype(loc, /turf/simulated) ? "h" : "" ]clog_[clogcolour]"
+		return
+	if(on && !(stat & (NOPOWER|BROKEN)))
+		if(pump_direction)
+			icon_state = "[level == 1 && istype(loc, /turf/simulated) ? "h" : "" ]out"
+		else
+			icon_state = "[level == 1 && istype(loc, /turf/simulated) ? "h" : "" ]in"
+	else
+		icon_state = "[level == 1 && istype(loc, /turf/simulated) ? "h" : "" ]off"
+
+	return
+
+/* ORIGINAL
 /obj/machinery/atmospherics/unary/vent_pump/update_icon()
 	if(welded)
 		icon_state = "[level == 1 && istype(loc, /turf/simulated) ? "h" : "" ]weld"
@@ -78,6 +102,29 @@
 		icon_state = "[level == 1 && istype(loc, /turf/simulated) ? "h" : "" ]off"
 
 	return
+*/
+
+/obj/machinery/atmospherics/unary/vent_pump/hide(var/i) //to make the little pipe section invisible, the icon changes.
+//	message_admins("Hide proc")
+	if(welded)
+		icon_state = "[i == 1 && istype(loc, /turf/simulated) ? "h" : "" ]weld"
+		return
+	if(clogged == 1)
+		if(!clogcolour)
+			clogcolour = pick("white","yellow","blue","pink")
+		icon_state = "[i == 1 && istype(loc, /turf/simulated) ? "h" : "" ]clog_[clogcolour]"
+		return
+	if(on&&node)
+		if(pump_direction)
+			icon_state = "[i == 1 && istype(loc, /turf/simulated) ? "h" : "" ]out"
+		else
+			icon_state = "[i == 1 && istype(loc, /turf/simulated) ? "h" : "" ]in"
+
+	else
+		icon_state = "[i == 1 && istype(loc, /turf/simulated) ? "h" : "" ]off"
+		on = 0
+	return
+
 
 /obj/machinery/atmospherics/unary/vent_pump/process()
 	..()
@@ -90,6 +137,9 @@
 		return 0
 
 	if(welded)
+		return 0
+
+	if(clogged == 1)
 		return 0
 
 	var/datum/gas_mixture/environment = loc.return_air()
@@ -135,7 +185,14 @@
 
 				if(network)
 					network.update = 1
-
+	if(clogged == 0)
+		if(network.normal_members.len > 20)
+			if(prob(1) && prob(1))
+				clogged = 1
+				update_icon()
+				playsound(src.loc, 'sound/effects/attackblob.ogg', 50, 1)
+				message_admins("Vent clogged at [src.x], [src.y]")
+				return 0
 	return 1
 
 //Radio remote control
@@ -260,25 +317,32 @@
 	update_icon()
 	return
 
-/obj/machinery/atmospherics/unary/vent_pump/hide(var/i) //to make the little pipe section invisible, the icon changes.
-	if(welded)
-		icon_state = "[i == 1 && istype(loc, /turf/simulated) ? "h" : "" ]weld"
-		return
-	if(on&&node)
-		if(pump_direction)
-			icon_state = "[i == 1 && istype(loc, /turf/simulated) ? "h" : "" ]out"
-		else
-			icon_state = "[i == 1 && istype(loc, /turf/simulated) ? "h" : "" ]in"
-	else
-		icon_state = "[i == 1 && istype(loc, /turf/simulated) ? "h" : "" ]off"
-		on = 0
-	return
-
 /obj/machinery/atmospherics/unary/vent_pump/attackby(obj/item/W, mob/user)
-	if (istype(W, /obj/item/weapon/wrench)&& !(stat & NOPOWER) && on)
+	if(istype(W, /obj/item/weapon/plunger))
+		if(clogged == 0)
+			user << "<span class='notice'>[src] is clean. No need to unclog it.</span>"
+			return
+		else if(clogged == 1)
+			user << "<span class='notice'>You start unclogging the vent...</span>"
+			if(do_after(user, 30))
+				src.clogged = 0
+				update_icon()
+				user << "<span class='notice'>You unclog the vent!</span>"
+				playsound(src.loc, 'sound/effects/attackblob.ogg', 50, 1)
+				return
+		else
+			message_admins("There was an error at [src.x], [src.y] with someone unclogging a vent")
+			return
+	if(istype(W, /obj/item/weapon/wrench)&& !(stat & NOPOWER) && on)
+		if(src.clogged)
+			user << "<span class='warning'>You won't be able to do anything with this [src] with all that gunk in the way.</span>"
+			return 1
 		user << "<span class='danger'>You cannot unwrench this [src], turn it off first.</span>"
 		return 1
 	if(istype(W, /obj/item/weapon/weldingtool))
+		if(src.clogged)
+			user << "<span class='warning'>You won't be able to do anything with this [src] with all that gunk in the way.</span>"
+			return 1
 		var/obj/item/weapon/weldingtool/WT = W
 		if (WT.remove_fuel(0,user))
 			user << "<span class='notice'>Now welding the vent.</span>"
@@ -306,6 +370,8 @@
 	..()
 	if(welded)
 		usr << "It seems welded shut."
+	if(clogged)
+		usr << "It's clogged full of some kind of gross [clogcolour] gunk. You're not sure what the stuff actually is..."
 
 /obj/machinery/atmospherics/unary/vent_pump/power_change()
 	if(powered(power_channel))
@@ -335,6 +401,8 @@
 	if(welded)
 		L << "That vent is welded shut."
 		return
+	if(clogged)
+		L << "You'll never fit in there with all that gunk."
 
 	if(!network || !network.normal_members.len)
 		L << "This vent is not connected to anything."
@@ -343,6 +411,8 @@
 	var/list/vents = list()
 	for(var/obj/machinery/atmospherics/unary/vent_pump/temp_vent in network.normal_members)
 		if(temp_vent.welded)
+			continue
+		if(temp_vent.clogged)
 			continue
 		if(temp_vent in loc)
 			continue
@@ -358,7 +428,7 @@
 			index = "[T.loc.name]\[[i]\]"
 		vents[index] = temp_vent
 	if(!vents.len)
-		L << "<span class='warning'> There are no available vents to travel to, they could be welded. </span>"
+		L << "<span class='warning'> There are no available vents to travel to, they could be welded or clogged. </span>"
 		return
 
 	var/obj/selection = input(L,"Select a destination.", "Duct System") as null|anything in sortAssoc(vents)
@@ -382,10 +452,15 @@
 	for(var/mob/O in hearers(target_vent,null))
 		O.show_message("You hear something squeezing through the ventilation ducts.",2)
 
-	if(target_vent.welded)		//the vent can be welded while they scrolled through the list.
+	if(target_vent.welded || target_vent.clogged)		//the vent can be welded while they scrolled through the list.
 		target_vent = src
-		L << "<span class='warning'> The vent you were heading to appears to be welded.</span>"
+		L << "<span class='warning'> The vent you were heading to appears to be welded or clogged.</span>"
 	L.loc = target_vent.loc
 	var/area/new_area = get_area(L.loc)
 	if(new_area)
 		new_area.Entered(L)
+
+/obj/machinery/atmospherics/unary/vent_pump/proc/gunkup()
+	clogged = 1
+	update_icon()
+	return
