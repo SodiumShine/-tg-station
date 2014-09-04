@@ -22,6 +22,8 @@ var/global/mulebot_count = 0
 	var/beacon_freq = 1400
 	var/control_freq = 1447
 
+	var/list/known_destinations = list()
+
 	suffix = ""
 
 	var/turf/target				// this is turf to navigate to (location of beacon)
@@ -88,6 +90,10 @@ var/global/mulebot_count = 0
 
 	verbs -= /atom/movable/verb/pull
 
+
+	for(var/obj/machinery/navbeacon/NB in world)
+		if("delivery" in NB.codes)
+			known_destinations += NB.location
 
 
 // attack by item
@@ -178,7 +184,8 @@ var/global/mulebot_count = 0
 	if (.)
 		return
 	user.set_machine(src)
-	interact(user, 0)
+	//interact(user, 0)
+	interact(user)
 
 /obj/machinery/bot/mulebot/interact(var/mob/user, var/ai=0)
 	var/dat
@@ -321,7 +328,8 @@ var/global/mulebot_count = 0
 
 			if("destination")
 				refresh=0
-				var/new_dest = input("Enter new destination tag", "Mulebot [suffix ? "([suffix])" : ""]", destination) as text|null
+				//var/new_dest = input("Enter new destination tag", "Mulebot [suffix ? "([suffix])" : ""]", destination) as text|null
+				var/new_dest = input("Select Bot Destination", "Mulebot [suffix ? "([suffix])" : ""]", destination) as null|anything in known_destinations
 				refresh=1
 				if(new_dest)
 					set_destination(new_dest)
@@ -338,7 +346,7 @@ var/global/mulebot_count = 0
 
 			if("sethome")
 				refresh=0
-				var/new_home = input("Enter new home tag", "Mulebot [suffix ? "([suffix])" : ""]", home_destination) as text|null
+				var/new_home = input("Select Home Location", "Mulebot [suffix ? "([suffix])" : ""]", home_destination) as null|anything in known_destinations
 				refresh=1
 				if(new_home)
 					home_destination = new_home
@@ -516,7 +524,7 @@ var/global/mulebot_count = 0
 					sleep(2)
 					process_bot()
 
-	if(refresh) updateDialog()
+//	if(refresh) updateDialog()
 
 /obj/machinery/bot/mulebot/proc/process_bot()
 	//if(mode) world << "Mode: [mode]"
