@@ -67,7 +67,7 @@
 		return 1
 	return 0
 
-/obj/structure/closet/secure_closet/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/structure/closet/secure_closet/attackby(obj/item/weapon/W as obj, mob/living/carbon/user as mob)
 
 	if(!src.opened && src.broken)
 		user << "<span class='notice'>The locker appears to be broken.</span>"
@@ -89,8 +89,14 @@
 			return
 		else if(panel_open == 1)
 			if(pulsed == 0)
-				user << "<span class='notice'>You start to rapidly pulse the ID checking system... This may take a moment.</span>"
+				user << "<span class='notice'>You start to rapidly pulse the ID checking system... Hold the multitool steady, this may take a moment.</span>"
 				add_fingerprint(user)
+				spawn(60)
+					if(prob(75))
+						user.electrocute_act(10, src, 1.0) //5 shock dam,
+						var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
+						s.set_up(5, 1, src)
+						s.start()
 				if(do_after(user, 120))
 					user << "<span class='notice'>You overload the lock</span>"
 					icon_state = icon_broken
