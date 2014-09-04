@@ -185,7 +185,7 @@ var/list/department_radio_keys = list(
 			return
 		if(client.handle_spam_prevention(message,MUTE_IC))
 			return
-	
+
 	return 1
 
 /mob/living/proc/can_speak_vocal(message) //Check AFTER handling of xeno and ling channels
@@ -194,10 +194,10 @@ var/list/department_radio_keys = list(
 
 	if(sdisabilities & MUTE)
 		return
-	
+
 	if(is_muzzled())
 		return
-	
+
 	if(!IsVocal())
 		return
 
@@ -227,10 +227,13 @@ var/list/department_radio_keys = list(
 /mob/living/proc/treat_message(message)
 	if(getBrainLoss() >= 60)
 		message = derpspeech(message, stuttering)
-	
+
 	if(stuttering)
-		message = stutter(message)
-	
+		message = NewStutter(message)
+
+	if(drunk)
+		message = Intoxicated(message)
+
 	return message
 
 /mob/living/proc/radio(message, message_mode, steps)
