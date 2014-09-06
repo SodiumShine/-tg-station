@@ -206,15 +206,15 @@
 	// Animated beings of stone. They have increased defenses, and do not need to breathe. They're also slow as fuuuck.
 	name = "Golem"
 	id = "golem"
-	specflags = list(NOBREATH,HEATRES,COLDRES,NOGUNS,NOBLOOD,RADIMMUNE)
+	specflags = list(HEATRES,COLDRES,NOGUNS,NOBLOOD,RADIMMUNE) // SHINE removed NOBREATH
 	speedmod = 3
 	armor = 35 // SHINE nerfed 55 to 35
 	punchmod = 5
-	no_equip = list(slot_wear_mask, slot_wear_suit, slot_gloves, slot_shoes, slot_head, slot_w_uniform)
-	nojumpsuit = 1
+	no_equip = list(slot_wear_suit, slot_gloves, slot_shoes, slot_head, slot_w_uniform) // slot_wear_mask SHINE letting them have masks on
+	nojumpsuit = 0 // SHINE not letting them have magic skin pockets anymore
 	meat = /obj/item/weapon/reagent_containers/food/snacks/meat/human/mutant/golem
 	roundstart = 1 // SHINE
-
+	magicIDslot = 1 // SHINE everyone must have ID
 
 /*
  ADAMANTINE GOLEMS
@@ -225,7 +225,10 @@
 	id = "adamantine"
 	meat = /obj/item/weapon/reagent_containers/food/snacks/meat/human/mutant/golem/adamantine
 	roundstart = 0
-
+	specflags = list(NOBREATH,HEATRES,COLDRES,NOGUNS,NOBLOOD,RADIMMUNE)
+	armor = 55
+	nojumpsuit = 1
+	no_equip = list(slot_wear_mask, slot_wear_suit, slot_gloves, slot_shoes, slot_head, slot_w_uniform)
 /*
  FLIES
 */

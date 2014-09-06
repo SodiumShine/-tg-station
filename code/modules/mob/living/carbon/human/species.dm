@@ -65,7 +65,7 @@
 
 	var/stomachgrumbled3 = 0
 	var/stomachgrumbled4 = 0
-
+	var/magicIDslot = 0
 	///////////
 	// PROCS //
 	///////////
@@ -202,7 +202,7 @@
 	// handles the equipping of species-specific gear
 	return
 
-/datum/species/proc/can_equip(var/obj/item/I, var/slot, var/disable_warning, var/mob/living/carbon/human/H)
+/datum/species/proc/can_equip(var/obj/item/I, var/slot, var/disable_warning, var/mob/living/carbon/human/H) // SHINE note to self, return 0 means can't wear it
 	if(slot in no_equip)
 		if(!(type in I.species_exception))
 			return 0
@@ -283,7 +283,7 @@
 		if(slot_wear_id)
 			if(H.wear_id)
 				return 0
-			if(!H.w_uniform && !nojumpsuit)
+			if(!H.w_uniform && !nojumpsuit && !magicIDslot)
 				if(!disable_warning)
 					H << "<span class='danger'>You need a jumpsuit before you can attach this [I.name].</span>"
 				return 0
@@ -1087,7 +1087,8 @@
 			H.oxygen_alert = max(H.oxygen_alert, 1)
 			return 0
 		if(H.health >= config.health_threshold_crit)
-			if(NOBREATH in specflags)	return 1
+			if(NOBREATH in specflags)
+				return 1
 			H.adjustOxyLoss(HUMAN_MAX_OXYLOSS)
 			H.failed_last_breath = 1
 		else
@@ -1333,6 +1334,11 @@
 		H.AddLuminosity(-3)
 		H.update_fire()
 
+/*
+/datum/species/proc/ModifySize(var/mob/living/carbon/human/H)
+	if(H.sizemod)
+		H.transform *= sizemod
+*/
 #undef SPECIES_LAYER
 #undef BODY_LAYER
 #undef HAIR_LAYER
