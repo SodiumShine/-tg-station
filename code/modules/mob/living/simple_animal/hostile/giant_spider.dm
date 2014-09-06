@@ -7,7 +7,7 @@
 //basic spider mob, these generally guard nests
 /mob/living/simple_animal/hostile/giant_spider
 	name = "giant spider"
-	desc = "Furry and black, it makes you shudder to look at it. This one has deep red eyes."
+	desc = "Furry and black, it makes you shudder to look at it. This one has deep red eyes and looks very robust."
 	icon_state = "guard"
 	var/butcher_state = 8 // Icon state for dead spider icons
 	icon_living = "guard"
@@ -24,8 +24,8 @@
 	stop_automated_movement_when_pulled = 0
 	maxHealth = 200
 	health = 200
-	melee_damage_lower = 15
-	melee_damage_upper = 20
+	melee_damage_lower = 10 // SHINE 15-20 to 10-15 damage range
+	melee_damage_upper = 15
 	heat_damage_per_tick = 20
 	cold_damage_per_tick = 20
 	var/poison_per_bite = 5
@@ -35,10 +35,11 @@
 	pass_flags = PASSTABLE
 	move_to_delay = 6
 	ventcrawler = 2
+	meat_amount = 2
 
 //nursemaids - these create webs and eggs
 /mob/living/simple_animal/hostile/giant_spider/nurse
-	desc = "Furry and black, it makes you shudder to look at it. This one has brilliant green eyes."
+	desc = "Furry and black, it makes you shudder to look at it. This one has brilliant green eyes, and seems smaller... for a giant spider."
 	icon_state = "nurse"
 	icon_living = "nurse"
 	icon_dead = "nurse_dead"
@@ -54,15 +55,15 @@
 
 //hunters have the most poison and move the fastest, so they can find prey
 /mob/living/simple_animal/hostile/giant_spider/hunter
-	desc = "Furry and black, it makes you shudder to look at it. This one has sparkling purple eyes."
+	desc = "Furry and black, it makes you shudder to look at it. This one has sparkling purple eyes, and very vicious looking fangs."
 	icon_state = "hunter"
 	icon_living = "hunter"
 	icon_dead = "hunter_dead"
-	maxHealth = 120
-	health = 120
+	maxHealth = 100 // SHINE 120 to 100
+	health = 100
 	melee_damage_lower = 10
 	melee_damage_upper = 20
-	poison_per_bite = 5
+	poison_per_bite = 6
 	move_to_delay = 5
 
 /mob/living/simple_animal/hostile/giant_spider/AttackingTarget()

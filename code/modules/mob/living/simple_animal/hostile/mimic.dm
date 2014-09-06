@@ -13,9 +13,8 @@
 	response_help = "touches"
 	response_disarm = "pushes"
 	response_harm = "hits"
-	speed = 1 // SHINE 0 to 1, make them slower
-	maxHealth = 250
-	health = 250
+	maxHealth = 200 // SHINE 250 to 200
+	health = 200
 
 	harm_intent_damage = 5
 	melee_damage_lower = 8

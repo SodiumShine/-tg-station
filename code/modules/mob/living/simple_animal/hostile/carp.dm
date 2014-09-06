@@ -9,6 +9,7 @@
 	icon_gib = "carp_gib"
 	speak_chance = 0
 	turns_per_move = 5
+	meat_amount = 2
 	meat_type = /obj/item/weapon/reagent_containers/food/snacks/carpmeat
 	response_help = "pets"
 	response_disarm = "gently pushes aside"
@@ -18,7 +19,7 @@
 	health = 25
 
 	harm_intent_damage = 8
-	melee_damage_lower = 15
+	melee_damage_lower = 10
 	melee_damage_upper = 15
 	attacktext = "bites"
 	attack_sound = 'sound/weapons/bite.ogg'

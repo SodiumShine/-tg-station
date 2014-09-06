@@ -14,8 +14,8 @@
 	response_disarm = "pushes"
 
 	speed = -2
-	maxHealth = 50000
-	health = 50000
+	maxHealth = 5000
+	health = 5000
 
 	harm_intent_damage = 70
 	melee_damage_lower = 68
@@ -49,9 +49,10 @@
 	anchored = 1
 	status_flags = GODMODE // Cannot push also
 
-	var/cannot_be_seen = 1
+	var/cannot_be_seen = 0
 	var/mob/living/creator = null
 
+	var/light_hate = 1 // chance to magically turn off lights in the area
 
 // No movement while seen code.
 
@@ -74,6 +75,8 @@
 		if(client)
 			src << "<span class='warning'>You cannot move, there are eyes on you!</span>"
 		return 0
+	if(!client)
+		BreakLights()
 	return ..()
 
 /mob/living/simple_animal/hostile/statue/Life()
@@ -86,6 +89,108 @@
 			if(get_dist(watching, src) > get_dist(target, src))
 				LoseTarget()
 				GiveTarget(watching)
+
+	if(prob(light_hate) && !client)
+		FlickerLights()
+
+/mob/living/simple_animal/hostile/statue/proc/FlickerLights() // flickers lights and turns off sources from a distance
+
+	var/obj/item/device/flashlight/FL
+	var/obj/item/device/pda/P
+	var/obj/machinery/light/L
+	var/obj/item/clothing/head/hardhat/H
+	var/obj/item/clothing/head/helmet/space/hardsuit/S
+
+	for(L in view(12,src)) 					// lights
+//		message_admins("[L] found to flicker")
+		L.flicker(20)
+
+	for(FL in view(12,src)) 				// flash lights
+		if(FL.on == 1)
+			FL.on = 0
+			FL.update_brightness()
+	for(P in view(12,src)) 					// pda
+		if(P.fon == 1)
+			P.fon = 0
+			P.AddLuminosity(-P.f_lum)
+	for(H in view(12,src)) 					// hardhats
+		if(H.on == 1)
+			H.on = 0
+			H.AddLuminosity(-H.brightness_on)
+			H.icon_state = "hardhat[H.on]_[H.item_color]"
+			H.item_state = "hardhat[H.on]_[H.item_color]"
+	for(S in view(12,src))					//space suit helmets
+		if(S.on == 1)
+			S.on = 0
+			S.icon_state = "hardsuit[S.on]-[S.item_color]"
+			S.item_state = "hardsuit[S.on]_[S.item_color]"
+			S.AddLuminosity(-S.brightness_on)
+
+///stuff on mobs///
+	for(var/mob/M in view(12,src))
+		for(FL in M.contents) // flash lights on mobs
+			if(FL.on == 1)
+				FL.on = 0
+				FL.update_brightness(M)
+		for(P in M.contents) // pda lights on mobs
+			if(P.fon == 1)
+				P.fon = 0
+				M.AddLuminosity(-P.f_lum)
+		for(H in M.contents)
+			if(H.on == 1)
+				H.on = 0
+				M.AddLuminosity(-H.brightness_on)
+				H.icon_state = "hardhat[H.on]_[H.item_color]"
+				H.item_state = "hardhat[H.on]_[H.item_color]"
+				M.update_inv_head()
+		for(S in M.contents)
+			if(S.on == 1)
+				S.on = 0
+				S.icon_state = "hardsuit[S.on]-[S.item_color]"
+				S.item_state = "hardsuit[S.on]_[S.item_color]"
+				M.AddLuminosity(-S.brightness_on)
+				M.update_inv_head()
+	return
+
+/mob/living/simple_animal/hostile/statue/proc/BreakLights() // breaks lights and turns off stuff while moving past
+
+	var/obj/item/device/flashlight/FL
+	var/obj/item/device/pda/P
+	var/obj/machinery/light/L
+	var/obj/item/clothing/head/hardhat/H
+	var/obj/item/clothing/head/helmet/space/hardsuit/S
+
+	var/obj/machinery/bot/B
+	var/obj/machinery/door/D
+
+	for(L in view(2,src)) 							// lights
+		L.broken()
+	for(FL in view(2,src)) 							// flashlights
+		if(FL.on ==1)
+			FL.on = 0
+			FL.update_brightness(FL)
+	for(P in view(2,src)					)		// pda
+		if(P.fon == 1)
+			P.fon = 0
+			P.AddLuminosity(-P.f_lum)
+	for(H in view(2,src)) 							// hardhat
+		if(H.on == 1)
+			H.on = 0
+			H.AddLuminosity(-H.brightness_on)
+			H.icon_state = "hardhat[H.on]_[H.item_color]"
+			H.item_state = "hardhat[H.on]_[H.item_color]"
+	for(S in view(2,src)) 							// hardsuit helmet
+		if(S.on == 1)
+			S.on = 0
+			S.AddLuminosity(-S.brightness_on)
+			S.icon_state = "hardsuit[S.on]-[S.item_color]"
+			S.item_state = "hardsuit[S.on]_[S.item_color]"
+
+	for(B in view(1,src))
+		B.explode()
+	for(D in range(1,src)) 							// doors
+		D.open()
+	return
 
 /mob/living/simple_animal/hostile/statue/AttackingTarget()
 	if(!can_be_seen())
@@ -107,15 +212,17 @@
 	..()
 
 /mob/living/simple_animal/hostile/statue/proc/can_be_seen(var/turf/destination)
-	if(!cannot_be_seen)
+	if(cannot_be_seen)
 		return null
 	// Check for darkness
 	var/turf/T = get_turf(loc)
-	if(T && destination)
+	if(T)// && destination)
+/*
 		// Don't check it twice if our destination is the tile we are on or we can't even get to our destination
 		if(T == destination)
 			destination = null
-		else if(!T.lighting_lumcount && !destination.lighting_lumcount) // No one can see us in the darkness, right?
+*/
+		if(!T.lighting_lumcount)// && !destination.lighting_lumcount) // No one can see us in the darkness, right?
 			return null
 
 	// We aren't in darkness, loop for viewers.
