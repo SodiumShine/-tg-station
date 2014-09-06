@@ -69,7 +69,7 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/vegetablepizza/New()
 	..()
-	reagents.add_reagent("nutriment", 30)
+	reagents.add_reagent("nutriment", 40)
 	reagents.add_reagent("tomatojuice", 6)
 	reagents.add_reagent("imidazoline", 12)
 	bitesize = 2
@@ -88,8 +88,8 @@
 	slices_num = 6
 	New()
 		..()
-		reagents.add_reagent("nutriment", 50)
-		reagents.add_reagent("carpotoxin", 1)
+		reagents.add_reagent("nutriment", 60)
+		reagents.add_reagent("carpotoxin", 3)
 		bitesize = 2
 
 /obj/item/weapon/reagent_containers/food/snacks/seamonsterpizzaslice

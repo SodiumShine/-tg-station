@@ -60,6 +60,7 @@ var/list/admin_verbs_admin = list(
 	/client/proc/cmd_admin_syndie_message,	/*SHINE sends a syndicate messsage */
 //	/client/proc/fixstep /*SHINE fixes step errors*/
 //	/datum/controller/transfer_controller/proc/check_time_left /*SHINE check time left in the round */
+	/client/proc/change_size,
 	)
 var/list/admin_verbs_ban = list(
 	/client/proc/unban_panel,
