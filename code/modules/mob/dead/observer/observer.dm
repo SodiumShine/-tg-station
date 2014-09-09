@@ -18,6 +18,7 @@
 							//If you died in the game and are a ghsot - this will remain as null.
 							//Note that this is not a reliable way to determine if admins started as observers, since they change mobs a lot.
 	var/atom/movable/following = null
+	var/fun_verbs = 1
 	var/vendtime = 0
 
 /mob/dead/observer/New(mob/body)
@@ -49,6 +50,12 @@
 	if(!name)							//To prevent nameless ghosts
 		name = random_name(gender)
 	real_name = name
+
+	if(!fun_verbs)
+		verbs -= /mob/dead/observer/verb/boo
+		verbs -= /mob/dead/observer/verb/possess
+		verbs -= /mob/dead/observer/verb/vend
+
 	..()
 
 /mob/dead/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
@@ -250,7 +257,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	if(L)
 		L.flicker()
 		bootime = world.time + 600
-		if(prob(25))
+		if(prob(20))
 			playsound(src.loc, pick('sound/effects/ghost.ogg','sound/effects/ghost2.ogg'), 10, 1)
 		return
 	if(!L)
@@ -273,7 +280,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	if(V)
 		V.throw_item()
 		vendtime = world.time + 1200
-		if(prob(25))
+		if(prob(20))
 			playsound(src.loc, pick('sound/effects/ghost.ogg','sound/effects/ghost2.ogg'), 10, 1)
 		V.ghostwhine()
 		return
@@ -283,6 +290,30 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	else
 		return
 
+/mob/dead/observer/verb/possess()
+	set category = "Ghost"
+	set name = "Possess!"
+	set desc= "Take over the body of a lesser creature."
+
+	var/list/possessible = list()
+	for(var/mob/living/L in living_mob_list)
+//	for(var/mob/living/L in range(255,src))
+		if(!(L in player_list) && !L.mind && !(L.name == "Ian") && (L.z == 1))
+			possessible += L
+
+	var/mob/living/target = input("Your new life begins today!", "Possess Mob", null, null) as null|anything in possessible
+
+	if(!target)
+		return 0
+	if(can_reenter_corpse || (mind && mind.current))
+		if(alert(src, "Your soul is still tied to your former life as [mind.current.name], if you go foward there is no going back to that life. Are you sure you wish to continue?", "Move On", "Yes", "No") == "No")
+			return 0
+	if(target.key)
+		src << "<span class='warning'>Someone has taken this body while you were choosing!</span>"
+		return 0
+
+	target.key = key
+	return 1
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 /mob/dead/observer/memory()
@@ -301,3 +332,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		see_invisible = SEE_INVISIBLE_OBSERVER
 	else
 		see_invisible = SEE_INVISIBLE_OBSERVER_NOLIGHTING
+
+
+
+

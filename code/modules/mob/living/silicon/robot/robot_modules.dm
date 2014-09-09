@@ -78,7 +78,6 @@
 
 /obj/item/weapon/robot_module/medical/New()
 	..()
-	modules += new /obj/item/borg/sight/hud/med(src)
 	modules += new /obj/item/device/healthanalyzer(src)
 	modules += new /obj/item/weapon/reagent_containers/borghypo(src)
 	modules += new /obj/item/weapon/reagent_containers/glass/beaker/large(src)
