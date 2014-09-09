@@ -288,7 +288,7 @@
 	if(welding)
 		if(remove_fuel(1))
 			user << "<span class='notice'>You switch [src] on.</span>"
-			force = 15
+			force = 12
 			damtype = "fire"
 			hitsound = 'sound/items/welder.ogg'
 			icon_state = "welder1"
