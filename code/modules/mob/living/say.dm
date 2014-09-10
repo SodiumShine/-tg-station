@@ -216,12 +216,24 @@ var/list/department_radio_keys = list(
 
 /mob/living/proc/handle_inherent_channels(message, message_mode)
 	if(message_mode == MODE_CHANGELING)
-		if(lingcheck())
-			log_say("[mind.changeling.changelingID]/[src.key] : [message]")
-			for(var/mob/M in mob_list)
-				if(M.lingcheck() || (M.stat == DEAD && !istype(M, /mob/new_player)))
-					M << "<i><font color=#800080><b>[mind.changeling.changelingID]:</b> [message]</font></i>"
-			return 1
+		switch(lingcheck())
+			if(2)
+				var/msg = "<i><font color=#800080><b>[mind.changeling.changelingID]:</b> [message]</font></i>"
+				log_say("[mind.changeling.changelingID]/[src.key] : [message]")
+				for(var/mob/M in mob_list)
+					if(M.stat == DEAD && !istype(M, /mob/new_player))
+						M << msg
+					else
+						switch(M.lingcheck())
+							if(2)
+								M << msg
+							if(1)
+								if(prob(20))
+									M << "<i><font color=#800080>We can faintly sense another of our kind trying to communicate through the hivemind...</font></i>"
+				return 1
+			if(1)
+				src << "<i><font color=#800080>Our senses have not evolved enough to be able to communicate this way...</font></i>"
+				return 1
 	return 0
 
 /mob/living/proc/treat_message(message)
@@ -263,9 +275,12 @@ var/list/department_radio_keys = list(
 			return NOPASS
 	return 0
 
-/mob/living/lingcheck()
+/mob/living/lingcheck() //Returns 1 if they are a changeling. Returns 2 if they are a changeling that can communicate through the hivemind
 	if(mind && mind.changeling)
+		if(mind.changeling.changeling_speak)
+			return 2
 		return 1
+	return 0
 
 /mob/living/say_quote()
 	if (stuttering)
