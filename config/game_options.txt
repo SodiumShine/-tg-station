@@ -113,7 +113,7 @@ SHUTTLE_REFUEL_DELAY 7000
 ## Used as (Antagonists = Population / Coeff)
 ## Set to 0 to disable scaling and use default numbers instead.
 TRAITOR_SCALING_COEFF 4
-CHANGELING_SCALING_COEFF 4
+CHANGELING_SCALING_COEFF 5
 
 ## Variables calculate how number of open security officer positions will scale to population.
 ## Used as (Officers = Population / Coeff)
@@ -129,7 +129,7 @@ TRAITOR_OBJECTIVES_AMOUNT 2
 PROTECT_ROLES_FROM_ANTAGONIST
 
 ## If non-human species are barred from joining as a head of staff
-#ENFORCE_HUMAN_AUTHORITY
+ENFORCE_HUMAN_AUTHORITY
 
 ## If late-joining players have a chance to become a traitor/changeling
 ALLOW_LATEJOIN_ANTAGONISTS
@@ -168,10 +168,10 @@ JOBS_HAVE_MINIMAL_ACCESS
 ASSISTANTS_HAVE_MAINT_ACCESS
 
 ## Uncoment to give security maint access. Note that if you comment JOBS_HAVE_MINIMAL_ACCESS security already gets maint from that.
-SECURITY_HAS_MAINT_ACCESS
+#SECURITY_HAS_MAINT_ACCESS
 
 ## Uncomment to give everyone maint access.
-EVERYONE_HAS_MAINT_ACCESS
+#EVERYONE_HAS_MAINT_ACCESS
 
 ## Comment this to make security officers spawn in departmental security posts
 SEC_START_BRIG
