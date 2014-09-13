@@ -18,6 +18,7 @@
 	turns_per_move = 5
 	see_in_dark = 10
 	meat_type = /obj/item/weapon/reagent_containers/food/snacks/spidermeat
+	meat_amount = 2
 	response_help  = "pets"
 	response_disarm = "gently pushes aside"
 	response_harm   = "hits"
@@ -35,7 +36,6 @@
 	pass_flags = PASSTABLE
 	move_to_delay = 6
 	ventcrawler = 2
-	meat_amount = 2
 
 //nursemaids - these create webs and eggs
 /mob/living/simple_animal/hostile/giant_spider/nurse
@@ -44,6 +44,7 @@
 	icon_living = "nurse"
 	icon_dead = "nurse_dead"
 	meat_type = /obj/item/weapon/reagent_containers/food/snacks/spidereggs
+	meat_amount = 4
 	maxHealth = 40
 	health = 40
 	melee_damage_lower = 5

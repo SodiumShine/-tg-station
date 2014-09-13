@@ -22,7 +22,8 @@ var/list/world_uplinks = list()
 /obj/item/device/uplink/New()
 	..()
 	world_uplinks+=src
-	welcome = ticker.mode.uplink_welcome
+	spawn(10)
+		welcome = ticker.mode.uplink_welcome
 	uses = ticker.mode.uplink_uses
 
 /obj/item/device/uplink/Destroy()
