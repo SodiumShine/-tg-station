@@ -1,7 +1,7 @@
 
 /obj/machinery/gibber
 	name = "gibber"
-	desc = "The name isn't descriptive enough?"
+	desc = "A machine used to process human bodies into food." //"The name isn't descriptive enough?"
 	icon = 'icons/obj/kitchen.dmi'
 	icon_state = "grinder"
 	density = 1
@@ -77,6 +77,7 @@
 	else
 		src.startgibbing(user)
 
+
 /obj/machinery/gibber/attackby(obj/item/weapon/grab/G as obj, mob/user as mob)
 	if(src.occupant)
 		user << "<span class='danger'>The gibber is full, empty it first!</span>"
@@ -87,8 +88,13 @@
 	if (!( istype(G, /obj/item/weapon/grab)) || !(istype(G.affecting, /mob/living/carbon/human)))
 		user << "<span class='danger'>This item is not suitable for the gibber!</span>"
 		return
+	if(G.affecting.mind)
+		user << "<span class='danger'>The gibber smartly refuses that body, someone is still using it!</span>"
+		playsound(src.loc, 'sound/machines/buzz-sigh.ogg', 50, 0)
+		return
 	if(G.affecting.abiotic(1))
 		user << "<span class='danger'>Subject may not have abiotic items on.</span>"
+		playsound(src.loc, 'sound/machines/buzz-sigh.ogg', 50, 0)
 		return
 
 	user.visible_message("<span class='danger'>[user] starts to put [G.affecting] into the gibber!</span>")
