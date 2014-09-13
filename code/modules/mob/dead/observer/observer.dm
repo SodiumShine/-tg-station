@@ -251,12 +251,14 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	set desc = "Make the lights flicker! Spooky!"
 
 	if(bootime > world.time)
-		src << "You have to wait before you can do that again."
+		var/displaytime
+		displaytime = (bootime - world.time)
+		src << "You have to wait [displaytime/10] seconds before you can do that again."
 		return
 	var/obj/machinery/light/L = locate(/obj/machinery/light) in view(1, src)
 	if(L)
 		L.flicker()
-		bootime = world.time + 600
+		bootime = world.time + 900 // 1.5 minute cooldown
 		if(prob(20))
 			playsound(src.loc, pick('sound/effects/ghost.ogg','sound/effects/ghost2.ogg'), 10, 1)
 		return
@@ -274,12 +276,14 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	set desc = "Make a vending machine spit stuff out at people, out of spite."
 
 	if(vendtime > world.time)
-		src << "You have to wait before you can do that again."
+		var/displaytime
+		displaytime = (vendtime - world.time)
+		src << "You have to wait [displaytime/10] seconds before you can do that again."
 		return
 	var/obj/machinery/vending/V = locate(/obj/machinery/vending) in view(1, src)
 	if(V)
 		V.throw_item()
-		vendtime = world.time + 1200
+		vendtime = world.time + 1200 // 2 minute cooldown
 		if(prob(20))
 			playsound(src.loc, pick('sound/effects/ghost.ogg','sound/effects/ghost2.ogg'), 10, 1)
 		V.ghostwhine()
@@ -304,6 +308,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	var/mob/living/target = input("Your new life begins today!", "Possess Mob", null, null) as null|anything in possessible
 
 	if(!target)
+		src << "<span class='warning'>There are no available creatures to possess...</span>"
 		return 0
 	if(can_reenter_corpse || (mind && mind.current))
 		if(alert(src, "Your soul is still tied to your former life as [mind.current.name], if you go foward there is no going back to that life. Are you sure you wish to continue?", "Move On", "Yes", "No") == "No")

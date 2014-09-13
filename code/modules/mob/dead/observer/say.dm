@@ -19,8 +19,7 @@
 /mob/dead/observer/Hear(message, atom/movable/speaker, message_langs, raw_message, radio_freq)
 	src << message
 
-
-// SHINE uncommented ghost whispering
+	/*
 	for (var/mob/M in hearers(null, null))
 		if (!M.stat)
 			if(M.job == "Chaplain")
@@ -39,3 +38,4 @@
 					M.show_message("<span class='game'><i>You hear muffled speech... you can almost make out some words...</i></span>", 2)
 					M.show_message("<span class='game'><span class='whisper'><i>[stutter(message)]</i></span></span>", 2)
 					playsound(src.loc, pick('sound/effects/ghost.ogg','sound/effects/ghost2.ogg'), 10, 1)
+*/
