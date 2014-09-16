@@ -193,7 +193,7 @@
 	//Welders left on now use up fuel, but lets not have them run out quite that fast
 		if(1)
 			if(icon_state != "welder1")	//Check that the sprite is correct, if it isnt, it means toggle() was not called
-				force = 15
+				force = 13
 				damtype = "fire"
 				icon_state = "welder1"
 			if(prob(5))
@@ -223,6 +223,11 @@
 			user << "<span class='warning'>That was stupid of you.</span>"
 			O.ex_act()
 			return
+
+	if(istype(O, /mob/living) && in_range(src, O))
+		if(welding)
+			remove_fuel(2)
+//			message_admins("DEBUG removed 2 welding fuel")
 
 	if(welding)
 		remove_fuel(1)

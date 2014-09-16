@@ -310,7 +310,7 @@
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "hatchet"
 	flags = CONDUCT
-	force = 12.0
+	force = 11 // SHINE nerfed to 11 rather than 12 fucking hatchets
 	w_class = 1.0
 	throwforce = 15.0
 	throw_speed = 3
