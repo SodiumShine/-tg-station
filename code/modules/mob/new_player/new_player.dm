@@ -27,12 +27,13 @@
 	if(!ticker || ticker.current_state <= GAME_STATE_PREGAME)
 		if(!ready)	output += "<p><a href='byond://?src=\ref[src];ready=1'>Declare Ready</A></p>"
 		else	output += "<p><b>You are ready</b> <a href='byond://?src=\ref[src];ready=0'>Cancel</A></p>"
+		output += "<p><span class='linkOff'>Crew Manifest</span></p>"
+		output += "<p><span class='linkOff'>Observe</span></p>"
 
 	else
 		output += "<p><a href='byond://?src=\ref[src];late_join=1'>Join Game!</A></p>"
 		output += "<p><a href='byond://?src=\ref[src];manifest=1'>Crew Manifest</A></p>"
-
-	output += "<p><a href='byond://?src=\ref[src];observe=1'>Observe</A></p>"
+		output += "<p><a href='byond://?src=\ref[src];observe=1'>Observe</A></p>"
 /*
 	if(!IsGuestKey(src.key))
 		establish_db_connection()

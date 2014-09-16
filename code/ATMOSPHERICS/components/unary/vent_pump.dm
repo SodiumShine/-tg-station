@@ -187,7 +187,7 @@
 					network.update = 1
 	if(clogged == 0)
 		if(network.normal_members.len > 20)
-			if(prob(1) && prob(1))
+			if(prob(1) && prob(1) && prob(75))
 				clogged = 1
 				update_icon()
 				playsound(src.loc, 'sound/effects/attackblob.ogg', 50, 1)

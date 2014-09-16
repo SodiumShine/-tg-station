@@ -71,7 +71,28 @@ Works together with spawning an observer, noted above.
 			var/mob/dead/observer/ghost = new(src)	//Transfer safety to observer spawning proc.
 			ghost.can_reenter_corpse = can_reenter_corpse
 			ghost.key = key
-			ghost << "*---<b>You are now a ghost</b>---* <br>You're dead, which you probably should have expected. <br>Don't worry though, there are many things you can do to torture those who wronged you in life, such as flickering lights menacingly, spin chairs spookily, or have your favorite vending machine distribute goods to a passerby. <br><br>Communicating with others whose souls are trapped in this forsaken Station is possible as well. <br>If you keep trying, maybe you can even communicate with the living again. <br><br>If you wait long enough you might be reincarnated as something fun, or someone might be kind enough to find your poor lifeless body and clone you.If you still have a body at all. If there's at least a brain you could be recycled as a cyborg. <br>(If you get really bored, use \red adminhelp \black and see if they'll let you have some fun) <br>*--------------------------*"
+//			ghost << "*---<b>You are now a ghost</b>---* <br>You're dead, which you probably should have expected. <br>Don't worry though, there are many things you can do to torture those who wronged you in life, such as flickering lights menacingly, spin chairs spookily, or have your favorite vending machine distribute goods to a passerby. <br><br>Communicating with others whose souls are trapped in this forsaken Station is possible as well. <br>Maybe the station's Chapel will have something to help you.<br><br>If you wait long enough you might be reincarnated as something fun, or someone might be kind enough to find your poor lifeless body and clone you.If you still have a body at all. If there's at least a brain you could be recycled as a cyborg. <br>(If you get really bored, use \red adminhelp \black and see if they'll let you have some fun) <br>*--------------------------*"
+
+			var/dat
+			dat += "<h1>You are now a ghost!</h1>"
+			dat += "You're dead, which you probably should have expected"
+			dat += "<br>Don't worry though, there are many things you can do to torture those who wronged you in life, such as flickering lights menacingly, spin chairs spookily, or have your favorite vending machine distribute goods to a passerby. "
+			dat += "<br>Communicating with others whose souls are trapped in this forsaken Station is possible as well. "
+			dat += "<br>Maybe the station's Chapel will have something to help you."
+			dat += "<br>"
+			dat += "<br>You may find yourself able to possess the bodies of lessar creatures, but be careful, it is not easy to let go of life once you have it back."
+			dat += "<br>"
+			dat += "<br>If you wait long enough you might be reincarnated as something fun, or someone might be kind enough to find your poor lifeless body and clone you. If you still have a body at all, that is. If there's at least a brain you could be recycled as a cyborg. "
+			dat += "<br>"
+			dat += "<br>(Most of your ghost abilities can be found in the ghost tab amongst your other verb tabs)"
+			dat += "<br>(Use the <b>adminhelp</b> verb if you need any help or find yourself stuck as a ghost for too long)"
+
+
+			var/datum/browser/popup = new(ghost, "ghost", "Ghost Instructions", 520, 540)	//Set up the popup browser window
+			popup.set_title_image(ghost.browse_rsc_icon(icon, icon_state))
+			popup.set_content(dat)
+			popup.open()
+
 			return ghost
 
 /*
@@ -283,7 +304,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	var/obj/machinery/vending/V = locate(/obj/machinery/vending) in view(1, src)
 	if(V)
 		V.throw_item()
-		vendtime = world.time + 1200 // 2 minute cooldown
+		vendtime = world.time + 1500 // 2.5 minute cooldown
 		if(prob(20))
 			playsound(src.loc, pick('sound/effects/ghost.ogg','sound/effects/ghost2.ogg'), 10, 1)
 		V.ghostwhine()
