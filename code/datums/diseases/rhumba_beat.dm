@@ -8,8 +8,9 @@
 	agent = "Cuban Pete"
 	affected_species = list("Human")
 	permeability_mod = 1
+	severity = "BIOHAZARD THREAT!"
 	desc = "If left untreated the victim will dance themselves to death. It can be cured with a glass of Bahama Mama."
-	severity = "Major"
+//	severity = "Major"
 	stage_prob = 3
 
 /datum/disease/rhumba_beat/stage_act()

@@ -12,7 +12,8 @@
 	permeability_mod = 1
 	stage_prob = 2
 	desc = "If left untreated the subject will explode violently."
-	severity = "Major"
+//	severity = "Major"
+	severity = "BIOHAZARD THREAT!"
 
 /datum/disease/gbs/stage_act()
 	..()

@@ -1,7 +1,7 @@
 /obj/structure/spirit_board
 	name = "spirit board"
 	desc = "A wooden board with letters etched into it, used in seances."
-	icon = 'icons/obj/spirit_board.dmi'
+	icon = 'icons/obj/objects.dmi'
 	icon_state = "spirit_board"
 	density = 1
 	anchored = 0
@@ -33,6 +33,7 @@
 		notify_ghosts("Someone has begun playing with a [src.name] in [get_area(src)]!")
 
 	planchette = input("Choose the letter.", "Seance!") in list("A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z")
+	add_logs(M, src, "picked a letter on", addition="which was \"[planchette]\".")
 	cooldown = world.time
 	lastuser = M.ckey
 
@@ -76,7 +77,7 @@
 				users_in_range++
 
 	if(users_in_range < 2)
-		M << "<span class='warning'>There aren't enough people use to the [src.name]!</span>"
+		M << "<span class='warning'>There aren't enough people to use the [src.name]!</span>"
 		return 0
 
 	return 1
