@@ -5,9 +5,9 @@
 	weight = 5
 
 /datum/round_event/anomaly/anomaly_vortex
-	startWhen = 10
+	startWhen = 20
 	announceWhen = 1
-	endWhen = 80
+	endWhen = 60
 
 
 /datum/round_event/anomaly/anomaly_vortex/announce()

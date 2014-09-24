@@ -5,9 +5,9 @@
 	weight = 15
 
 /datum/round_event/anomaly/anomaly_grav
-	startWhen = 10
+	startWhen = 15
 	announceWhen = 1
-	endWhen = 120 // SHINE this one might as well last long to actually make it a problem
+	endWhen = 100 // SHINE this one might as well last long to actually make it a problem
 
 
 /datum/round_event/anomaly/anomaly_grav/announce()
