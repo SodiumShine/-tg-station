@@ -77,7 +77,7 @@
 
 /datum/supply_packs/security/charges
 	name = "Breaching Charges"
-	cost = 30
-	contains = list(/obj/item/weapon/plastique/security,/obj/item/weapon/plastique/security,/obj/item/weapon/plastique/security)
+	cost = 60
+	contains = list(/obj/item/weapon/c4/security,/obj/item/weapon/c4/security,/obj/item/weapon/c4/security)
 	containertype = /obj/structure/closet/crate/secure
 	containername = "Explosives crate"

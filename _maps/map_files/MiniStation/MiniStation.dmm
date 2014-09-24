@@ -258,7 +258,7 @@
 "aeX" = (/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{dir = 8},/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"; pixel_y = 0},/turf/simulated/floor,/area/security/brig)
 "aeY" = (/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{dir = 4},/obj/machinery/atmospherics/pipe/simple/supply/hidden,/turf/simulated/floor{icon_state = "warningcorner"; dir = 8},/area/security/brig)
 "aeZ" = (/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{dir = 4},/turf/simulated/wall,/area/security/brig)
-"afa" = (/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{dir = 4},/obj/item/device/radio/intercom{broadcasting = 0; freerange = 0; listening = 1; name = "Common Channel"; pixel_x = -27; pixel_y = 3},/obj/structure/table,/obj/item/weapon/plastique/security{pixel_x = 5},/obj/item/weapon/plastique/security,/obj/item/weapon/plastique/security{pixel_x = -5},/turf/simulated/floor,/area/security/brig)
+"afa" = (/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{dir = 4},/obj/item/device/radio/intercom{broadcasting = 0; freerange = 0; listening = 1; name = "Common Channel"; pixel_x = -27; pixel_y = 3},/obj/structure/table,/obj/item/weapon/c4/security{pixel_x = 5},/obj/item/weapon/c4/security,/turf/simulated/floor,/area/security/brig)
 "afb" = (/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{dir = 4},/turf/simulated/floor{dir = 4; icon_state = "warning"},/area/security/brig)
 "afc" = (/obj/machinery/atmospherics/unary/vent_scrubber{dir = 8; on = 1; scrub_Toxins = 1},/obj/structure/rack,/obj/item/clothing/suit/armor/laserproof,/obj/item/clothing/suit/armor/reactive,/turf/simulated/floor{icon_state = "dark"},/area/security/brig)
 "afd" = (/obj/machinery/bookbinder,/turf/simulated/floor/wood,/area/hallway/primary/central)
