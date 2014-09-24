@@ -80,7 +80,8 @@ var/global/pipe_processing_killed = 0
 		if(ticker)
 			ticker.pregame()
 
-	transfer_controller = new
+	transfer_controller = new //datum/controller/transfer_controller()
+//	world << "New transfer controller"
 
 
 /datum/controller/game_controller/proc/setup_objects()
@@ -130,6 +131,7 @@ var/global/pipe_processing_killed = 0
 				controller_iteration++
 
 				vote.process()
+				transfer_controller.process()
 
 				//AIR
 				if(!air_processing_killed)

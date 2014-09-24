@@ -9,13 +9,14 @@ datum/controller/transfer_controller
 
 datum/controller/transfer_controller/New()
 	timerbuffer = 144000
-//	timerbuffer = 1800
+//	timerbuffer = 1300
 	processing_objects += src
 
 datum/controller/transfer_controller/Del()
 	processing_objects -= src
 
 datum/controller/transfer_controller/proc/process()
+//	world << "Transfer controller check debug"
 	currenttick = currenttick + 1
 //	if (currenttick >= 10800)
 /*
@@ -35,13 +36,14 @@ datum/controller/transfer_controller/proc/process()
 */
 	if (world.time >= timerbuffer)
 		if(!notified)
-			message_admins("<h1>Out of time!</h1>")
+//			message_admins("<h1>Out of time!</h1>")
 			notified = 1
 //		vote.autotransfer()
 // call shuttle here
+			emergency_shuttle.hometime = 1
 			emergency_shuttle.incall(1)
 			priority_announce("The work shift has ended, and the emergency shuttle will arrive shortly to retrieve the crew. It will arrive in [round(emergency_shuttle.timeleft()/60)] minutes.", null, 'sound/AI/shuttlecalled.ogg', "Priority")
-			emergency_shuttle.hometime = 1
+
 
 
 
