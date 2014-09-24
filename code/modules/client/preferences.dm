@@ -15,9 +15,9 @@ var/global/list/special_roles = list( //keep synced with the defines BE_* in set
 	"alien" = 1, //always show                			 // 6
 	"pAI candidate" = 1,                                 // 7
 	"cultist" = IS_MODE_COMPILED("cult"),                // 8
-	"blob" = 0,					 // 9
+	"blob" = IS_MODE_COMPILED("blob"),					 // 9
 	"monkey" = IS_MODE_COMPILED("monkey"),				// 10
-	"cyborg" = 1				//11
+	"gangster" = IS_MODE_COMPILED("gang")				// 11
 )
 
 

@@ -46,5 +46,7 @@ var/list/be_special_flags = list(
 	"Blob" = BE_BLOB,
 	"Ninja" = BE_NINJA,
 	"Monkey" = BE_MONKEY,
-	"Cyborg" = BE_CYBORG
+	"Gang" = BE_GANG
+
+//	"Cyborg" = BE_CYBORG
 	)
