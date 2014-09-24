@@ -67,13 +67,17 @@
 		usr << "\red Speech is currently admin-disabled."
 		return
 
-	if(!mob)	return
+	if(!mob)
+//		message_admins("LOOC DEBUG !mob")
+		return
 	if(IsGuestKey(key))
 		src << "Guests may not use OOC."
 		return
 
 	msg = trim(copytext(sanitize(msg), 1, MAX_MESSAGE_LEN))
-	if(!msg)	return
+	if(!msg)
+//		message_admins("LOOC DEBUG !msg")
+		return
 
 	if(!(prefs.toggles & CHAT_OOC))
 		src << "<span class='danger'>You have OOC muted.</span>"
@@ -90,6 +94,7 @@
 			src << "\red You cannot use OOC (muted)."
 			return
 		if(handle_spam_prevention(msg,MUTE_OOC))
+//			message_admins("LOOC DEBUG spame prevention")
 			return
 
 		if(findtext(msg, "byond://"))
@@ -100,33 +105,43 @@
 
 	log_ooc("(LOCAL) [mob.name]/[key] : [msg]")
 
-	var/list/heard //= get_mobs_in_view(7, src.mob)
+	var/list/heard = list()//= get_mobs_in_view(7, src.mob)
 	var/mob/S = src.mob
 
-	for(var/mob/mobs in view(7,S))
-		heard += mobs
+	for(var/mob/M in view(7, S))
+		heard += M
+//		message_admins("[M] found for looc. Heard: [heard]")
 
 	var/display_name = S.key
 	if(S.stat != DEAD)
 		display_name = S.name
+	if(S.stat == DEAD)
+		S << "<span class='userdanger'>You cannot use Local OOC when dead!</span>"
+		return
 
 	// Handle non-admins
 	for(var/mob/M in heard)
+//		message_admins("LOOC handling")
 		if(!M.client)
+//			message_admins("[M] DEBUG LOOC !M.Client")
 			continue
 		var/client/C = M.client
-		if (C in admins)
-			continue //they are handled after that
-
+//		if (C in admins)
+//			continue //they are handled after that
+//		message_admins("[M] found, [C] found.")
 		if(C.prefs.toggles & CHAT_OOC)
+//			message_admins("Running last part of looc)")
+		/*
 			if(holder)
 				if(holder.fakekey)
 					if(C.holder)
 						display_name = "[holder.fakekey]/([src.key])"
 					else
 						display_name = holder.fakekey
+		*/
 			C << "<font color='#5ECCA6'><span class='ooc'><span class='prefix'>LOOC:</span> <EM>[display_name]:</EM> <span class='message'>[msg]</span></span></font>"
-
+			message_admins("Distant LOOC: [display_name]([S.key]): [msg]")
+/*
 	// Now handle admins
 	display_name = S.key
 	if(S.stat != DEAD)
@@ -138,7 +153,7 @@
 			if (C.mob in heard)
 				prefix = "LOOC"
 			C << "<font color='#5ECCA6'><span class='ooc'><span class='prefix'>[prefix]:</span> <EM>[display_name]:</EM> <span class='message'>[msg]</span></span></font>"
-
+*/
 
 
 
