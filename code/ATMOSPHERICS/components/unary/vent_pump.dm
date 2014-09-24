@@ -27,6 +27,7 @@
 	var/welded = 0
 	var/clogged = 0
 	var/clogcolour = null
+	var/clogchance = 33
 
 	var/frequency = 1439
 	var/datum/radio_frequency/radio_connection
@@ -185,14 +186,21 @@
 
 				if(network)
 					network.update = 1
+
+///////////////////////////////////
+///SHINE'S STUPID CLOGGING STUFF///
+///////////////////////////////////
 	if(clogged == 0)
 		if(network.normal_members.len > 20)
-			if(prob(1) && prob(1) && prob(75))
+			if(prob(1) && prob(1) && prob(clogchance))
+				clogchance = 1
 				clogged = 1
 				update_icon()
 				playsound(src.loc, 'sound/effects/attackblob.ogg', 50, 1)
 				message_admins("Vent clogged at [src.x], [src.y]")
 				return 0
+			else if((clogchance < 33) && prob(5))
+				clogchance += 1
 	return 1
 
 //Radio remote control
