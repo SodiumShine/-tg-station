@@ -383,7 +383,7 @@ datum/borrowbook // Datum used to keep track of who has borrowed what when and f
 				B.author = author
 				B.dat = content
 				B.icon_state = "book[rand(1,7)]"
-				src.visible_message("[src]'s printer hums as it produces a completely bound book. How did it do that?")
+				src.visible_message("<span class='info'>[src]'s printer hums as it produces a completely bound book.</span>")
 				break
 	if(href_list["orderbyid"])
 		var/orderid = input("Enter your order:") as num|null
@@ -467,7 +467,7 @@ datum/borrowbook // Datum used to keep track of who has borrowed what when and f
 		user.visible_message("[user] loads some paper into [src].", "You load some paper into [src].")
 		src.visible_message("[src] begins to hum as it warms up its printing drums.")
 		sleep(rand(200,400))
-		src.visible_message("[src] whirs as it prints and binds a new book.")
+		src.visible_message("<span class='info'>[src] whirs as it prints and binds a new book.</span>")
 		var/obj/item/weapon/book/b = new(src.loc)
 		b.dat = O:info
 		b.name = "Print Job #" + "[rand(100, 999)]"
