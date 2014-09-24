@@ -62,7 +62,7 @@
 				M << "<b> \red Syndicate Message Incoming:</b> \black <b>You get a sharp twinge of pain in your head, as the following message is relayed to you...</b> \italic [msg]"
 
 	log_admin("SyndiePM: [key_name(usr)] -> [key_name(M)] : [msg]")
-	message_admins("\blue \bold SubtleMessage: [key_name_admin(usr)] -> [key_name_admin(M)] : [msg]", 1)
+	message_admins("\blue \bold SyndicateMessage: [key_name_admin(usr)] -> [key_name_admin(M)] : [msg]", 1)
 	feedback_add_details("admin_verb","SYPM") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 
