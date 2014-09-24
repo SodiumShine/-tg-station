@@ -24,7 +24,7 @@
 	..()
 	cost = 3 // SHINE 5 to 3
 
-/datum/uplink_item/device_tools/plastic_explosives/New() // SHINE re-add c4
+/datum/uplink_item/device_tools/c4/New()
 	..()
 	cost = 4 // COST 1 to 4
 
