@@ -23,7 +23,7 @@
 		..()
 
 /obj/item/projectile/energy/declone
-	name = "declone"
+	name = "radiation beam"
 	icon_state = "declone"
 	nodamage = 1
 	damage_type = CLONE
