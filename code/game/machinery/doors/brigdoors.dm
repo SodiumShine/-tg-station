@@ -154,7 +154,7 @@
 		dat += "<a href='?src=\ref[src];timing=1'>Activate Timer and close door</a><br/>"
 
 	dat += "Time Left: [(minute ? text("[minute]:") : null)][second] <br/>"
-	dat += "<a href='?src=\ref[src];tp=-60'>-</a> <a href='?src=\ref[src];tp=-1'>-</a> <a href='?src=\ref[src];tp=1'>+</a> <A href='?src=\ref[src];tp=60'>+</a><br/>"
+	dat += "<a href='?src=\ref[src];tp=-300'>-5m</a> <a href='?src=\ref[src];tp=-60'>-1m</a> <a href='?src=\ref[src];tp=-1'>-1s</a> | <a href='?src=\ref[src];tp=1'>+1s</a> <A href='?src=\ref[src];tp=60'>+1m</a> <A href='?src=\ref[src];tp=300'>+5m</a><br/>"
 
 	for(var/obj/machinery/flasher/F in targets)
 		if(F.last_flash && (F.last_flash + 150) > world.time)
