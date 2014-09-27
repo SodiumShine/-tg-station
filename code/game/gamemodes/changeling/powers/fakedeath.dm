@@ -1,7 +1,7 @@
 /obj/effect/proc_holder/changeling/fakedeath
 	name = "Regenerative Stasis"
 	desc = "We fall into a stasis, allowing us to regenerate."
-	chemical_cost = 15
+	chemical_cost = 25
 	dna_cost = 0
 	req_dna = 1
 	req_stat = DEAD
@@ -11,7 +11,11 @@
 //Fake our own death and fully heal. You will appear to be dead but regenerate fully after a short delay.
 /obj/effect/proc_holder/changeling/fakedeath/sting_action(var/mob/living/user)
 
-	user << "<span class='notice'>We begin our stasis, preparing energy to arise once more.</span>"
+	if(user.stat == DEAD)
+		user << "<span class='userdanger'>It is too late to regenerate...</span>"
+		return
+
+	user << "<span class='notice'>We begin our stasis, preparing energy to arise once more...</span>"
 
 	user.status_flags |= FAKEDEATH		//play dead
 	user.update_canmove()
@@ -30,7 +34,8 @@
 
 /obj/effect/proc_holder/changeling/fakedeath/can_sting(var/mob/user)
 	if(user.status_flags & FAKEDEATH)
+		user << "Already regenerating."
 		return
-	if(!user.stat && alert("Are we sure we wish to fake our death?",,"Yes","No") == "No")//Confirmation for living changelings if they want to fake their death
+	if(!user.stat && alert("Are we sure we wish to fake our death and begin regeneration?",,"Yes","No") == "No")//Confirmation for living changelings if they want to fake their death
 		return
 	return ..()
