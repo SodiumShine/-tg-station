@@ -836,7 +836,7 @@ obj/machinery/hydroponics/attackby(var/obj/item/O as obj, var/mob/user as mob)
 		podman.gender = ghost.gender
 
 		//dna stuff
-		hardset_dna(podman, ui, se, null, null, null, !prob(potency) ? /datum/species/plant/pod : null, "#59CE00")	//makes sure podman has dna and sets the dna's ui/se/mutantrace/real_name etc variables
+		hardset_dna(podman, ui, se, null, null, /datum/species/plant/pod, "#59CE00")	//makes sure podman has dna and sets the dna's ui/se/mutantrace/real_name etc variables
 
 		podman.set_cloned_appearance()
 
