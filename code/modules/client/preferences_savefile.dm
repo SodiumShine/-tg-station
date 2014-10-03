@@ -152,12 +152,19 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	var/needs_update = savefile_needs_update(S)
 	if(needs_update == -2)		//fatal, can't load any data
 		return 0
-/* SHINE remove this see if it fixes race saving
-	if(!S["species"] || !config.mutant_races)
-		S["species"]		<< new /datum/species/human()
+
+	//Species
+	var/species_name
+	S["species"]			>> species_name
+	if(config.mutant_races && species_name && (species_name in roundstart_species))
+		var/newtype = roundstart_species[species_name]
+		pref_species = new newtype()
+	else
+		pref_species = new /datum/species/human()
+
 	if(!S["mutant_color"] || S["mutant_color"] == "#000")
 		S["mutant_color"]	<< "#FFF"
-*/
+
 	//Character
 	S["OOC_Notes"]			>> metadata
 	S["real_name"]			>> real_name
@@ -172,7 +179,6 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	S["facial_style_name"]	>> facial_hair_style
 	S["underwear"]			>> underwear
 	S["backbag"]			>> backbag
-	S["species"]			>> pref_species
 	S["mutant_color"]		>> mutant_color
 
 	//Jobs
@@ -252,7 +258,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	S["facial_style_name"]	<< facial_hair_style
 	S["underwear"]			<< underwear
 	S["backbag"]			<< backbag
-	S["species"]			<< pref_species
+	S["species"]			<< pref_species.name
 	S["mutant_color"]		<< mutant_color
 
 	//Jobs
