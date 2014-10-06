@@ -104,6 +104,7 @@
 			return
 
 	log_ooc("(LOCAL) [mob.name]/[key] : [msg]")
+	message_admins("Distant LOOC: [mob.name]([key]): [msg]")
 
 	var/list/heard = list()//= get_mobs_in_view(7, src.mob)
 	var/mob/S = src.mob
@@ -140,7 +141,7 @@
 						display_name = holder.fakekey
 		*/
 			C << "<font color='#5ECCA6'><span class='ooc'><span class='prefix'>LOOC:</span> <EM>[display_name]:</EM> <span class='message'>[msg]</span></span></font>"
-			message_admins("Distant LOOC: [display_name]([S.key]): [msg]")
+
 /*
 	// Now handle admins
 	display_name = S.key

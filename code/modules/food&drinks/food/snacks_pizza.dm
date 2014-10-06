@@ -85,6 +85,7 @@
 	desc = "It's the only real choice here."
 	icon = 'icons/obj/foodcustom.dmi'
 	icon_state = "seamonster"
+	slice_path = /obj/item/weapon/reagent_containers/food/snacks/seamonsterpizzaslice
 	slices_num = 6
 	New()
 		..()
@@ -94,7 +95,7 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/seamonsterpizzaslice
 	name = "sea monster pizza slice"
-	desc = "Sea monster fresh from the bay."
+	desc = "Sea monster, fresh from the bay."
 	icon = 'icons/obj/foodcustom.dmi'
 	icon_state = "seamonsterslice"
 	bitesize = 2
