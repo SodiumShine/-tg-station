@@ -103,6 +103,9 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	set name = "Ghost"
 	set desc = "Relinquish your life and enter the land of the dead."
 
+	if(possessed == 1)
+		src << "<span class='danger'>You find yourself unable to abandon your body in such a way...</span>"
+		return
 	if(stat != DEAD)
 		succumb()
 	if(stat == DEAD)
@@ -339,7 +342,9 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		src << "<span class='warning'>Someone has taken this body while you were choosing!</span>"
 		return 0
 
+	target.possessed = 1
 	target.key = key
+
 	return 1
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
