@@ -370,11 +370,10 @@
 	else
 		return ..()
 
-/obj/machinery/atmospherics/unary/vent_pump/examine()
-	set src in oview(1)
+/obj/machinery/atmospherics/unary/vent_pump/examine(mob/user)
 	..()
 	if(welded)
-		usr << "It seems welded shut."
+		user << "It seems welded shut."
 	if(clogged)
 		usr << "It's clogged full of some kind of gross [clogcolour] gunk. You're not sure what the stuff actually is..."
 
