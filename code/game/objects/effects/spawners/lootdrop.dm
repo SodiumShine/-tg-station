@@ -122,7 +122,7 @@
 				/obj/item/weapon/extinguisher = 90,
 //				/obj/item/weapon/gun/projectile/revolver/russian = 5,
 				/obj/item/weapon/hand_labeler = 10,
-				/obj/item/weapon/legcuffs/beartrap = 7,
+//				/obj/item/weapon/legcuffs/beartrap = 7,
 				/obj/item/weapon/mop = 9,
 				/obj/item/weapon/paper/crumpled = 10,
 //				/obj/item/weapon/pen = 10,

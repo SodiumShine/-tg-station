@@ -53,7 +53,7 @@ datum/objective_item/steal/capmedal
 /*
 datum/objective_item/steal/hypo
 	name = "the hypospray. Intel suggests it's stored in the Medbay"
-	targetitem = /obj/item/weapon/reagent_containers/hypospray
+	targetitem = /obj/item/weapon/reagent_containers/hypospray/CMO
 	difficulty = 5
 	excludefromjob = list("Chief Medical Officer", "Medical Doctor", "Chemist") //SHINE added medical doctor and chemist
 */
