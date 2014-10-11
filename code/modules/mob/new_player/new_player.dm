@@ -147,7 +147,7 @@
 
 		AttemptLateSpawn(href_list["SelectedJob"])
 		return
-
+/*
 	if(href_list["privacy_poll"])
 		establish_db_connection()
 		if(!dbcon.IsConnected())
@@ -185,13 +185,13 @@
 			query_insert.Execute()
 			usr << "<b>Thank you for your vote!</b>"
 			usr << browse(null,"window=privacypoll")
-
+*/
 	if(!ready && href_list["preference"])
 		if(client)
 			client.prefs.process_link(src, href_list)
 	else if(!href_list["late_join"])
 		new_player_panel()
-
+/*
 	if(href_list["showpoll"])
 		handle_player_polling()
 		return
@@ -244,7 +244,7 @@
 				for(var/optionid = id_min; optionid <= id_max; optionid++)
 					if(!isnull(href_list["option_[optionid]"]))	//Test if this optionid was selected
 						vote_on_poll(pollid, optionid, 1)
-
+*/
 /mob/new_player/proc/IsJobAvailable(rank)
 	var/datum/job/job = job_master.GetJob(rank)
 	if(!job)
