@@ -534,10 +534,10 @@
 						H.visible_message("[H]'s stomach rumbles.")
 						stomachgrumbled4 = 1
 						stomachgrumbled3 = 1
-					if(prob(50) && prob(1))
+					if(prob(40) && prob(1))
 						if(H.stat == DEAD || H.stat == 1)
 							return
-						H << "\red Your stomach complains loudly. Still Starving!"
+						H << "\red Your stomach complains loudly. Still starving!"
 						H.visible_message("[H]'s stomach rumbles.")
 	if(H.pressure)
 		H.pressure.icon_state = "pressure[H.pressure_alert]"
