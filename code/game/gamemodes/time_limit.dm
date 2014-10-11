@@ -34,7 +34,7 @@ datum/controller/transfer_controller/proc/process()
 						M.current << "<span class='userdanger'>You're running out of time to complete your objectives. The boss isn't going to be happy, better hurry up.</span>"
 			toldantag = 1
 */
-	if (world.time >= timerbuffer)
+	if (currenttick >= timerbuffer)
 		if(!notified)
 //			message_admins("<h1>Out of time!</h1>")
 			notified = 1
