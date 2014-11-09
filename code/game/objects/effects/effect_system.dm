@@ -11,6 +11,7 @@ would spawn and follow the beaker, even if it is carried or thrown.
 	icon = 'icons/effects/effects.dmi'
 	mouse_opacity = 0
 	unacidable = 1//So effect are not targeted by alien acid.
+	pass_flags = PASSTABLE | PASSGRILLE
 
 /obj/effect/effect/water
 	name = "water"
@@ -369,8 +370,8 @@ steam.start() -- spawns the effect
 	return
 
 
-/obj/effect/effect/bad_smoke/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
-	if(air_group || (height==0)) return 1
+/obj/effect/effect/bad_smoke/CanPass(atom/movable/mover, turf/target, height=0)
+	if(height==0) return 1
 	if(istype(mover, /obj/item/projectile/beam))
 		var/obj/item/projectile/beam/B = mover
 		B.damage = (B.damage/2)
@@ -992,8 +993,7 @@ steam.start() -- spawns the effect
 	else
 		user << "<span class='notice'>You hit the metal foam to no effect.</span>"
 
-/obj/structure/foamedmetal/CanPass(atom/movable/mover, turf/target, height=1.5, air_group = 0)
-	if(air_group) return 0
+/obj/structure/foamedmetal/CanPass(atom/movable/mover, turf/target, height=1.5)
 	return !density
 
 /obj/structure/foamedmetal/CanAtmosPass()

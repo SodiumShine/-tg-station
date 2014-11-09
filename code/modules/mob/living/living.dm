@@ -476,7 +476,7 @@
 
 	if(!isliving(usr) || usr.next_move > world.time)
 		return
-	usr.changeNext_move(20)
+	usr.changeNext_move(CLICK_CD_RESIST)
 
 	var/mob/living/L = usr
 
@@ -509,8 +509,8 @@
 		if(iscarbon(L))
 			var/mob/living/carbon/C = L
 			if(C.handcuffed)
-				C.changeNext_move(100)
-				C.last_special = world.time + 100
+				C.changeNext_move(CLICK_CD_BREAKOUT)
+				C.last_special = world.time + CLICK_CD_BREAKOUT
 				C.visible_message("<span class='warning'>[usr] attempts to unbuckle themself!</span>", \
 							"<span class='notice'>You attempt to unbuckle yourself. (This will take around one minute and you need to stay still.)</span>")
 				spawn(0)
@@ -548,8 +548,8 @@
 			return
 		if(CM.canmove && (CM.last_special <= world.time))
 			if(CM.handcuffed || CM.legcuffed)
-				CM.changeNext_move(100)
-				CM.last_special = world.time + 100
+				CM.changeNext_move(CLICK_CD_BREAKOUT)
+				CM.last_special = world.time + CLICK_CD_BREAKOUT
 				if(CM.handcuffed)
 					cuff_resist(CM.handcuffed, CM)
 				else
@@ -630,3 +630,9 @@
 				src.unEquip(what)
 				who.equip_to_slot_if_possible(what, where, 0, 1)
 				add_logs(src, who, "equipped", object=what)
+
+/mob/living/singularity_act()
+	var/gain = 20
+	investigate_log(" has consumed [key_name(src)].","singulo") //Oh that's where the clown ended up!
+	gib()
+	return(gain)

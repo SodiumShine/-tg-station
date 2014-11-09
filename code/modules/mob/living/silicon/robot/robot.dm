@@ -588,7 +588,7 @@
 			usr << "You fill the toner level of [src] to it's max capacity"
 
 	else
-		if(W.force)
+		if(W.force && W.damtype != STAMINA) //only sparks if real damage is dealt.
 			spark_system.start()
 		return ..()
 
@@ -780,8 +780,8 @@
 	else if(istype(M, /mob/living/carbon/monkey))
 		var/mob/living/carbon/monkey/george = M
 		//they can only hold things :(
-		if(george.get_active_hand() && istype(george.get_active_hand(), /obj/item/weapon/card/id) && check_access(george.get_active_hand()))
-			return 1
+		if(istype(george.get_active_hand(), /obj/item))
+			return check_access(george.get_active_hand())
 	return 0
 
 /mob/living/silicon/robot/proc/check_access(obj/item/weapon/card/id/I)
@@ -791,7 +791,11 @@
 	var/list/L = req_access
 	if(!L.len) //no requirements
 		return 1
-	if(!I || !istype(I, /obj/item/weapon/card/id) || !I.access) //not ID or no access
+
+	if(!istype(I, /obj/item/weapon/card/id) && istype(I, /obj/item))
+		I = I.GetID()
+
+	if(!I || !I.access) //not ID or no access
 		return 0
 	for(var/req in req_access)
 		if(!(req in I.access)) //doesn't have this access
@@ -1087,7 +1091,7 @@
 		new /obj/item/robot_parts/head(T)
 		var/b
 		for(b=0, b!=2, b++)
-			var/obj/item/device/flash/F = new /obj/item/device/flash(T)
+			var/obj/item/device/flash/handheld/F = new /obj/item/device/flash/handheld(T)
 			F.burn_out()
 	if (cell) //Sanity check.
 		cell.loc = T
