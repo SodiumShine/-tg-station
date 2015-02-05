@@ -1,13 +1,13 @@
 /datum/disease/magnitis
 	name = "Magnitis"
 	max_stages = 4
-	spread = "Airborne"
-	cure = "Iron"
-	cure_id = list("iron")
+	spread_text = "Airborne"
+	cure_text = "Iron"
+	cures = list("iron")
 	cure_chance = 5
 	agent = "ICP-JJ virus"
-	affected_species = list("Human")
-	curable = 0
+	viable_mobtypes = list(/mob/living/carbon/human)
+	disease_flags = CAN_CARRY|CAN_RESIST
 	permeability_mod = 0.75
 	desc = "No one is quite sure how this virus works."
 	severity = "Minor"

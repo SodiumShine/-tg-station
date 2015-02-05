@@ -1,7 +1,7 @@
 /obj/item/weapon/plunger
 	desc = "Used for the super fun job of cleaning all the gunk out of clogged vents."
 	name = "plunger"
-	icon = 'icons/obj/janitorcustom.dmi'
+	icon = 'icons/obj/janitor_custom.dmi'
 	icon_state = "plunger"
 	force = 3.0
 	throwforce = 3.0

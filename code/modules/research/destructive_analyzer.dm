@@ -37,7 +37,7 @@ Note: Must be placed within 3 tiles of the R&D Console
 	return temp_list
 
 
-/obj/machinery/r_n_d/destructive_analyzer/attackby(var/obj/O as obj, var/mob/user as mob)
+/obj/machinery/r_n_d/destructive_analyzer/attackby(var/obj/item/O as obj, var/mob/user as mob)
 	if (shocked)
 		shock(user,50)
 	if (default_deconstruction_screwdriver(user, "d_analyzer_t", "d_analyzer", O))
@@ -61,7 +61,7 @@ Note: Must be placed within 3 tiles of the R&D Console
 		return
 	if (istype(O, /obj/item) && !loaded_item)
 
-
+/*
 		if(istype(O, /obj/item/weapon/storage/bag/tray/claw))
 			for(var/obj/J in O.contents)
 				if(!J.origin_tech)
@@ -80,7 +80,7 @@ Note: Must be placed within 3 tiles of the R&D Console
 					icon_state = "d_analyzer_l"
 					busy = 0
 			return
-
+*/
 
 		if(!O.origin_tech)
 			user << "<span class='warning'>This doesn't seem to have a tech origin!</span>"

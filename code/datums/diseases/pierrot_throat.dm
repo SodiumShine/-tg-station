@@ -1,12 +1,12 @@
 /datum/disease/pierrot_throat
 	name = "Pierrot's Throat"
 	max_stages = 4
-	spread = "Airborne"
-	cure = "Banana products and Spaceacillin"
-	cure_id = list("banana","spaceacillin")
-	cure_chance = 15
+	spread_text = "Airborne"
+	cure_text = "Concentrated Banana and Spaceacillin"
+	cures = list("banana","spaceacillin")
+	cure_chance = 25
 	agent = "HONK"
-	affected_species = list("Human")
+	viable_mobtypes = list(/mob/living/carbon/human)
 	permeability_mod = 0.75
 	desc = "HONK"
 	severity = "HONK"

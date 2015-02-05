@@ -1,15 +1,14 @@
 /datum/disease/cold9
 	name = "The Cold"
 	max_stages = 4
-	spread = "On contact"
-	spread_type = CONTACT_GENERAL
-	cure = "Spaceacillin & Leporazine"
-	cure_id = list("spaceacillin","leporazine") // SHINE if possible spaceacillin and leporazine
-	cure_chance = 13
+	spread_text = "On contact"
+	spread_flags = CONTACT_GENERAL
+	cure_text = "Leporazine"
+	cures = list("leporazine")
 	agent = "ICE9-rhinovirus"
-	affected_species = list("Human")
+	viable_mobtypes = list(/mob/living/carbon/human)
 	desc = "If left untreated the subject will slow, as if partly frozen."
-	severity = "Medium"
+	severity = MEDIUM
 
 /datum/disease/cold9/stage_act()
 	..()

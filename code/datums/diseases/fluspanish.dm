@@ -1,16 +1,15 @@
 /datum/disease/fluspanish
 	name = "Spanish Inquisition Flu"
 	max_stages = 4
-	spread = "Airborne"
-	cure = "Holy Water"
-	cure_id = "holywater"
+	spread_text = "Airborne"
+	cure_text = "Holy Water"
+	cures = list("holywater")
 	cure_chance = 10
 	agent = "Unexpected flu virion"
-	affected_species = list("Human")
+	viable_mobtypes = list(/mob/living/carbon/human)
 	permeability_mod = 0.75
 	desc = "Often unexpected, the Spanish Inquisition Flu sets fire to the subject for being a heretic."
 	severity = "Major"
-	can_carry = 0
 
 /datum/disease/fluspanish/stage_act()
 	..()

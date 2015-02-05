@@ -1,15 +1,16 @@
 /datum/disease/rhumba_beat
 	name = "The Rhumba Beat"
 	max_stages = 5
-	spread = "On contact"
-	spread_type = CONTACT_GENERAL
-	cure = "Chick Chicky Boom!"
-	cure_id = list("bahama_mama")
+	spread_text = "On contact"
+	spread_flags = CONTACT_GENERAL
+	cure_text = "A tall glass of Bahama Mama"
+	cures = list("bahama_mama")
 	agent = "Cuban Pete"
-	affected_species = list("Human")
+	cure_chance = 75
+	viable_mobtypes = list(/mob/living/carbon/human)
 	permeability_mod = 1
-	severity = "BIOHAZARD THREAT!"
-	desc = "If left untreated the victim will dance themselves to death. It can be cured with a glass of Bahama Mama."
+	severity = BIOHAZARD
+	desc = "Chick Chicky Boom!"
 //	severity = "Major"
 	stage_prob = 3
 

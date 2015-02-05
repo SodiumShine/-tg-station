@@ -1,15 +1,15 @@
 /datum/disease/fake_gbs
 	name = "GBS"
 	max_stages = 5
-	spread = "Blood"
-	spread_type = CONTACT_GENERAL
-	cure = "Synaptizine & Sulfur"
-	cure_id = list("synaptizine","sulfur")
+	spread_text = "On contact"
+	spread_flags = CONTACT_GENERAL
+	cure_text = "Synaptizine & Sulfur"
+	cures = list("synaptizine","sulfur")
 	cure_chance = 15//higher chance to cure, since two reagents are required
 	agent = "Gravitokinetic Bipotential SADS-"
-	affected_species = list("Human", "Monkey")
+	viable_mobtypes = list(/mob/living/carbon/human,/mob/living/carbon/monkey)
 //	desc = "If left untreated death will occur."
-	severity = "BIOHAZARD THREAT!"
+	severity = BIOHAZARD
 	desc = "If left untreated the subject will explode violently."
 
 /datum/disease/fake_gbs/stage_act()

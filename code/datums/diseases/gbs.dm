@@ -1,14 +1,14 @@
 /datum/disease/gbs
 	name = "GBS"
 	max_stages = 5
-	spread = "Blood"
-	spread_type = BLOOD
-	cure = "Synaptizine & Sulfur"
-	cure_id = list("synaptizine","sulfur")
+	spread_text = "Blood"
+	spread_flags = BLOOD
+	cure_text = "Synaptizine & Sulfur"
+	cures = list("synaptizine","sulfur")
 	cure_chance = 15//higher chance to cure, since two reagents are required
 	agent = "Gravitokinetic Bipotential SADS+"
-	affected_species = list("Human","Monkey")
-	curable = 0
+	viable_mobtypes = list(/mob/living/carbon/human)
+	disease_flags = CAN_CARRY|CAN_RESIST
 	permeability_mod = 1
 	stage_prob = 2
 	desc = "If left untreated the subject will explode violently."

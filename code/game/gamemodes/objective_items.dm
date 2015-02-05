@@ -36,8 +36,14 @@ datum/objective_item/steal/jetpack
 datum/objective_item/steal/magboots // SHINE changed from advanced to normal boots
 	name = "a pair of magboots. Intel suggests these are stored in the EVA"
 	targetitem =  /obj/item/clothing/shoes/magboots
-	difficulty = 5
-	excludefromjob = list("Chief Engineer", "Station Engineer") //SHINE added  station engineer
+
+datum/objective_item/steal/defib
+	name = "a defibrillator"
+	targetitem = /obj/item/weapon/defibrillator
+	difficulty = 4
+	excludefromjob = list("Chief Medical Officer", "Medical Doctor")
+
+
 
 datum/objective_item/steal/corgimeat
 	name = "a piece of corgi meat. Intel suggests the Head of Personnel owns a corgi"
