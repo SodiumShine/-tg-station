@@ -15,6 +15,7 @@
 		H.dna.species = new /datum/species/slime()
 		H.regenerate_icons()
 		H.reagents.del_reagent(chem.type)
+		H.faction |= "slime"
 		return 1
 
 /*
@@ -37,7 +38,7 @@
 /datum/species/lizard/handle_speech(message)
 	// jesus christ why
 	if(copytext(message, 1, 2) != "*")
-		message = replacetext(message, "s", "ss")
+		message = replacetext(message, "s", "sss")
 
 	return message
 
@@ -83,7 +84,7 @@
 				H.adjustFireLoss(rand(5,15))
 				H.show_message("<span class='danger'>The radiation beam singes you!</span>")
 		if(/obj/item/projectile/energy/florayield)
-			H.nutrition = min(H.nutrition+30, 500)
+			H.nutrition = min(H.nutrition+30, NUTRITION_LEVEL_FULL)
 	return
 
 /*
@@ -94,6 +95,7 @@
 	// A mutation caused by a human being ressurected in a revival pod. These regain health in light, and begin to wither in darkness.
 	name = "Podperson"
 	id = "pod"
+	specflags = list(MUTCOLORS,EYECOLOR)
 	roundstart = 0 // SHINE
 
 /datum/species/plant/pod/spec_life(mob/living/carbon/human/H)
@@ -105,14 +107,14 @@
 			if(A.lighting_use_dynamic)	light_amount = min(10,T.lighting_lumcount) - 5
 			else						light_amount =  5
 		H.nutrition += light_amount
-		if(H.nutrition > 500)
-			H.nutrition = 500
+		if(H.nutrition > NUTRITION_LEVEL_FULL)
+			H.nutrition = NUTRITION_LEVEL_FULL
 		if(light_amount > 2) //if there's enough light, heal
 			H.heal_overall_damage(1,1)
 			H.adjustToxLoss(-1)
 			H.adjustOxyLoss(-1)
 
-	if(H.nutrition < 200)
+	if(H.nutrition < NUTRITION_LEVEL_STARVING + 50)
 		H.take_overall_damage(2,0)
 
 /*
@@ -127,6 +129,7 @@
 	sexes = 0
 	ignored_by = list(/mob/living/simple_animal/hostile/faithless)
 	meat = /obj/item/weapon/reagent_containers/food/snacks/meat/human/mutant/shadow
+	specflags = list(NOBREATH,NOBLOOD,RADIMMUNE)
 	roundstart = 1 // SHINE
 	armor = -10 //shine
 
@@ -176,7 +179,7 @@
 	default_color = "00FFFF"
 	darksight = 3
 	invis_sight = SEE_INVISIBLE_LEVEL_ONE
-	specflags = list(MUTCOLORS,EYECOLOR,HAIR,FACEHAIR)
+	specflags = list(MUTCOLORS,EYECOLOR,HAIR,FACEHAIR,NOBLOOD)
 	hair_color = "mutcolor"
 	hair_alpha = 150
 	ignored_by = list(/mob/living/carbon/slime)
@@ -195,7 +198,7 @@
 	default_color = "00FF90"
 	say_mod = "chirps"
 	eyes = "jelleyes"
-	specflags = list(MUTCOLORS,EYECOLOR)
+	specflags = list(MUTCOLORS,EYECOLOR,NOBLOOD)
 	meat = /obj/item/weapon/reagent_containers/food/snacks/meat/human/mutant/slime
 
 /*
@@ -260,6 +263,7 @@
 	id = "skeleton"
 	sexes = 0
 	meat = /obj/item/weapon/reagent_containers/food/snacks/meat/human/mutant/skeleton
+	specflags = list(NOBREATH,HEATRES,COLDRES,NOBLOOD,RADIMMUNE)
 /*
  ZOMBIES
 */
@@ -271,6 +275,7 @@
 	say_mod = "moans"
 	sexes = 0
 	meat = /obj/item/weapon/reagent_containers/food/snacks/meat/human/mutant/zombie
+	specflags = list(NOBREATH,HEATRES,COLDRES,NOBLOOD,RADIMMUNE)
 
 /datum/species/zombie/handle_speech(message)
 	var/list/message_list = text2list(message, " ")

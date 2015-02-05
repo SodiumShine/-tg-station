@@ -23,7 +23,11 @@
 		icon_state = "pinoff"
 		usr << "<span class='notice'>You deactivate the pinpointer.</span>"
 
-/obj/item/weapon/pinpointer/proc/point_at(atom/target)
+/obj/item/weapon/pinpointer/proc/scandisk()
+	if(!the_disk)
+		the_disk = locate()
+
+/obj/item/weapon/pinpointer/proc/point_at(atom/target, spawnself = 1)
 	if(!active)
 		return
 	if(!target)
@@ -46,19 +50,22 @@
 				icon_state = "pinonmedium"
 			if(16 to INFINITY)
 				icon_state = "pinonfar"
-	spawn(5)
-		.()
+	if(spawnself)
+		spawn(5)
+			.()
 
 /obj/item/weapon/pinpointer/proc/workdisk()
-	if(!the_disk)
-		the_disk = locate()
-	point_at(the_disk)
+	scandisk()
+	point_at(the_disk, 0)
+	spawn(5)
+		.()
 
 /obj/item/weapon/pinpointer/examine(mob/user)
 	..()
 	for(var/obj/machinery/nuclearbomb/bomb in world)
 		if(bomb.timing)
 			user << "Extreme danger.  Arming signal detected.   Time remaining: [bomb.timeleft]"
+
 
 /obj/item/weapon/pinpointer/advpinpointer
 	name = "advanced pinpointer"
@@ -154,7 +161,7 @@
 
 /obj/item/weapon/pinpointer/nukeop
 	var/mode = 0	//Mode 0 locates disk, mode 1 locates the shuttle
-	var/obj/machinery/computer/syndicate_station/home = null
+	var/obj/docking_port/mobile/home
 
 
 /obj/item/weapon/pinpointer/nukeop/attack_self(mob/user as mob)
@@ -183,14 +190,10 @@
 		playsound(loc, 'sound/machines/twobeep.ogg', 50, 1)	//Plays a beep
 		visible_message("Shuttle Locator active.")			//Lets the mob holding it know that the mode has changed
 		return		//Get outta here
+	scandisk()
 	if(!the_disk)
-		the_disk = locate()
-		if(!the_disk)
-			icon_state = "pinonnull"
-			return
-//	if(loc.z != the_disk.z)	//If you are on a different z-level from the disk
-//		icon_state = "pinonnull"
-//	else
+		icon_state = "pinonnull"
+		return
 	dir = get_dir(src, the_disk)
 	switch(get_dist(src, the_disk))
 		if(0)
@@ -218,7 +221,7 @@
 		visible_message("<span class='notice'>Authentication Disk Locator active.</span>")
 		return
 	if(!home)
-		home = locate()
+		home = SSshuttle.getShuttle("syndicate")
 		if(!home)
 			icon_state = "pinonnull"
 			return
@@ -238,58 +241,37 @@
 
 	spawn(5) .()
 
-
-
-/////////////////////////
-// SHINE Space Compass///
-/////////////////////////
-
-/obj/item/weapon/pinpointer/compass
-	name = "space compass"
+/obj/item/weapon/pinpointer/operative
+	name = "operative pinpointer"
 	icon = 'icons/obj/device.dmi'
-	desc = "A space compass. It doesn't point space north like it should, but it does direct you back to the station if you get lost."
-	var/mode = 1  // Mode 0 locates disk, mode 1 locates coordinates.
-	var/turf/location = null
-	var/obj/target = null
+	desc = "A pinpointer that leads to the first Syndicate operative detected."
+	var/mob/living/carbon/nearest_op = null
 
-	attack_self()
-		if(!active)
-			active = 1
-			point_at(location)
-			usr << "\blue You activate the pinpointer"
-		else
-			active = 0
-			icon_state = "pinoff"
-			usr << "\blue You deactivate the pinpointer"
+/obj/item/weapon/pinpointer/operative/attack_self()
+	if(!active)
+		active = 1
+		workop()
+		usr << "<span class='notice'>You activate the pinpointer.</span>"
+	else
+		active = 0
+		icon_state = "pinoff"
+		usr << "<span class='notice'>You deactivate the pinpointer.</span>"
 
+/obj/item/weapon/pinpointer/operative/proc/scan_for_ops()
+	if(!nearest_op)
+		for(var/mob/living/carbon/M in mob_list)
+			if(M.mind in ticker.mode.syndicates)
+				nearest_op = M
 
-/obj/item/weapon/pinpointer/compass/verb/toggle_mode()
-	set category = "Object"
-	set name = "Toggle Pinpointer Mode"
-	set src in view(1)
+/obj/item/weapon/pinpointer/operative/proc/workop()
+	scan_for_ops()
+	point_at(nearest_op, 0)
+	spawn(5)
+		.()
 
-	active = 0
-	icon_state = "pinoff"
-	target = null
-	location = null
-
-	switch(alert("Please select the mode you want to put the pinpointer in.", "Pinpointer Mode Select", "New Location", "Locate Station"))
-		if("New Location")
-			var/locationx = input(usr, "Please input the x coordinate to search for.", "Location?" , "") as num
-			if(!locationx || !(usr in view(1,src)))
-				return
-			var/locationy = input(usr, "Please input the y coordinate to search for.", "Location?" , "") as num
-			if(!locationy || !(usr in view(1,src)))
-				return
-
-			var/turf/Z = get_turf(src)
-
-			location = locate(locationx,locationy,Z.z)
-
-			usr << "You set the compass to locate [locationx],[locationy]"
-
-
-			return attack_self()
-		if("Locate Station")
-			location = locate(126,111,1)
-			usr << "You set the compass to point back to the station."
+/obj/item/weapon/pinpointer/operative/examine(mob/user)
+	..()
+	if(nearest_op != null)
+		user << "Nearest operative: <b>[nearest_op]</b>."
+	if(nearest_op == null && active)
+		user << "No operatives detected within scanning range."

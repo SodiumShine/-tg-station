@@ -133,29 +133,29 @@
 					C << "<span class='notice'>You are not wearing a mask.</span>"
 					return 1
 				else
-					if(istype(C.l_hand, /obj/item/weapon/tank))
+					if(istype(C.l_hand, /obj/item/weapon/tank/internals))
 						C << "<span class='notice'>You are now running on internals from the [C.l_hand] on your left hand.</span>"
 						C.internal = C.l_hand
-					else if(istype(C.r_hand, /obj/item/weapon/tank))
+					else if(istype(C.r_hand, /obj/item/weapon/tank/internals))
 						C << "<span class='notice'>You are now running on internals from the [C.r_hand] on your right hand.</span>"
 						C.internal = C.r_hand
 					else if(ishuman(C))
 						var/mob/living/carbon/human/H = C
-						if(istype(H.s_store, /obj/item/weapon/tank))
+						if(istype(H.s_store, /obj/item/weapon/tank/internals))
 							H << "<span class='notice'>You are now running on internals from the [H.s_store] on your [H.wear_suit].</span>"
 							H.internal = H.s_store
-						else if(istype(H.belt, /obj/item/weapon/tank))
+						else if(istype(H.belt, /obj/item/weapon/tank/internals))
 							H << "<span class='notice'>You are now running on internals from the [H.belt] on your belt.</span>"
 							H.internal = H.belt
-						else if(istype(H.l_store, /obj/item/weapon/tank))
+						else if(istype(H.l_store, /obj/item/weapon/tank/internals))
 							H << "<span class='notice'>You are now running on internals from the [H.l_store] in your left pocket.</span>"
 							H.internal = H.l_store
-						else if(istype(H.r_store, /obj/item/weapon/tank))
+						else if(istype(H.r_store, /obj/item/weapon/tank/internals))
 							H << "<span class='notice'>You are now running on internals from the [H.r_store] in your right pocket.</span>"
 							H.internal = H.r_store
 
 					//Seperate so CO2 jetpacks are a little less cumbersome.
-					if(!C.internal && istype(C.back, /obj/item/weapon/tank))
+					if(!C.internal && istype(C.back, /obj/item/weapon/tank/internals))
 						C << "<span class='notice'>You are now running on internals from the [C.back] on your back.</span>"
 						C.internal = C.back
 
@@ -220,7 +220,7 @@
 	icon_state = "act_throw_off"
 
 /obj/screen/throw_catch/Click()
-	if(iscarbon(usr) && !usr.stat && isturf(usr.loc) && !usr.restrained())
+	if(iscarbon(usr))
 		var/mob/living/carbon/C = usr
 		C.toggle_throw_mode()
 
@@ -304,7 +304,7 @@
 	if(world.time <= usr.next_move)
 		return 1
 
-	if(usr.stat || usr.paralysis || usr.stunned || usr.weakened)
+	if(usr.stat || usr.paralysis || usr.stunned || usr.weakened || usr.restrained())
 		return 1
 	if (istype(usr.loc,/obj/mecha)) // stops inventory actions in a mech
 		return 1

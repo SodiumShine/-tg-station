@@ -25,12 +25,12 @@ MASS SPECTROMETER
 	icon_state = copytext(icon_state, 1, length(icon_state))+"[on]"
 
 	if(on)
-		processing_objects.Add(src)
+		SSobj.processing.Add(src)
 
 
 /obj/item/device/t_scanner/process()
 	if(!on)
-		processing_objects.Remove(src)
+		SSobj.processing.Remove(src)
 		return null
 	scan()
 
@@ -77,10 +77,10 @@ MASS SPECTROMETER
 	origin_tech = "magnets=1;biotech=1"
 	var/mode = 1;
 
-/obj/item/device/healthanalyzer/attack(mob/living/M as mob, mob/living/user as mob)
+/obj/item/device/healthanalyzer/attack(mob/living/M as mob, mob/living/carbon/human/user as mob)
 
 	// Clumsiness/brain damage check
-	if ((CLUMSY in user.mutations || user.getBrainLoss() >= 60) && prob(50))
+	if ((user.disabilities & CLUMSY || user.getBrainLoss() >= 60) && prob(50))
 		user << "<span class='notice'>You stupidly try to analyze the floor's vitals!</span>"
 		user.visible_message("<span class='warning'>[user] has analyzed the floor's vitals!</span>")
 		user.show_message("<span class='notice'>Analyzing Results for The floor:\n\t Overall Status: Healthy", 1)
@@ -139,7 +139,7 @@ MASS SPECTROMETER
 
 	// Damage descriptions
 
-	user.show_message(text("<span class='notice'>[] | [] | [] | []</span>", oxy_loss > 50 ? "<span class='warning'> Severe oxygen deprivation detected</span>" : "<span class='info'>Subject bloodstream oxygen level normal</span>", tox_loss > 50 ? "<span class='warning'> Dangerous amount of toxins detected</span>" : "<span class='info'>Subject bloodstream toxin level minimal</span>", fire_loss > 50 ? "<span class='warning'> Severe burn damage detected</span>" : "<span class='info'>Subject burn injury status O.K</span>", brute_loss > 50 ? "<span class='warning'> Severe anatomical damage detected</span>" : "<span class='info'>Subject brute-force injury status O.K</span>"), 1)
+	user.show_message(text("<span class='notice'>[] | [] | [] | []</span>", oxy_loss > 50 ? "<span class='warning'> Severe oxygen deprivation detected</span>" : "<span class='info'>Subject bloodstream oxygen level normal</span>", tox_loss > 50 ? "<span class='warning'> Dangerous amount of toxins detected</span>" : "<span class='info'>Subject bloodstream toxin level minimal</span>", fire_loss > 50 ? "<span class='warning'> Severe burn damage detected</span>" : "<span class='info'>Subject burn injury status O.K</span>", brute_loss > 50 ? "<span class='warning'> Severe tissue damage detected</span>" : "<span class='info'>Subject brute-force injury status O.K</span>"), 1)
 
 	if(M.getStaminaLoss())
 		user.show_message("<span class='info'>Subject appears to be suffering from fatigue.</span>", 1)
@@ -153,14 +153,32 @@ MASS SPECTROMETER
 			user.show_message("<span class='warning'><b>Warning: [D.form] Detected</b>\nName: [D.name].\nType: [D.spread_text].\nStage: [D.stage]/[D.max_stages]. \n See Virus database for more information.</span>", 1)
 
 
-	if (M.reagents && M.reagents.get_reagent_amount("inaprovaline"))
-		user.show_message("<span class='notice'>Bloodstream Analysis located [M.reagents:get_reagent_amount("inaprovaline")] units of rejuvenation chemicals.</span>", 1)
+	if (M.reagents && M.reagents.get_reagent_amount("epinephrine"))
+		user.show_message("<span class='notice'>Bloodstream Analysis located [M.reagents:get_reagent_amount("epinephrine")] units of rejuvenation chemicals.</span>", 1)
 	if (M.getBrainLoss() >= 100 || !M.getorgan(/obj/item/organ/brain))
 		user.show_message("<span class='warning'>Subject brain function is non-existant.</span>", 1)
 	else if (M.getBrainLoss() >= 60)
 		user.show_message("<span class='warning'>Severe brain damage detected. Subject likely to have mental retardation.</span>", 1)
 	else if (M.getBrainLoss() >= 10)
 		user.show_message("<span class='warning'>Significant brain damage detected. Subject may have had a concussion.</span>", 1)
+
+	// Blood Level
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		if(H.vessel)
+			if(H.blood_max)
+				user.show_message("<span class='danger'>Subject is bleeding!</span>")
+			var/blood_volume = round(H.vessel.get_reagent_amount("blood"))
+			var/blood_percent =  blood_volume / 560
+			var/blood_type = H.dna.blood_type
+			blood_percent *= 100
+			if(blood_volume <= 500 && blood_volume > 336)
+				user.show_message("<span class='danger'>Warning: Blood Level LOW: [blood_percent]% [blood_volume]cl.</span> <span class='notice'>Type: [blood_type]</span>")
+			else if(blood_volume <= 336)
+				user.show_message("<span class='danger'>Warning: Blood Level CRITICAL: [blood_percent]% [blood_volume]cl.</span> <span class='notice'>Type: [blood_type]</span>")
+			else
+				user.show_message("<span class='notice'>Blood Level Normal: [blood_percent]% [blood_volume]cl. Type: [blood_type]</span>")
+
 
 /obj/item/device/healthanalyzer/verb/toggle_mode()
 	set name = "Switch Verbosity"

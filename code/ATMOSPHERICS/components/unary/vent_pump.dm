@@ -58,6 +58,11 @@
 		src.initialize()
 		src.broadcast_status()
 
+/obj/machinery/atmospherics/unary/vent_pump/Destroy()
+	if(radio_controller)
+		radio_controller.remove_object(src,frequency)
+	..()
+
 /obj/machinery/atmospherics/unary/vent_pump/high_volume
 	name = "large air vent"
 	power_channel = EQUIP
@@ -169,8 +174,7 @@
 				loc.assume_air(removed)
 				air_update_turf()
 
-				if(network)
-					network.update = 1
+				parent.update = 1
 
 	else //external -> internal
 		var/pressure_delta = 10000
@@ -190,23 +194,22 @@
 				air_contents.merge(removed)
 				air_update_turf()
 
-				if(network)
-					network.update = 1
+				parent.update = 1
 
 ///////////////////////////////////
 ///SHINE'S STUPID CLOGGING STUFF///
 ///////////////////////////////////
 	if(clogged == 0)
-		if(network.normal_members.len > 20)
-			if(prob(1) && prob(1) && prob(clogchance))
-				clogchance = 1
-				clogged = 1
-				update_icon()
-				playsound(src.loc, 'sound/effects/attackblob.ogg', 50, 1)
-				message_admins("Vent clogged at [src.x], [src.y]")
-				return 0
-			else if((clogchance < 33) && prob(5))
-				clogchance += 1
+//		if(network.normal_members.len > 20)
+		if(prob(1) && prob(1) && prob(clogchance))
+			clogchance = 1
+			clogged = 1
+			update_icon()
+			playsound(src.loc, 'sound/effects/attackblob.ogg', 50, 1)
+			message_admins("Vent clogged at [src.x], [src.y]")
+			return 0
+		else if((clogchance < 33) && prob(5))
+			clogchance += 1
 	return 1
 
 //Radio remote control
@@ -414,12 +417,8 @@
 	if(clogged)
 		L << "You'll never fit in there with all that gunk."
 
-	if(!network || !network.normal_members.len)
-		L << "This vent is not connected to anything."
-		return
-
 	var/list/vents = list()
-	for(var/obj/machinery/atmospherics/unary/vent_pump/temp_vent in network.normal_members)
+	for(var/obj/machinery/atmospherics/unary/vent_pump/temp_vent in parent.other_atmosmch)
 		if(temp_vent.welded)
 			continue
 		if(temp_vent.clogged)
@@ -442,9 +441,10 @@
 		return
 
 	var/obj/selection = input(L,"Select a destination.", "Duct System") as null|anything in sortList(vents)
-	if(!selection)	return
+	if(!selection)
+		return
 
-	if(!Adjacent(L))
+	if(!Adjacent(L) || L.stat || L.lying || !L.ventcrawler || welded)
 		return
 	if(iscarbon(L) && L.ventcrawler < 2) // lesser ventcrawlers can't bring items
 		for(var/obj/item/carried_item in L.contents)
@@ -455,12 +455,11 @@
 	var/obj/machinery/atmospherics/unary/vent_pump/target_vent = vents[selection]
 	if(!target_vent)
 		return
-		
-	for(var/mob/O in viewers(L, null))
-		O.show_message(text("<B>[L] scrambles into the ventilation ducts!</B>"), 1)
 
-	for(var/mob/O in hearers(target_vent,null))
-		O.show_message("You hear something squeezing through the ventilation ducts.",2)
+	L.visible_message("<span class='notice'>[L] scrambles into the ventilation ducts!</span>", \
+						"<span class='notice'>You scramble into the ventilation ducts.</span>")
+
+	target_vent.audible_message("<span class='notice'>You hear something squeezing through the ventilation ducts.</span>")
 
 	if(target_vent.welded || target_vent.clogged)		//the vent can be welded while they scrolled through the list.
 		target_vent = src

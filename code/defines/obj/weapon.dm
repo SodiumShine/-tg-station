@@ -11,6 +11,13 @@
 	attack_verb = list("called", "rang")
 	hitsound = 'sound/weapons/ring.ogg'
 
+/obj/item/weapon/phone/suicide_act(mob/user)
+	if(locate(/obj/structure/stool) in user.loc)
+		user.visible_message("<span class='notice'>[user] begins to tie a noose with the [src.name]'s cord! It looks like \he's trying to commit suicide.</span>")
+	else
+		user.visible_message("<span class='notice'>[user] is strangling \himself with the [src.name]'s cord! It looks like \he's trying to commit suicide.</span>")
+	return(OXYLOSS)
+
 /obj/item/weapon/rsp
 	name = "\improper Rapid-Seed-Producer (RSP)"
 	desc = "A device used to rapidly deploy seeds."
@@ -154,42 +161,6 @@
 	w_class = 2.0
 	flags = NOSHIELD
 
-/obj/item/weapon/table_parts
-	name = "table parts"
-	desc = "Parts of a table. Poor table."
-	gender = PLURAL
-	icon = 'icons/obj/items.dmi'
-	icon_state = "table_parts"
-	var/table_type = /obj/structure/table
-	var/construct_delay = 50
-	m_amt = 3750
-	flags = CONDUCT
-	attack_verb = list("slammed", "bashed", "battered", "bludgeoned", "thrashed", "whacked")
-
-/obj/item/weapon/table_parts/reinforced
-	name = "reinforced table parts"
-	desc = "Hard table parts. Well...harder..."
-	icon = 'icons/obj/items.dmi'
-	icon_state = "reinf_tableparts"
-	table_type = /obj/structure/table/reinforced
-	construct_delay = 100
-	m_amt = 7500
-	flags = CONDUCT
-
-/obj/item/weapon/table_parts/wood
-	name = "wooden table parts"
-	desc = "Keep away from fire."
-	icon_state = "wood_tableparts"
-	table_type = /obj/structure/table/woodentable
-	flags = null
-
-/obj/item/weapon/table_parts/wood/poker
-	name = "poker table parts"
-	desc = "Keep away from fire, and keep near seedy dealers."
-	icon_state = "poker_tableparts"
-	table_type = /obj/structure/table/woodentable/poker
-	flags = null
-
 /obj/item/weapon/module
 	icon = 'icons/obj/module.dmi'
 	icon_state = "std_module"
@@ -248,6 +219,11 @@
 	attack_verb = list("chopped", "torn", "cut")
 	hitsound = 'sound/weapons/bladeslice.ogg'
 
+/obj/item/weapon/hatchet/suicide_act(mob/user)
+	user.visible_message("<span class='suicide'>[user] is chopping at \himself with the [src.name]! It looks like \he's trying to commit suicide.</span>")
+	playsound(loc, 'sound/weapons/bladeslice.ogg', 50, 1, -1)
+	return (BRUTELOSS)
+
 /obj/item/weapon/scythe
 	icon_state = "scythe0"
 	name = "scythe"
@@ -262,6 +238,11 @@
 	origin_tech = "materials=2;combat=2"
 	attack_verb = list("chopped", "sliced", "cut", "reaped")
 	hitsound = 'sound/weapons/bladeslice.ogg'
+
+/obj/item/weapon/scythe/suicide_act(mob/user)  // maybe later i'll actually figure out how to make it behead them
+	user.visible_message("<span class='suicide'>[user] is beheading \himself with the [src.name]! It looks like \he's trying to commit suicide.</span>")
+	playsound(loc, 'sound/weapons/bladeslice.ogg', 50, 1, -1)
+	return (BRUTELOSS)
 
 /*
 /obj/item/weapon/cigarpacket
@@ -292,13 +273,23 @@
 	item_state = "RPED"
 	w_class = 5
 	can_hold = list(/obj/item/weapon/stock_parts)
-	storage_slots = 14
+	storage_slots = 50
 	use_to_pickup = 1
 	allow_quick_gather = 1
 	allow_quick_empty = 1
 	collection_mode = 1
+	display_contents_with_number = 1
 	max_w_class = 3
-	max_combined_w_class = 28
+	max_combined_w_class = 100
+
+/obj/item/weapon/storage/part_replacer/proc/play_rped_sound()
+	//Plays the sound for RPED exhanging or installing parts.
+	playsound(src, 'sound/items/rped.ogg', 40, 1)
+
+//Sorts stock parts inside an RPED by their rating.
+//Only use /obj/item/weapon/stock_parts/ with this sort proc!
+/proc/cmp_rped_sort(var/obj/item/weapon/stock_parts/A, var/obj/item/weapon/stock_parts/B)
+	return B.rating - A.rating
 
 /obj/item/weapon/stock_parts
 	name = "stock part"
@@ -510,6 +501,10 @@
 	gender = PLURAL
 	icon = 'icons/obj/wizard.dmi'
 	icon_state = "ectoplasm"
+
+/obj/item/weapon/ectoplasm/suicide_act(mob/user)
+	user.visible_message("<span class='suicide'>[user] is inhaling the [src.name]! It looks like \he's trying to visit the astral plane.</span>")
+	return (OXYLOSS)
 
 /obj/item/weapon/research//Makes testing much less of a pain -Sieve
 	name = "research"

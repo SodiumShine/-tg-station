@@ -7,7 +7,6 @@
 	stat = DEAD
 	density = 0
 	canmove = 0
-	blinded = 0
 	anchored = 1	//  don't get pushed around
 	invisibility = INVISIBILITY_OBSERVER
 	languages = ALL
@@ -103,9 +102,9 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	set name = "Ghost"
 	set desc = "Relinquish your life and enter the land of the dead."
 
-	if(possessed == 1)
-		src << "<span class='danger'>You find yourself unable to abandon your body in such a way...</span>"
-		return
+//	if(possessed == 1)
+//		src << "<span class='danger'>You find yourself unable to abandon your body in such a way...</span>"
+//		return
 	if(stat != DEAD)
 		succumb()
 	if(stat == DEAD)
@@ -143,8 +142,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 /mob/dead/observer/Stat()
 	..()
-	statpanel("Status")
-	if (client.statpanel == "Status")
+	if(statpanel("Status"))
 		stat(null, "Station Time: [worldtime2text()]")
 		if(ticker)
 			if(ticker.mode)
@@ -154,11 +152,6 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 					//world << "DEBUG: malf mode ticker test"
 					if(malf.malf_mode_declared && (malf.apcs > 0))
 						stat(null, "Time left: [max(malf.AI_win_timeleft/malf.apcs, 0)]")
-		if(emergency_shuttle)
-			if(emergency_shuttle.online && emergency_shuttle.location < 2)
-				var/timeleft = emergency_shuttle.timeleft()
-				if (timeleft)
-					stat(null, "ETA-[(timeleft / 60) % 60]:[add_zero(num2text(timeleft % 60), 2)]")
 
 /mob/dead/observer/verb/reenter_corpse()
 	set category = "Ghost"
@@ -338,7 +331,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		src << "<span class='warning'>Someone has taken this body while you were choosing!</span>"
 		return 0
 
-	target.possessed = 1
+//	target.possessed = 1
 	target.key = key
 
 	return 1
@@ -372,3 +365,20 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		return 0
 	usr.visible_message("<span class='deadsay'><b>[src]</b> points to [A]</span>")
 	return 1
+
+/mob/dead/observer/verb/view_manfiest()
+	set name = "View Crew Manifest"
+	set category = "Ghost"
+
+	var/dat
+	dat += "<h4>Crew Manifest</h4>"
+	dat += data_core.get_manifest()
+
+	src << browse(dat, "window=manifest;size=387x420;can_close=1")
+
+/mob/dead/observer/Topic(href, href_list)
+	if(href_list["follow"])
+		var/atom/movable/target = locate(href_list["follow"])
+		if((usr == src) && istype(target) && (target != src)) //for safety against href exploits
+			ManualFollow(target)
+

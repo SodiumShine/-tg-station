@@ -17,7 +17,7 @@ datum/surgery_step/proc/pain(mob/living/carbon/human/user, mob/living/carbon/tar
 	if (!target.sleeping)
 		target << pick("<span class='userdanger'>OH GOD THE PAIN!</span>","<span class='userdanger'>You probably shouldn\'t be awake for this!</span>","<span class='userdanger'>You can feel the [tool]. It hurts!</span>","<span class='userdanger'>Malpractice! Malpractice!</span>","<span class='userdanger'>You start to question whether they\'re a qualified surgeon...</span>")
 		target.apply_damage(10,BRUTE,"[target_zone]",0)
-	if(!istype(user.gloves, /obj/item/clothing/gloves/latex))
+	if(!istype(user.gloves, /obj/item/clothing/gloves/color/latex))
 		target.apply_damage(5,TOX,"[target_zone]",0)
 //		world << "Not wearing gloves!"
 	if(!istype(user.wear_mask, /obj/item/clothing/mask/surgical))

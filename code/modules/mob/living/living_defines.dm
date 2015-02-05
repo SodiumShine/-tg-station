@@ -41,4 +41,4 @@
 	var/floating = 0
 	var/nightvision = 0
 	var/mob_size = 1  //size of the mob. 0 is small, 1 is human sized, and 2 is large.
-	var/possessed = 0 // 1 means creature has been possessed and ghosts cannot ditch it
+	var/metabolism_efficiency = 1 //more or less efficiency to metabolize helpful/harmful reagents and regulate body temperature..	var/possessed = 0 // 1 means creature has been possessed and ghosts cannot ditch it

@@ -222,13 +222,21 @@
 		msg += "[t_He] looks a little soaked.\n"
 
 
-	if(nutrition < 100)
+	if(nutrition < NUTRITION_LEVEL_STARVING - 50)
 		msg += "[t_He] [t_is] severely malnourished.\n"
-	else if(nutrition >= 500)
-		if(user.nutrition < 100)
+	else if(nutrition >= NUTRITION_LEVEL_FAT)
+		if(user.nutrition < NUTRITION_LEVEL_STARVING - 50)
 			msg += "[t_He] [t_is] plump and delicious looking - Like a fat little piggy. A tasty piggy.\n"
 		else
 			msg += "[t_He] [t_is] quite chubby.\n"
+
+	if(pale)
+		msg += "[t_He] [t_has] pale skin.\n"
+
+	if(bleedsuppress)
+		msg += "[t_He] [t_is] bandaged with something.\n"
+	else if(blood_max)
+		msg += "<B>[t_He] [t_is] bleeding!</B>\n"
 
 	msg += "</span>"
 
@@ -239,7 +247,9 @@
 			msg += "[t_He] [t_has] a stupid expression on [t_his] face.\n"
 
 		if(getorgan(/obj/item/organ/brain))
-			if(!key)
+			if(istype(src,/mob/living/carbon/human/interactive))
+				msg += "<span class='deadsay'>[t_He] [t_is] appears to be some sort of sick automaton, [t_his] eyes are glazed over and [t_his] mouth is slightly agape.</span>\n"
+			else if(!key)
 				msg += "<span class='deadsay'>[t_He] [t_is] totally catatonic. The stresses of life in deep-space must have been too much for [t_him]. Any recovery is unlikely.</span>\n"
 			else if(!client)
 				msg += "[t_He] [t_has] a vacant, braindead stare...\n"

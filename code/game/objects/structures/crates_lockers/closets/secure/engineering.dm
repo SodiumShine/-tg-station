@@ -11,17 +11,19 @@
 
 /obj/structure/closet/secure_closet/engineering_chief/New()
 	..()
-	sleep(2)
+	new /obj/item/clothing/suit/hooded/wintercoat/engineering(src)
+	new /obj/item/clothing/suit/hooded/wintercoat/engineering/atmos(src)
 	if(prob(50))
 		new /obj/item/weapon/storage/backpack/industrial(src)
 	else
 		new /obj/item/weapon/storage/backpack/satchel_eng(src)
+	new /obj/item/weapon/storage/backpack/dufflebag/engineering(src)
 	new /obj/item/areaeditor/blueprints(src)
 	new /obj/item/weapon/storage/box/permits(src)
 	new /obj/item/clothing/under/rank/chief_engineer(src)
 	new /obj/item/clothing/head/hardhat/white(src)
 	new /obj/item/clothing/head/welding(src)
-	new /obj/item/clothing/gloves/yellow(src)
+	new /obj/item/clothing/gloves/color/yellow(src)
 	new /obj/item/clothing/shoes/sneakers/brown(src)
 	new /obj/item/weapon/cartridge/ce(src)
 	new /obj/item/device/radio/headset/heads/ce(src)
@@ -46,9 +48,8 @@
 
 /obj/structure/closet/secure_closet/engineering_electrical/New()
 	..()
-	sleep(2)
-	new /obj/item/clothing/gloves/yellow(src)
-	new /obj/item/clothing/gloves/yellow(src)
+	new /obj/item/clothing/gloves/color/yellow(src)
+	new /obj/item/clothing/gloves/color/yellow(src)
 	new /obj/item/weapon/storage/toolbox/electrical(src)
 	new /obj/item/weapon/storage/toolbox/electrical(src)
 	new /obj/item/weapon/storage/toolbox/electrical(src)
@@ -75,7 +76,6 @@
 
 /obj/structure/closet/secure_closet/engineering_welding/New()
 	..()
-	sleep(2)
 	new /obj/item/clothing/head/welding(src)
 	new /obj/item/clothing/head/welding(src)
 	new /obj/item/clothing/head/welding(src)
@@ -99,11 +99,11 @@
 
 /obj/structure/closet/secure_closet/engineering_personal/New()
 	..()
-	sleep(2)
 	if(prob(50))
 		new /obj/item/weapon/storage/backpack/industrial(src)
 	else
 		new /obj/item/weapon/storage/backpack/satchel_eng(src)
+	new /obj/item/weapon/storage/backpack/dufflebag/engineering(src)
 	new /obj/item/clothing/under/rank/engineer(src)
 	new /obj/item/clothing/shoes/sneakers/orange(src)
 	new /obj/item/weapon/storage/toolbox/mechanical(src)
@@ -112,4 +112,28 @@
 	new /obj/item/clothing/suit/hazardvest(src)
 	new /obj/item/clothing/mask/gas(src)
 	new /obj/item/clothing/glasses/meson(src)
+	return
+
+/obj/structure/closet/secure_closet/atmospherics
+	name = "\proper atmospheric technician's locker"
+	req_access = list(access_atmospherics)
+	icon_state = "secureatmos1"
+	icon_closed = "secureatmos"
+	icon_locked = "secureatmos1"
+	icon_opened = "secureatmosopen"
+	icon_broken = "secureatmosbroken"
+	icon_off = "secureatmosoff"
+
+
+/obj/structure/closet/secure_closet/atmospherics/New()
+	..()
+	new /obj/item/device/radio/headset/headset_eng(src)
+	new /obj/item/weapon/pipe_dispenser(src)
+	new /obj/item/weapon/storage/toolbox/mechanical(src)
+	new /obj/item/weapon/storage/backpack/satchel_norm(src)
+	new /obj/item/weapon/storage/backpack/dufflebag/engineering(src)
+	new /obj/item/weapon/tank/internals/emergency_oxygen/engi(src)
+	new /obj/item/weapon/watertank/atmos(src)
+	new /obj/item/clothing/suit/fire/atmos(src)
+	new /obj/item/clothing/head/hardhat/atmos(src)
 	return

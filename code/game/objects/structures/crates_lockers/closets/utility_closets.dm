@@ -27,18 +27,18 @@
 
 	switch (pickweight(list("small" = 40, "aid" = 25, "tank" = 20, "both" = 10, "nothing" = 4, "delete" = 1)))
 		if ("small")
-			new /obj/item/weapon/tank/emergency_oxygen(src)
-			new /obj/item/weapon/tank/emergency_oxygen(src)
+			new /obj/item/weapon/tank/internals/emergency_oxygen(src)
+			new /obj/item/weapon/tank/internals/emergency_oxygen(src)
 
 		if ("aid")
-			new /obj/item/weapon/tank/emergency_oxygen(src)
+			new /obj/item/weapon/tank/internals/emergency_oxygen(src)
 			new /obj/item/weapon/storage/firstaid/o2(src)
 
 		if ("tank")
-			new /obj/item/weapon/tank/air(src)
+			new /obj/item/weapon/tank/internals/air(src)
 
 		if ("both")
-			new /obj/item/weapon/tank/emergency_oxygen(src)
+			new /obj/item/weapon/tank/internals/emergency_oxygen(src)
 			new /obj/item/clothing/mask/breath(src)
 
 		if ("nothing")
@@ -54,7 +54,7 @@
 			qdel(src)*/
 
 /obj/structure/closet/emcloset/legacy/New()
-	new /obj/item/weapon/tank/oxygen(src)
+	new /obj/item/weapon/tank/internals/oxygen(src)
 	new /obj/item/clothing/mask/gas(src)
 
 /*
@@ -72,19 +72,18 @@
 
 	new /obj/item/clothing/suit/fire/firefighter(src)
 	new /obj/item/clothing/mask/gas(src)
-	new /obj/item/weapon/tank/oxygen/red(src)
+	new /obj/item/weapon/tank/internals/oxygen/red(src)
 	new /obj/item/weapon/extinguisher(src)
 	new /obj/item/clothing/head/hardhat/red(src)
 
 /obj/structure/closet/firecloset/full/New()
 	..()
-	sleep(4)
 	contents = list()
 
 	new /obj/item/clothing/suit/fire/firefighter(src)
 	new /obj/item/clothing/mask/gas(src)
 	new /obj/item/device/flashlight(src)
-	new /obj/item/weapon/tank/oxygen/red(src)
+	new /obj/item/weapon/tank/internals/oxygen/red(src)
 	new /obj/item/weapon/extinguisher(src)
 	new /obj/item/clothing/head/hardhat/red(src)
 
@@ -133,7 +132,7 @@
 	if(prob(20))
 		new /obj/item/device/multitool(src)
 	if(prob(5))
-		new /obj/item/clothing/gloves/yellow(src)
+		new /obj/item/clothing/gloves/color/yellow(src)
 	if(prob(40))
 		new /obj/item/clothing/head/hardhat(src)
 
@@ -165,7 +164,6 @@
 
 /obj/structure/closet/bombcloset/New()
 	..()
-	sleep(2)
 	new /obj/item/clothing/suit/bomb_suit( src )
 	new /obj/item/clothing/under/color/black( src )
 	new /obj/item/clothing/shoes/sneakers/black( src )
@@ -181,7 +179,6 @@
 
 /obj/structure/closet/bombclosetsecurity/New()
 	..()
-	sleep(2)
 	new /obj/item/clothing/suit/bomb_suit/security( src )
 	new /obj/item/clothing/under/rank/security( src )
 	new /obj/item/clothing/shoes/sneakers/brown( src )
