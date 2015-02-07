@@ -30,4 +30,5 @@
 				affected_mob.emote("cough")
 
 		if(5)
-			affected_mob << "\red Your body feels as if it's trying to rip itself open..."
+			if(prob(25))
+				affected_mob << "\red Your body feels as if it's trying to rip itself open..."
