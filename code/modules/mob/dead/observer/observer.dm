@@ -55,6 +55,8 @@
 		verbs -= /mob/dead/observer/verb/possess
 		verbs -= /mob/dead/observer/verb/vend
 
+	animate(src, pixel_y = 2, time = 10, loop = -1)
+
 	..()
 
 /mob/dead/CanPass(atom/movable/mover, turf/target, height=0)
