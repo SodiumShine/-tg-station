@@ -88,10 +88,10 @@
 	if (!( istype(G, /obj/item/weapon/grab)) || !(istype(G.affecting, /mob/living/carbon/human)))
 		user << "<span class='danger'>This item is not suitable for the gibber!</span>"
 		return
-	if(G.affecting.mind)
-		user << "<span class='danger'>The gibber smartly refuses that body, someone is still using it!</span>"
-		playsound(src.loc, 'sound/machines/buzz-sigh.ogg', 50, 0)
-		return
+//	if(G.affecting.mind)
+//		user << "<span class='danger'>The gibber smartly refuses that body, someone is still using it!</span>"
+//		playsound(src.loc, 'sound/machines/buzz-sigh.ogg', 50, 0)
+//		return
 	if(G.affecting.abiotic(1))
 		user << "<span class='danger'>Subject may not have abiotic items on.</span>"
 		playsound(src.loc, 'sound/machines/buzz-sigh.ogg', 50, 0)
@@ -101,6 +101,8 @@
 	src.add_fingerprint(user)
 	if(do_after(user, 30) && G && G.affecting && !occupant)
 		user.visible_message("<span class='danger'>[user] stuffs [G.affecting] into the gibber!</span>")
+		if(!(G.affecting.stat == DEAD))
+			G.affecting.emote("scream")
 		var/mob/M = G.affecting
 		if(M.client)
 			M.client.perspective = EYE_PERSPECTIVE

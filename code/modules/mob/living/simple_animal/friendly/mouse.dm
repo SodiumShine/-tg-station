@@ -28,10 +28,10 @@
 	..()
 	if(!body_color)
 		body_color = pick( list("brown","gray","white") )
-	icon_state = "mouse_[body_color]"
-	icon_living = "mouse_[body_color]"
-	icon_dead = "mouse_[body_color]_dead"
-	name = "[body_color] mouse"
+		icon_state = "mouse_[body_color]"
+		icon_living = "mouse_[body_color]"
+		icon_dead = "mouse_[body_color]_dead"
+		name = "[body_color] mouse"
 
 
 /mob/living/simple_animal/mouse/proc/splat()
