@@ -120,6 +120,8 @@ var/list/admin_verbs_debug = list(
 	/client/proc/enable_debug_verbs,
 	/client/proc/callproc,
 	/client/proc/SDQL2_query
+//	/client/proc/test_movable_UI,
+//	/client/proc/test_snap_UI
 	)
 var/list/admin_verbs_possess = list(
 	/proc/possess,

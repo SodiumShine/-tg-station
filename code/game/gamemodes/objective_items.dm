@@ -37,19 +37,13 @@ datum/objective_item/steal/magboots // SHINE changed from advanced to normal boo
 	name = "a pair of magboots. Intel suggests these are stored in the EVA"
 	targetitem =  /obj/item/clothing/shoes/magboots
 
-datum/objective_item/steal/defib
-	name = "a defibrillator"
-	targetitem = /obj/item/weapon/defibrillator
-	difficulty = 4
-	excludefromjob = list("Chief Medical Officer", "Medical Doctor")
-
 
 
 datum/objective_item/steal/corgimeat
 	name = "a piece of corgi meat. Intel suggests the Head of Personnel owns a corgi"
 	targetitem = /obj/item/weapon/reagent_containers/food/snacks/meat/corgi
 	difficulty = 5
-	excludefromjob = list("Head of Personnel") //>hurting your little buddy ever
+	excludefromjob = list("Head of Personnel", "Quartermaster", "Cargo Technician") //>hurting your little buddy ever
 
 datum/objective_item/steal/capmedal
 	name = "the medal of captaincy. Intel suggests the captain has it"

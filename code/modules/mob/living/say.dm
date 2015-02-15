@@ -261,8 +261,11 @@ var/list/department_radio_keys = list(
 	if(stuttering)
 		message = NewStutter(message)
 
-	if(drunk)
-		message = Intoxicated(message)
+//	if(drunk)
+//		message = Intoxicated(message)
+
+	if(slurring)
+		message = slur(message)
 
 	message = capitalize(message)
 
