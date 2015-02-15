@@ -56,3 +56,6 @@
 
 /datum/job/chemist/config_check()
 	return 0
+
+/datum/job/cook/config_check()
+	return 0

@@ -9,7 +9,7 @@
 	var/on = 0
 	item_color = "engineering" //Determines used sprites: hardsuit[on]-[color] and hardsuit[on]-[color]2 (lying down sprite)
 	action_button_name = "Toggle Helmet Light"
-	flags = HEADCOVERSEYES | BLOCKHAIR | HEADCOVERSMOUTH | STOPSPRESSUREDMAGE | THICKMATERIAL | NODROP
+	flags = HEADCOVERSEYES | BLOCKHAIR | HEADCOVERSMOUTH | STOPSPRESSUREDMAGE | THICKMATERIAL
 
 /obj/item/clothing/head/helmet/space/hardsuit/attack_self(mob/user)
 	if(!isturf(user.loc))

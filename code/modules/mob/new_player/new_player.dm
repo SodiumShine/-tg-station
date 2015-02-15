@@ -33,7 +33,6 @@
 	else
 		output += "<p><a href='byond://?src=\ref[src];manifest=1'>View the Crew Manifest</A></p>"
 		output += "<p><a href='byond://?src=\ref[src];late_join=1'>Join Game!</A></p>"
-		output += "<p><a href='byond://?src=\ref[src];manifest=1'>Crew Manifest</A></p>"
 		output += "<p><a href='byond://?src=\ref[src];observe=1'>Observe</A></p>"
 /*
 	if(!IsGuestKey(src.key))
