@@ -92,11 +92,11 @@
 			clogcolour = pick("white","yellow","blue","pink")
 		icon_state ="[level == 1 && istype(loc, /turf/simulated) ? "h" : "" ]clog_[clogcolour]"
 		return
-	if(on && !(stat & (NOPOWER|BROKEN)))
+/*	if(on && !(stat & (NOPOWER|BROKEN))) SHINE old code?
 		if(pump_direction)
 			icon_state = "[level == 1 && istype(loc, /turf/simulated) ? "h" : "" ]out"
 		else
-			icon_state = "[level == 1 && istype(loc, /turf/simulated) ? "h" : "" ]in"
+			icon_state = "[level == 1 && istype(loc, /turf/simulated) ? "h" : "" ]in" */
 	else
 		icon_state = "vent_in"
 
@@ -115,7 +115,7 @@
 
 	return
 */
-
+/* SHINE Is this needed anymore?
 /obj/machinery/atmospherics/unary/vent_pump/hide(var/i) //to make the little pipe section invisible, the icon changes.
 //	message_admins("Hide proc")
 	if(welded)
@@ -136,7 +136,7 @@
 		icon_state = "[i == 1 && istype(loc, /turf/simulated) ? "h" : "" ]off"
 		on = 0
 	return
-
+*/
 
 /obj/machinery/atmospherics/unary/vent_pump/process()
 	..()
@@ -199,17 +199,17 @@
 ///////////////////////////////////
 ///SHINE'S STUPID CLOGGING STUFF///
 ///////////////////////////////////
-	if(clogged == 0)
+/*	if(clogged == 0)
 //		if(network.normal_members.len > 20)
 		if(prob(1) && prob(1) && prob(clogchance))
 			clogchance = 1
 			clogged = 1
-			update_icon()
+			update_icon_nopipes()
 			playsound(src.loc, 'sound/effects/attackblob.ogg', 50, 1)
 			message_admins("Vent clogged at [src.x], [src.y]")
 			return 0
 		else if((clogchance < 33) && prob(5))
-			clogchance += 1
+			clogchance += 1 */
 	return 1
 
 //Radio remote control
