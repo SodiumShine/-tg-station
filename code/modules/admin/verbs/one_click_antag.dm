@@ -452,7 +452,7 @@ client/proc/one_click_antag()
 		if(!G.key)
 			candidates.Remove(G)
 
-	if(candidates.len >= 4) //Minimum 4 to be considered a squad
+	if(candidates.len >= 1) //Minimum 4 to be considered a squad
 		//Pick the (un)lucky players
 		var/numagents = min(7,candidates.len) //How many officers to spawn
 		var/list/spawnpoints = emergencyresponseteamspawn
