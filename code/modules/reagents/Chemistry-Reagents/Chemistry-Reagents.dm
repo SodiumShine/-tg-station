@@ -19,6 +19,7 @@ datum/reagent
 	var/datum/reagents/holder = null
 	var/reagent_state = LIQUID
 	var/list/data
+	var/current_cycle = 0
 	var/volume = 0
 	//var/list/viruses = list()
 	var/color = "#000000" // rgb: 0, 0, 0 (does not support alpha channels - yet!)
@@ -29,7 +30,6 @@ datum/reagent
 	var/addiction_threshold = 0
 	var/addiction_stage = 0
 	var/overdosed = 0 // You fucked up and this is now triggering it's overdose effects, purge that shit quick.
-
 datum/reagent/proc/reaction_mob(var/mob/M, var/method=TOUCH, var/volume, var/show_message = 1) //By default we have a chance to transfer some
 	if(!istype(M, /mob/living))
 		return 0
@@ -74,6 +74,7 @@ datum/reagent/proc/reaction_turf(var/turf/T, var/volume)
 	return
 
 datum/reagent/proc/on_mob_life(var/mob/living/M as mob)
+	current_cycle++
 	if(!istype(M, /mob/living))
 		return //Noticed runtime errors from facid trying to damage ghosts, this should fix. --NEO
 	holder.remove_reagent(src.id, metabolization_rate * M.metabolism_efficiency) //By default it slowly disappears.
@@ -97,6 +98,9 @@ datum/reagent/proc/on_update(var/atom/A)
 datum/reagent/proc/overdose_process(var/mob/living/M as mob)
 	return
 
+datum/reagent/proc/overdose_start(var/mob/living/M as mob)
+	return
+
 datum/reagent/proc/addiction_act_stage1(var/mob/living/M as mob)
 	if(prob(30))
 		M << "<span class = 'notice'>You feel like some [name] right about now.</span>"
@@ -114,9 +118,11 @@ datum/reagent/proc/addiction_act_stage3(var/mob/living/M as mob)
 
 datum/reagent/proc/addiction_act_stage4(var/mob/living/M as mob)
 	if(prob(30))
-		M << "<span class = 'userdanger'>You're not feeling good at all! You really need some [name].</span>"
+		M << "<span class = 'boldannounce'>You're not feeling good at all! You really need some [name].</span>"
 	return
 
+/datum/reagent/proc/reagent_deleted()
+	return
 
 datum/reagent/blood
 			data = list("donor"=null,"viruses"=null,"blood_DNA"=null,"blood_type"=null,"resistances"=null,"trace_chem"=null,"mind"=null,"ckey"=null,"gender"=null,"real_name"=null,"cloneable"=null,"factions"=null)
@@ -671,12 +677,10 @@ datum/reagent/space_cleaner/reaction_obj(var/obj/O, var/volume)
 	else
 		if(O)
 			O.clean_blood()
-			O.color = initial(O.color)
 
 datum/reagent/space_cleaner/reaction_turf(var/turf/T, var/volume)
 	if(volume >= 1)
 		T.clean_blood()
-		T.color = initial(T.color)
 		for(var/obj/effect/decal/cleanable/C in T)
 			qdel(C)
 
@@ -690,7 +694,6 @@ datum/reagent/space_cleaner/reaction_turf(var/turf/T, var/volume)
 datum/reagent/space_cleaner/reaction_mob(var/mob/M, var/method=TOUCH, var/volume)
 	if(iscarbon(M))
 		var/mob/living/carbon/C = M
-		C.color = initial(C.color)
 		if(C.r_hand)
 			C.r_hand.clean_blood()
 		if(C.l_hand)
@@ -719,7 +722,7 @@ datum/reagent/cryptobiolin
 	id = "cryptobiolin"
 	description = "Cryptobiolin causes confusion and dizzyness."
 	color = "#C8A5DC" // rgb: 200, 165, 220
-	metabolization_rate = 0.5 * REAGENTS_METABOLISM
+	metabolization_rate = 1.5 * REAGENTS_METABOLISM
 
 datum/reagent/cryptobiolin/on_mob_life(var/mob/living/M as mob)
 	M.Dizzy(1)

@@ -67,8 +67,13 @@
 	icon = 'icons/obj/device.dmi'
 	icon_state = "taperecorder_idle"
 	aggressiveness = 1 //Borgs are nicecurity!
+	ignore_maskadjust = 1
 
-/obj/item/clothing/mask/gas/sechailer/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/item/clothing/mask/gas/sechailer/cyborg/New()
+	..()
+	verbs -= /obj/item/clothing/mask/gas/sechailer/verb/adjust
+
+/obj/item/clothing/mask/gas/sechailer/attackby(obj/item/weapon/W as obj, mob/user as mob, params)
 	if(istype(W, /obj/item/weapon/screwdriver))
 		switch(aggressiveness)
 			if(1)
@@ -214,13 +219,6 @@
 	vchange = !vchange
 	user << "<span class='notice'>The voice changer is now [vchange ? "on" : "off"]!</span>"
 
-/obj/item/clothing/mask/gas/voice/space_ninja
-	name = "ninja mask"
-	desc = "A close-fitting mask that acts both as an air filter and a post-modern fashion statement."
-	icon_state = "s-ninja"
-	item_state = "s-ninja_mask"
-	vchange = 1
-	strip_delay = 120
 
 /obj/item/clothing/mask/gas/voice/space_ninja/speechModification(message)
 	if(voice == "Unknown")

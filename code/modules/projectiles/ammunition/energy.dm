@@ -17,6 +17,9 @@
 	e_cost = 83
 	select_name = "kill"
 
+/obj/item/ammo_casing/energy/laser/hos
+	e_cost = 100
+
 /obj/item/ammo_casing/energy/lite
 	projectile_type = /obj/item/projectile/beam/lite
 	e_cost = 80
@@ -61,10 +64,14 @@
 	select_name = "stun"
 	fire_sound = 'sound/weapons/taser.ogg'
 	e_cost = 200
+	delay = 15
 
 /obj/item/ammo_casing/energy/electrode/gun
 	fire_sound = 'sound/weapons/gunshot.ogg'
 	e_cost = 100
+
+/obj/item/ammo_casing/energy/electrode/hos
+	e_cost = 200
 
 /obj/item/ammo_casing/energy/ion
 	projectile_type = /obj/item/projectile/ion

@@ -79,7 +79,7 @@
 	if(..())
 		if(reagents.total_volume)
 			if(M.reagents)
-				reagents.trans_to(M, 50)
+				reagents.trans_to(M, 55)
 
 
 /obj/item/weapon/pen/sleepy/New()

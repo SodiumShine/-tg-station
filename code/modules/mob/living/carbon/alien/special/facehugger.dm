@@ -48,13 +48,13 @@ var/const/MAX_ACTIVE_TIME = 400
 		return
 	switch(stat)
 		if(DEAD,UNCONSCIOUS)
-			user << "<span class='userdanger'>[src] is not moving.</span>"
+			user << "<span class='boldannounce'>[src] is not moving.</span>"
 		if(CONSCIOUS)
-			user << "<span class='userdanger'>[src] seems to be active!</span>"
+			user << "<span class='boldannounce'>[src] seems to be active!</span>"
 	if (sterile)
-		user << "<span class='userdanger'>It looks like the proboscis has been removed.</span>"
+		user << "<span class='boldannounce'>It looks like the proboscis has been removed.</span>"
 
-/obj/item/clothing/mask/facehugger/attackby(var/obj/item/O,var/mob/m)
+/obj/item/clothing/mask/facehugger/attackby(var/obj/item/O,var/mob/m, params)
 	if(O.force)
 		Die()
 	return
@@ -145,7 +145,7 @@ var/const/MAX_ACTIVE_TIME = 400
 
 		if(!sterile) L.Paralyse(MAX_IMPREGNATION_TIME/6) //something like 25 ticks = 20 seconds with the default settings
 	else if (iscorgi(M))
-		var/mob/living/simple_animal/corgi/C = M
+		var/mob/living/simple_animal/pet/corgi/C = M
 		loc = C
 		C.facehugger = src
 
@@ -178,7 +178,7 @@ var/const/MAX_ACTIVE_TIME = 400
 
 
 		if(iscorgi(target))
-			var/mob/living/simple_animal/corgi/C = target
+			var/mob/living/simple_animal/pet/corgi/C = target
 			src.loc = get_turf(C)
 			C.facehugger = null
 	else
@@ -223,7 +223,7 @@ var/const/MAX_ACTIVE_TIME = 400
 	icon_state = "[initial(icon_state)]_dead"
 	stat = DEAD
 
-	src.visible_message("<span class='userdanger'>[src] curls up into a ball!</span>")
+	visible_message("<span class='danger'>[src] curls up into a ball!</span>")
 
 	return
 

@@ -3,7 +3,6 @@
 	level = 1.0
 
 	var/intact = 1
-	var/cancable = 0
 
 	//Properties for open tiles (/floor)
 	var/oxygen = 0
@@ -42,8 +41,8 @@
 /turf/attack_hand(mob/user as mob)
 	user.Move_Pulled(src)
 
-/turf/attackby(obj/item/C, mob/user)
-	if(cancable && istype(C, /obj/item/stack/cable_coil))
+/turf/attackby(obj/item/C, mob/user, params)
+	if(can_lay_cable() && istype(C, /obj/item/stack/cable_coil))
 		var/obj/item/stack/cable_coil/coil = C
 		for(var/obj/structure/cable/LC in src)
 			if((LC.d1==0)||(LC.d2==0))
@@ -92,7 +91,7 @@
 		var/mob/O = M
 		if(!O.lastarea)
 			O.lastarea = get_area(O.loc)
-		O.update_gravity(O.mob_has_gravity())
+//		O.update_gravity(O.mob_has_gravity())
 
 	var/loopsanity = 100
 	for(var/atom/A in range(1))
@@ -146,6 +145,9 @@
 		if(W.lighting_lumcount)				//unless we're being illuminated, don't bother (may be buggy, hard to test)
 			W.UpdateAffectingLights()
 
+	for(var/turf/space/S in range(W,1))
+		S.update_starlight()
+
 	W.levelupdate()
 	W.CalculateAdjacentTurfs()
 	return W
@@ -187,10 +189,9 @@
 
 /turf/proc/ReplaceWithCatwalk()
 	src.ChangeTurf(/turf/space)
-	src.cancable = 1//so cables can be laid
 	new /obj/structure/lattice/catwalk(locate(src.x, src.y, src.z) )
 
-/turf/proc/phase_damage_creatures(damage,mob/U = null)//>Ninja Code. Hurts and knocks out creatures on this turf
+/turf/proc/phase_damage_creatures(damage,mob/U = null)//>Ninja Code. Hurts and knocks out creatures on this turf //NINJACODE
 	for(var/mob/living/M in src)
 		if(M==U)
 			continue//Will not harm U. Since null != M, can be excluded to kill everyone.
@@ -343,3 +344,9 @@
 				O.singularity_act()
 	ChangeTurf(/turf/space)
 	return(2)
+
+/turf/proc/can_have_cabling()
+	return !density
+
+/turf/proc/can_lay_cable()
+	return can_have_cabling() & !intact

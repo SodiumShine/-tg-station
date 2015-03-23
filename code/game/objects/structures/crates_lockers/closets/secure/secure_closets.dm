@@ -16,6 +16,28 @@
 	var/panel_open = 0
 	var/pulsed = 0
 
+/obj/structure/closet/secure_closet/examine(mob/user)
+	..()
+	if(broken || opened || !ishuman(user))
+		return //Monkeys don't get a message, nor does anyone ief it's open or emagged
+	else
+		user << "<span class='notice'>Alt-click the locker to [locked ? "unlock" : "lock"] it.</span>"
+
+/obj/structure/closet/secure_closet/AltClick(var/mob/user)
+	..()
+	if(!in_range(src, user))
+		return
+	if(!ishuman(user))
+		user << "<span class='notice'>You have no idea how this thing is supposed to work.</span>"
+		return
+	if(user.stat || !user.canmove || user.restrained() || broken)
+		user << "<span class='notice'>You can't do that right now.</span>"
+		return
+	if(src.opened)
+		return
+	else
+		togglelock(user)
+
 /obj/structure/closet/secure_closet/can_open()
 	if(src.locked || src.welded)
 		return 0
@@ -67,7 +89,7 @@
 		return 1
 	return 0
 
-/obj/structure/closet/secure_closet/attackby(obj/item/weapon/W as obj, mob/living/carbon/user as mob)
+/obj/structure/closet/secure_closet/attackby(obj/item/weapon/W as obj, mob/living/user as mob, params)
 
 	if(!src.opened && src.broken)
 		user << "<span class='notice'>The locker appears to be broken.</span>"
@@ -94,6 +116,7 @@
 				spawn(60)
 					if(prob(75))
 						user.electrocute_act(10, src, 1.0) //5 shock dam,
+//						electrocute_mob(user, get_area(src),src)
 						var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 						s.set_up(5, 1, src)
 						s.start()
@@ -188,26 +211,6 @@
 
 /obj/structure/closet/secure_closet/attack_paw(mob/user as mob)
 	return src.attack_hand(user)
-
-/obj/structure/closet/secure_closet/verb/verb_togglelock()
-	set src in oview(1) // One square distance
-	set category = "Object"
-	set name = "Toggle Lock"
-
-	if(!usr.canmove || usr.stat || usr.restrained()) // Don't use it if you're not able to! Checks for stuns, ghost and restrain
-		return
-
-	if(get_dist(usr, src) != 1)
-		return
-
-	if(src.broken)
-		return
-
-	if (ishuman(usr))
-		if (!opened)
-			togglelock(usr)
-	else
-		usr << "<span class='warning'>This mob type can't use this verb.</span>"
 
 /obj/structure/closet/secure_closet/update_icon()//Putting the welded stuff in updateicon() so it's easy to overwrite for special cases (Fridges, cabinets, and whatnot)
 	overlays.Cut()

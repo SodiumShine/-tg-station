@@ -4,15 +4,25 @@
 	icon_state = "ionrifle"
 	item_state = null	//so the human update icon uses the icon_state instead.
 	origin_tech = "combat=2;magnets=4"
+	can_flashlight = 1
 	w_class = 5
 	flags =  CONDUCT
 	slot_flags = SLOT_BACK
 	ammo_type = list(/obj/item/ammo_casing/energy/ion)
-	pin = null
 
 
 /obj/item/weapon/gun/energy/ionrifle/emp_act(severity)
 	return
+
+/obj/item/weapon/gun/energy/ionrifle/carbine
+	name = "ion carbine"
+	desc = "The MK.II Prototype Ion Projector is a lightweight carbine version of the larger ion rifle, built to be ergonomic and efficient."
+	icon_state = "ioncarbine"
+	item_state = "ioncarbine"
+	origin_tech = "combat=4;magnets=4;materials=4"
+	w_class = 3
+	slot_flags = SLOT_BELT
+	pin = null
 
 /obj/item/weapon/gun/energy/decloner
 	name = "biological demolecularisor"
@@ -118,7 +128,7 @@
 	var/range_add = 0
 	var/overheat_time = 20
 	upgrades = list("diamond" = 0, "screwdriver" = 0, "plasma" = 0)
-
+	unique_rename = 1
 
 /obj/item/weapon/gun/energy/kinetic_accelerator/newshot()
 	..()
@@ -127,7 +137,7 @@
 		charge.range += range_add
 
 
-/obj/item/weapon/gun/energy/kinetic_accelerator/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/item/weapon/gun/energy/kinetic_accelerator/attackby(obj/item/weapon/W as obj, mob/user as mob, params)
 	if(istype(W, /obj/item/weapon/screwdriver) && upgrades["screwdriver"] < 3)
 		upgrades["screwdriver"]++
 		overheat_time -= 1
@@ -150,6 +160,8 @@
 			if(prob(5 * (range_add + 1) * (range_add + 1)) && power_supply)
 				power_supply.rigged = 1 // This is dangerous!
 			S.use(1)
+
+	..()
 
 /obj/item/weapon/gun/energy/kinetic_accelerator/shoot_live_shot()
 	overheat = 1
@@ -182,6 +194,7 @@
 	origin_tech = "combat=2;magnets=2;syndicate=5"
 	suppressed = 1
 	ammo_type = list(/obj/item/ammo_casing/energy/bolt)
+	unique_rename = 0
 
 /obj/item/weapon/gun/energy/kinetic_accelerator/crossbow/large
 	name = "energy crossbow"

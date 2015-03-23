@@ -334,7 +334,7 @@
 	update_icon()
 	return
 
-/obj/machinery/atmospherics/unary/vent_pump/attackby(obj/item/W, mob/user)
+/obj/machinery/atmospherics/unary/vent_pump/attackby(obj/item/W, mob/user, params)
 	if(istype(W, /obj/item/weapon/plunger))
 		if(clogged == 0)
 			user << "<span class='notice'>[src] is clean. No need to unclog it.</span>"

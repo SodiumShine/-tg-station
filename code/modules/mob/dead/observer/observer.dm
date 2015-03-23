@@ -1,9 +1,10 @@
+var/list/image/ghost_darkness_images = list() //this is a list of images for things ghosts should still be able to see when they toggle darkness
 /mob/dead/observer
 	name = "ghost"
 	desc = "It's a g-g-g-g-ghooooost!" //jinkies!
 	icon = 'icons/mob/mob.dmi'
 	icon_state = "ghost"
-	layer = 4
+	layer = MOB_LAYER + 1
 	stat = DEAD
 	density = 0
 	canmove = 0
@@ -19,6 +20,9 @@
 	var/atom/movable/following = null
 	var/fun_verbs = 1
 	var/vendtime = 0
+	var/image/ghostimage = null //this mobs ghost image, for deleting and stuff
+	var/ghostvision = 1 //is the ghost able to see things humans can't?
+	var/seedarkness = 1
 
 /mob/dead/observer/New(mob/body)
 	sight |= SEE_TURFS | SEE_MOBS | SEE_OBJS | SEE_SELF
@@ -27,6 +31,9 @@
 	verbs += /mob/dead/observer/proc/dead_tele
 	stat = DEAD
 
+	ghostimage = image(src.icon,src,src.icon_state)
+	ghost_darkness_images |= ghostimage
+	updateallghostimages()
 	var/turf/T
 	if(ismob(body))
 		T = get_turf(body)				//Where is the body located?
@@ -57,6 +64,14 @@
 
 	animate(src, pixel_y = 2, time = 10, loop = -1)
 
+
+	..()
+/mob/dead/observer/Destroy()
+	if (ghostimage)
+		ghost_darkness_images -= ghostimage
+		qdel(ghostimage)
+		ghostimage = null
+		updateallghostimages()
 	..()
 
 /mob/dead/CanPass(atom/movable/mover, turf/target, height=0)
@@ -285,11 +300,36 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	//Maybe in the future we can add more <i>spooky</i> code here!
 		return
 
+
+/mob/dead/observer/memory()
+	set hidden = 1
+	src << "<span class='danger'>You are dead! You have no mind to store memory!</span>"
+
+/mob/dead/observer/add_memory()
+	set hidden = 1
+	src << "<span class='danger'>You are dead! You have no mind to store memory!</span>"
+
+/mob/dead/observer/verb/toggle_ghostsee()
+	set name = "Toggle Ghost Vision"
+	set desc = "Toggles your ability to see things only ghosts can see, like other ghosts"
+	set category = "Ghost"
+	ghostvision = !(ghostvision)
+	updateghostsight()
+	usr << "You [(ghostvision?"now":"no longer")] have ghost vision."
+
+/mob/dead/observer/verb/toggle_darkness()
+	set name = "Toggle Darkness"
+	set category = "Ghost"
+	seedarkness = !(seedarkness)
+	updateghostsight()
+
+
 // SHINE ghosts make vending machines throw
 /mob/dead/observer/verb/vend()
 	set category = "Ghost"
 	set name = "Haunt Vending Machine"
 	set desc = "Make a vending machine spit stuff out at people, out of spite."
+
 
 	if(vendtime > world.time)
 		var/displaytime
@@ -299,16 +339,39 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	var/obj/machinery/vending/V = locate(/obj/machinery/vending) in view(1, src)
 	if(V)
 		V.throw_item()
-		vendtime = world.time + 1500 // 2.5 minute cooldown
+		vendtime = world.time + 2000 // 2.5 minute cooldown
 		if(prob(20))
 			playsound(src.loc, pick('sound/effects/ghost.ogg','sound/effects/ghost2.ogg'), 10, 1)
-		V.ghostwhine()
 		return
 	if(!V)
 		src << "You need to be closer to a vending machine..."
 		return
 	else
 		return
+
+/mob/dead/observer/proc/updateghostsight()
+	if (!seedarkness)
+		see_invisible = SEE_INVISIBLE_OBSERVER_NOLIGHTING
+	else
+		see_invisible = SEE_INVISIBLE_OBSERVER
+		if (!ghostvision)
+			see_invisible = SEE_INVISIBLE_LIVING;
+	updateghostimages()
+
+/proc/updateallghostimages()
+	for (var/mob/dead/observer/O in player_list)
+		O.updateghostimages()
+
+/mob/dead/observer/proc/updateghostimages()
+	if (!client)
+		return
+	if (seedarkness || !ghostvision)
+		client.images -= ghost_darkness_images
+	else
+		//add images for the 60inv things ghosts can normally see when darkness is enabled so they can see them now
+		client.images |= ghost_darkness_images
+		if (ghostimage)
+			client.images -= ghostimage //remove ourself
 
 /mob/dead/observer/verb/possess()
 	set category = "Ghost"
@@ -346,7 +409,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 /mob/dead/observer/add_memory()
 	set hidden = 1
 	src << "<span class='danger'>You are dead! You have no mind to store memory!</span>"
-
+/*
 /mob/dead/observer/verb/toggle_darkness()
 	set name = "Toggle Darkness"
 	set category = "Ghost"
@@ -355,7 +418,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		see_invisible = SEE_INVISIBLE_OBSERVER
 	else
 		see_invisible = SEE_INVISIBLE_OBSERVER_NOLIGHTING
-
+*/
 
 
 
