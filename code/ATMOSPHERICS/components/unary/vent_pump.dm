@@ -71,6 +71,7 @@
 	..()
 	air_contents.volume = 1000
 
+
 /obj/machinery/atmospherics/unary/vent_pump/update_icon_nopipes()
 	overlays.Cut()
 	if(showpipe)
@@ -87,18 +88,23 @@
 
 	if(pump_direction)
 		icon_state = "vent_out"
+	else
+		icon_state = "vent_in"
+/*
 	if(clogged == 1)
 		if(!clogcolour)
 			clogcolour = pick("white","yellow","blue","pink")
 		icon_state ="[level == 1 && istype(loc, /turf/simulated) ? "h" : "" ]clog_[clogcolour]"
 		return
+*/
+
 /*	if(on && !(stat & (NOPOWER|BROKEN))) SHINE old code?
 		if(pump_direction)
 			icon_state = "[level == 1 && istype(loc, /turf/simulated) ? "h" : "" ]out"
 		else
 			icon_state = "[level == 1 && istype(loc, /turf/simulated) ? "h" : "" ]in" */
-	else
-		icon_state = "vent_in"
+
+
 
 /* ORIGINAL
 /obj/machinery/atmospherics/unary/vent_pump/update_icon()
