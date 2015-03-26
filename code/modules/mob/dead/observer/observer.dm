@@ -88,7 +88,7 @@ Works together with spawning an observer, noted above.
 			ghost.can_reenter_corpse = can_reenter_corpse
 			ghost.key = key
 //			ghost << "*---<b>You are now a ghost</b>---* <br>You're dead, which you probably should have expected. <br>Don't worry though, there are many things you can do to torture those who wronged you in life, such as flickering lights menacingly, spin chairs spookily, or have your favorite vending machine distribute goods to a passerby. <br><br>Communicating with others whose souls are trapped in this forsaken Station is possible as well. <br>Maybe the station's Chapel will have something to help you.<br><br>If you wait long enough you might be reincarnated as something fun, or someone might be kind enough to find your poor lifeless body and clone you.If you still have a body at all. If there's at least a brain you could be recycled as a cyborg. <br>(If you get really bored, use \red adminhelp \black and see if they'll let you have some fun) <br>*--------------------------*"
-
+/*
 			var/dat
 			dat += "<h1>You are now a ghost!</h1>"
 			dat += "You're dead, which you probably should have expected"
@@ -108,7 +108,7 @@ Works together with spawning an observer, noted above.
 			popup.set_title_image(ghost.browse_rsc_icon(icon, icon_state))
 			popup.set_content(dat)
 			popup.open()
-
+*/
 			return ghost
 
 /*
