@@ -466,6 +466,8 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/holymelon/add_juice()
 	if(..())
+		reagents.add_reagent("nutriment", 1 + round((potency / 15), 1))
+		reagents.add_reagent("vitamin", 1 + round((potency / 25), 1))
 		reagents.add_reagent("holywater", 1 + round((potency / 6), 1))
 		bitesize = 1 + round(reagents.total_volume / 2, 1)
 
@@ -493,7 +495,7 @@
 /obj/item/weapon/reagent_containers/food/snacks/grown/blumpkin
 	seed = /obj/item/seeds/blumpkinseed
 	name = "blumpkin"
-	desc = "When you're making a mess this blumpkin's there to clean you up."
+	desc = "The pumpkin's toxic sibling."
 	icon_state = "blumpkin"
 	filling_color = "#87CEFA"
 
@@ -1229,21 +1231,21 @@ obj/item/weapon/reagent_containers/food/snacks/grown/shell/eggy/add_juice()
 	bitesize = 1 + round(reagents.total_volume / 2, 1)
 	switch(potency)
 		if(0 to 10)
-			inside_type = /obj/item/weapon/spacecash/
+			inside_type = /obj/item/stack/spacecash/
 		if(11 to 20)
-			inside_type = /obj/item/weapon/spacecash/c10
+			inside_type = /obj/item/stack/spacecash/c10
 		if(21 to 30)
-			inside_type = /obj/item/weapon/spacecash/c20
+			inside_type = /obj/item/stack/spacecash/c20
 		if(31 to 40)
-			inside_type = /obj/item/weapon/spacecash/c50
+			inside_type = /obj/item/stack/spacecash/c50
 		if(41 to 50)
-			inside_type = /obj/item/weapon/spacecash/c100
+			inside_type = /obj/item/stack/spacecash/c100
 		if(51 to 60)
-			inside_type = /obj/item/weapon/spacecash/c200
+			inside_type = /obj/item/stack/spacecash/c200
 		if(61 to 80)
-			inside_type = /obj/item/weapon/spacecash/c500
+			inside_type = /obj/item/stack/spacecash/c500
 		else
-			inside_type = /obj/item/weapon/spacecash/c1000
+			inside_type = /obj/item/stack/spacecash/c1000
 
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/gatfruit

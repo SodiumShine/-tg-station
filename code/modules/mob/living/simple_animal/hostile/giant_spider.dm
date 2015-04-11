@@ -33,23 +33,22 @@
 	speak_chance = 5
 	turns_per_move = 5
 	see_in_dark = 10
-	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat/spider
+	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat/slab/spider
 	meat_amount = 2
 	response_help  = "pets"
 	response_disarm = "gently pushes aside"
 	response_harm   = "hits"
-	stop_automated_movement_when_pulled = 0
 	maxHealth = 200
 	health = 200
 	melee_damage_lower = 10 // SHINE 15-20 to 10-15 damage range
 	melee_damage_upper = 15
-	heat_damage_per_tick = 20
-	cold_damage_per_tick = 20
 	faction = list("spiders")
 	var/busy = 0
 	pass_flags = PASSTABLE
 	move_to_delay = 6
 	ventcrawler = 2
+	attacktext = "bites"
+	attack_sound = 'sound/weapons/bite.ogg'
 
 //nursemaids - these create webs and eggs
 /mob/living/simple_animal/hostile/poison/giant_spider/nurse
@@ -263,6 +262,12 @@
 					fed--
 			busy = 0
 			stop_automated_movement = 0
+
+/mob/living/simple_animal/hostile/poison/giant_spider/handle_temperature_damage()
+	if(bodytemperature < minbodytemp)
+		adjustBruteLoss(20)
+	else if(bodytemperature > maxbodytemp)
+		adjustBruteLoss(20)
 
 #undef SPINNING_WEB
 #undef LAYING_EGGS

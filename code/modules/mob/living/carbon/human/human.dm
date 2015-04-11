@@ -87,11 +87,35 @@
 				stat("Chemical Storage", "[mind.changeling.chem_charges]/[mind.changeling.chem_storage]")
 				stat("Absorbed DNA", mind.changeling.absorbedcount)
 
-		//NINJACODE
-		if(istype(wear_suit, /obj/item/clothing/suit/space/space_ninja))
-			var/obj/item/clothing/suit/space/space_ninja/SN = wear_suit
+
+	//NINJACODE
+	if(istype(wear_suit, /obj/item/clothing/suit/space/space_ninja)) //Only display if actually a ninja.
+		var/obj/item/clothing/suit/space/space_ninja/SN = wear_suit
+		if(statpanel("SpiderOS"))
+			stat("SpiderOS Status:","[SN.s_initialized ? "Initialized" : "Disabled"]")
+			stat("Current Time:", "[worldtime2text()]")
 			if(SN.s_initialized)
-				stat("Energy Charge", round(SN.cell.charge/100))
+				//Suit gear
+				stat("Energy Charge:", "[round(SN.cell.charge/100)]%")
+				stat("Smoke Bombs:", "\Roman [SN.s_bombs]")
+				//Ninja status
+				if(dna)
+					stat("Fingerprints:", "[md5(dna.uni_identity)]")
+					stat("Unique Identity:", "[dna.unique_enzymes]")
+				stat("Overall Status:", "[stat > 1 ? "dead" : "[health]% healthy"]")
+				stat("Nutrition Status:", "[nutrition]")
+				stat("Oxygen Loss:", "[getOxyLoss()]")
+				stat("Toxin Levels:", "[getToxLoss()]")
+				stat("Burn Severity:", "[getFireLoss()]")
+				stat("Brute Trauma:", "[getBruteLoss()]")
+				stat("Radiation Levels:","[radiation] rad")
+				stat("Body Temperature:","[bodytemperature-T0C] degrees C ([bodytemperature*1.8-459.67] degrees F)")
+
+				//Virsuses
+				if(viruses.len)
+					stat("Viruses:", null)
+					for(var/datum/disease/D in viruses)
+						stat("*", "[D.name], Type: [D.spread_text], Stage: [D.stage]/[D.max_stages], Possible Cure: [D.cure_text]")
 
 
 /mob/living/carbon/human/ex_act(severity, ex_target)
@@ -251,6 +275,8 @@
 	var/obj/machinery/bot/mulebot/MB = AM
 	if(istype(MB))
 		MB.RunOver(src)
+
+	spreadFire(AM)
 
 //Added a safety check in case you want to shock a human mob directly through electrocute_act.
 /mob/living/carbon/human/electrocute_act(var/shock_damage, var/obj/source, var/siemens_coeff = 1.0, var/safety = 0)
@@ -659,11 +685,9 @@
 
 
 
-/mob/living/carbon/human/help_shake_act(mob/living/carbon/human/M)
+/mob/living/carbon/human/help_shake_act(mob/living/carbon/M)
 	if(!istype(M))
 		return
-
-	var/mob/living/carbon/human/H = src
 
 	if(health >= 0)
 		if(src == M)
@@ -671,7 +695,7 @@
 				"<span class='notice'>[src] examines \himself.", \
 				"<span class='notice'>You check yourself for injuries.</span>")
 
-			for(var/obj/item/organ/limb/org in H.organs)
+			for(var/obj/item/organ/limb/org in organs)
 				var/status = ""
 				var/brutedamage = org.brute_dam
 				var/burndamage = org.burn_dam
@@ -701,9 +725,9 @@
 				src << "\t [status == "OK" ? "\blue" : "\red"] My [org.getDisplayName()] is [status]."
 
 				for(var/obj/item/I in org.embedded_objects)
-					src << "\t <a href='byond://?src=\ref[H];embedded_object=\ref[I];embedded_limb=\ref[org]'>\red There is \a [I] embedded in your [org.getDisplayName()]!</a>"
+					src << "\t <a href='byond://?src=\ref[src];embedded_object=\ref[I];embedded_limb=\ref[org]'>\red There is \a [I] embedded in your [org.getDisplayName()]!</a>"
 
-			if(H.blood_max)
+			if(blood_max)
 				src << "<span class='danger'>You are bleeding!</span>"
 			if(staminaloss)
 				if(staminaloss > 30)
@@ -711,10 +735,10 @@
 				else
 					src << "<span class='info'>You feel fatigued.</span>"
 		else
-			if(H.wear_suit)
-				H.wear_suit.add_fingerprint(M)
-			else if(H.w_uniform)
-				H.w_uniform.add_fingerprint(M)
+			if(wear_suit)
+				wear_suit.add_fingerprint(M)
+			else if(w_uniform)
+				w_uniform.add_fingerprint(M)
 
 			..()
 
@@ -732,4 +756,9 @@
 	staticOverlay.override = 1
 	staticOverlays["letter"] = staticOverlay
 
-
+/mob/living/carbon/human/cuff_resist(obj/item/I)
+	if(dna && dna.check_mutation(HULK))
+		say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!" ))
+		..(I, cuff_break = 1)
+	else
+		..()

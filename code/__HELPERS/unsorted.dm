@@ -506,7 +506,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 		moblist.Add(M)
 	for(var/mob/living/carbon/monkey/M in sortmob)
 		moblist.Add(M)
-	for(var/mob/living/carbon/slime/M in sortmob)
+	for(var/mob/living/simple_animal/slime/M in sortmob)
 		moblist.Add(M)
 	for(var/mob/living/simple_animal/M in sortmob)
 		moblist.Add(M)
@@ -781,28 +781,36 @@ Turf and target are seperate in case you want to teleport some distance from a t
 
 	return 1
 
-/proc/do_after(mob/user, delay, numticks = 5, needhand = 1)
-	if(!user || isnull(user))
+/proc/do_after(mob/user, delay, numticks = 5, needhand = 1, atom/target = null)
+	if(!user)
 		return 0
+
 	if(numticks == 0)
 		return 0
 
+	var/atom/Tloc = null
+	if(target)
+		Tloc = target.loc
+
 	var/delayfraction = round(delay/numticks)
-	var/turf/T = user.loc
+	var/atom/Uloc = user.loc
 	var/holding = user.get_active_hand()
-	var/holdingnull = 1
+	var/holdingnull = 1 //User is not holding anything
 	if(holding)
-		holdingnull = 0
+		holdingnull = 0 //User is holding a tool of some kind
 
 	for(var/i = 0, i<numticks, i++)
 		sleep(delayfraction)
-
-
-		if(!user || user.stat || user.weakened || user.stunned  || !(user.loc == T))
+		if(!user || user.stat || user.weakened || user.stunned  || !(user.loc == Uloc))
 			return 0
 
-		if(needhand)	//Sometimes you don't want the user to have to keep their active hand
-			if(!holdingnull)
+		if(Tloc && (!target || Tloc != target.loc)) //Tloc not set when we don't want to track target
+			return 0 // Target no longer exists or has moved
+
+		if(needhand)
+			//This might seem like an odd check, but you can still need a hand even when it's empty
+			//i.e the hand is used to insert some item/tool into the construction
+			if(!holdingnull) 
 				if(!holding)
 					return 0
 			if(user.get_active_hand() != holding)
@@ -1267,33 +1275,33 @@ Turf and target are seperate in case you want to teleport some distance from a t
 			var/turf/T = locate(final_x, final_y, AM.z)
 			if(T)
 				return T
-				
+
 //Finds the distance between two atoms, in pixels
 /proc/getPixelDistance(var/atom/A, var/atom/B)
 	if(!istype(A)||!istype(B))
 		return 0
-	
+
 	var/_x1 = A.x
 	var/_x2 = B.x
 	var/_y1 = A.y
 	var/_y2 = B.y
-	
+
 	//Ensure _x1 is bigger, simplicity
 	if(_x2 > _x1)
 		var/tx = _x1
 		_x1 = _x2
 		_x2 = tx
-	
+
 	//Ensure _y1 is bigger, simplicity
 	if(_y2 > _y1)
 		var/ty = _y1
 		_y1 = _y2
 		_y2 = ty
-	
+
 	//DY/DX
 	var/dx = _x1 - _x2 + A.pixel_x + B.pixel_x
 	var/dy = _y1 - _y2 + A.pixel_y + B.pixel_y
-	
+
 	//Distance check
 	if(dx == 0 && dy == 0) //No distance, don't bother calculating
 		return 0
@@ -1359,7 +1367,7 @@ var/global/list/common_tools = list(
 			return 1000
 		else
 			return 0
-	if(istype(W, /obj/item/weapon/pickaxe/plasmacutter))
+	if(istype(W, /obj/item/weapon/gun/energy/plasmacutter))
 		return 3800
 	if(istype(W, /obj/item/weapon/melee/energy))
 		var/obj/item/weapon/melee/energy/O = W

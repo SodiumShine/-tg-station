@@ -4,6 +4,7 @@
 	var/obj/item/r_store = null
 	var/obj/item/l_store = null
 	var/caste = ""
+	var/alt_icon = 'icons/mob/alienleap.dmi' //used to switch between the two alien icon files.
 	var/leap_on_click = 0
 	var/pounce_cooldown = 0
 	var/pounce_cooldown_time = 30
@@ -14,6 +15,12 @@
 	if(name == "alien")
 		name = text("alien ([rand(1, 1000)])")
 	real_name = name
+
+	AddAbility(new/obj/effect/proc_holder/alien/plant(null))
+	AddAbility(new/obj/effect/proc_holder/alien/whisper(null))
+	AddAbility(new/obj/effect/proc_holder/alien/transfer(null))
+	AddAbility(new/obj/effect/proc_holder/alien/regurgitate(null))
+
 	..()
 
 /mob/living/carbon/alien/humanoid/movement_delay()
@@ -26,16 +33,6 @@
 	if(r_store) r_store.emp_act(severity)
 	if(l_store) l_store.emp_act(severity)
 	..()
-
-/mob/living/carbon/alien/humanoid/attack_slime(mob/living/carbon/slime/M as mob)
-	..()
-	var/damage = rand(5, 35)
-	if(M.is_adult)
-		damage = rand(10, 40)
-	adjustBruteLoss(damage)
-	add_logs(M, src, "attacked", admin=0)
-	updatehealth()
-	return
 
 /mob/living/carbon/alien/humanoid/attack_hulk(mob/living/carbon/human/user)
 	if(user.a_intent == "harm")
@@ -127,3 +124,7 @@
 
 /mob/living/carbon/alien/humanoid/reagent_check(var/datum/reagent/R)
 	return 0
+
+/mob/living/carbon/alien/humanoid/cuff_resist(obj/item/I)
+	playsound(src, 'sound/voice/hiss5.ogg', 40, 1, 1)  //Alien roars when starting to break free
+	..(I, cuff_break = 1)

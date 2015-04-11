@@ -33,7 +33,8 @@
 	icon_state = "parrot_fly"
 	icon_living = "parrot_fly"
 	icon_dead = "parrot_dead"
-	pass_flags = PASSTABLE
+	density = 0
+	pass_flags = PASSTABLE | PASSMOB
 
 	speak = list("Hi!","Hello!","Cracker?","BAWWWWK george mellons griffing me!")
 	speak_emote = list("squawks","says","yells")
@@ -55,6 +56,7 @@
 	attacktext = "chomps"
 	friendly = "grooms"
 	mob_size = MOB_SIZE_SMALL
+	flying = 1
 
 	var/parrot_damage_upper = 10
 	var/parrot_state = PARROT_WANDER //Hunt for a perch when created
@@ -113,12 +115,12 @@
 			  /mob/living/simple_animal/parrot/proc/toggle_mode)
 
 
-/mob/living/simple_animal/parrot/Die()
+/mob/living/simple_animal/parrot/death(gibbed)
 	if(held_item)
 		held_item.loc = src.loc
 		held_item = null
 	walk(src,0)
-	..()
+	..(gibbed)
 
 /mob/living/simple_animal/parrot/Stat()
 	..()
@@ -347,18 +349,12 @@
 /mob/living/simple_animal/parrot/Life()
 	..()
 
-	//Sprite and AI update for when a parrot gets pulled
+	//Sprite update for when a parrot gets pulled
 	if(pulledby && stat == CONSCIOUS)
 		icon_state = "parrot_fly"
 		if(!client)
 			parrot_state = PARROT_WANDER
 		return
-
-	if(client || stat)
-		return //Lets not force players or dead/incap parrots to move
-
-	if(!isturf(src.loc) || !canmove || buckled)
-		return //If it can't move, dont let it move. (The buckled check probably isn't necessary thanks to canmove)
 
 
 //-----SPEECH
@@ -366,12 +362,19 @@
 	   Phrases that the parrot Hear()s get added to speach_buffer.
 	   Every once in a while, the parrot picks one of the lines from the buffer and replaces an element of the 'speech' list.
 	   Then it clears the buffer to make sure they dont magically remember something from hours ago. */
-	if(speech_buffer.len && prob(20))
+/mob/living/simple_animal/parrot/handle_automated_speech()
+	..()
+	if(speech_buffer.len && prob(10))
 		if(speak.len)
 			speak.Remove(pick(speak))
 
 		speak.Add(pick(speech_buffer))
 		clearlist(speech_buffer)
+
+
+/mob/living/simple_animal/parrot/handle_automated_movement()
+	if(!isturf(src.loc) || !canmove || buckled)
+		return //If it can't move, dont let it move. (The buckled check probably isn't necessary thanks to canmove)
 
 
 //-----SLEEPING
@@ -799,13 +802,11 @@
  * Sub-types
  */
 /mob/living/simple_animal/parrot/Poly
-	speak_chance = 1
 	name = "Poly"
 	desc = "Poly the Parrot. An expert on quantum cracker theory."
-	speak = list(":e Poly wanna cracker!", ":e Check the singlo, you chucklefucks!",":e Wire the solars, you lazy bums!",":e WHO TOOK THE DAMN HARDSUIT?",":e OH GOD ITS FREE CALL THE SHUTTLE",":e I don't understand how the thermo works...",":e Remember to check the SMES!",":e Need a dispenser here!",":e Hull breach! Fix it!",":e Oh god there's plasma everywhere!",":e You stupid fuck, you set up the generator ALL WRONG!",":e Don't eat me! SQWAUK! Don't eat me!",":e Dead men tell no tales.",":e CARP! CAAAARP!",":e All systems nominal.",":s Help! Traitor in engineering!",":s Help! An engineer is trying to kill me again SQWAUK!",":s Engineers keep stealing my stuff!",":u BAWK! Order more crackers!",":m Man overboard!",":c The crew are conspiring against you, but you didn't hear it from me...")
-//																																																																																																																																								// OTHER CHANNELS START HERE
+	speak = list("Poly wanna cracker!", ":e Check the singlo, you chucklefucks!",":e Wire the solars, you lazy bums!",":e WHO TOOK THE DAMN HARDSUITS?",":e OH GOD ITS FREE CALL THE SHUTTLE")
+
 /mob/living/simple_animal/parrot/Poly/New()
-//	ears = new /obj/item/device/radio/headset/headset_eng(src)
-	ears = new /obj/item/device/radio/headset/heads/captain(src)
-	available_channels = list(":e",":s",":u",":v",":c",":m")
+	ears = new /obj/item/device/radio/headset/headset_eng(src)
+	available_channels = list(":e")
 	..()
