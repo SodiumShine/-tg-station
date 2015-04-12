@@ -179,7 +179,8 @@ Security Officer
 /datum/job/officer/equip_items(var/mob/living/carbon/human/H)
 //	assign_sec_to_department(H)
 	if(H.gender == "female")
-		H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/security/secskirt(H), slot_w_uniform)
+//		H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/security/secskirt(H), slot_w_uniform) // SHINE for now until can be arsed fixing sprites
+		H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/security(H), slot_w_uniform)
 	else
 		H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/security(H), slot_w_uniform)
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/jackboots(H), slot_shoes)
