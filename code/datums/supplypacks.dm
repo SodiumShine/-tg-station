@@ -753,7 +753,7 @@ var/list/all_supply_groups = list(supply_emergency,supply_security,supply_engine
 					/obj/item/pizzabox/mushroom,
 					/obj/item/pizzabox/meat,
 					/obj/item/pizzabox/vegetable)
-	cost = 60
+	cost = 120
 	containername = "Pizza crate"
 
 /datum/supply_packs/organic/monkey

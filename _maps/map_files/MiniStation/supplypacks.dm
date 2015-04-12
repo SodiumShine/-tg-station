@@ -62,10 +62,10 @@
 	containername = "Pizza crate"
 */
 /datum/supply_packs/engineering/superair
-	name = "Atmosphere replacement canister"
+	name = "Atmosphere system replacement canister"
 	contains = list(/obj/machinery/portable_atmospherics/canister/superair)
-	cost = 115
-	containername = "Atmosphere replacement canister crate"
+	cost = 130
+	containername = "Atmosphere system replacement canister crate"
 	containertype = /obj/structure/closet/crate/secure
 
 /datum/supply_packs/engineering/pipedispenser
@@ -81,3 +81,27 @@
 	contains = list(/obj/item/weapon/c4/security,/obj/item/weapon/c4/security,/obj/item/weapon/c4/security)
 	containertype = /obj/structure/closet/crate/secure
 	containername = "Explosives crate"
+
+/datum/supply_packs/organic/produce
+	name = "Produce Crate"
+	contains = list(/obj/item/weapon/reagent_containers/food/condiment/rice,
+					/obj/item/weapon/reagent_containers/food/snacks/grown/banana,
+					/obj/item/weapon/reagent_containers/food/snacks/grown/potato,
+					/obj/item/weapon/reagent_containers/food/snacks/grown/potato,
+					/obj/item/weapon/reagent_containers/food/snacks/grown/potato,
+					/obj/item/weapon/reagent_containers/food/snacks/grown/tomato,
+					/obj/item/weapon/reagent_containers/food/snacks/grown/tomato,
+					/obj/item/weapon/reagent_containers/food/snacks/grown/tomato,
+					/obj/item/weapon/reagent_containers/food/snacks/grown/carrot,
+					/obj/item/weapon/reagent_containers/food/snacks/grown/carrot,
+					/obj/item/weapon/reagent_containers/food/snacks/grown/carrot,
+					/obj/item/weapon/reagent_containers/food/snacks/grown/cabbage,
+					/obj/item/weapon/reagent_containers/food/snacks/grown/cabbage,
+					/obj/item/weapon/reagent_containers/food/snacks/grown/cabbage,
+					/obj/item/weapon/reagent_containers/food/snacks/grown/apple,
+					/obj/item/weapon/reagent_containers/food/snacks/grown/citrus/orange,
+					/obj/item/weapon/reagent_containers/food/snacks/grown/citrus/lemon,
+					/obj/item/weapon/reagent_containers/food/snacks/grown/watermelon,
+					/obj/item/weapon/reagent_containers/food/snacks/grown/pumpkin,)
+	cost = 30
+	containername = "produce crate"
