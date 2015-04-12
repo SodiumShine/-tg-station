@@ -85,7 +85,7 @@
 	if(!src.opened && src.broken)
 		user << "<span class='notice'>The locker appears to be broken.</span>"
 		return
-
+/*
 	if(istype(W, /obj/item/weapon/screwdriver) && !src.broken && !src.opened)
 		if(panel_open == 1)
 			user << "<span class='notice'>You screw the access panel closed.</span>"
@@ -169,7 +169,7 @@
 		visible_message("<span class='warning'>[user] has sliced the locker open with an energy blade!</span>", "You hear metal being sliced and sparks flying.")
 	else
 		..(W, user)
-
+*/
 /obj/structure/closet/secure_closet/emag_act(mob/user as mob)
 	if(!broken)
 		broken = 1
