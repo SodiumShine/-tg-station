@@ -2,13 +2,13 @@
 	name = "The Flu"
 	max_stages = 3
 	spread_text = "Airborne"
-	cure_text = "Spaceacillin"
-	cures = list("spaceacillin")
+	cure_text = "Phenol"
+	cures = list("phenol")
 	cure_chance = 10
 	agent = "H13N1 flu virion"
 	viable_mobtypes = list(/mob/living/carbon/human,/mob/living/carbon/monkey)
 	permeability_mod = 0.75
-	desc = "If left untreated the subject will feel quite unwell."
+	desc = "If left untreated the subject will feel quite unwell. Resting helps with the pain."
 	severity = MEDIUM
 
 /datum/disease/flu/stage_act()
@@ -16,7 +16,7 @@
 	switch(stage)
 		if(2)
 			if(affected_mob.lying && prob(20))
-				affected_mob << "<span class='notice'>You feel better.</span>"
+				affected_mob << "<span class='notice'>You feel a bit better.</span>"
 				stage--
 				return
 			if(prob(1))
@@ -35,7 +35,7 @@
 
 		if(3)
 			if(affected_mob.lying && prob(15))
-				affected_mob << "<span class='notice'>You feel better.</span>"
+				affected_mob << "<span class='notice'>You feel a bit better.</span>"
 				stage--
 				return
 			if(prob(1))

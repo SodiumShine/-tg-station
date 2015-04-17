@@ -11,7 +11,7 @@
 	var/list/original_dna = list()
 	var/transformed = 0
 	desc = "This disease transplants the genetic code of the intial vector into new hosts."
-	severity = "Moderate"
+	severity = MEDIUM
 
 
 /datum/disease/dnaspread/stage_act()

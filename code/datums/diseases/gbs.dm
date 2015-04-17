@@ -13,7 +13,7 @@
 	stage_prob = 2
 	desc = "If left untreated the subject will explode violently."
 //	severity = "Major"
-	severity = "BIOHAZARD THREAT!"
+	severity = BIOHAZARD
 
 /datum/disease/gbs/stage_act()
 	..()

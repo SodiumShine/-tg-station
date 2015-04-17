@@ -22,7 +22,8 @@
 /datum/round_event/disease_outbreak_minor/start()
 	if(!virus_type)
 		virus_type = pick(/datum/disease/flu, /datum/disease/cold, /datum/disease/advance/rash, /datum/disease/advance/migraine, /datum/disease/advance/dorf, /datum/disease/pierrot_throat,
-							/datum/disease/magnitis, /datum/disease/cold9, /datum/disease/dna_retrovirus, /datum/disease/wizarditis, /datum/disease/anxiety,/datum/disease/beesease)
+							/datum/disease/magnitis, /datum/disease/cold9, /datum/disease/dna_retrovirus, /datum/disease/anxiety,/datum/disease/beesease,
+							/datum/disease/advance/voice_change, /datum/disease/advance/hullucigen)
 
 	for(var/mob/living/carbon/human/H in shuffle(living_mob_list))
 		var/turf/T = get_turf(H)

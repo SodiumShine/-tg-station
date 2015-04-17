@@ -2,8 +2,8 @@
 	name = "Pierrot's Throat"
 	max_stages = 4
 	spread_text = "Airborne"
-	cure_text = "Concentrated Banana and Spaceacillin"
-	cures = list("banana","spaceacillin")
+	cure_text = "Banana Concentrate and Phenol"
+	cures = list("banana","phenol")
 	cure_chance = 25
 	agent = "HONK"
 	viable_mobtypes = list(/mob/living/carbon/human)

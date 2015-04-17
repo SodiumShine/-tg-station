@@ -3,12 +3,13 @@
 	max_stages = 4
 	spread_text = "On contact"
 	spread_flags = CONTACT_GENERAL
-	cure_text = "Leporazine"
-	cures = list("leporazine")
+	cure_text = "A small dose of Thermite"
+	cures = list("thermite")
 	agent = "ICE9-rhinovirus"
 	viable_mobtypes = list(/mob/living/carbon/human)
 	desc = "If left untreated the subject will slow, as if partly frozen."
 	severity = MEDIUM
+	cure_chance = 50
 
 /datum/disease/cold9/stage_act()
 	..()

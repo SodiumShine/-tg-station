@@ -31,7 +31,7 @@
 												"<span class='userdanger'>Your stomach buzzes violently!</span>")
 			if(prob(5))
 				affected_mob << "<span class='danger'>You feel something moving in your throat.</span>"
-			if(prob(1))
+			if(prob(3))
 				affected_mob.visible_message("<span class='danger'>[affected_mob] coughs up a swarm of bees!</span>", \
 													"<span class='userdanger'>You cough up a swarm of bees!</span>")
 				new /mob/living/simple_animal/hostile/poison/bees(affected_mob.loc)

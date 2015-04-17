@@ -10,7 +10,7 @@
 	disease_flags = CAN_CARRY|CAN_RESIST
 	permeability_mod = 0.75
 	desc = "No one is quite sure how this virus works."
-	severity = "Minor"
+	severity = MINOR
 
 /datum/disease/magnitis/stage_act()
 	..()
