@@ -24,7 +24,7 @@
 
 /datum/species/lizard
 	// Reptilian humanoids with scaled skin and tails.
-	name = "Reptile"
+	name = "Reptilian"
 	id = "lizard"
 	say_mod = "hisses"
 	default_color = "00FF00"
@@ -123,7 +123,7 @@
 
 /datum/species/shadow
 	// Humans cursed to stay in the darkness, lest their life forces drain. They regain health in shadow and die in light.
-	name = "Shadowling" // SHINE changed ??? to Shadow
+	name = "Shadowperson" // SHINE changed ??? to Shadow
 	id = "shadow"
 	darksight = 8
 	sexes = 0
@@ -261,12 +261,12 @@
 	// Animated beings of stone. They have increased defenses, and do not need to breathe. They're also slow as fuuuck.
 	name = "Golem"
 	id = "golem"
-	specflags = list(HEATRES,COLDRES,NOGUNS,NOBLOOD,RADIMMUNE) // SHINE removed NOBREATH
+	specflags = list(HEATRES,COLDRES,NOGUNS,NOBLOOD,RADIMMUNE,NOBREATH) // SHINE removed NOBREATH
 	speedmod = 3
 	armor = 35 // SHINE nerfed 55 to 35
 	punchmod = 5
-	no_equip = list(slot_wear_suit, slot_gloves, slot_shoes, slot_head, slot_w_uniform) // slot_wear_mask SHINE letting them have masks on
-	nojumpsuit = 0 // SHINE not letting them have magic skin pockets anymore
+	no_equip = list(slot_wear_mask, slot_wear_suit, slot_gloves, slot_shoes, slot_head, slot_w_uniform) // slot_wear_mask SHINE letting them have masks on
+	nojumpsuit = 1 // SHINE not letting them have magic skin pockets anymore
 	meat = /obj/item/weapon/reagent_containers/food/snacks/meat/slab/human/mutant/golem
 	roundstart = 1 // SHINE
 //	magicIDslot = 1 // SHINE everyone must have ID
@@ -290,11 +290,11 @@
 
 /datum/species/fly
 	// Humans turned into fly-like abominations in teleporter accidents.
-	name = "Human?" // SHINE changed Human? to Flyperson
+	name = "Flyperson" // SHINE changed Human? to Flyperson
 	id = "fly"
 	say_mod = "buzzes"
 	meat = /obj/item/weapon/reagent_containers/food/snacks/meat/slab/human/mutant/fly
-	roundstart = 0 // SHINE
+	roundstart = 1 // SHINE
 
 /datum/species/fly/handle_chemicals(datum/reagent/chem, mob/living/carbon/human/H)
 	if(chem.id == "pestkiller")
@@ -323,12 +323,16 @@
 
 /datum/species/zombie
 	// 1spooky
-	name = "Brain-Munching Zombie"
+	name = "Recycled Human"
 	id = "zombie"
 	say_mod = "moans"
 	sexes = 0
+	speedmod = 2
 	meat = /obj/item/weapon/reagent_containers/food/snacks/meat/slab/human/mutant/zombie
-	specflags = list(NOBREATH,HEATRES,COLDRES,NOBLOOD,RADIMMUNE)
+	specflags = list(NOBREATH,NOBLOOD,RADIMMUNE,NOGUNS,HAIR,FACEHAIR,EYECOLOR)
+	burnmod = 1.25
+	roundstart = 1
+	armor = -10
 
 /datum/species/zombie/handle_speech(message)
 	var/list/message_list = text2list(message, " ")
@@ -348,7 +352,7 @@
 
 /datum/species/cosmetic_zombie
 	name = "Human"
-	id = "zombie"
+	id = "czombie"
 	sexes = 0
 	meat = /obj/item/weapon/reagent_containers/food/snacks/meat/slab/human/mutant/zombie
 
@@ -379,3 +383,89 @@
 	for(var/mob/M in dead_mob_list)
 		M << "<i><font color=#800080><b>[user.name]:</b> [message]</font></i>"
 	return ""
+
+
+///////////////////////////////////////////////////////////////////////////////
+///SHINE SPECIES///
+///////////////////////////////////////////////////////////////////////////////
+
+/datum/species/gamoid
+	name = "Gamoid/Android"
+	id = "gamoid"
+	say_mod = "states"
+	sexes = 1
+	specflags = list(NOBLOOD,NOBREATH,EYECOLOR,HAIR,FACEHAIR,LIPS,RADIMMUNE)
+	exotic_blood = /datum/reagent/oil
+	use_skintones = 1
+	meat = /obj/item/weapon/reagent_containers/food/snacks/meat/slab/synthmeat
+	roundstart = 1
+
+// Can't eat or drink
+/datum/species/gamoid/handle_chemicals(datum/reagent/chem, mob/living/carbon/human/H)
+//	if(chem.id == "")
+	H.adjustFireLoss(3)
+	H.reagents.remove_reagent(chem.id, REAGENTS_METABOLISM)
+	if(prob(33))
+		H << "<span class='danger'>WARNING: Foreign contaminant detected internally. Systems damaged.</span>"
+	return 1
+
+
+///Repairs and recharging///
+/mob/living/carbon/human/attackby(obj/item/weapon/W as obj, mob/user as mob, params)
+	if(src.dna.species.id == "gamoid")
+
+		if (istype(W, /obj/item/weapon/weldingtool) && user.a_intent == "help")
+			user.changeNext_move(CLICK_CD_MELEE)
+			var/obj/item/weapon/weldingtool/WT = W
+			if (src == user)
+				user << "<span class='warning'>You lack the reach to be able to repair yourself.</span>"
+				return 1
+			if (src.health >= src.maxHealth)
+				user << "<span class='warning'>[src] does not need repairs.</span>"
+				return 1
+			if (WT.remove_fuel(0, user))
+				adjustBruteLoss(-10)
+				adjustFireLoss(-10)
+				adjustToxLoss(-10)
+				updatehealth()
+				visible_message("<span class='notice'>[user] has made some repairs to [src].</span>")
+				return 0
+			else
+				user << "<span class='warning'>The welder must be on for this task.</span>"
+				return 1
+
+		if (istype(W, /obj/item/weapon/stock_parts/cell) && user.a_intent == "help")
+			user.changeNext_move(CLICK_CD_MELEE)
+			var/obj/item/weapon/stock_parts/cell/C = W
+			if (src == user)
+				user << "<span class='warning'>You cannot reach your own powercell interface port.</span>"
+				return 1
+
+			if (src.nutrition >= NUTRITION_LEVEL_FULL || src.nutrition >= (NUTRITION_LEVEL_FULL - 10))
+				user << "<span class='warning'>Gamoid unit already at maximum charge capacity.</span>"
+				return 1
+			if (C.charge > 0)
+				user << "<span class='notice'>You insert the cell and begin recharging the gamoid.</span>"
+				var/powergap = 0
+				powergap = (NUTRITION_LEVEL_FULL - src.nutrition)
+//				world << "DEBUG [powergap]"
+
+				src.nutrition += C.charge
+				C.charge -= powergap
+				if (C.charge < 0)
+					C.charge = 0
+				if (src.nutrition >= NUTRITION_LEVEL_FULL)
+					src.nutrition = NUTRITION_LEVEL_FULL
+				src << "<span class='notice'>SYSTEM NOTICE: Internal power storage has finished charging.</span>"
+				return 0
+			if (C.charge < 3)
+				user << "<span class='warning'>The powercell is empty!</span>"
+				return 1
+		return ..()
+	return ..()
+
+/datum/species/gamoid/spec_life(mob/living/carbon/human/H)
+	if(H.viruses.len > 0)
+		for(var/datum/disease/D in H.viruses)
+			D.cure()
+//			world << "DEBUG: viruses removed from gamoid, cured [D.name]"

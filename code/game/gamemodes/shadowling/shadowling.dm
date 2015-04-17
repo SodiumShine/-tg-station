@@ -225,6 +225,7 @@ Made by Xhuis
 	specflags = list(NOBREATH,NOBLOOD,RADIMMUNE,NOGUNS) //Can't use guns due to muzzle flash
 	burnmod = 2 //2x burn damage lel
 	heatmod = 2
+	roundstart = 0
 
 /datum/species/shadow/ling/spec_life(mob/living/carbon/human/H)
 	//H.shadowling_status = 1 //If they are affected more strongly by flashes and stuff
