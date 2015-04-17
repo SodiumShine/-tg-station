@@ -210,7 +210,7 @@ var/list/uplink_items = list()
 	Use with extreme caution, to prevent exposure to yourself and your fellow operatives."
 	item = /obj/item/weapon/reagent_containers/spray/chemsprayer/bioterror
 	cost = 20
-	gamemodes = list(/datum/game_mode/nuclear,/datum/game_mode/gang)
+//	gamemodes = list(/datum/game_mode/nuclear,/datum/game_mode/gang) // SHINE Allow normal traitors to use it. Why not
 	surplus = 0
 
 /datum/uplink_item/dangerous/gygax

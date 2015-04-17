@@ -1,5 +1,5 @@
 // Modified uplink items to discourage tator murderboning
-
+/*
 /datum/uplink_item/dangerous/revolver/New()
 	..()
 	cost = 10
@@ -27,7 +27,7 @@
 /datum/uplink_item/device_tools/c4/New()
 	..()
 	cost = 4 // COST 1 to 4
-
+*/
 
 /datum/uplink_item/device_tools/singularity_beacon/New()
 	..()
@@ -38,6 +38,7 @@
 	..()
 	item = null // Disabled
 
+/*
 /datum/uplink_item/dangerous/viscerators/New() // SHINE transfered
 	..()
 	name = "Viscerator Delivery Grenade"
@@ -65,3 +66,4 @@
 /datum/uplink_item/device_tools/shield/New() // SHINE add
 	..()
 	gamemodes = list() // SHINE empty list
+*/
