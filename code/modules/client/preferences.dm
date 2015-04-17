@@ -17,7 +17,8 @@ var/global/list/special_roles = list( //keep synced with the defines BE_* in set
 	"ninja",										//10
 	"monkey" = /datum/game_mode/monkey,				//11
 	"gangster" = /datum/game_mode/gang,				//12
-	"shadowling" = /datum/game_mode/shadowling		//13
+	"shadowling" = /datum/game_mode/shadowling,		//13
+	"abductor" = /datum/game_mode/abduction			//14
 )
 
 
@@ -173,7 +174,7 @@ datum/preferences
 				dat += "<table width='100%'><tr><td width='24%' valign='top'>"
 
 				if(config.mutant_races)
-					dat += "<b>Species:</b><BR><a href='?_src_=prefs;preference=species;task=input'>[pref_species.name]</a><a href='http://zebra.byondpanel.com/species.html'>?</a><BR>"
+					dat += "<b>Species:</b><BR><a href='?_src_=prefs;preference=species;task=input'>[pref_species.name]</a><BR>"
 				else
 					dat += "<b>Species:</b> Human<BR>"
 
