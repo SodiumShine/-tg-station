@@ -394,7 +394,7 @@
 	id = "gamoid"
 	say_mod = "states"
 	sexes = 1
-	specflags = list(NOBLOOD,NOBREATH,EYECOLOR,HAIR,FACEHAIR,LIPS,RADIMMUNE)
+	specflags = list(COLDRES,NOBLOOD,NOBREATH,EYECOLOR,HAIR,FACEHAIR,LIPS,RADIMMUNE)
 	exotic_blood = /datum/reagent/oil
 	use_skintones = 1
 	meat = /obj/item/weapon/reagent_containers/food/snacks/meat/slab/synthmeat
@@ -445,7 +445,7 @@
 				user << "<span class='warning'>Gamoid unit already at maximum charge capacity.</span>"
 				return 1
 			if (C.charge > 0)
-				user << "<span class='notice'>You insert the cell and begin recharging the gamoid.</span>"
+				user << "<span class='notice'>You insert the powercell into [src.name].</span>"
 				var/powergap = 0
 				powergap = (NUTRITION_LEVEL_FULL - src.nutrition)
 //				world << "DEBUG [powergap]"
@@ -465,7 +465,18 @@
 	return ..()
 
 /datum/species/gamoid/spec_life(mob/living/carbon/human/H)
-	if(H.viruses.len > 0)
+	if(H.viruses.len > 0) // SHINE robots dont get sick
 		for(var/datum/disease/D in H.viruses)
 			D.cure()
 //			world << "DEBUG: viruses removed from gamoid, cured [D.name]"
+
+//	var/powerwarned
+//	if((H.nutrition+50) > NUTRITION_LEVEL_STARVING)
+//		powerwarned = 0
+//	if((H.nutrition+50) < NUTRITION_LEVEL_STARVING && powerwarned == 0) // SHINE robots run out of power and shutdown
+//		H << "<span class='warning'>WARNING: Power levels low. System will enter Sleep Mode if power is not recharged soon.</span>"
+//		powerwarned = 1
+	if(H.nutrition < NUTRITION_LEVEL_STARVING)
+		if(!H.sleeping)
+			H << "<span class='warning'>WARNING: Entering sleep mode...</span>"
+		H.sleeping = 10
