@@ -461,6 +461,21 @@
 			if (C.charge < 3)
 				user << "<span class='warning'>The powercell is empty!</span>"
 				return 1
+/*
+		if (istype(w, /obj/item/weapon/card/id) && user.a_intent == "help")
+			user.changeNext_move(CLICK_CD_MELEE)
+			var/obj/item/weapon/card/id/ID = W
+			if (src == user)
+				user << "<span class='warning'>Your programming disallows this action.</span>"
+				return 1
+			if(src.nutrition < NUTRITION_LEVEL_STARVING)
+				user << "<span class='warning'>[src.name] is currently in Emergency Sleep Mode and cannot be powered on.</span>"
+				return 1
+			if (29 in ID.access)
+				if (!src.sleeping)
+				src.sleeping =
+
+*/
 		return ..()
 	return ..()
 
@@ -478,5 +493,5 @@
 //		powerwarned = 1
 	if(H.nutrition < NUTRITION_LEVEL_STARVING)
 		if(!H.sleeping)
-			H << "<span class='warning'>WARNING: Entering sleep mode...</span>"
+			H << "<span class='warning'>WARNING: Entering Emergency Sleep Mode...</span>"
 		H.sleeping = 10
