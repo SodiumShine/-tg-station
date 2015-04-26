@@ -23,6 +23,7 @@ client/proc/one_click_antag()
 		<a href='?src=\ref[src];makeAntag=10'>Make Deathsquad (Requires Ghosts)</a><br>
 		<a href='?src=\ref[src];makeAntag=13'>Make Emergency Response Team (Requires Ghosts)</a><br>
 		<a href='?src=\ref[src];makeAntag=14'>Make Abductor Team (Requires Ghosts)</a><br>
+		<a href='?src=\ref[src];makeAntag=15'>Make Revenant (Requires Ghost)</a><br>
 		"}
 /* These dont work just yet
 	Ninja, aliens and deathsquad I have not looked into yet
@@ -314,6 +315,7 @@ client/proc/one_click_antag()
 /datum/admins/proc/makeDeathsquad()
 	var/mission = input("Assign a mission to the deathsquad", "Assign Mission", "Leave no witnesses.")
 	var/list/mob/dead/observer/candidates = getCandidates("Do you wish to be considered for an elite Nanotrasen Strike Team?", "deathsquad", null)
+	var/squadSpawned = 0
 
 	if(candidates.len >= 1) //Minimum 2 to be considered a squad // SHINE min 1
 		//Pick the lucky players
@@ -366,11 +368,12 @@ client/proc/one_click_antag()
 				message_admins("The deathsquad has spawned with the mission: [mission].")
 			log_game("[key_name(Commando)] has been selected as a Death Commando")
 			numagents--
+			squadSpawned++
 
-		if (numagents == candidates.len)
-			return 0 // No one got spawned!
-		else
+		if (squadSpawned)
 			return 1
+		else
+			return 0
 
 	return
 
@@ -411,6 +414,7 @@ client/proc/one_click_antag()
 /datum/admins/proc/makeEmergencyresponseteam()
 	var/mission = input("Assign a mission to the Emergency Response Team", "Assign Mission", "Assist the station.")
 	var/list/mob/dead/observer/candidates = getCandidates("Do you wish to be considered for an elite Nanotrasen Emergency Response Team?", "deathsquad", null)
+	var/teamSpawned = 0
 
 	if(candidates.len >= 1) //Minimum 4 to be considered a squad
 		//Pick the (un)lucky players
@@ -480,11 +484,12 @@ client/proc/one_click_antag()
 				message_admins("The emergency response team has spawned with the mission: [mission].")
 			log_game("[key_name(ERTOperative)] has been selected as an Emergency Response Officer")
 			numagents--
+			teamSpawned++
 
-		if (numagents == candidates.len)
-			return 0 // No one got spawned!
-		else
+		if (teamSpawned)
 			return 1
+		else
+			return 0
 
 	return
 
@@ -533,6 +538,20 @@ client/proc/one_click_antag()
 	else
 		return
 
+/datum/admins/proc/makeRevenant()
+	var/list/mob/dead/observer/candidates = getCandidates("Do you wish to be considered for becoming a revenant?", "revenant", null)
+	if(candidates.len >= 1)
+		var/spook_op = pick(candidates)
+		var/mob/dead/observer/O = spook_op
+		candidates -= spook_op
+		var/mob/living/simple_animal/revenant/revvie = new /mob/living/simple_animal/revenant(get_turf(O))
+		revvie.key = O.key
+		revvie.mind.assigned_role = "revenant"
+		revvie.mind.special_role = "Revenant"
+		return 1
+	else
+		return
+
 /datum/admins/proc/getCandidates(var/Question, var/jobbanType, var/datum/game_mode/gametypeCheck)
 	var/list/mob/dead/observer/candidates = list()
 	var/time_passed = world.time
@@ -549,12 +568,19 @@ client/proc/one_click_antag()
 			if(jobban_isbanned(G, jobbanType) || jobban_isbanned(G, "Syndicate"))
 				continue
 		spawn(0)
+			G << 'sound/misc/notice2.ogg' //Alerting them to their consideration
 			switch(alert(G,Question,"Please answer in 30 seconds!","Yes","No"))
 				if("Yes")
+					G << 'sound/machines/ping.ogg'
+					G << "<span class='notice'>Choice registered: Yes.</span>"
 					if((world.time-time_passed)>300)//If more than 30 game seconds passed.
+						G << "<span class='danger'>Sorry, you were too late for the consideration!</span>"
+						G << 'sound/machines/buzz-sigh.ogg'
 						return
 					candidates += G
 				if("No")
+					G << "<span class='danger'>Choice registered: No.</span>"
+					G << 'sound/machines/buzz-sigh.ogg'
 					return
 				else
 					return
