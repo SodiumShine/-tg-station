@@ -10,12 +10,15 @@
 	announceWhen	= 1
 	var/list/wave_type
 
+
 /datum/round_event/meteor_wave/New()
 	..()
 	random_wave_type()
 
+
 /datum/round_event/meteor_wave/proc/random_wave_type()
-	var/picked_wave = pickweight(list("normal" = 75, "threatening" = 20, "catastrophic" = 5))
+//	var/picked_wave = pickweight(list("normal" = 75, "threatening" = 20, "catastrophic" = 5)) // SHINE for ministation
+	var/picked_wave = pickweight(list("normal" = 100, "threatening" = 0, "catastrophic" = 0))
 	switch(picked_wave)
 		if("normal")
 			wave_type = meteors_normal
@@ -23,6 +26,8 @@
 			wave_type = meteors_threatening
 		if("catastrophic")
 			wave_type = meteors_catastrophic
+
+
 
 /datum/round_event/meteor_wave/announce()
 	priority_announce("Meteors have been detected on collision course with the station.", "Meteor Alert", 'sound/AI/meteors.ogg')

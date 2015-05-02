@@ -268,7 +268,7 @@
 	no_equip = list(slot_wear_mask, slot_wear_suit, slot_gloves, slot_shoes, slot_head, slot_w_uniform) // slot_wear_mask SHINE letting them have masks on
 	nojumpsuit = 1 // SHINE not letting them have magic skin pockets anymore
 	meat = /obj/item/weapon/reagent_containers/food/snacks/meat/slab/human/mutant/golem
-	roundstart = 1 // SHINE
+	roundstart = 0 // SHINE
 //	magicIDslot = 1 // SHINE everyone must have ID
 
 /*
@@ -403,7 +403,7 @@
 // Can't eat or drink
 /datum/species/gamoid/handle_chemicals(datum/reagent/chem, mob/living/carbon/human/H)
 //	if(chem.id == "")
-	H.adjustFireLoss(3)
+	H.adjustFireLoss(1)
 	H.reagents.remove_reagent(chem.id, REAGENTS_METABOLISM)
 	if(prob(33))
 		H << "<span class='danger'>WARNING: Foreign contaminant detected internally. Systems damaged.</span>"
@@ -480,9 +480,9 @@
 	return ..()
 
 /datum/species/gamoid/spec_life(mob/living/carbon/human/H)
-	if(H.viruses.len > 0) // SHINE robots dont get sick
-		for(var/datum/disease/D in H.viruses)
-			D.cure()
+//	if(H.viruses.len > 0) // SHINE robots dont get sick // SHINE have virusimmune now
+//		for(var/datum/disease/D in H.viruses)
+//			D.cure()
 //			world << "DEBUG: viruses removed from gamoid, cured [D.name]"
 
 //	var/powerwarned

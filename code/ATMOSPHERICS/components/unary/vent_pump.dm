@@ -405,8 +405,8 @@
 		initial_loc.air_vent_names -= id_tag
 	..()
 
-	if(clogged)
-		L << "You'll never fit in there with all that gunk."
+//	if(clogged)
+//		L << "You'll never fit in there with all that gunk."
 
 /obj/machinery/atmospherics/unary/vent_pump/can_crawl_through()
 	return !welded
