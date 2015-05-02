@@ -261,7 +261,7 @@
 	// Animated beings of stone. They have increased defenses, and do not need to breathe. They're also slow as fuuuck.
 	name = "Golem"
 	id = "golem"
-	specflags = list(HEATRES,COLDRES,NOGUNS,NOBLOOD,RADIMMUNE,NOBREATH) // SHINE removed NOBREATH
+	specflags = list(NOBREATH,HEATRES,COLDRES,NOGUNS,NOBLOOD,RADIMMUNE,VIRUSIMMUNE)
 	speedmod = 3
 	armor = 35 // SHINE nerfed 55 to 35
 	punchmod = 5
@@ -316,7 +316,7 @@
 	say_mod = "rattles"
 	sexes = 0
 	meat = /obj/item/weapon/reagent_containers/food/snacks/meat/slab/human/mutant/skeleton
-	specflags = list(NOBREATH,HEATRES,COLDRES,NOBLOOD,RADIMMUNE)
+	specflags = list(NOBREATH,HEATRES,COLDRES,NOBLOOD,RADIMMUNE,VIRUSIMMUNE)
 /*
  ZOMBIES
 */
@@ -364,7 +364,7 @@
 	say_mod = "gibbers"
 	sexes = 0
 	invis_sight = SEE_INVISIBLE_LEVEL_ONE
-	specflags = list(NOBLOOD,NOBREATH)
+	specflags = list(NOBLOOD,NOBREATH,VIRUSIMMUNE)
 	var/scientist = 0 // vars to not pollute spieces list with castes
 	var/agent = 0
 	var/team = 1
@@ -394,7 +394,7 @@
 	id = "gamoid"
 	say_mod = "states"
 	sexes = 1
-	specflags = list(COLDRES,NOBLOOD,NOBREATH,EYECOLOR,HAIR,FACEHAIR,LIPS,RADIMMUNE)
+	specflags = list(COLDRES,NOBLOOD,NOBREATH,EYECOLOR,HAIR,FACEHAIR,LIPS,RADIMMUNE,VIRUSIMMUNE)
 	exotic_blood = /datum/reagent/oil
 	use_skintones = 1
 	meat = /obj/item/weapon/reagent_containers/food/snacks/meat/slab/synthmeat

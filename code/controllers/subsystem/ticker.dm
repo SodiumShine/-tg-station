@@ -51,8 +51,6 @@ var/datum/subsystem/ticker/ticker
 	if(SSevent.holidays && SSevent.holidays[APRIL_FOOLS])
 		login_music = 'sound/ambience/clown.ogg'
 
-	round_end_sound = pick('sound/AI/newroundsexy.ogg','sound/misc/apcdestroyed.ogg','sound/misc/bangindonk.ogg','sound/misc/leavingtg.ogg')
-
 /datum/subsystem/ticker/Initialize()
 	if(!syndicate_code_phrase)		syndicate_code_phrase	= generate_code_phrase()
 	if(!syndicate_code_response)	syndicate_code_response	= generate_code_phrase()
@@ -78,6 +76,8 @@ var/datum/subsystem/ticker/ticker
 					++totalPlayersReady
 
 			//countdown
+			if(timeLeft < 0)
+				return
 			timeLeft -= wait
 
 			if(timeLeft <= 30 && !tipped)
