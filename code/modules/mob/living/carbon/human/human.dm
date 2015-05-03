@@ -48,22 +48,9 @@
 /mob/living/carbon/human/Destroy()
 	for(var/atom/movable/organelle in organs)
 		qdel(organelle)
-/*
-	////Spawn brain on death bit////////////////////////////////////////////////
-	if(braingib && mind)//Safety for when dusted or no brain
-		braingib.name = "brain"
-		braingib.brainmob.name = src.real_name
-		braingib.brainmob.real_name = src.real_name
-		braingib.brainmob.stat = 2
-		var/turf/T = get_turf(loc)//To hopefully prevent run time errors.
-		if(T)
-			braingib.loc = T
-		mind.transfer_to(braingib.brainmob)
-		if(braingib.brainmob.mind == null || !braingib.brainmob.key)
-			message_admins("Bad brain made")
-			qdel(braingib)
-		braingib = null
-*/
+	organs = list()
+	return ..()
+
 /mob/living/carbon/human/Stat()
 	..()
 
