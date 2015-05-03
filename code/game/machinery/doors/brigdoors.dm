@@ -38,8 +38,8 @@
 	Radio = new/obj/item/device/radio(src)
 	Radio.listening = 0
 
-	pixel_x = ((src.dir & 3)? (0) : (src.dir == 4 ? 32 : -32))
-	pixel_y = ((src.dir & 3)? (src.dir ==1 ? 24 : -32) : (0))
+//	pixel_x = ((src.dir & 3)? (0) : (src.dir == 4 ? 32 : -32)) // SHINE what purpose does this serve but to annoy
+//	pixel_y = ((src.dir & 3)? (src.dir ==1 ? 24 : -32) : (0))
 
 	spawn(20)
 		for(var/obj/machinery/door/window/brigdoor/M in range(20, src))

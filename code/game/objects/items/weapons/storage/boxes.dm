@@ -616,3 +616,14 @@
 	new /obj/item/weapon/grenade/chem_grenade/metalfoam(src)
 	new /obj/item/weapon/grenade/chem_grenade/metalfoam(src)
 	new /obj/item/weapon/grenade/chem_grenade/metalfoam(src)
+
+/obj/item/weapon/storage/box/securityc4
+	name = "box of security breaching charges (WARNING)"
+	desc = "Full of effective skeleton keys"
+	icon_state = "flashbang"
+
+/obj/item/weapon/storage/box/securityc4/New()
+	..()
+	new /obj/item/weapon/c4/security(src)
+	new /obj/item/weapon/c4/security(src)
+	new /obj/item/weapon/c4/security(src)

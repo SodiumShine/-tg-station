@@ -211,11 +211,11 @@
 		// Start gathering
 
 		if(A.blood_DNA && A.blood_DNA.len)
-			if(prob(60))
+			if(prob(50))
 				blood = A.blood_DNA.Copy()
 
 		if(A.suit_fibers && A.suit_fibers.len)
-			if(prob(60))
+			if(prob(50))
 				fibers = A.suit_fibers.Copy()
 
 		if(ishuman(A))
@@ -227,21 +227,21 @@
 		else if(!ismob(A))
 
 			if(A.fingerprints && A.fingerprints.len)
-				if(prob(60))
+				if(prob(50))
 					fingerprints = A.fingerprints.Copy()
 
 			// Only get reagents from non-mobs.
 			if(A.reagents && A.reagents.reagent_list.len)
 
 				for(var/datum/reagent/R in A.reagents.reagent_list)
-					if(prob(60))
+					if(prob(50))
 						reagents[R.name] = R.volume
 
 					// Get blood data from the blood reagent.
 					if(istype(R, /datum/reagent/blood))
 
 						if(R.data["blood_DNA"] && R.data["blood_type"])
-							if(prob(60))
+							if(prob(50))
 								var/blood_DNA = R.data["blood_DNA"]
 								var/blood_type = R.data["blood_type"]
 								blood[blood_DNA] = blood_type
