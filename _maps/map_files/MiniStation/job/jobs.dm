@@ -28,7 +28,7 @@
 /datum/job/cargo_tech/New()
 	..()
 	total_positions = 2 // SHINE 3 to 2
-	spawn_positions = 2
+	spawn_positions = 1
 	access = list(access_maint_tunnels, access_mailsorting, access_cargo, access_cargo_bot, access_qm, access_mint, access_mining, access_mining_station)
 	minimal_access = list(access_maint_tunnels, access_cargo, access_cargo_bot, access_mining, access_mint, access_mining_station, access_mailsorting)
 
@@ -37,7 +37,7 @@
 /datum/job/engineer/New()
 	..()
 	total_positions = 3 // SHINE REDUCED 4 to 3
-	spawn_positions = 3
+	spawn_positions = 1
 	access = list(access_eva, access_engine, access_engine_equip, access_tech_storage, access_maint_tunnels, access_external_airlocks, access_construction, access_atmospherics, access_tcomsat)
 	minimal_access = list(access_engine, access_engine_equip, access_tech_storage, access_maint_tunnels, access_external_airlocks, access_construction, access_tcomsat, access_atmospherics)
 
@@ -46,7 +46,7 @@
 /datum/job/doctor/New()
 	..()
 	total_positions = 2 // SHINE 4 to 2
-	spawn_positions = 2
+	spawn_positions = 1
 	access = list(access_medical, access_morgue, access_surgery, access_chemistry, access_virology, access_genetics)
 	minimal_access = list(access_medical, access_morgue, access_surgery, access_chemistry, access_genetics)
 
@@ -63,7 +63,7 @@
 /datum/job/scientist/New()
 	..()
 	total_positions = 2 // SHINE 4 to 2
-	spawn_positions = 2
+	spawn_positions = 1
 	access = list(access_robotics, access_tox, access_tox_storage, access_research, access_xenobiology)
 	minimal_access = list(access_tox, access_tox_storage, access_research, access_xenobiology, access_robotics)
 
@@ -78,6 +78,11 @@
 /datum/job/officer/New()
 	..()
 	total_positions = 2 // SHINE 4 to 2
-	spawn_positions = 2
+	spawn_positions = 1
 	access = list(access_security, access_sec_doors, access_brig, access_court)
 	minimal_access = list(access_security, access_sec_doors, access_brig, access_court)
+
+/datum/job/janitor/New() // SHINE added
+	..()
+	total_positions = 1
+	spawn_positions = 1
