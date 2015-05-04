@@ -38,7 +38,7 @@
 		for(var/datum/disease/D in H.viruses)
 			foundAlready = 1
 			break
-		if(H.stat == DEAD || foundAlready)
+		if(H.stat == DEAD || foundAlready || H.dna && VIRUSIMMUNE in H.dna.species.specflags)
 			continue
 
 		var/datum/disease/D
