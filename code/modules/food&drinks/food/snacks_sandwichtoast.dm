@@ -83,3 +83,26 @@
 	icon_state = "twobread"
 	bonus_reagents = list("nutriment" = 1, "vitamin" = 2)
 	list_reagents = list("nutriment" = 2, "vitamin" = 2)
+
+/obj/item/weapon/reagent_containers/food/snacks/sandwich/perfect
+	name = "the Perfect Sandwich"
+	desc = "Legend says that the chef who forged it, was used as a vessel by the sandwich god. It glows slightly with holy light."
+	icon = 'icons/obj/food/burgerbread.dmi'
+	icon_state = "sandwich"
+	trash = /obj/item/trash/plate
+	bonus_reagents = list("nutriment" = 1, "vitamin" = 1)
+	list_reagents = list("nutriment" = 6, "vitamin" = 1)
+	bitesize = 999
+
+/obj/item/weapon/reagent_containers/food/snacks/sandwich/perfect/New()
+	..()
+	pixel_x = 0 // Ensures it's in it's case properly
+	pixel_y = 5
+
+
+/obj/item/weapon/reagent_containers/food/snacks/sandwich/perfect/attack(mob/M, mob/user, def_zone)
+	if (M == user)
+		user << "Try as you might, you cannot bring yourself to damage it's perfection with your undeserving mouth."
+		return 0
+	else
+		return 0

@@ -16,6 +16,7 @@ datum/objective_item/steal/caplaser
 	targetitem = /obj/item/weapon/gun/energy/laser/captain
 	difficulty = 5
 	excludefromjob = list("Captain")
+
 /* SHINE ministation reasons
 datum/objective_item/steal/hoslaser
 	name = "the head of security's personal laser gun"
@@ -23,26 +24,30 @@ datum/objective_item/steal/hoslaser
 	difficulty = 10
 	excludefromjob = list("Head Of Security")
 */
+/*
 datum/objective_item/steal/handtele
 	name = "a hand teleporter"
 	targetitem = /obj/item/weapon/hand_tele
 	difficulty = 5
 	excludefromjob = list("Captain")
-
+*/
+/*
 datum/objective_item/steal/rcd
 	name = "a rapid-construction-device"
 	targetitem = /obj/item/weapon/rcd
 	difficulty = 3
+*/
 /* SHINE too hard to hide
 datum/objective_item/steal/jetpack
 	name = "a jetpack"
 	targetitem = /obj/item/weapon/tank/jetpack
 	difficulty = 3
 */
+/*
 datum/objective_item/steal/magboots // SHINE changed from advanced to normal boots
 	name = "a pair of magboots"
 	targetitem =  /obj/item/clothing/shoes/magboots
-
+*/
 
 
 datum/objective_item/steal/corgimeat
@@ -50,12 +55,13 @@ datum/objective_item/steal/corgimeat
 	targetitem = /obj/item/weapon/reagent_containers/food/snacks/meat/slab/corgi
 	difficulty = 5
 	excludefromjob = list("Head of Personnel", "Quartermaster", "Cargo Technician") //>hurting your little buddy ever
-
+/*
 datum/objective_item/steal/capmedal
 	name = "the medal of captaincy"
 	targetitem = /obj/item/clothing/tie/medal/gold/captain
 	difficulty = 5
 	excludefromjob = list("Captain")
+*/
 /*
 datum/objective_item/steal/hypo
 	name = "the hypospray. Intel suggests it's stored in the Medbay"
@@ -63,11 +69,13 @@ datum/objective_item/steal/hypo
 	difficulty = 5
 	excludefromjob = list("Chief Medical Officer", "Medical Doctor", "Chemist") //SHINE added medical doctor and chemist
 */
+/*
 datum/objective_item/steal/nukedisc
 	name = "the nuclear authentication disk"
 	targetitem = /obj/item/weapon/disk/nuclear
 	difficulty = 5
 	excludefromjob = list("Captain")
+*/
 /* SHINE removed, too hard to hide
 datum/objective_item/steal/ablative
 	name = "an ablative armor vest"
@@ -81,11 +89,12 @@ datum/objective_item/steal/reactive
 	difficulty = 5
 	excludefromjob = list("Research Director")
 */
+/*
 datum/objective_item/steal/documents
 	name = "a set of secret documents"
 	targetitem = /obj/item/documents //Any set of secret documents. Doesn't have to be NT's
 	difficulty = 5
-
+*/
 //Items with special checks!
 /* // SHINE fuck plasma seriously
 datum/objective_item/steal/plasma
@@ -100,12 +109,12 @@ datum/objective_item/plasma/check_special_completion(var/obj/item/weapon/tank/T)
 	found_amount += T.air_contents.toxins
 	return found_amount>=target_amount
 */
-
+/*
 datum/objective_item/steal/functionalai
 	name = "an AI card"
 	targetitem = /obj/item/device/aicard
 	difficulty = 5 //beyond the impossible // SHINE changed to 5 since no actual ai
-/* SHINE we dont have AI on ministation so dead ones will do
+ //SHINE we dont have AI on ministation so dead ones will do
 datum/objective_item/functionalai/check_special_completion(var/obj/item/device/aicard/C)
 	for(var/mob/living/silicon/ai/A in C)
 		if(istype(A, /mob/living/silicon/ai) && A.stat != 2) //See if any AI's are alive inside that card.
@@ -127,7 +136,7 @@ datum/objective_item/blueprints/check_special_completion(var/obj/item/I)
 		if(P.blueprints)	//if the blueprints are in frame
 			return 1
 	return 0
-
+/*
 datum/objective_item/steal/slime
 	name = "an unused sample of slime extract"
 	targetitem = /obj/item/slime_extract
@@ -138,18 +147,22 @@ datum/objective_item/slime/check_special_completion(var/obj/item/slime_extract/E
 	if(E.Uses > 0)
 		return 1
 	return 0
-
-//////////SHINE ADDED THIS SECTION
+*/
+/////////////////////////////////////////////////
+//////////SHINE ADDED THIS SECTION////////////////////////
+//////////////////////////////////////////////////////
+/*
 datum/objective_item/steal/monitorkey
 	name = "the key for the station's message monitors"
 	targetitem = /obj/item/weapon/paper/monitorkey
 	difficulty = 5
-
+*/
+/*
 datum/objective_item/steal/recipe
 	name = "Lord Frenrir Cageth's recipe book"
 	targetitem = /obj/item/weapon/book/manual/chef_recipes
 	difficulty = 3
-
+*/
 /*
 datum/objective_item/steal/shotgun
 	name = "the bartender's shotgun. Intel suggests it can be found in the Bar"
@@ -165,18 +178,39 @@ datum/objective_item/steal/loyaltybox
 	name = "the box of loyalty implants"
 	targetitem = /obj/item/weapon/storage/lockbox/loyalty
 	difficulty = 5
+*/
 
-/datum/objective_item/steal/powercrystal
-	name = "the aurichalcum shard. Intel suggests it is on display in the cargo bay."
+datum/objective_item/steal/powercrystal
+	name = "the Cargo Bay's priceless aurichalcum shard."
 	targetitem = /obj/item/weapon/uniquesteal/powercrystal
 	difficulty = 3
 
-/datum/objective_item/steal/can
-	name = "the can of spacecarp caviar. Intel suggests it is on display in the kitchen."
+datum/objective_item/steal/can
+	name = "the Bar's can of priceless spacecarp caviar."
 	targetitem = /obj/item/weapon/uniquesteal/can
 	difficulty = 3
-	*/
-//////////
+
+datum/objective_item/steal/owl
+	name = "the Head of Personnel's collectable owl action figure."
+	targetitem = /obj/item/toy/owl
+	difficulty = 5
+
+datum/objective_item/steal/baton
+	name = "the Brig's antique police baton."
+	targetitem = /obj/item/weapon/melee/classic_baton
+	difficulty = 5
+
+/datum/objective_item/steal/phone
+	name = "the Telecomm's special red phone."
+	targetitem = /obj/item/weapon/phone
+	difficulty = 3
+
+datum/objective_item/steal/sandwich
+	name = "the Bar's Perfect Sandwich."
+	targetitem = /obj/item/weapon/reagent_containers/food/snacks/sandwich/perfect
+	difficulty = 3
+/////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////
 
 //Unique Objectives
 datum/objective_item/unique/docs_red
