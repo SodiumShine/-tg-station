@@ -535,11 +535,11 @@ var/global/image/plasmaman_on_fire = image("icon"='icons/mob/OnFire.dmi', "icon_
 					src.stat = 0
 					src.SetWeakened(100)
 					src << "<span class='danger'>GAMOID SYSTEM: Factory reset initialized...</span>"
-					sleep(30)
-					src << "<span class='danger'>GAMOID SYSTEM: Wiping memory...</span>"
-					sleep(30)
+					sleep(50)
+					src << "<span class='danger'>GAMOID SYSTEM: Memory corrupted... retrieving from backup...</span>"
+					sleep(50)
 					src << "<span class='danger'>GAMOID SYSTEM: Configuring to default settings...</span>"
-					sleep(30)
+					sleep(50)
 					src << "<span class='danger'>GAMOID SYSTEM: Factory reset complete.</span>"
 					src.SetWeakened(0)
 					return 0
