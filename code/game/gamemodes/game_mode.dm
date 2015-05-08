@@ -36,10 +36,14 @@
 	var/reroll_friendly 	//During mode conversion only these are in the running
 	var/continuous_sanity_checked	//Catches some cases where config options could be used to suggest that modes without antagonists should end when all antagonists die
 	var/enemy_minimum_age = 7 //How many days must players have been playing before they can play this antagonist
+//	var/newscaster_announcements = null // for periodic news
+	var/newscaster_cooldown = 0
 
 	var/const/waittime_l = 600
 	var/const/waittime_h = 1800 // started at 1800
 
+///datum/game_mode/New()
+//	newscaster_announcements = pick(newscaster_standard_feeds)
 
 /datum/game_mode/proc/announce() //to be calles when round starts
 	world << "<B>Notice</B>: [src] did not define announce()"

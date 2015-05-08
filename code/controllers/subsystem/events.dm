@@ -47,6 +47,7 @@ var/datum/subsystem/events/SSevent
 
 //checks if we should select a random event yet, and reschedules if necessary
 /datum/subsystem/events/proc/checkEvent()
+	process_newscaster() // SHINE oh god what am i doing
 	if(scheduled <= world.time)
 		spawnEvent()
 		reschedule()
