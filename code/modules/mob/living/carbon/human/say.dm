@@ -134,3 +134,4 @@
 
 					say(temp)
 				winset(client, "input", "text=[null]")
+

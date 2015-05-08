@@ -22,6 +22,10 @@
 				if(istype(M, /mob/living/carbon/human))
 					var/mob/living/carbon/human/H = M //So we can use get_organ and not some terriblly long Switch or something worse - RR
 
+					if(ABIOTIC in H.dna.species.specflags)
+						user << "<span class='warning'>You cannot preform surgery on abiotic beings.</span>"
+						return 1
+
 					if(S.requires_organic_chest && H.getlimb(/obj/item/organ/limb/robot/chest)) //This a seperate case to below, see "***" in surgery.dm - RR
 						continue
 

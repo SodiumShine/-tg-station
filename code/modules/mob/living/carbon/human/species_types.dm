@@ -448,7 +448,7 @@ var/global/image/plasmaman_on_fire = image("icon"='icons/mob/OnFire.dmi', "icon_
 	id = "gamoid"
 	say_mod = "states"
 	sexes = 1
-	specflags = list(COLDRES,NOBLOOD,NOBREATH,EYECOLOR,HAIR,FACEHAIR,LIPS,RADIMMUNE,VIRUSIMMUNE)
+	specflags = list(COLDRES,NOBLOOD,NOBREATH,EYECOLOR,HAIR,FACEHAIR,LIPS,RADIMMUNE,VIRUSIMMUNE,ABIOTIC)
 	exotic_blood = /datum/reagent/oil
 	use_skintones = 1
 	meat = /obj/item/weapon/reagent_containers/food/snacks/meat/slab/synthmeat
@@ -457,7 +457,7 @@ var/global/image/plasmaman_on_fire = image("icon"='icons/mob/OnFire.dmi', "icon_
 // Can't eat or drink
 /datum/species/gamoid/handle_chemicals(datum/reagent/chem, mob/living/carbon/human/H)
 //	if(chem.id == "")
-	H.adjustFireLoss(1)
+	H.adjustFireLoss(1.5)
 	H.reagents.remove_reagent(chem.id, REAGENTS_METABOLISM)
 	if(prob(33))
 		H << "<span class='danger'>WARNING: Foreign contaminant detected internally. Systems damaged.</span>"
@@ -510,11 +510,42 @@ var/global/image/plasmaman_on_fire = image("icon"='icons/mob/OnFire.dmi', "icon_
 					C.charge = 0
 				if (src.nutrition >= NUTRITION_LEVEL_FULL)
 					src.nutrition = NUTRITION_LEVEL_FULL
-				src << "<span class='notice'>SYSTEM NOTICE: Internal power storage has finished charging.</span>"
+				src << "<span class='notice'>GAMOID SYSTEM: Internal power storage has finished charging.</span>"
 				return 0
 			if (C.charge < 3)
 				user << "<span class='warning'>The powercell is empty!</span>"
 				return 1
+
+		if (istype(W, /obj/item/borg/upgrade/restart))
+			user.changeNext_move(CLICK_CD_MELEE)
+			var/obj/item/borg/upgrade/restart/R = W
+			if (src == user)
+				user << "<span class='warning'>You cannot reach your own maintainence interface.</span>"
+				return 1
+			if (src.stat < 2)
+				user << "<span class='warning'>This gamoid unit isn't in need of a restart module.</span>"
+				return 1
+			if (src.stat == 2)
+				if (src.health < 50)
+					user << "<span class='warning'>The chassis is too damaged! Make some repairs first.</span>"
+					return 1
+				else
+					user <<"<span class='notice'>You insert the module and the gamoid begins a factory restart.</span>"
+					del R
+					src.stat = 0
+					src.SetWeakened(100)
+					src << "<span class='danger'>GAMOID SYSTEM: Factory reset initialized...</span>"
+					sleep(30)
+					src << "<span class='danger'>GAMOID SYSTEM: Wiping memory...</span>"
+					sleep(30)
+					src << "<span class='danger'>GAMOID SYSTEM: Configuring to default settings...</span>"
+					sleep(30)
+					src << "<span class='danger'>GAMOID SYSTEM: Factory reset complete.</span>"
+					src.SetWeakened(0)
+					return 0
+			else return
+
+
 /*
 		if (istype(w, /obj/item/weapon/card/id) && user.a_intent == "help")
 			user.changeNext_move(CLICK_CD_MELEE)
@@ -533,8 +564,14 @@ var/global/image/plasmaman_on_fire = image("icon"='icons/mob/OnFire.dmi', "icon_
 		return ..()
 	return ..()
 
+/mob/living/carbon/human/say(var/message)
+	if(ABIOTIC in src.dna.species.specflags)
+		return ..(message, "R")
+	..()
+
+
 /datum/species/gamoid/spec_life(mob/living/carbon/human/H)
-//	if(H.viruses.len > 0) // SHINE robots dont get sick // SHINE have virusimmune now
+//	if(H.viruses.len > 0) 									// SHINE robots dont get sick // SHINE have virusimmune now
 //		for(var/datum/disease/D in H.viruses)
 //			D.cure()
 //			world << "DEBUG: viruses removed from gamoid, cured [D.name]"
@@ -547,5 +584,5 @@ var/global/image/plasmaman_on_fire = image("icon"='icons/mob/OnFire.dmi', "icon_
 //		powerwarned = 1
 	if(H.nutrition < NUTRITION_LEVEL_STARVING)
 		if(!H.sleeping)
-			H << "<span class='warning'>WARNING: Entering Emergency Sleep Mode...</span>"
+			H << "<span class='warning'>GAMOID SYSTEM: Entering Emergency Sleep Mode...</span>"
 		H.sleeping = 10

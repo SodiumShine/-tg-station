@@ -349,6 +349,9 @@
 	return
 
 /obj/machinery/computer/cloning/proc/scan_mob(mob/living/carbon/human/subject as mob)
+	if (ABIOTIC in subject.dna.species.specflags)
+		scantemp = "<font class='bad'>Subject is abiotic.</font>"
+		return
 	if (!check_dna_integrity(subject) || !istype(subject))
 		scantemp = "<font class='bad'>Unable to locate valid genetic data.</font>"
 		return

@@ -491,14 +491,15 @@
 		H.metabolism_efficiency = 1
 	else if(H.nutrition > NUTRITION_LEVEL_FED && H.satiety > 80)
 		if(H.metabolism_efficiency != 1.25)
-			H << "<span class='notice'>You feel vigorous.</span>"
+			if(!(ABIOTIC in H.dna.species.specflags))
+				H << "<span class='notice'>You feel vigorous.</span>"
 			H.metabolism_efficiency = 1.25
 	else if(H.nutrition < NUTRITION_LEVEL_STARVING + 50)
-		if(H.metabolism_efficiency != 0.8)
+		if(H.metabolism_efficiency != 0.8 && !(ABIOTIC in H.dna.species.specflags))
 			H << "<span class='notice'>You feel sluggish.</span>"
 		H.metabolism_efficiency = 0.8
 	else
-		if(H.metabolism_efficiency == 1.25)
+		if(H.metabolism_efficiency == 1.25 && !(ABIOTIC in H.dna.species.specflags))
 			H << "<span class='notice'>You no longer feel vigorous.</span>"
 		H.metabolism_efficiency = 1
 
