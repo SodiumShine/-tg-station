@@ -6,7 +6,7 @@
 	bitesize = 3
 	w_class = 3
 	list_reagents = list("nutriment" = 7, "vitamin" = 2)
-
+	diet_type = 2
 /obj/item/weapon/reagent_containers/food/snacks/salad/New()
 	..()
 	eatverb = pick("crunch","devour","nibble","gnaw","gobble","chomp")
@@ -31,6 +31,7 @@
 	icon_state = "validsalad"
 	bonus_reagents = list("doctorsdelight" = 5, "vitamin" = 4)
 	list_reagents = list("nutriment" = 8, "doctorsdelight" = 5, "vitamin" = 2)
+	diet_type = 3
 
 /obj/item/weapon/reagent_containers/food/snacks/salad/oatmeal
 	name = "oatmeal"
@@ -65,6 +66,7 @@
 	icon_state = "ricebowl"
 	cooked_type = /obj/item/weapon/reagent_containers/food/snacks/salad/boiledrice
 	list_reagents = list("nutriment" = 4)
+	diet_type = 0
 
 /obj/item/weapon/reagent_containers/food/snacks/salad/boiledrice
 	name = "boiled rice"
@@ -72,21 +74,25 @@
 	icon_state = "boiledrice"
 	bonus_reagents = list("nutriment" = 1, "vitamin" = 1)
 	list_reagents = list("nutriment" = 5, "vitamin" = 1)
+	diet_type = 0
 
 /obj/item/weapon/reagent_containers/food/snacks/salad/ricepudding
 	name = "rice pudding"
 	desc = "Everybody loves rice pudding!"
 	icon_state = "ricepudding"
 	bonus_reagents = list("nutriment" = 4, "vitamin" = 2)
+	diet_type = 0
 
 /obj/item/weapon/reagent_containers/food/snacks/salad/ricepork
 	name = "rice and pork"
 	desc = "Well, it looks like pork..."
 	icon_state = "riceporkbowl"
 	bonus_reagents = list("nutriment" = 4, "vitamin" = 4)
+	diet_type = 1
 
 /obj/item/weapon/reagent_containers/food/snacks/salad/eggbowl
 	name = "egg bowl"
 	desc = "A bowl of rice with a fried egg."
 	icon_state = "eggbowl"
 	bonus_reagents = list("nutriment" = 4, "vitamin" = 4)
+	diet_type = 2

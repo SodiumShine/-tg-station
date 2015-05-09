@@ -32,12 +32,14 @@
 	slice_path = /obj/item/weapon/reagent_containers/food/snacks/pizzaslice/meat
 	bonus_reagents = list("nutriment" = 5, "vitamin" = 8)
 	list_reagents = list("nutriment" = 30, "tomatojuice" = 6, "vitamin" = 8)
+	diet_type = 1
 
 /obj/item/weapon/reagent_containers/food/snacks/pizzaslice/meat
 	name = "meatpizza slice"
 	desc = "A nutritious slice of meatpizza."
 	icon_state = "meatpizzaslice"
 	filling_color = "#A52A2A"
+	diet_type = 1
 
 /obj/item/weapon/reagent_containers/food/snacks/pizza/mushroom
 	name = "mushroom pizza"
@@ -60,12 +62,14 @@
 	slice_path = /obj/item/weapon/reagent_containers/food/snacks/pizzaslice/vegetable
 	bonus_reagents = list("nutriment" = 5, "vitamin" = 5)
 	list_reagents = list("nutriment" = 25, "tomatojuice" = 6, "oculine" = 12, "vitamin" = 5)
+	diet_type = 2
 
 /obj/item/weapon/reagent_containers/food/snacks/pizzaslice/vegetable
 	name = "vegetable pizza slice"
 	desc = "A slice of the most green pizza of all pizzas not containing green ingredients."
 	icon_state = "vegetablepizzaslice"
 	filling_color = "#FFA500"
+	diet_type = 2
 
 /obj/item/weapon/reagent_containers/food/snacks/pizza/donkpocket
 	name = "donkpocket pizza"
@@ -88,12 +92,14 @@
 	slice_path = /obj/item/weapon/reagent_containers/food/snacks/pizzaslice/dank
 	bonus_reagents = list("nutriment" = 2, "vitamin" = 6)
 	list_reagents = list("nutriment" = 25, "doctorsdelight" = 5, "tomatojuice" = 6, "vitamin" = 5)
+	diet_type = 2
 
 /obj/item/weapon/reagent_containers/food/snacks/pizzaslice/dank
 	name = "dank pizza slice"
 	desc = "So good, man..."
 	icon_state = "dankpizzaslice"
 	filling_color = "#2E8B57"
+	diet_type = 2
 
 /obj/item/weapon/reagent_containers/food/snacks/pizza/sassysage
 	name = "sassysage pizza"
@@ -101,12 +107,14 @@
 	icon_state = "sassysagepizza"
 	slice_path = /obj/item/weapon/reagent_containers/food/snacks/pizzaslice/sassysage
 	bonus_reagents = list("nutriment" = 6, "vitamin" = 6)
+	diet_type = 1
 
 /obj/item/weapon/reagent_containers/food/snacks/pizzaslice/sassysage
 	name = "sassysage pizza slice"
 	desc = "Deliciously sassy."
 	icon_state = "sassysagepizzaslice"
 	filling_color = "#FF4500"
+	diet_type = 1
 
 /obj/item/weapon/reagent_containers/food/snacks/pizzaslice/custom
 	name = "pizza slice"
@@ -125,6 +133,7 @@
 		reagents.add_reagent("nutriment", 60)
 		reagents.add_reagent("carpotoxin", 3)
 		bitesize = 2
+	diet_type = 1
 
 /obj/item/weapon/reagent_containers/food/snacks/seamonsterpizzaslice
 	name = "sea monster pizza slice"
@@ -132,6 +141,7 @@
 	icon = 'icons/obj/food_custom.dmi'
 	icon_state = "seamonsterslice"
 	bitesize = 2
+	diet_type = 1
 
 /obj/item/pizzabox
 	name = "pizza box"

@@ -8,6 +8,7 @@
 	cooked_type = /obj/item/weapon/reagent_containers/food/snacks/boiledspaghetti
 	filling_color = "#F0E68C"
 
+
 /obj/item/weapon/reagent_containers/food/snacks/boiledspaghetti
 	name = "boiled spaghetti"
 	desc = "A plain dish of noodles, this needs more ingredients."
@@ -29,6 +30,7 @@
 	bonus_reagents = list("nutriment" = 1, "tomatojuice" = 10, "vitamin" = 4)
 	list_reagents = list("nutriment" = 6, "tomatojuice" = 10, "vitamin" = 4)
 	filling_color = "#DC143C"
+	diet_type = 2
 
 /obj/item/weapon/reagent_containers/food/snacks/copypasta
 	name = "copypasta"
@@ -40,6 +42,7 @@
 	bonus_reagents = list("nutriment" = 1, "vitamin" = 4)
 	list_reagents = list("nutriment" = 12, "tomatojuice" = 20, "vitamin" = 8)
 	filling_color = "#DC143C"
+	diet_type = 2
 
 /obj/item/weapon/reagent_containers/food/snacks/meatballspaghetti
 	name = "spaghetti and meatballs"
@@ -50,6 +53,7 @@
 	bonus_reagents = list("nutriment" = 1, "vitamin" = 4)
 	list_reagents = list("nutriment" = 8, "vitamin" = 4)
 	filling_color = "#F0E68C"
+	diet_type = 1
 
 /obj/item/weapon/reagent_containers/food/snacks/spesslaw
 	name = "spesslaw"
@@ -60,6 +64,7 @@
 	bonus_reagents = list("nutriment" = 1, "vitamin" = 6)
 	list_reagents = list("nutriment" = 8, "vitamin" = 6)
 	filling_color = "#F0E68C"
+	diet_type = 1
 
 /obj/item/weapon/reagent_containers/food/snacks/chowmein
 	name = "chow mein"
@@ -69,6 +74,7 @@
 	trash = /obj/item/trash/plate
 	bonus_reagents = list("nutriment" = 3, "vitamin" = 4)
 	list_reagents = list("nutriment" = 7, "vitamin" = 6)
+	diet_type = 3
 
 /obj/item/weapon/reagent_containers/food/snacks/beefnoodle
 	name = "beef noodle"
@@ -77,3 +83,4 @@
 	icon_state = "beefnoodle"
 	trash = /obj/item/weapon/reagent_containers/glass/bowl
 	bonus_reagents = list("nutriment" = 5, "vitamin" = 6)
+	diet_type = 3

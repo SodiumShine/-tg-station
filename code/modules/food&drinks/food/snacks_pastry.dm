@@ -82,12 +82,14 @@
 	name = "berry muffin"
 	icon_state = "berrymuffin"
 	desc = "A delicious and spongy little cake, with berries."
+	diet_type = 2
 
 /obj/item/weapon/reagent_containers/food/snacks/muffin/booberry
 	name = "booberry muffin"
 	icon_state = "berrymuffin"
 	alpha = 125
 	desc = "My stomach is a graveyard! No living being can quench my bloodthirst!"
+	diet_type = 2
 
 /obj/item/weapon/reagent_containers/food/snacks/chawanmushi
 	name = "chawanmushi"
@@ -96,6 +98,7 @@
 	bonus_reagents = list("vitamin" = 1)
 	list_reagents = list("nutriment" = 5)
 	filling_color = "#FFE4E1"
+	diet_type = 2
 
 ////////////////////////////////////////////WAFFLES////////////////////////////////////////////
 
@@ -116,6 +119,7 @@
 	bonus_reagents = list("vitamin" = 1)
 	list_reagents = list("nutriment" = 10, "vitamin" = 1)
 	filling_color = "#9ACD32"
+	diet_type = 1
 
 /obj/item/weapon/reagent_containers/food/snacks/soylenviridians
 	name = "\improper Soylent Virdians"
@@ -125,6 +129,7 @@
 	bonus_reagents = list("vitamin" = 1)
 	list_reagents = list("nutriment" = 10, "vitamin" = 1)
 	filling_color = "#9ACD32"
+	diet_type = 2
 
 /obj/item/weapon/reagent_containers/food/snacks/rofflewaffles
 	name = "roffle waffles"
@@ -146,6 +151,7 @@
 	bonus_reagents = list("nutriment" = 1)
 	filling_color = "#F0E68C"
 
+
 /obj/item/weapon/reagent_containers/food/snacks/donkpocket
 	name = "\improper Donk-pocket"
 	desc = "The food of choice for the seasoned traitor."
@@ -153,6 +159,7 @@
 	list_reagents = list("nutriment" = 4)
 	cooked_type = /obj/item/weapon/reagent_containers/food/snacks/donkpocket/warm
 	filling_color = "#CD853F"
+
 
 /obj/item/weapon/reagent_containers/food/snacks/donkpocket/warm
 	name = "warm Donk-pocket"
@@ -209,6 +216,7 @@
 	bonus_reagents = list("nutriment" = 1, "vitamin" = 3)
 	list_reagents = list("nutriment" = 6, "ketchup" = 3, "vitamin" = 3)
 	filling_color = "#8B0000"
+	diet_type = 1
 
 /obj/item/weapon/reagent_containers/food/snacks/meatbun
 	name = "meat bun"
@@ -217,6 +225,7 @@
 	bonus_reagents = list("nutriment" = 1, "vitamin" = 2)
 	list_reagents = list("nutriment" = 6, "vitamin" = 2)
 	filling_color = "#8B0000"
+	diet_type = 1
 
 /obj/item/weapon/reagent_containers/food/snacks/sugarcookie
 	name = "sugar cookie"
@@ -233,6 +242,7 @@
 	bonus_reagents = list("nutriment" = 1, "vitamin" = 1)
 	list_reagents = list("nutriment" = 5, "vitamin" = 1)
 	filling_color = "#FFE4C4"
+	diet_type = 3
 
 /obj/item/weapon/reagent_containers/food/snacks/oatmealcookie
 	name = "oatmeal cookie"
@@ -241,6 +251,7 @@
 	bonus_reagents = list("nutriment" = 1, "vitamin" = 1)
 	list_reagents = list("nutriment" = 5, "vitamin" = 1)
 	filling_color = "#D2691E"
+	diet_type = 2
 
 /obj/item/weapon/reagent_containers/food/snacks/raisincookie
 	name = "raisin cookie"
@@ -249,6 +260,7 @@
 	bonus_reagents = list("nutriment" = 1, "vitamin" = 1)
 	list_reagents = list("nutriment" = 5, "vitamin" = 1)
 	filling_color = "#F0E68C"
+	diet_type = 2
 
 /obj/item/weapon/reagent_containers/food/snacks/cherrycupcake
 	name = "cherry cupcake"
@@ -257,6 +269,7 @@
 	bonus_reagents = list("nutriment" = 1, "vitamin" = 1)
 	list_reagents = list("nutriment" = 5, "vitamin" = 1)
 	filling_color = "#F0E68C"
+	diet_type = 2
 
 /obj/item/weapon/reagent_containers/food/snacks/bluecherrycupcake
 	name = "blue cherry cupcake"
@@ -265,3 +278,4 @@
 	bonus_reagents = list("nutriment" = 1, "vitamin" = 3)
 	list_reagents = list("nutriment" = 5, "vitamin" = 1)
 	filling_color = "#F0E68C"
+	diet_type = 2

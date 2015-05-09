@@ -20,6 +20,8 @@
 	var/list/bonus_reagents = list() //the amount of reagents (usually nutriment and vitamin) added to crafted/cooked snacks, on top of the ingredients reagents.
 	var/customfoodfilling = 1 // whether it can be used as filling in custom food
 
+	var/diet_type = 0 // 0 none(All can eat), 1 meat(Omni and carni only), 2 veg(Omni and Herbi), 3(only onnivore)
+
 	//Placeholder for effect that trigger on eating that aren't tied to reagents.
 /obj/item/weapon/reagent_containers/food/snacks/proc/On_Consume()
 	if(!usr)	return
@@ -55,6 +57,24 @@
 		if(!canconsume(M, user))
 			return 0
 
+		if(istype(M,/mob/living/carbon/human/))
+			var/mob/living/carbon/human/H = M
+//			if((diet_type == 0) && !(H.dna.species.diet == 3)) // Special-needs cant eat jack shit
+//				H.dna.species.bad_food(H)
+//				return 0
+			if((diet_type == 1) && (H.dna.species.diet == 2)) // If meat herbi cant eat
+				H << "<span class='danger'>You can't eat meat!</span>"
+				H.dna.species.bad_food(H)
+				return 0
+			if((diet_type == 2) && (H.dna.species.diet == 1)) // If veg, carni cant eat
+				H << "<span class='danger'>You can't eat plant matter!</span>"
+				H.dna.species.bad_food(H)
+				return 0
+			if((diet_type == 3) && !(H.dna.species.diet == 0)) // If both, only omni can eat
+				H << "<span class='danger'>Your species can't eat [src]s!</span>"
+				H.dna.species.bad_food(H)
+				return 0
+
 		var/fullness = M.nutrition + 10
 		for(var/datum/reagent/consumable/C in M.reagents.reagent_list) //we add the nutrition value of what we're currently digesting
 			fullness += C.nutriment_factor * C.volume / C.metabolization_rate
@@ -70,15 +90,19 @@
 			else if(fullness <= 50)
 				//M << "<span class='notice'>You hungrily [eatverb] some of \the [src], shoving it into your mouth!</span>"
 				M.visible_message("[M] hungrily [eatverb]s a large portion of \the [src], shoving it into their mouth!")
+				eatverb = null
 			else if(fullness > 50 && fullness < 150)
 				//M << "<span class='notice'>You hungrily begin to [eatverb] \the [src].</span>"
 				M.visible_message("[M] hungrily [eatverb]s some of \the [src].")
+				eatverb = null
 			else if(fullness > 150 && fullness < 500)
 				//M << "<span class='notice'>You [eatverb] \the [src].</span>"
 				M.visible_message("[M] [eatverb]s \the [src].")
+				eatverb = null
 			else if(fullness > 500 && fullness < 600)
 				//M << "<span class='notice'>You unwillingly [eatverb] a bit of \the [src].</span>"
 				M.visible_message("[M] reluctantly [eatverb]s a bit of \the [src].")
+				eatverb = null
 			else if(fullness > (600 * (1 + M.overeatduration / 2000)))	// The more you eat - the more you can eat
 				M << "<span class='warning'>You cannot force any more of \the [src] to go down your throat!</span>"
 				return 0

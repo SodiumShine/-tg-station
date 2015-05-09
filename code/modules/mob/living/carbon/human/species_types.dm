@@ -61,6 +61,7 @@
 	meat = /obj/item/weapon/reagent_containers/food/snacks/meat/slab/human/mutant/plant
 	roundstart = 1 // SHINE
 	death_cry = "goes stiff with a quiet creaking, leaves withering and falling to the ground..."
+	diet = 1
 
 /datum/species/plant/handle_chemicals(datum/reagent/chem, mob/living/carbon/human/H)
 	if(chem.id == "plantbgone")

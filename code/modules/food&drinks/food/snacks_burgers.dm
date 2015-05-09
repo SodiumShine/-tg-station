@@ -5,6 +5,7 @@
 	icon_state = "hburger"
 	bitesize = 3
 	list_reagents = list("nutriment" = 6, "vitamin" = 1)
+	diet_type = 1
 
 /obj/item/weapon/reagent_containers/food/snacks/burger/plain
 	name = "burger"
@@ -35,6 +36,7 @@
 	desc = "What.. is that meat?"
 	icon_state = "tofuburger"
 	bonus_reagents = list("nutriment" = 2, "vitamin" = 2)
+	diet_type = 2
 
 /obj/item/weapon/reagent_containers/food/snacks/burger/roburger
 	name = "roburger"
@@ -68,12 +70,14 @@
 	desc = "This tastes funny..."
 	icon_state = "clownburger"
 	bonus_reagents = list("nutriment" = 4, "vitamin" = 6, "banana" = 6)
+	diet_type = 0
 
 /obj/item/weapon/reagent_containers/food/snacks/burger/mime
 	name = "mime burger"
 	desc = "Its taste defies language."
 	icon_state = "mimeburger"
 	bonus_reagents = list("nutriment" = 4, "vitamin" = 6, "nothing" = 6)
+	diet_type = 0
 
 /obj/item/weapon/reagent_containers/food/snacks/burger/brain
 	name = "brainburger"
@@ -87,6 +91,7 @@
 	desc = "Too Spooky!"
 	alpha = 125
 	bonus_reagents = list("nutriment" = 5, "vitamin" = 12)
+	diet_type = 0
 
 /obj/item/weapon/reagent_containers/food/snacks/burger/red
 	name = "red burger"
@@ -135,6 +140,7 @@
 	desc = "This is absolutely Ei Nath."
 	icon_state = "spellburger"
 	bonus_reagents = list("nutriment" = 6, "vitamin" = 10)
+	diet_type = 0
 
 /obj/item/weapon/reagent_containers/food/snacks/burger/bigbite
 	name = "big bite burger"
@@ -148,6 +154,7 @@
 	name = "jelly burger"
 	desc = "Culinary delight..?"
 	icon_state = "jellyburger"
+	diet_type = 2
 
 /obj/item/weapon/reagent_containers/food/snacks/burger/jelly/slime
 	bonus_reagents = list("slimejelly" = 5, "vitamin" = 5)
@@ -166,6 +173,7 @@
 	w_class = 3
 	bitesize = 7
 	volume = 100
+	diet_type = 3
 
 /obj/item/weapon/reagent_containers/food/snacks/burger/fivealarm
 	name = "five alarm burger"
@@ -173,9 +181,11 @@
 	icon_state = "fivealarmburger"
 	bonus_reagents = list("nutriment" = 2, "vitamin" = 5)
 	list_reagents = list("nutriment" = 6, "capsaicin" = 5, "condensedcapsaicin" = 5, "vitamin" = 1)
+	diet_type = 2
 
 /obj/item/weapon/reagent_containers/food/snacks/burger/rat
 	name = "rat burger"
 	desc = "Pretty much what you'd expect..."
 	icon_state = "ratburger"
 	bonus_reagents = list("nutriment" = 1, "vitamin" = 1)
+	diet_type = 1

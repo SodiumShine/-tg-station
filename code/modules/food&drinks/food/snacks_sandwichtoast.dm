@@ -8,6 +8,7 @@
 	bonus_reagents = list("nutriment" = 1, "vitamin" = 1)
 	list_reagents = list("nutriment" = 6, "vitamin" = 1)
 	cooked_type = /obj/item/weapon/reagent_containers/food/snacks/toastedsandwich
+	diet_type = 1
 
 /obj/item/weapon/reagent_containers/food/snacks/toastedsandwich
 	name = "toasted sandwich"
@@ -17,6 +18,7 @@
 	trash = /obj/item/trash/plate
 	bonus_reagents = list("nutriment" = 1, "carbon" = 2)
 	list_reagents = list("nutriment" = 6, "carbon" = 2)
+	diet_type = 1
 
 /obj/item/weapon/reagent_containers/food/snacks/grilledcheese
 	name = "grilled cheese sandwich"
@@ -34,6 +36,7 @@
 	icon_state = "jellysandwich"
 	trash = /obj/item/trash/plate
 	bitesize = 3
+
 
 /obj/item/weapon/reagent_containers/food/snacks/jellysandwich/slime
 	bonus_reagents = list("slimejelly" = 5, "vitamin" = 2)

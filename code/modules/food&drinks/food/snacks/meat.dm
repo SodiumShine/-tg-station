@@ -1,6 +1,7 @@
 /obj/item/weapon/reagent_containers/food/snacks/meat
 	var/subjectname = ""
 	var/subjectjob = null
+	diet_type = 1
 
 /obj/item/weapon/reagent_containers/food/snacks/meat/slab
 	name = "meat"
@@ -57,12 +58,14 @@
 	desc = "Because jello wasn't offensive enough to vegans"
 	list_reagents = list("nutriment" = 3, "slimejelly" = 3)
 	filling_color = "#00FFFF"
+	diet_type = 0
 
 /obj/item/weapon/reagent_containers/food/snacks/meat/slab/human/mutant/golem
 	icon_state = "golemmeat"
 	desc = "Edible rocks, welcome to the future"
 	list_reagents = list("nutriment" = 3, "iron" = 3)
 	filling_color = "#A9A9A9"
+	diet_type = 0
 
 /obj/item/weapon/reagent_containers/food/snacks/meat/slab/human/mutant/golem/adamantine
 	icon_state = "agolemmeat"
@@ -78,6 +81,7 @@
 	icon_state = "plantmeat"
 	desc = "All the joys of healthy eating with all the fun of cannibalism"
 	filling_color = "#E9967A"
+	diet_type = 2
 
 /obj/item/weapon/reagent_containers/food/snacks/meat/slab/human/mutant/shadow
 	icon_state = "shadowmeat"
@@ -95,6 +99,7 @@
 	desc = "There's a point where this needs to stop and clearly we have passed it"
 	filling_color = "#F0F0F0"
 	slice_path = null  //can't slice a bone into cutlets
+	diet_type = 0
 
 /obj/item/weapon/reagent_containers/food/snacks/meat/slab/human/mutant/zombie
 	name = "-meat (rotten)"
@@ -133,6 +138,7 @@
 	filling_color = "#FF0000"
 	cooked_type = /obj/item/weapon/reagent_containers/food/snacks/meat/steak/killertomato
 	slice_path = /obj/item/weapon/reagent_containers/food/snacks/meat/rawcutlet/killertomato
+	diet_type = 2
 
 /obj/item/weapon/reagent_containers/food/snacks/meat/slab/bear
 	name = "bear meat"
@@ -177,6 +183,7 @@
 	bonus_reagents = list("nutriment" = 2, "vitamin" = 1)
 	trash = /obj/item/trash/plate
 	filling_color = "#B22222"
+	diet_type = 1
 
 /obj/item/weapon/reagent_containers/food/snacks/meat/steak/plain
 
@@ -184,6 +191,7 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/meat/steak/killertomato
 	name = "killer tomato steak"
+	diet_type = 2
 
 /obj/item/weapon/reagent_containers/food/snacks/meat/steak/bear
 	name = "bear steak"
@@ -230,6 +238,7 @@
 /obj/item/weapon/reagent_containers/food/snacks/meat/rawcutlet/killertomato
 	name = "raw killer tomato cutlet"
 	cooked_type = /obj/item/weapon/reagent_containers/food/snacks/meat/cutlet/killertomato
+	diet_type = 2
 
 /obj/item/weapon/reagent_containers/food/snacks/meat/rawcutlet/bear
 	name = "raw bear cutlet"
@@ -261,7 +270,7 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/meat/cutlet/killertomato
 	name = "killer tomato cutlet"
-
+	diet_type = 2
 /obj/item/weapon/reagent_containers/food/snacks/meat/cutlet/bear
 	name = "bear cutlet"
 

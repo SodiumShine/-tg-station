@@ -7,6 +7,7 @@
 	volume = 80
 	list_reagents = list("nutriment" = 10, "vitamin" = 2)
 
+
 /obj/item/weapon/reagent_containers/food/snacks/pie/plain
 	name = "plain pie"
 	desc = "A simple pie, still delicious."
@@ -35,6 +36,7 @@
 	icon_state = "berryclafoutis"
 	bonus_reagents = list("nutriment" = 1, "vitamin" = 2)
 	list_reagents = list("nutriment" = 10, "berryjuice" = 5, "vitamin" = 2)
+	diet_type = 2
 
 /obj/item/weapon/reagent_containers/food/snacks/pie/bearypie
 	name = "beary pie"
@@ -42,20 +44,21 @@
 	icon_state = "bearypie"
 	bonus_reagents = list("nutriment" = 2, "vitamin" = 3)
 	list_reagents = list("nutriment" = 2, "vitamin" = 3)
+	diet_type = 1
 
 /obj/item/weapon/reagent_containers/food/snacks/pie/meatpie
 	name = "meat-pie"
 	icon_state = "meatpie"
 	desc = "An old barber recipe, very delicious!"
 	bonus_reagents = list("nutriment" = 1, "vitamin" = 5)
-
+	diet_type = 1
 
 /obj/item/weapon/reagent_containers/food/snacks/pie/tofupie
 	name = "tofu-pie"
 	icon_state = "meatpie"
 	desc = "A delicious tofu pie."
 	bonus_reagents = list("nutriment" = 1, "vitamin" = 2)
-
+	diet_type = 2
 
 /obj/item/weapon/reagent_containers/food/snacks/pie/amanita_pie
 	name = "amanita pie"
@@ -87,14 +90,14 @@
 	desc = "A delicious meatpie. Probably heretical."
 	trash = /obj/item/trash/plate
 	bonus_reagents = list("nutriment" = 1, "vitamin" = 5)
-
+	diet_type = 1
 
 /obj/item/weapon/reagent_containers/food/snacks/pie/applepie
 	name = "apple pie"
 	desc = "A pie containing sweet sweet love...or apple."
 	icon_state = "applepie"
 	bonus_reagents = list("nutriment" = 1, "vitamin" = 3)
-
+	diet_type = 2
 
 
 /obj/item/weapon/reagent_containers/food/snacks/pie/cherrypie
@@ -102,7 +105,7 @@
 	desc = "Taste so good, make a grown man cry."
 	icon_state = "cherrypie"
 	bonus_reagents = list("nutriment" = 1, "vitamin" = 2)
-
+	diet_type = 2
 
 /obj/item/weapon/reagent_containers/food/snacks/pie/pumpkinpie
 	name = "pumpkin pie"
@@ -111,6 +114,7 @@
 	slice_path = /obj/item/weapon/reagent_containers/food/snacks/pumpkinpieslice
 	slices_num = 5
 	bonus_reagents = list("nutriment" = 1, "vitamin" = 5)
+	diet_type = 2
 
 /obj/item/weapon/reagent_containers/food/snacks/pumpkinpieslice
 	name = "pumpkin pie slice"
@@ -120,6 +124,7 @@
 	trash = /obj/item/trash/plate
 	filling_color = "#FFA500"
 	list_reagents = list("nutriment" = 2)
+	diet_type = 2
 
 /obj/item/weapon/reagent_containers/food/snacks/pie/appletart
 	name = "golden apple streusel tart"
@@ -127,6 +132,7 @@
 	icon_state = "gappletart"
 	bonus_reagents = list("nutriment" = 1, "vitamin" = 4)
 	list_reagents = list("nutriment" = 8, "gold" = 5, "vitamin" = 4)
+	diet_type = 2
 
 /obj/item/weapon/reagent_containers/food/snacks/pie/blumpkinpie
 	name = "blumpkin pie"
@@ -135,6 +141,7 @@
 	slice_path = /obj/item/weapon/reagent_containers/food/snacks/blumpkinpieslice
 	slices_num = 5
 	bonus_reagents = list("nutriment" = 3, "vitamin" = 6)
+	diet_type = 2
 
 /obj/item/weapon/reagent_containers/food/snacks/blumpkinpieslice
 	name = "blumpkin pie slice"
@@ -144,6 +151,7 @@
 	trash = /obj/item/trash/plate
 	filling_color = "#1E90FF"
 	list_reagents = list("nutriment" = 2)
+	diet_type = 2
 
 /obj/item/weapon/reagent_containers/food/snacks/pie/dulcedebatata
 	name = "dulce de batata"
@@ -152,6 +160,7 @@
 	slice_path = /obj/item/weapon/reagent_containers/food/snacks/dulcedebatataslice
 	slices_num = 5
 	bonus_reagents = list("nutriment" = 4, "vitamin" = 8)
+	diet_type = 2
 
 /obj/item/weapon/reagent_containers/food/snacks/dulcedebatataslice
 	name = "dulce de batata slice"
@@ -161,9 +170,11 @@
 	trash = /obj/item/trash/plate
 	filling_color = "#8B4513"
 	list_reagents = list("nutriment" = 2)
+	diet_type = 2
 
 /obj/item/weapon/reagent_containers/food/snacks/pie/frostypie
 	name = "frosty pie"
 	desc = "Tastes like blue and cold."
 	icon_state = "frostypie"
 	bonus_reagents = list("nutriment" = 4, "vitamin" = 6)
+	diet_type = 2

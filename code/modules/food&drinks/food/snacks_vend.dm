@@ -19,6 +19,7 @@
 	list_reagents = list("nutriment" = 1, "sugar" = 3)
 	junkiness = 25
 	filling_color = "#8B0000"
+	diet_type = 1
 
 /obj/item/weapon/reagent_containers/food/snacks/chips
 	name = "chips"
@@ -38,6 +39,7 @@
 	list_reagents = list("nutriment" = 2, "sugar" = 4)
 	junkiness = 25
 	filling_color = "#8B0000"
+	diet_type = 2
 
 /obj/item/weapon/reagent_containers/food/snacks/spacetwinkie
 	name = "space twinkie"

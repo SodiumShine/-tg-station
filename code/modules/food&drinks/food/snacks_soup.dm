@@ -29,6 +29,7 @@
 	desc = "You've got balls kid, BALLS!"
 	icon_state = "meatballsoup"
 	bonus_reagents = list("nutriment" = 1, "vitamin" = 5)
+	diet_type = 1
 
 /obj/item/weapon/reagent_containers/food/snacks/soup/slime
 	name = "slime soup"
@@ -43,6 +44,7 @@
 	icon_state = "tomatosoup"
 	bonus_reagents = list("nutriment" = 1, "vitamin" = 6)
 	list_reagents = list("nutriment" = 2, "blood" = 10, "water" = 5, "vitamin" = 4)
+	diet_type = 1
 
 /obj/item/weapon/reagent_containers/food/snacks/soup/wingfangchu
 	name = "wing fang chu"
@@ -51,6 +53,7 @@
 	trash = /obj/item/weapon/reagent_containers/glass/bowl
 	bonus_reagents = list("nutriment" = 1, "vitamin" = 2)
 	list_reagents = list("nutriment" = 6, "soysauce" = 5, "vitamin" = 2)
+	diet_type = 1
 
 /obj/item/weapon/reagent_containers/food/snacks/soup/clownstears
 	name = "clown's tears"
@@ -59,17 +62,20 @@
 	bonus_reagents = list("nutriment" = 1, "banana" = 5, "vitamin" = 8)
 	list_reagents = list("nutriment" = 4, "banana" = 5, "water" = 5, "vitamin" = 8)
 
+
 /obj/item/weapon/reagent_containers/food/snacks/soup/vegetable
 	name = "vegetable soup"
 	desc = "A true vegan meal."
 	icon_state = "vegetablesoup"
 	bonus_reagents = list("nutriment" = 1, "vitamin" = 4)
+	diet_type = 2
 
 /obj/item/weapon/reagent_containers/food/snacks/soup/nettle
 	name = "nettle soup"
 	desc = "To think, the botanist would've beat you to death with one of these."
 	icon_state = "nettlesoup"
 	bonus_reagents = list("nutriment" = 1, "omnizine" = 5, "vitamin" = 5)
+	diet_type = 2
 
 /obj/item/weapon/reagent_containers/food/snacks/soup/mystery
 	name = "mystery soup"
@@ -90,6 +96,7 @@
 	icon_state = "hotchili"
 	bonus_reagents = list("nutriment" = 1, "tomatojuice" = 2, "vitamin" = 2)
 	list_reagents = list("nutriment" = 5, "capsaicin" = 1, "tomatojuice" = 2, "vitamin" = 2)
+	diet_type = 3
 
 /obj/item/weapon/reagent_containers/food/snacks/soup/coldchili
 	name = "cold chili"
@@ -97,6 +104,7 @@
 	icon_state = "coldchili"
 	bonus_reagents = list("nutriment" = 1, "tomatojuice" = 2, "vitamin" = 2)
 	list_reagents = list("nutriment" = 5, "frostoil" = 1, "tomatojuice" = 2, "vitamin" = 2)
+	diet_type = 3
 
 /obj/item/weapon/reagent_containers/food/snacks/soup/monkeysdelight
 	name = "monkey's delight"
@@ -104,6 +112,7 @@
 	icon_state = "monkeysdelight"
 	bonus_reagents = list("nutriment" = 1, "vitamin" = 5)
 	list_reagents = list("nutriment" = 10, "banana" = 5, "vitamin" = 5)
+	diet_type = 3
 
 /obj/item/weapon/reagent_containers/food/snacks/soup/tomato
 	name = "tomato soup"
@@ -111,12 +120,14 @@
 	icon_state = "tomatosoup"
 	bonus_reagents = list("nutriment" = 1, "tomatojuice" = 10, "vitamin" = 3)
 	list_reagents = list("nutriment" = 5, "tomatojuice" = 10, "vitamin" = 3)
+	diet_type = 2
 
 /obj/item/weapon/reagent_containers/food/snacks/soup/milo
 	name = "milosoup"
 	desc = "The universes best soup! Yum!!!"
 	icon_state = "milosoup"
 	bonus_reagents = list("nutriment" = 1, "vitamin" = 3)
+	diet_type = 2
 
 /obj/item/weapon/reagent_containers/food/snacks/soup/mushroom
 	name = "chantrelle soup"
@@ -130,6 +141,7 @@
 	desc = "Wait, how do you spell it again..?"
 	icon_state = "beetsoup"
 	bonus_reagents = list("nutriment" = 1, "vitamin" = 5)
+	diet_type = 2
 
 /obj/item/weapon/reagent_containers/food/snacks/soup/beet/New()
 	..()
@@ -143,6 +155,7 @@
 	bitesize = 3
 	bonus_reagents = list("nutriment" = 1, "vitamin" = 5)
 	list_reagents = list("nutriment" = 6, "mushroomhallucinogen" = 6)
+
 
 /obj/item/weapon/reagent_containers/food/snacks/soup/amanitajelly
 	name = "amanita jelly"
@@ -160,17 +173,19 @@
 	list_reagents = list("nutriment" = 10, "oculine" = 5, "tomatojuice" = 5, "vitamin" = 5)
 	bitesize = 7
 	volume = 100
+	diet_type = 3
 
 /obj/item/weapon/reagent_containers/food/snacks/soup/sweetpotato
 	name = "sweet potato soup"
 	desc = "Delicious sweet potato in soup form."
 	icon_state = "sweetpotatosoup"
 	bonus_reagents = list("nutriment" = 4, "vitamin" = 5)
+	diet_type = 2
 
 /obj/item/weapon/reagent_containers/food/snacks/soup/beet/red
 	name = "red beet soup"
 	desc = "Quite a delicacy."
 	icon_state = "redbeetsoup"
 	bonus_reagents = list("nutriment" = 4, "vitamin" = 6)
-
+	diet_type = 2
 

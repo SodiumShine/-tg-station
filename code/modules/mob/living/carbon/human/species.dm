@@ -53,7 +53,10 @@
 	var/invis_sight = SEE_INVISIBLE_LIVING
 	var/darksight = 2
 
+	// SHINE
 	var/death_cry = "seizes up and falls limp, eyes dead and lifeless..."
+	var/diet = 0 //0=omnivore 1=carnivore 2=herbivore 3=cant eat except for special
+	var/list/diet_special = list() // special needs children who can only eat certain things
 
 	// species flags. these can be found in flags.dm
 	var/list/specflags = list()
@@ -85,6 +88,18 @@
 	///////////
 	// PROCS //
 	///////////
+
+/datum/species/proc/bad_food(var/mob/living/carbon/human/H)
+	H.Stun(rand(4,6))
+	sleep(30)
+	H.visible_message("<span class='danger'>[H] throws up!</span>", \
+								"<span class='userdanger'>[H] throws up!</span>")
+	playsound(H.loc, 'sound/effects/splat.ogg', 50, 1)
+	var/turf/location = H.loc
+	if(istype(location, /turf/simulated))
+		location.add_vomit_floor(H)
+	H.adjustToxLoss(1)
+
 
 /datum/species/proc/update_base_icon_state(var/mob/living/carbon/human/H)
 	if(H.disabilities & HUSK)

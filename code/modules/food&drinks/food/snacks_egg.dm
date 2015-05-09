@@ -8,6 +8,7 @@
 	bonus_reagents = list("nutriment" = 1, "vitamin" = 1)
 	list_reagents = list("nutriment" = 4, "sugar" = 2, "cocoa" = 2)
 	filling_color = "#A0522D"
+	diet_type = 3
 
 /obj/item/weapon/reagent_containers/food/snacks/egg
 	name = "egg"
@@ -123,3 +124,4 @@
 	trash = /obj/item/trash/plate
 	w_class = 3
 	list_reagents = list("nutriment" = 6, "vitamin" = 4)
+	diet_type = 1

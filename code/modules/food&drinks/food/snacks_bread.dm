@@ -36,11 +36,13 @@
 	slice_path = /obj/item/weapon/reagent_containers/food/snacks/breadslice/meat
 	bonus_reagents = list("nutriment" = 5, "vitamin" = 10)
 	list_reagents = list("nutriment" = 30, "vitamin" = 5)
+	diet_type = 1
 
 /obj/item/weapon/reagent_containers/food/snacks/breadslice/meat
 	name = "meatbread slice"
 	desc = "A slice of delicious meatbread."
 	icon_state = "meatbreadslice"
+	diet_type = 1
 
 /obj/item/weapon/reagent_containers/food/snacks/store/bread/xenomeat
 	name = "xenomeatbread loaf"
@@ -49,6 +51,7 @@
 	slice_path = /obj/item/weapon/reagent_containers/food/snacks/breadslice/xenomeat
 	bonus_reagents = list("nutriment" = 5, "vitamin" = 10)
 	list_reagents = list("nutriment" = 30, "vitamin" = 5)
+	diet_type = 1
 
 /obj/item/weapon/reagent_containers/food/snacks/breadslice/xenomeat
 	name = "xenomeatbread slice"
@@ -56,6 +59,7 @@
 	icon_state = "xenobreadslice"
 	filling_color = "#32CD32"
 	list_reagents = list("nutriment" = 6, "vitamin" = 1)
+	diet_type = 1
 
 /obj/item/weapon/reagent_containers/food/snacks/store/bread/spidermeat
 	name = "spider meat loaf"
@@ -64,6 +68,7 @@
 	slice_path = /obj/item/weapon/reagent_containers/food/snacks/breadslice/spidermeat
 	bonus_reagents = list("nutriment" = 5, "vitamin" = 10)
 	list_reagents = list("nutriment" = 30, "toxin" = 15, "vitamin" = 5)
+	diet_type = 1
 
 /obj/item/weapon/reagent_containers/food/snacks/breadslice/spidermeat
 	name = "spider meat bread slice"
@@ -71,6 +76,7 @@
 	icon_state = "xenobreadslice"
 	filling_color = "#7CFC00"
 	list_reagents = list("nutriment" = 6, "toxin" = 3, "vitamin" = 1)
+	diet_type = 1
 
 /obj/item/weapon/reagent_containers/food/snacks/store/bread/banana
 	name = "banana-nut bread"
@@ -79,7 +85,7 @@
 	slice_path = /obj/item/weapon/reagent_containers/food/snacks/breadslice/banana
 	bonus_reagents = list("nutriment" = 5, "banana" = 20)
 	list_reagents = list("nutriment" = 20, "banana" = 20)
-
+	diet_type = 2
 
 /obj/item/weapon/reagent_containers/food/snacks/breadslice/banana
 	name = "banana-nut bread slice"
@@ -87,6 +93,7 @@
 	icon_state = "bananabreadslice"
 	filling_color = "#FFD700"
 	list_reagents = list("nutriment" = 4, "banana" = 4)
+	diet_type = 2
 
 /obj/item/weapon/reagent_containers/food/snacks/store/bread/tofu
 	name = "Tofubread"
@@ -95,6 +102,7 @@
 	slice_path = /obj/item/weapon/reagent_containers/food/snacks/breadslice/tofu
 	bonus_reagents = list("nutriment" = 5, "vitamin" = 10)
 	list_reagents = list("nutriment" = 20, "vitamin" = 5)
+	diet_type = 2
 
 /obj/item/weapon/reagent_containers/food/snacks/breadslice/tofu
 	name = "tofubread slice"
@@ -102,6 +110,7 @@
 	icon_state = "tofubreadslice"
 	filling_color = "#FF8C00"
 	list_reagents = list("nutriment" = 4, "vitamin" = 1)
+	diet_type = 2
 
 /obj/item/weapon/reagent_containers/food/snacks/store/bread/creamcheese
 	name = "cream cheese bread"
@@ -125,6 +134,7 @@
 	slice_path = /obj/item/weapon/reagent_containers/food/snacks/breadslice/mimana
 	bonus_reagents = list("nutriment" = 5, "vitamin" = 5)
 	list_reagents = list("nutriment" = 20, "mutetoxin" = 5, "nothing" = 5, "vitamin" = 5)
+	diet_type = 2
 
 /obj/item/weapon/reagent_containers/food/snacks/breadslice/mimana
 	name = "mimana bread slice"
@@ -132,6 +142,7 @@
 	icon_state = "mimanabreadslice"
 	filling_color = "#C0C0C0"
 	list_reagents = list("nutriment" = 2, "mutetoxin" = 1, "nothing" = 1, "vitamin" = 1)
+	diet_type = 2
 
 /obj/item/weapon/reagent_containers/food/snacks/breadslice/custom
 	name = "bread slice"
