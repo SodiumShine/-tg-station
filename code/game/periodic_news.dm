@@ -8,31 +8,7 @@
 	var/channel_name = "Centcom United News Network"
 	var/can_be_redacted = 0
 	var/message_type = "Story"
-/*
-/datum/news_announcement/revolution_inciting_event
-	author = "Unauthorized"
-	round_time = 30
 
-/datum/news_announcement/revolution_inciting_event/paycuts_suspicion
-			message = {"Reports have leaked that Nanotrasen Inc. is planning to put paycuts into
-						effect on many of its Research Stations in Tau Ceti. Apparently these research
-						stations haven't been able to yield the expected revenue, and thus adjustments
-						have to be made."}
-
-/datum/news_announcement/revolution_inciting_event/paycuts_confirmation
-			message = {"Earlier rumours about paycuts on Research Stations in the Tau Ceti system have
-						been confirmed. Shockingly, however, the cuts will only affect lower tier
-						personnel. Heads of Staff will, according to our sources, not be affected."}
-
-/datum/news_announcement/revolution_inciting_event/human_experiments
-			message = {"Unbelievable reports about human experimentation have reached our ears. According
-			 			to a refugee from one of the Tau Ceti Research Stations, their station, in order
-			 			to increase revenue, has refactored several of their facilities to perform experiments
-			 			on live humans, including virology research, genetic manipulation, and \"feeding them
-			 			to the slimes to see what happens\". Allegedly, these test subjects were neither
-			 			humanified monkeys nor volunteers, but rather unqualified staff that were forced into
-			 			the experiments, and reported to have died in a \"work accident\" by Nanotrasen Inc."}
-*/
 
 /datum/news_announcement/cheesy_honkers
 	author = "Assistant Editor Carl Ritz"
@@ -91,11 +67,19 @@
 				criminal acts by the Caped Corgi, security guards were found knocked out cold but without serious injury. \"It moved like lightning! I turned around and bam,
 				dog all up in my face\" reported a security guard. Authorities still puzzled as to how a corgi manages all this while thepublic is still left to speculate about the true name, owner, or even gender of the Caped Corgi."}
 	author = "Felicity Cartwright"
+
+/datum/news_announcement/shovel
+	author = "Gidgit's Gizmos"
+	message = {"From the people that brought you the self combusting ice cream scooper and the spatula that even doubles as a screwdriver.
+	We are proud to bring you the all terrain shovel. Ever wanted to dig your way into a bank vault? Having trouble piecing together that collection of presidential skulls?
+	Well, with one purchase you can. This shovel works on everything, soil, rock, flesh, and even galvanized metal. But wait there's more, it even removes stains in 10
+	seconds or less, remember, we said all terrain, meaning you can take the shovel and scoop that stain right up and toss it away. Call now and receive a trail free for ninety days."}
 ////////////////////////////////////////////////////////////////////////////////
 
 var/global/list/newscaster_standard_feeds = list(/datum/news_announcement/jachrid, /datum/news_announcement/cheesy_honkers, /datum/news_announcement/net_block,
 												/datum/news_announcement/whales, /datum/news_announcement/found_ssd, /datum/news_announcement/reminder,
-												/datum/news_announcement/bennett, /datum/news_announcement/meeps, /datum/news_announcement/cake, /datum/news_announcement/corgi)
+												/datum/news_announcement/bennett, /datum/news_announcement/meeps, /datum/news_announcement/cake, /datum/news_announcement/corgi,
+												/datum/news_announcement/shovel)
 
 var/global/list/announced_news_types = list()
 
