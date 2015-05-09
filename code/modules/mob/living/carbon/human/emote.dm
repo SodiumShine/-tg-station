@@ -115,6 +115,11 @@
 				else
 					message = "<B>[src]</B> sadly can't find anybody to give daps to, and daps \himself. Shameful."
 
+		if ("deathgasp")
+			message = "<B>[src]</B> [src.dna.species.death_cry]"
+			m_type = 1
+
+
 		if ("eyebrow")
 			message = "<B>[src]</B> raises an eyebrow."
 			m_type = 1

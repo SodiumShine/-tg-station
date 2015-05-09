@@ -60,6 +60,7 @@
 	heatmod = 1.5
 	meat = /obj/item/weapon/reagent_containers/food/snacks/meat/slab/human/mutant/plant
 	roundstart = 1 // SHINE
+	death_cry = "ceases movement, leaves and bark withering immediately in death..."
 
 /datum/species/plant/handle_chemicals(datum/reagent/chem, mob/living/carbon/human/H)
 	if(chem.id == "plantbgone")
@@ -129,9 +130,10 @@
 	sexes = 0
 	ignored_by = list(/mob/living/simple_animal/hostile/faithless)
 	meat = /obj/item/weapon/reagent_containers/food/snacks/meat/slab/human/mutant/shadow
-	specflags = list(NOBREATH,NOBLOOD,RADIMMUNE)
+	specflags = list(NOBLOOD,RADIMMUNE,VIRUSIMMUNE)
 	roundstart = 1 // SHINE
 	armor = -10 //shine
+	death_cry = "writhes and twists before seizing up, collapsing into a loose, dark organic mess..."
 
 /datum/species/shadow/spec_life(mob/living/carbon/human/H)
 	var/light_amount
@@ -185,6 +187,7 @@
 	ignored_by = list(/mob/living/simple_animal/slime)
 	meat = /obj/item/weapon/reagent_containers/food/snacks/meat/slab/human/mutant/slime
 	exotic_blood = /datum/reagent/toxin/slimejelly
+	death_cry = "rapidly loses control of shape and form, oozing into a motionlesss, humanoid blob..."
 	var/recently_changed = 1
 
 	roundstart = 1 // SHINE ADD
@@ -333,6 +336,7 @@
 	burnmod = 1.25
 	roundstart = 1
 	armor = -10
+	death_cry = "might be dead. It's really hard to tell..."
 
 /datum/species/zombie/handle_speech(message)
 	var/list/message_list = text2list(message, " ")
@@ -453,11 +457,12 @@ var/global/image/plasmaman_on_fire = image("icon"='icons/mob/OnFire.dmi', "icon_
 	use_skintones = 1
 	meat = /obj/item/weapon/reagent_containers/food/snacks/meat/slab/synthmeat
 	roundstart = 1
+	death_cry = "shuts down with a critical error, eyes flickering closed..."
 
 // Can't eat or drink
 /datum/species/gamoid/handle_chemicals(datum/reagent/chem, mob/living/carbon/human/H)
 //	if(chem.id == "")
-	H.adjustFireLoss(1.5)
+	H.adjustFireLoss(1)
 	H.reagents.remove_reagent(chem.id, REAGENTS_METABOLISM)
 	if(prob(33))
 		H << "<span class='danger'>WARNING: Foreign contaminant detected internally. Systems damaged.</span>"

@@ -53,6 +53,8 @@
 	var/invis_sight = SEE_INVISIBLE_LIVING
 	var/darksight = 2
 
+	var/death_cry = "seizes up and falls limp, eyes dead and lifeless..."
+
 	// species flags. these can be found in flags.dm
 	var/list/specflags = list()
 
