@@ -60,7 +60,7 @@
 	heatmod = 1.5
 	meat = /obj/item/weapon/reagent_containers/food/snacks/meat/slab/human/mutant/plant
 	roundstart = 1 // SHINE
-	death_cry = "ceases movement, leaves and bark withering immediately in death..."
+	death_cry = "goes stiff with a quiet creaking, leaves withering and falling to the ground..."
 
 /datum/species/plant/handle_chemicals(datum/reagent/chem, mob/living/carbon/human/H)
 	if(chem.id == "plantbgone")
@@ -350,9 +350,11 @@
 			message_list[insertpos] = inserttext + "..."
 
 		if(prob(20) && message_list.len > 3)
-			message_list.Insert(insertpos, "[pick("BRAINS", "Brains", "Braaaiinnnsss", "BRAAAIIINNSSS")]...")
+			message_list.Insert(insertpos, "[pick("BRAINS", "Brains", "Braaaiinnnsss", "BRAAAIIINNSSS", "guhhhh")]...")
 
 	return list2text(message_list, " ")
+
+
 
 /datum/species/cosmetic_zombie
 	name = "Human"
@@ -360,6 +362,9 @@
 	sexes = 0
 	meat = /obj/item/weapon/reagent_containers/food/snacks/meat/slab/human/mutant/zombie
 
+/*
+ABDUCTORS
+*/
 
 /datum/species/abductor
 	name = "Abductor"
@@ -388,6 +393,9 @@
 		M << "<i><font color=#800080><b>[user.name]:</b> [message]</font></i>"
 	return ""
 
+/*
+PLASMAMEN
+*/
 
 var/global/image/plasmaman_on_fire = image("icon"='icons/mob/OnFire.dmi', "icon_state"="plasmaman")
 
