@@ -1031,7 +1031,7 @@
 
 	var/datum/gas_mixture/environment = H.loc.return_air()
 	var/datum/gas_mixture/breath
-	if(H.health <= config.health_threshold_crit)
+	if((H.health <= config.health_threshold_crit) && (NOBREATH in H.dna.species.specflags)) //SHINE if they dont breath they shouldn't suffocate
 		H.losebreath++
 	if(H.losebreath>0) //Suffocating so do not take a breath
 		H.losebreath--
@@ -1370,6 +1370,14 @@
 		H.fire_stacks = 0
 		H.AddLuminosity(-3)
 		H.update_fire()
+
+/* SHINE
+///////////
+// DEATH //
+///////////
+
+/datum/species/proc/handle_regular_status_updates(var/mob/living/carbon/human/H)
+*/
 
 #undef HUMAN_MAX_OXYLOSS
 #undef HUMAN_CRIT_MAX_OXYLOSS

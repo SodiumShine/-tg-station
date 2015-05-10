@@ -131,10 +131,12 @@
 	sexes = 0
 	ignored_by = list(/mob/living/simple_animal/hostile/faithless)
 	meat = /obj/item/weapon/reagent_containers/food/snacks/meat/slab/human/mutant/shadow
-	specflags = list(NOBLOOD,RADIMMUNE,VIRUSIMMUNE)
+	specflags = list(NOBLOOD,HAIR,FACEHAIR,COLDRES)
 	roundstart = 1 // SHINE
 	armor = -10 //shine
 	death_cry = "writhes and twists before seizing up, collapsing into a loose, dark organic mess..."
+	hair_color = "000000"
+	hair_alpha = 150
 
 /datum/species/shadow/spec_life(mob/living/carbon/human/H)
 	var/light_amount
@@ -157,19 +159,25 @@
 //			world << "Nope, not covered"
 			PR = 0
 
-		if(light_amount > 3) //if there's enough light, start dying
-			L = light_amount / 2
-			if(PR == 1)
-				L = 0
-			H.take_overall_damage(0,L)
-//			world << "Take [L] damage"
-		else if(light_amount < 3 && light_amount > 2)
-//			world << "No light stuff"
-		else if (light_amount < 2) //heal in the dark
-			L = light_amount
-			C = 2 - L
-			H.heal_overall_damage(0,C)
-//			world << "Heal [C]"
+		if(!(H.stat == DEAD)) // Dont bother doing any burn stuff if they're dead!
+			if(!istype(H.wear_suit, /obj/item/clothing/suit/bio_suit/plaguedoctorsuit) || !istype(H.head, /obj/item/clothing/head/plaguedoctorhat)) //Also dont if suited
+
+				if(light_amount > 3) //if there's enough light, start dying
+					L = light_amount / 2
+					if(PR == 1)
+						L = 0
+					H.take_overall_damage(0,L)
+					if(prob(25))
+						H << "<span class='userdanger'>The light burns us!</span>"
+					H << 'sound/weapons/sear.ogg'
+
+				else if(light_amount < 3 && light_amount > 2) // Not too dark, not too bright
+
+				else if (light_amount < 2) //heal in the dark
+					L = light_amount
+					C = 2 - L
+					H.heal_overall_damage(0,C)
+		//			world << "Heal [C]"
 
 /*
  SLIMEPEOPLE
