@@ -69,7 +69,8 @@
 #define NOBLOOD		1024
 #define NOFIRE		2048
 #define VIRUSIMMUNE	4096
-#define ABIOTIC		8192
+#define HARDFEET	8192
+#define ABIOTIC		16384
 
 /*
 	These defines are used specifically with the atom/movable/languages bitmask.

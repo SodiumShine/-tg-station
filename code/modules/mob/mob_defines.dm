@@ -154,3 +154,5 @@
 
 	var/list/permanent_huds = list()
 	var/permanent_sight_flags = 0
+
+	var/resize = 1 //Badminnery resize
