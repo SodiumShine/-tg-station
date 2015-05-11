@@ -412,3 +412,4 @@
 	src << browse(null, "window=mob_occupation")
 	src << browse(null, "window=latechoices") //closes late job selection
 	src << browse(null, "window=manifest")
+	src << browse(null, "window=species")

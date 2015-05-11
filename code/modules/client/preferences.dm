@@ -61,6 +61,7 @@ datum/preferences
 	var/skin_tone = "caucasian1"		//Skin color
 	var/eye_color = "000"				//Eye color
 	var/datum/species/pref_species = new /datum/species/human()	//Mutant race
+	var/species_preview
 	var/mutant_color = "FFF"			//Mutant race skin color
 	var/list/custom_names = list("clown", "mime", "ai", "cyborg", "religion", "deity")
 
@@ -116,6 +117,7 @@ datum/preferences
 		save_preferences()
 	save_character()		//let's save this new random character so it doesn't keep generating new ones.
 	return
+
 
 /datum/preferences
 	proc/ShowChoices(mob/user)
@@ -733,12 +735,26 @@ datum/preferences
 					if("species")
 
 						var/result = input(user, "Select a species", "Species Selection") as null|anything in roundstart_species
-
+						if(!result) return
 						if(result)
+							species_preview = roundstart_species[result]
+//							world << "DEBUG [species_preview]"
+							SetSpecies(user)
+/* SHINE backup
 							var/newtype = roundstart_species[result]
 							pref_species = new newtype()
 							if(mutant_color == "#000")
 								mutant_color = pref_species.default_color
+*/
+					if("chosespecies")
+						user << browse(null, "window=species")
+//						var/prev_species = species
+						var/chosen = href_list["newspecies"]
+						var/newtype = roundstart_species[chosen]
+//						world << "DEBUG newtype: [newtype]"
+						pref_species = new newtype()
+						ShowChoices(user)
+//						if(prev_species != species)
 
 					if("mutant_color")
 						var/new_mutantcolor = input(user, "Choose your character's alien skin color:", "Character Preference") as color|null
@@ -947,3 +963,75 @@ datum/preferences
 
 		character.update_body()
 		character.update_hair()
+
+// SHINE ported from bay
+	proc/SetSpecies(mob/user)
+		if(!species_preview) // || !(species_preview in all_species)) // SHINE what is this even for <a href='?_src_=prefs;preference=species;task=input'>
+			species_preview = "Human"
+		var/datum/species/current_species = new species_preview()
+		var/dat = "<center><h2>[current_species.name]</h2></center><hr/>"
+		dat += "<table padding='8px'>"
+		dat += "<tr>"
+		dat += "<td width = 400>[current_species.desc]</td>"
+		dat += "<td width = 200 align='center'>"
+	/*	if("preview" in icon_states(current_species.icobase))
+			usr << browse_rsc(icon(current_species.icobase,"preview"), "species_preview_[current_species.name].png")
+			dat += "<img src='species_preview_[current_species.name].png' width='64px' height='64px'><br/><br/>" */
+	//	dat += "<b>Language:</b> [current_species.language]<br/>"
+		dat += "<small>"
+
+//		if(current_species.flags & CAN_JOIN)
+//			dat += "</br><b>Often present on human stations.</b>"
+//		if(current_species.flags & IS_WHITELISTED)
+//			dat += "</br><b>Whitelist restricted.</b>"
+		if(NOBLOOD in current_species.specflags)
+			dat += "</br><b>Does not have blood.</b>"
+		if(NOBREATH in current_species.specflags)
+			dat += "</br><b>Does not breathe.</b>"
+		if(ABIOTIC in current_species.specflags)
+			dat += "</br><b>Inorganic.</b>"
+		if(COLDRES in current_species.specflags)
+			dat += "</br><b>Cold Resistant.</b>"
+		if(HEATRES in current_species.specflags)
+			dat += "</br><b>Heat Resistant.</b>"
+		if(NOGUNS in current_species.specflags)
+			dat += "</br><b>Cannot use guns.</b>"
+		if(NOFIRE in current_species.specflags)
+			dat += "</br><b>Fire Resistant.</b>"
+		if(VIRUSIMMUNE in current_species.specflags)
+			dat += "</br><b>Cannot get sick..</b>"
+//		if(current_species.flags & NO_SCAN)
+//			dat += "</br><b>Does not have DNA.</b>"
+//		if(current_species.flags & NO_PAIN)
+//			dat += "</br><b>Does not feel pain.</b>"
+//		if(current_species.flags & NO_SLIP)
+//			dat += "</br><b>Has excellent traction.</b>"
+//		if(current_species.flags & NO_POISON)
+//			dat += "</br><b>Immune to most poisons.</b>"
+//		if(current_species.flags & HAS_SKIN_TONE)
+//			dat += "</br><b>Has a variety of skin tones.</b>"
+//		if(current_species.flags & HAS_SKIN_COLOR)
+//			dat += "</br><b>Has a variety of skin colours.</b>"
+//		if(current_species.flags & HAS_EYE_COLOR)
+//			dat += "</br><b>Has a variety of eye colours.</b>"
+//		if(current_species.flags & IS_PLANT)
+//			dat += "</br><b>Has a plantlike physiology.</b>"
+
+		dat += "</small></td>"
+		dat += "</tr>"
+		dat += "</table><center><hr/>"
+
+		dat += "\[<a href='?src=\ref[user];preference=species;task=input'>Change Selection</a>\]"
+		dat += "\[<a href='?src=\ref[user];preference=chosespecies;task=input;newspecies=[current_species]'>Confirm Selection</a>\]"
+		dat += "</center>"
+
+		user << browse(null, "window=preferences")
+	//	user << browse(dat, "window=species;size=700x400")
+
+		var/datum/browser/popup = new(user, "species", "<div align='center'>Species Information</div>", 700, 400)
+		popup.set_window_options("focus=1;can_close=0")
+		popup.set_content(dat)
+		popup.open(0)
+		spawn(5)
+			user << browse(null, "window=preferences")
+		return

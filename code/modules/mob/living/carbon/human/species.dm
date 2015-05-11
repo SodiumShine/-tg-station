@@ -57,6 +57,7 @@
 	var/death_cry = "seizes up and falls limp, eyes dead and lifeless..."
 	var/diet = 0 //0=omnivore 1=carnivore 2=herbivore 3=cant eat except for special
 	var/list/diet_special = list() // special needs children who can only eat certain things
+	var/desc = "No description set"
 
 	// species flags. these can be found in flags.dm
 	var/list/specflags = list()

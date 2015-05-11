@@ -8,7 +8,8 @@
 	roundstart = 1
 	specflags = list(EYECOLOR,HAIR,FACEHAIR,LIPS)
 	use_skintones = 1
-
+	desc = {"The bulk of Nanotrasen, superiour to all other races. At least they are in their own eyes.
+	</br> Only Humans are allowed to hold Command positions, and are the only ones protected by most silicon laws."}
 /datum/species/human/handle_chemicals(datum/reagent/chem, mob/living/carbon/human/H)
 	if(chem.id == "mutationtoxin")
 		H << "<span class='danger'>Your flesh rapidly mutates!</span>"
@@ -35,6 +36,9 @@
 	attack_sound = 'sound/weapons/slash.ogg'
 	miss_sound = 'sound/weapons/slashmiss.ogg'
 	meat = /obj/item/weapon/reagent_containers/food/snacks/meat/slab/human/mutant/lizard
+	desc = {"A race of lizard like beings who were enslaved to Nanotrasen for generations.
+	They only recently gained a semblance of basic rights, but are still considered to be second class citizens.
+	Naturally they resent this a little bit. </br>Very common on stations due to being cheap labour."}
 
 /datum/species/lizard/handle_speech(message)
 	// jesus christ why
@@ -62,6 +66,10 @@
 	roundstart = 1 // SHINE
 	death_cry = "goes stiff with a quiet creaking, leaves withering and falling to the ground..."
 	diet = 1
+	desc = {"The Foliat are a race of plant-like beings, currently allied with Nanotrasen.
+	Often mistaken for actual plants, Foliat are more a cross between fauna and flora, including not only meat and bones, but bark skin and leafy/flowery heads.
+	Weed killer and fire can cause serious damage and/or illness.
+	</br> Not often seen on Station's due to their complete lack vegetation and natural soil."}
 
 /datum/species/plant/handle_chemicals(datum/reagent/chem, mob/living/carbon/human/H)
 	if(chem.id == "plantbgone")
@@ -137,6 +145,7 @@
 	death_cry = "writhes and twists before seizing up, collapsing into a loose, dark organic mess..."
 	hair_color = "000000"
 	hair_alpha = 150
+	desc = "Edgy and dark"
 
 /datum/species/shadow/spec_life(mob/living/carbon/human/H)
 	var/light_amount
@@ -185,7 +194,7 @@
 
 /datum/species/slime
 	// Humans mutated by slime mutagen, produced from green slimes. They are not targetted by slimes.
-	name = "Slime"
+	name = "Slimeperson"
 	id = "slime"
 	default_color = "00FFFF"
 	darksight = 3
@@ -198,8 +207,12 @@
 	exotic_blood = /datum/reagent/toxin/slimejelly
 	death_cry = "rapidly loses control of shape and form, oozing into a motionlesss, humanoid blob..."
 	var/recently_changed = 1
-
-	roundstart = 1 // SHINE ADD
+	desc = {"Not actually a race, but the result of mutated Human staff. Xenobiology accidents are common,
+	and can sometimes lead to scientists turning into translucent gelatin like substance.
+	</br> The transformation leaves their body and blood toxic for other species, thankfully only dangerous by ingestion.
+	However, this also means anti-toxins are dangerous for Slimepeople. Ordinary Slimes like the one's found in Xenobiology labs, tend to get along better with Slimepeople than other races.
+	</br> Fairly common on stations, not only due to the rate of Xenobiology accidents, but due to the rate at which Slimepeople procreate. Scientists are still not sure why this is."}
+	roundstart = 1
 	coldmod = 2
 
 /datum/species/slime/spec_life(mob/living/carbon/human/H)
@@ -307,7 +320,8 @@
 	say_mod = "buzzes"
 	meat = /obj/item/weapon/reagent_containers/food/snacks/meat/slab/human/mutant/fly
 	roundstart = 1 // SHINE
-
+	desc = {"The result of horrible accidents involving teleporters. Very disliked amongst crew, Flypeople are considered disgusting and abominations.
+	</br>Very rare on stations, as teleporter accidents are not overly common, and Flypeople tend not to have very good lifespans or survival rates."}
 /datum/species/fly/handle_chemicals(datum/reagent/chem, mob/living/carbon/human/H)
 	if(chem.id == "pestkiller")
 		H.adjustToxLoss(3)
@@ -346,6 +360,12 @@
 	roundstart = 1
 	armor = -10
 	death_cry = "might be dead. It's really hard to tell..."
+	desc = {"The first Recycled Human was the result of an accident during cloning experiemtns, and ever since Nanotrasen has been experimenting with cheaper more maintainable staff.
+	</br> Recycled Humans are created when a body cannot be cloned properly, resulting in a still-dead-yet-alive again crew member. They are often called Zombies by other crew,
+	although Nanotrasen Officials insist on refering to them by a more marketable name.
+	</br> They tend to <b>move slowly</b> due to stiff movements, but strangely enough are not as brainless as one might expect, fully capable of jobs they performed while alive.
+	While they have a overwhelming hunger for the contents of skulls, they do not actually need these to survive and are capable of processing other foods.
+	</br> Not overly common on stations, but their numbers increase by the day."}
 
 /datum/species/zombie/handle_speech(message)
 	var/list/message_list = text2list(message, " ")
@@ -382,7 +402,7 @@ ABDUCTORS
 	say_mod = "gibbers"
 	sexes = 0
 	invis_sight = SEE_INVISIBLE_LEVEL_ONE
-	specflags = list(NOBLOOD,NOBREATH,VIRUSIMMUNE)
+	specflags = list(NOBLOOD,NOBREATH,VIRUSIMMUNE,HARDFEET)
 	var/scientist = 0 // vars to not pollute spieces list with castes
 	var/agent = 0
 	var/team = 1
@@ -465,16 +485,23 @@ var/global/image/plasmaman_on_fire = image("icon"='icons/mob/OnFire.dmi', "icon_
 ///////////////////////////////////////////////////////////////////////////////
 
 /datum/species/gamoid
-	name = "Gamoid/Android"
+	name = "Gamoid"
 	id = "gamoid"
 	say_mod = "states"
 	sexes = 1
-	specflags = list(COLDRES,NOBLOOD,NOBREATH,EYECOLOR,HAIR,FACEHAIR,LIPS,RADIMMUNE,VIRUSIMMUNE,ABIOTIC)
+	specflags = list(COLDRES,NOBLOOD,NOBREATH,EYECOLOR,HAIR,FACEHAIR,LIPS,RADIMMUNE,VIRUSIMMUNE,ABIOTIC,HARDFEET)
 	exotic_blood = /datum/reagent/oil
 	use_skintones = 1
 	meat = /obj/item/weapon/reagent_containers/food/snacks/meat/slab/synthmeat
 	roundstart = 1
+	armor = 10
 	death_cry = "shuts down with a critical error, eyes flickering closed..."
+	desc = {"Gamoids are one of Nanotrasen's latest ways of cutting the costs of staff. Most gamoids are originally commercial or recreational service robots, refitted to work on Stations.
+	</br> As one might expect, Gamoids are completely inorganic, and therefore do not require things such as air or food, are immunte to radiation and disease, and are fully resistent to the cold harshness of space.
+	</br> Howerver, Gamoids are somewhat easily damaged internally if liquids or other matter are to enter their delicate internal systems. Their external chassis is not as fragile though.
+	</br> Like most robots they require charging via powercells in order to continue operating, and may need to be occasionally repaired using a welding tool.
+	 However they are not capable of maintaining themselves and will need another crewmember to do so."}
+
 
 // Can't eat or drink
 /datum/species/gamoid/handle_chemicals(datum/reagent/chem, mob/living/carbon/human/H)
@@ -606,5 +633,5 @@ var/global/image/plasmaman_on_fire = image("icon"='icons/mob/OnFire.dmi', "icon_
 //		powerwarned = 1
 	if(H.nutrition < NUTRITION_LEVEL_STARVING)
 		if(!H.sleeping)
-			H << "<span class='warning'>GAMOID SYSTEM: Entering Emergency Sleep Mode...</span>"
+			H << "<span class='warning'>GAMOID SYSTEM: Low power. Entering Emergency Sleep Mode...</span>"
 		H.sleeping = 10
