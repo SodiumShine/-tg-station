@@ -5,6 +5,7 @@
 	if(say_disabled)	//This is here to try to identify lag problems
 		usr << "<span class='danger'>Speech is currently admin-disabled.</span>"
 		return
+	set_typing_indicator(0)
 	usr.say(message)
 
 /mob/verb/whisper(message as text)
@@ -22,6 +23,7 @@
 
 	message = trim(copytext(sanitize(message), 1, MAX_MESSAGE_LEN))
 
+	set_typing_indicator(0)
 	usr.emote("me",1,message)
 
 /mob/proc/say_dead(var/message)

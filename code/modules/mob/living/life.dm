@@ -54,6 +54,8 @@
 	if(client)
 		handle_regular_hud_updates()
 
+		handle_typing_indicator()
+
 	return .
 
 
