@@ -484,6 +484,10 @@ var/global/image/plasmaman_on_fire = image("icon"='icons/mob/OnFire.dmi', "icon_
 ///SHINE SPECIES///
 ///////////////////////////////////////////////////////////////////////////////
 
+/*
+GAMOIDS
+*/
+
 /datum/species/gamoid
 	name = "Gamoid"
 	id = "gamoid"
@@ -635,3 +639,66 @@ var/global/image/plasmaman_on_fire = image("icon"='icons/mob/OnFire.dmi', "icon_
 		if(!H.sleeping)
 			H << "<span class='warning'>GAMOID SYSTEM: Low power. Entering Emergency Sleep Mode...</span>"
 		H.sleeping = 10
+
+
+/*
+SKRELL
+*/
+
+/datum/species/skrell
+	id = "skrell"
+	name = "Skrell"
+	roundstart = 1
+	mutant_bodyparts = list("head")
+	default_color = "#8CD7A3"
+	eyes = "skrelleyes"
+	sexes = 1
+	say_mod = "warbles"
+	diet = 2
+	specflags = list(LIPS,MUTCOLORS,EYECOLOR)
+	desc = "An amphibious species, Skrell come from the star system known as Qerr'Vallis, which translates to 'Star of \
+	the royals' or 'Light of the Crown'.<br/><br/>Skrell are a highly advanced and logical race who live under the rule \
+	of the Qerr'Katish, a caste within their society which keeps the empire of the Skrell running smoothly. Skrell are \
+	herbivores on the whole and tend to be co-operative with the other species of the galaxy, although they rarely reveal \
+	the secrets of their empire to their allies."
+
+/datum/species/skrell/spec_life(mob/living/carbon/human/H)
+	handle_mutant_bodyparts(H)
+
+/datum/species/skrell/handle_mutant_bodyparts(mob/living/carbon/human/H)
+	..()
+	var/list/bodyparts_to_add = mutant_bodyparts.Copy()
+	var/list/relevent_layers = list(HAIR_LAYER)
+	var/list/standing	= list()
+
+	H.remove_overlay(HAIR_LAYER)
+
+	if(!mutant_bodyparts)
+		return
+
+	if("head" in mutant_bodyparts) // for skrell
+		if(H.head && (H.head.flags & BLOCKHAIR))
+			bodyparts_to_add -= "head"
+
+	if(!bodyparts_to_add)
+		return
+
+	var/icon_state_string = "[id]_"
+	var/g = (H.gender == FEMALE) ? "f" : "m"
+	var/image/I
+
+	if(sexes)
+		icon_state_string += "[g]_s"
+	else
+		icon_state_string += "_s"
+
+	for(var/layer in relevent_layers)
+		for(var/bodypart in bodyparts_to_add)
+			I = image("icon" = 'icons/mob/mutant_bodyparts.dmi', "icon_state" = "[icon_state_string]_[bodypart]_[layer]", "layer" =- layer)
+			if(!(H.disabilities & HUSK))
+				I.color = "#[H.dna.mutant_color]"
+			standing += I
+		H.overlays_standing[layer] = standing.Copy()
+		standing = list()
+
+	H.apply_overlay(HAIR_LAYER)

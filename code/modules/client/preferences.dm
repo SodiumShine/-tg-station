@@ -662,6 +662,7 @@ datum/preferences
 						if(new_hair_style)
 							hair_style = new_hair_style
 
+
 					if("next_hair_style")
 						if (gender == MALE)
 							hair_style = next_list_item(hair_style, hair_styles_male_list)
