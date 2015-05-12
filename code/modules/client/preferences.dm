@@ -93,6 +93,8 @@ datum/preferences
 
 	var/unlock_content = 0
 
+	var/list/flavor_texts = list()
+
 /datum/preferences/New(client/C)
 	blood_type = random_blood_type()
 	ooccolor = normal_ooc_colour
@@ -173,7 +175,10 @@ datum/preferences
 				dat += "<a href ='?_src_=prefs;preference=ai_name;task=input'><b>AI:</b> [custom_names["ai"]]</a> "
 				dat += "<a href ='?_src_=prefs;preference=cyborg_name;task=input'><b>Cyborg:</b> [custom_names["cyborg"]]</a><BR>"
 				dat += "<a href ='?_src_=prefs;preference=religion_name;task=input'><b>Chaplain religion:</b> [custom_names["religion"]] </a>"
-				dat += "<a href ='?_src_=prefs;preference=deity_name;task=input'><b>Chaplain deity:</b> [custom_names["deity"]]</a><BR></td>"
+				dat += "<a href ='?_src_=prefs;preference=deity_name;task=input'><b>Chaplain deity:</b> [custom_names["deity"]]</a><BR>"
+
+				dat += "<b>Character Info:</b><BR>"
+				dat += "<a href ='?_src_=prefs;preference=flavor_text;task=open'><b>Set Custom Character Info</b></a><br></td>"
 
 
 				dat += "<td valign='center'>"
@@ -825,7 +830,6 @@ datum/preferences
 						else
 							user << "<font color='red'>Invalid name. Your name should be at least 2 and at most [MAX_NAME_LEN] characters long. It may only contain the characters A-Z, a-z, -, ' and .</font>"
 
-
 			else
 				switch(href_list["preference"])
 					if("publicity")
@@ -913,6 +917,32 @@ datum/preferences
 						if (href_list["tab"])
 							current_tab = text2num(href_list["tab"])
 
+
+		if(href_list["preference"] == "flavor_text")
+			switch(href_list["task"])
+				if("open")
+					SetFlavorText(user)
+					return
+				if("done")
+					user << browse(null, "window=flavor_text")
+					ShowChoices(user)
+					return
+				if("general")
+					var/msg = input(usr,"Give a general description of your character. This will be shown regardless of clothing, and may include OOC notes and preferences.","Flavor Text",html_decode(flavor_texts[href_list["task"]])) as message
+					if(msg != null)
+						msg = copytext(msg, 1, MAX_MESSAGE_LEN)
+						msg = html_encode(msg)
+					flavor_texts[href_list["task"]] = msg
+				else
+					var/msg = input(usr,"Set the flavor text for your [href_list["task"]].","Flavor Text",html_decode(flavor_texts[href_list["task"]])) as message
+					if(msg != null)
+						msg = copytext(msg, 1, MAX_MESSAGE_LEN)
+						msg = html_encode(msg)
+					flavor_texts[href_list["task"]] = msg
+			SetFlavorText(user)
+			return
+
+
 		ShowChoices(user)
 		return 1
 
@@ -933,6 +963,8 @@ datum/preferences
 
 		character.real_name = real_name
 		character.name = character.real_name
+
+		character.flavor_texts["general"] = flavor_texts["general"]
 
 		if(character.dna)
 			character.dna.real_name = character.real_name
@@ -1036,3 +1068,19 @@ datum/preferences
 		spawn(5)
 			user << browse(null, "window=preferences")
 		return
+
+
+/datum/preferences/proc/SetFlavorText(mob/user)
+	var/HTML = "<body>"
+	HTML += "<tt><center>"
+	HTML += "<b>Set Examine Description</b> <hr />"
+	HTML += "<br></center>"
+	HTML += "<a href='byond://?src=\ref[user];preference=flavor_text;task=general'>Examine:</a> "
+	HTML += TextPreview(flavor_texts["general"])
+	HTML += "<br>"
+	HTML += "<hr />"
+	HTML +="<a href='?src=\ref[user];preference=flavor_text;task=done'>\[Done\]</a>"
+	HTML += "<tt>"
+	user << browse(null, "window=preferences")
+	user << browse(HTML, "window=flavor_text;size=430x300")
+	return

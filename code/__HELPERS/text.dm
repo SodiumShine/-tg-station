@@ -459,3 +459,12 @@ var/list/binary = list("0","1")
 	t = replacetext(t, "\[/list\]", "</ul>")
 
 	return t
+
+proc/TextPreview(var/string,var/len=40) // SHINE for flavour text stuff in character profiles
+	if(lentext(string) <= len)
+		if(!lentext(string))
+			return "\[...\]"
+		else
+			return string
+	else
+		return "[copytext(string, 1, 37)]..."

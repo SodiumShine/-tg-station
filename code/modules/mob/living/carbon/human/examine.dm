@@ -264,7 +264,7 @@
 			msg += "[t_He] [t_is] moving [t_his] body in an unnatural and blatantly inhuman manner.\n"
 
 
-	if(istype(user, /mob/living/carbon/human))
+	if(istype(user, /mob/living/carbon/human)) // Security  and medical hud
 		var/mob/living/carbon/human/H = user
 		var/obj/item/cybernetic_implant/eyes/hud/CIH = locate(/obj/item/cybernetic_implant/eyes/hud) in H.internal_organs
 		if(istype(H.glasses, /obj/item/clothing/glasses/hud) || CIH)
@@ -305,6 +305,11 @@
 						msg += "<a href='?src=\ref[src];hud=s;add_crime=1'>\[Add crime\]</a> "
 						msg += "<a href='?src=\ref[src];hud=s;view_comment=1'>\[View comment log\]</a> "
 						msg += "<a href='?src=\ref[src];hud=s;add_comment=1'>\[Add comment\]</a>\n"
+
+	msg += "*---------*\n"
+
+	if(flavor_texts)
+		msg += "[flavor_texts["general"]] \n"
 
 	msg += "*---------*</span>"
 

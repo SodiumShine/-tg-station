@@ -188,6 +188,9 @@
 
 	H.set_cloned_appearance()
 
+//	H.flavor_texts = R.flavor.Copy()
+
+
 	H.suiciding = 0
 	src.attempting = 0
 	return 1

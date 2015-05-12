@@ -385,6 +385,9 @@
 	R.fields["blood_type"] = subject.dna.blood_type
 	R.fields["mcolor"] = subject.dna.mutant_color
 	R.fields["factions"] = subject.faction
+
+	R.fields["flavor"] = subject.flavor_texts
+
 	//Add an implant if needed
 	var/obj/item/weapon/implant/health/imp = locate(/obj/item/weapon/implant/health, subject)
 	if(!imp)
