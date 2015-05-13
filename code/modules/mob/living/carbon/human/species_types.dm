@@ -702,3 +702,33 @@ SKRELL
 		standing = list()
 
 	H.apply_overlay(HAIR_LAYER)
+
+/*
+Tajara
+*/
+
+/datum/species/tajaran
+	id = "tajaran"
+	name = "Tajaran"
+	darksight = 8
+	roundstart = 1
+	default_color = "#AFA59E"
+	hair_color = "mutcolor"
+	no_equip = list(slot_shoes)
+	mutant_bodyparts = list("tail","ears")
+	attack_verb = "scratch"
+	attack_sound = 'sound/weapons/slash.ogg'
+	miss_sound = 'sound/weapons/slashmiss.ogg'
+	burnmod = 1.25
+	coldmod = 0.50
+	armor = -10
+	specflags = list(HAIR,MUTCOLORS)
+
+	desc = "The Tajaran race is a species of feline-like bipeds hailing from the planet of Ahdomai in the \
+	S'randarr system. They have been brought up into the space age by the Humans and Skrell, and have been \
+	influenced heavily by their long history of Slavemaster rule. They have a structured, clan-influenced way \
+	of family and politics. They prefer colder environments, and speak a variety of languages, mostly Siik'Maas, \
+	using unique inflections their mouths form."
+
+/datum/species/tajaran/spec_life(mob/living/carbon/human/H)
+	handle_mutant_bodyparts(H)

@@ -262,9 +262,9 @@
 		if(H.wear_mask && (H.wear_mask.flags_inv & HIDEFACE))
 			bodyparts_to_add -= "snout"
 
-//	if("head" in mutant_bodyparts) // for skrell
-//		if(H.head && (H.head.flags & BLOCKHAIR))
-//			bodyparts_to_add -= "head"
+	if("ears" in mutant_bodyparts) // for tajaran
+		if(H.head && (H.head.flags & BLOCKHAIR))
+			bodyparts_to_add -= "ears"
 
 	if(!bodyparts_to_add)
 		return
