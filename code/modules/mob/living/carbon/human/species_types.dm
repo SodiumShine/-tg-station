@@ -495,7 +495,6 @@ GAMOIDS
 	sexes = 1
 	specflags = list(COLDRES,NOBLOOD,NOBREATH,EYECOLOR,HAIR,FACEHAIR,LIPS,RADIMMUNE,VIRUSIMMUNE,ABIOTIC,HARDFEET)
 	exotic_blood = /datum/reagent/oil
-	use_skintones = 1
 	meat = /obj/item/weapon/reagent_containers/food/snacks/meat/slab/synthmeat
 	roundstart = 1
 	armor = 10
@@ -722,7 +721,7 @@ Tajara
 	burnmod = 1.25
 	coldmod = 0.50
 	armor = -10
-	specflags = list(HAIR,MUTCOLORS)
+	specflags = list(HAIR,MUTCOLORS,EYECOLOR,FACEHAIR,LIPS)
 
 	desc = "The Tajaran race is a species of feline-like bipeds hailing from the planet of Ahdomai in the \
 	S'randarr system. They have been brought up into the space age by the Humans and Skrell, and have been \
