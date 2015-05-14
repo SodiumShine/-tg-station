@@ -191,4 +191,4 @@ NOTIFY_NEW_PLAYER_AGE 0
 #PANIC_BUNKER
 
 ## Uncomment to have the changelog file automatically open when a user connects and hasn't seen the latest changelog
-#AGGRESSIVE_CHANGELOG
+AGGRESSIVE_CHANGELOG
