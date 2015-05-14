@@ -324,7 +324,7 @@ datum/preferences
 		dat += "</center>"
 
 		//user << browse(dat, "window=preferences;size=560x560")
-		var/datum/browser/popup = new(user, "preferences", "<div align='center'>Character Setup</div>", 640, 750)
+		var/datum/browser/popup = new(user, "preferences", "<div align='center'>Character Setup</div>", 640, 760)
 		popup.set_content(dat)
 		popup.open(0)
 
@@ -1032,7 +1032,13 @@ datum/preferences
 		if(NOFIRE in current_species.specflags)
 			dat += "</br><b>Fire Resistant.</b>"
 		if(VIRUSIMMUNE in current_species.specflags)
-			dat += "</br><b>Cannot get sick..</b>"
+			dat += "</br><b>Immune to disease.</b>"
+		if(current_species.diet == 1)
+			dat += "</br><b>Carnivore.</b>"
+		if(current_species.diet == 2)
+			dat += "</br><b>Herbivore.</b>"
+		if(current_species.sexes == 0)
+			dat += "</br><b>Genderless .</b>"
 //		if(current_species.flags & NO_SCAN)
 //			dat += "</br><b>Does not have DNA.</b>"
 //		if(current_species.flags & NO_PAIN)
@@ -1061,7 +1067,7 @@ datum/preferences
 		user << browse(null, "window=preferences")
 	//	user << browse(dat, "window=species;size=700x400")
 
-		var/datum/browser/popup = new(user, "species", "<div align='center'>Species Information</div>", 700, 400)
+		var/datum/browser/popup = new(user, "species", "<div align='center'>Species Information</div>", 700, 450)
 		popup.set_window_options("focus=1;can_close=0")
 		popup.set_content(dat)
 		popup.open(0)
