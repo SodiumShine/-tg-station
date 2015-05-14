@@ -17,6 +17,8 @@ var/time_last_changed_position = 0
 	var/printing = null
 	var/list/region_access = null
 	var/list/head_subordinates = null
+	var/sortBy = "name"
+	var/order = 1
 
 	//Cooldown for closing positions in seconds
 	//if set to -1: No cooldown... probably a bad idea
@@ -280,6 +282,27 @@ var/time_last_changed_position = 0
 			body = "<a href='?src=\ref[src];choice=auth'>{Log in}</a> <br><hr>"
 			body += "<a href='?src=\ref[src];choice=mode;mode_target=1'>Access Crew Manifest</a>"
 			body += "<br><hr><a href = '?src=\ref[src];choice=mode;mode_target=2'>Job Management</a>"
+			body += {"<hr><table style="text-align:center;" cellspacing="0" width="100%">
+					<tr>
+					<th>Records:</th>
+					</tr>
+					</table>
+					<table style="text-align:center;" border="1" cellspacing="0" width="100%"> "}
+			body += {"<tr>
+					<th><A href='?src=\ref[src];choice=Sorting;sort=name'>Name</A></th>
+					<th><A href='?src=\ref[src];choice=Sorting;sort=id'>ID</A></th>
+					<th><A href='?src=\ref[src];choice=Sorting;sort=rank'>Rank</A></th>
+					<th><A href='?src=\ref[src];choice=Sorting;sort=fingerprint'>Notes</A></th>
+					</tr>"}
+			if(!isnull(data_core.general))
+				for(var/datum/data/record/R in sortRecord(data_core.general, sortBy, order))
+					for(var/datum/data/record/E in data_core.security)
+					var/background
+					body += text("<tr style=[]><td>[]</td>", background, R.fields["name"])
+					body += text("<td>[]</td>", R.fields["id"])
+					body += text("<td>[]</td>", R.fields["rank"])
+					body += text("<td>[]</td>", R.fields["notes"])
+				body += "</table>"
 
 		dat = "<tt>[header][body]<hr><br></tt>"
 

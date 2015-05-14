@@ -156,3 +156,8 @@
 	var/permanent_sight_flags = 0
 
 	var/resize = 1 //Badminnery resize
+
+	var/med_record = ""
+	var/sec_record = ""
+	var/gen_record = ""
+	var/flavor_text = ""

@@ -228,7 +228,8 @@
 							dat += "</tr>"
 						dat += "</table>"
 
-						dat += "<br>\nImportant Notes:<br>\n\t<A href='?src=\ref[src];choice=Edit Field;field=notes'>&nbsp;[active2.fields["notes"]]&nbsp;</A>"
+						dat += "<br>\nImportant Notes:<br>\n\t<A href='?src=\ref[src];choice=Edit Field;field=notes'>&nbsp;Edit Important Notes&nbsp;</A>"
+						dat += "<br>[active2.fields["notes"]]"
 						dat += "<br><br><font size='4'><b>Comments/Log</b></font><br>"
 						var/counter = 1
 						while(active2.fields[text("com_[]", counter)])

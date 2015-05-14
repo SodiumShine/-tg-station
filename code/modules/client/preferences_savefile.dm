@@ -208,7 +208,9 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 
 	//Flavor texts
 	S["flavor_texts_general"]	>> flavor_texts["general"]
-
+	S["med_record"]			>> med_record
+	S["sec_record"]			>> sec_record
+	S["gen_record"]			>> gen_record
 
 	//try to fix any outdated data if necessary
 	if(needs_update >= 0)
@@ -307,7 +309,9 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 
 	//Flavor
 	S["flavor_texts_general"]	<< flavor_texts["general"]
-
+	S["med_record"]			<< med_record
+	S["sec_record"]			<< sec_record
+	S["gen_record"]			<< gen_record
 
 	return 1
 

@@ -219,6 +219,10 @@ var/record_id_num = 1001
 		G.fields["sex"]			= H.gender
 		G.fields["photo_front"]	= photo_front
 		G.fields["photo_side"]	= photo_side
+		if(H.gen_record && !jobban_isbanned(H, "Records"))
+			G.fields["notes"] = H.gen_record
+		else
+			G.fields["notes"] = "No notes found."
 		general += G
 
 		//Medical Record
@@ -236,6 +240,10 @@ var/record_id_num = 1001
 		M.fields["cdi"]			= "None"
 		M.fields["cdi_d"]		= "No diseases have been diagnosed at the moment."
 		M.fields["notes"]		= "No notes."
+		if(H.med_record && !jobban_isbanned(H, "Records"))
+			M.fields["notes"] = H.med_record
+		else
+			M.fields["notes"] = "No notes found."
 		medical += M
 
 		//Security Record
@@ -246,6 +254,11 @@ var/record_id_num = 1001
 		S.fields["mi_crim"]		= list()
 		S.fields["ma_crim"]		= list()
 		S.fields["notes"]		= "No notes."
+		if(H.sec_record && !jobban_isbanned(H, "Records"))
+			S.fields["notes"] = H.sec_record
+		else
+			S.fields["notes"] = "No notes."
+		security += S
 		security += S
 
 		//Locked Record

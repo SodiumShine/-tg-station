@@ -94,6 +94,10 @@ datum/preferences
 	var/unlock_content = 0
 
 	var/list/flavor_texts = list()
+	var/med_record = ""
+	var/sec_record = ""
+	var/gen_record = ""
+
 
 /datum/preferences/New(client/C)
 	blood_type = random_blood_type()
@@ -178,7 +182,8 @@ datum/preferences
 				dat += "<a href ='?_src_=prefs;preference=deity_name;task=input'><b>Chaplain deity:</b> [custom_names["deity"]]</a><BR>"
 
 				dat += "<b>Character Info:</b><BR>"
-				dat += "<a href ='?_src_=prefs;preference=flavor_text;task=open'><b>Set Custom Character Info</b></a><br></td>"
+				dat += "<a href ='?_src_=prefs;preference=flavor_text;task=open'><b>Set Examine Description</b></a><br>"
+				dat += "<a href=\"byond://?src=\ref[user];preference=records;record=1\"><b>Character Records</b></a><br></td>"
 
 
 				dat += "<td valign='center'>"
@@ -324,7 +329,7 @@ datum/preferences
 		dat += "</center>"
 
 		//user << browse(dat, "window=preferences;size=560x560")
-		var/datum/browser/popup = new(user, "preferences", "<div align='center'>Character Setup</div>", 640, 760)
+		var/datum/browser/popup = new(user, "preferences", "<div align='center'>Character Setup</div>", 640, 780)
 		popup.set_content(dat)
 		popup.open(0)
 
@@ -928,11 +933,24 @@ datum/preferences
 					ShowChoices(user)
 					return
 				if("general")
-					var/msg = input(usr,"Give a general description of your character. This will be shown regardless of clothing, and may include OOC notes and preferences.","Flavor Text",html_decode(flavor_texts[href_list["task"]])) as message
+					var/msg = input(usr,"Give a general description of your character. This will appear when others examine you in game.","Flavor Text",html_decode(flavor_texts[href_list["task"]])) as message
 					if(msg != null)
 						msg = copytext(msg, 1, MAX_MESSAGE_LEN)
 						msg = html_encode(msg)
 					flavor_texts[href_list["task"]] = msg
+/*				if("security")
+					var/msg = input(usr,"Write about your character's criminal record if any. Other notes that security might use are also applicable.","Flavor Text",html_decode(flavor_texts[href_list["task"]])) as message
+					if(msg != null)
+						msg = copytext(msg, 1, MAX_MESSAGE_LEN)
+						msg = html_encode(msg)
+					flavor_texts[href_list["task"]] = msg
+				if("medical")
+					var/msg = input(usr,"Write about your character's medical history and other medical notes.","Flavor Text",html_decode(flavor_texts[href_list["task"]])) as message
+					if(msg != null)
+						msg = copytext(msg, 1, MAX_MESSAGE_LEN)
+						msg = html_encode(msg)
+					flavor_texts[href_list["task"]] = msg
+*/
 				else
 					var/msg = input(usr,"Set the flavor text for your [href_list["task"]].","Flavor Text",html_decode(flavor_texts[href_list["task"]])) as message
 					if(msg != null)
@@ -942,9 +960,43 @@ datum/preferences
 			SetFlavorText(user)
 			return
 
+		else if(href_list["preference"] == "records")
+			if(text2num(href_list["record"]) >= 1)
+				SetRecords(user)
+				return
+			else
+				user << browse(null, "window=records")
+			if(href_list["task"] == "med_record")
+				var/medmsg = input(usr,"Set your medical notes here. These will appear on medical consoles.","Medical Records",html_decode(med_record)) as message
+
+				if(medmsg != null)
+					medmsg = copytext(medmsg, 1, MAX_MESSAGE_LEN)
+					medmsg = html_encode(medmsg)
+
+					med_record = medmsg
+					SetRecords(user)
+
+			if(href_list["task"] == "sec_record")
+				var/secmsg = input(usr,"Set your security notes here. These will appear on security consoles.","Security Records",html_decode(sec_record)) as message
+
+				if(secmsg != null)
+					secmsg = copytext(secmsg, 1, MAX_MESSAGE_LEN)
+					secmsg = html_encode(secmsg)
+
+					sec_record = secmsg
+					SetRecords(user)
+			if(href_list["task"] == "gen_record")
+				var/genmsg = input(usr,"Set your employment notes here.","Employment Records",html_decode(gen_record)) as message
+
+				if(genmsg != null)
+					genmsg = copytext(genmsg, 1, MAX_MESSAGE_LEN)
+					genmsg = html_encode(genmsg)
+
+					gen_record = genmsg
+					SetRecords(user)
 
 		ShowChoices(user)
-		return 1
+		return 1 // END OF PROC
 
 	proc/copy_to(mob/living/carbon/human/character)
 		if(be_random_name)
@@ -965,6 +1017,9 @@ datum/preferences
 		character.name = character.real_name
 
 		character.flavor_texts["general"] = flavor_texts["general"]
+		character.med_record = med_record
+		character.sec_record = sec_record
+		character.gen_record = gen_record
 
 		if(character.dna)
 			character.dna.real_name = character.real_name
@@ -1083,10 +1138,39 @@ datum/preferences
 	HTML += "<br></center>"
 	HTML += "<a href='byond://?src=\ref[user];preference=flavor_text;task=general'>Examine:</a> "
 	HTML += TextPreview(flavor_texts["general"])
+//	HTML += "<a href='byond://?src=\ref[user];preference=flavor_text;task=security'>Security:</a> "
+//	HTML += TextPreview(flavor_texts["security"])
+//	HTML += "<a href='byond://?src=\ref[user];preference=flavor_text;task=medical'>Security:</a> "
+//	HTML += TextPreview(flavor_texts["medical"])
 	HTML += "<br>"
 	HTML += "<hr />"
 	HTML +="<a href='?src=\ref[user];preference=flavor_text;task=done'>\[Done\]</a>"
 	HTML += "<tt>"
 	user << browse(null, "window=preferences")
 	user << browse(HTML, "window=flavor_text;size=430x300")
+	return
+
+/datum/preferences/proc/SetRecords(mob/user)
+	var/HTML = "<body>"
+	HTML += "<tt><center>"
+	HTML += "<b>Set Character Records</b><br>"
+
+	HTML += "<a href=\"byond://?src=\ref[user];preference=records;task=med_record\">Medical Records</a><br>"
+
+	HTML += TextPreview(med_record,40)
+
+	HTML += "<br><br><a href=\"byond://?src=\ref[user];preference=records;task=gen_record\">Employment Records</a><br>"
+
+	HTML += TextPreview(gen_record,40)
+
+	HTML += "<br><br><a href=\"byond://?src=\ref[user];preference=records;task=sec_record\">Security Records</a><br>"
+
+	HTML += TextPreview(sec_record,40)
+
+	HTML += "<br>"
+	HTML += "<a href=\"byond://?src=\ref[user];preference=records;records=-1\">\[Done\]</a>"
+	HTML += "</center></tt>"
+
+	user << browse(null, "window=preferences")
+	user << browse(HTML, "window=records;size=350x300")
 	return

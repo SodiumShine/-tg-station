@@ -137,7 +137,8 @@
 						dat += "<tr><td>Details:</td><td><A href='?src=\ref[src];field=alg_d'>&nbsp;[active2.fields["alg_d"]]&nbsp;</A></td></tr>"
 						dat += "<tr><td><br>Current Diseases:</td><td><br><A href='?src=\ref[src];field=cdi'>&nbsp;[active2.fields["cdi"]]&nbsp;</A></td></tr>" //(per disease info placed in log/comment section)
 						dat += "<tr><td>Details:</td><td><A href='?src=\ref[src];field=cdi_d'>&nbsp;[active2.fields["cdi_d"]]&nbsp;</A></td></tr>"
-						dat += "<tr><td><br>Important Notes:</td><td><br><A href='?src=\ref[src];field=notes'>&nbsp;[active2.fields["notes"]]&nbsp;</A></td></tr>"
+						dat += "<tr><td><br>Important Notes:</td><td><br><A href='?src=\ref[src];field=notes'>&nbsp;Edit Important Notes&nbsp;</A></td></tr>"
+						dat += "<tr><td></td><td>[active2.fields["notes"]]</td></tr>"
 
 						dat += "<tr><td><br><b><font size='4'>Comments/Log</font></b></td></tr>"
 						var/counter = 1
