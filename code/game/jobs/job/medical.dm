@@ -35,7 +35,7 @@ Chief Medical Officer
 	H.equip_to_slot_or_del(new /obj/item/device/flashlight/pen(H), slot_s_store)
 
 	//Equip telebaton
-	if(H.backbag == 2 || H.backbag == 3)
+	if(!H.backbag == 1)
 		H.equip_to_slot_or_del(new /obj/item/weapon/melee/classic_baton/telescopic(H), slot_in_backpack)
 
 /*
@@ -56,6 +56,7 @@ Medical Doctor
 	default_headset = /obj/item/device/radio/headset/headset_med
 	default_backpack = /obj/item/weapon/storage/backpack/medic
 	default_satchel = /obj/item/weapon/storage/backpack/satchel_med
+	default_dufflebag = /obj/item/weapon/storage/backpack/dufflebag/med
 
 	access = list(access_medical, access_morgue, access_surgery, access_chemistry, access_virology, access_genetics, access_mineral_storeroom)
 	minimal_access = list(access_medical, access_morgue, access_surgery)

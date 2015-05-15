@@ -1045,7 +1045,7 @@ datum/preferences
 		character.undershirt = undershirt
 		character.socks = socks
 
-		if(backbag > 3 || backbag < 1)
+		if(backbag > 4 || backbag < 1)
 			backbag = 1 //Same as above
 		character.backbag = backbag
 

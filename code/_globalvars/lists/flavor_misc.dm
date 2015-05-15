@@ -19,7 +19,7 @@ var/global/list/socks_list = list()		//stores /datum/sprite_accessory/socks inde
 var/global/list/socks_m = list()	 //stores only socks name
 var/global/list/socks_f = list()	 //stores only socks name
 	//Backpacks
-var/global/list/backbaglist = list("Nothing", "Backpack", "Satchel")
+var/global/list/backbaglist = list("None", "Backpack", "Satchel", "Dufflebag")
 	//Female Uniforms
 var/global/list/female_clothing_icons = list()
 

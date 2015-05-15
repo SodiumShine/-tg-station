@@ -39,7 +39,7 @@ Chief Engineer
 	H.equip_to_slot_or_del(new /obj/item/clothing/gloves/color/black/ce(H), slot_gloves)
 
 	//Equip telebaton
-	if(H.backbag == 2 || H.backbag == 3)
+	if(!H.backbag == 1)
 		H.equip_to_slot_or_del(new /obj/item/weapon/melee/classic_baton/telescopic(H), slot_in_backpack)
 
 /*
@@ -61,6 +61,8 @@ Station Engineer
 	default_headset = /obj/item/device/radio/headset/headset_eng
 	default_backpack = /obj/item/weapon/storage/backpack/industrial
 	default_satchel = /obj/item/weapon/storage/backpack/satchel_eng
+	default_dufflebag = /obj/item/weapon/storage/backpack/dufflebag/engineering
+
 	default_storagebox = /obj/item/weapon/storage/box/engineer
 
 	access = list(access_engine, access_engine_equip, access_tech_storage, access_maint_tunnels,

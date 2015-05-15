@@ -125,6 +125,10 @@ Bartender
 			var/obj/item/weapon/storage/backpack/BPK = new default_satchel(H)
 			new default_storagebox(BPK)
 			H.equip_to_slot_or_del(BPK, slot_back,1)
+		if(4) //dufflebag
+			var/obj/item/weapon/storage/backpack/BPK = new default_dufflebag(H)
+			new default_storagebox(BPK)
+			H.equip_to_slot_or_del(BPK, slot_back,1)
 
 /datum/job/bartender/equip_items(var/mob/living/carbon/human/H)
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/sneakers/black(H), slot_shoes)

@@ -145,7 +145,7 @@
 	death_cry = "writhes and twists before seizing up, collapsing into a loose, dark organic mess..."
 	hair_color = "000000"
 	hair_alpha = 150
-	desc = "Creatures of darkness. Burn in the light. <b>Important note:</b> All shadowpeople are supplied with special clothes that will protect them from light. These can be found in your backpack."
+	desc = "Creatures of darkness. Burn in the light. Super edgy. <BR><b>Important note:</b> All shadowpeople are supplied with special clothes that will protect them from light. These can be found in your backpack."
 
 /datum/species/shadow/after_equip_job(var/datum/job/J, var/mob/living/carbon/human/H)
 	H.equip_to_slot_or_del(new /obj/item/clothing/suit/bio_suit/plaguedoctorsuit/shadow(H), slot_in_backpack)
