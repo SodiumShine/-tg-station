@@ -145,7 +145,13 @@
 	death_cry = "writhes and twists before seizing up, collapsing into a loose, dark organic mess..."
 	hair_color = "000000"
 	hair_alpha = 150
-	desc = "Edgy and dark"
+	desc = "Creatures of darkness. Burn in the light. <b>Important note:</b> All shadowpeople are supplied with special clothes that will protect them from light. These can be found in your backpack."
+
+/datum/species/shadow/after_equip_job(var/datum/job/J, var/mob/living/carbon/human/H)
+	H.equip_to_slot_or_del(new /obj/item/clothing/suit/bio_suit/plaguedoctorsuit/shadow(H), slot_in_backpack)
+	H.equip_to_slot_or_del(new /obj/item/clothing/head/plaguedoctorhat/shadow(H), slot_in_backpack)
+
+
 
 /datum/species/shadow/spec_life(mob/living/carbon/human/H)
 	var/light_amount
@@ -498,6 +504,7 @@ GAMOIDS
 	meat = /obj/item/weapon/reagent_containers/food/snacks/meat/slab/synthmeat
 	roundstart = 1
 	armor = 10
+	default_color = "FFFFFF"
 	death_cry = "shuts down with a critical error, eyes flickering closed..."
 	desc = {"Gamoids are one of Nanotrasen's latest ways of cutting the costs of staff. Most gamoids are originally commercial or recreational service robots, refitted to work on Stations.
 	</br> As one might expect, Gamoids are completely inorganic, and therefore do not require things such as air or food, are immunte to radiation and disease, and are fully resistent to the cold harshness of space.
@@ -505,6 +512,9 @@ GAMOIDS
 	</br> Like most robots they require charging via powercells in order to continue operating, and may need to be occasionally repaired using a welding tool.
 	 However they are not capable of maintaining themselves and will need another crewmember to do so."}
 
+/datum/species/gamoid/after_equip_job(var/datum/job/J, var/mob/living/carbon/human/H)
+	H.equip_to_slot_or_del(new /obj/item/weapon/stock_parts/cell/crap(H), slot_in_backpack)
+	return
 
 // Can't eat or drink
 /datum/species/gamoid/handle_chemicals(datum/reagent/chem, mob/living/carbon/human/H)

@@ -83,3 +83,11 @@
 	item_state = "bio_suit"
 	strip_delay = 40
 	put_on_delay = 20
+
+/obj/item/clothing/suit/bio_suit/plaguedoctorsuit/shadow
+	name = "Shadowperson suit"
+	desc = "A traditional cloak used to protect the wearer against bright lights."
+	w_class = 3//bulky item
+	gas_transfer_coefficient = 0.50
+	permeability_coefficient = 0.50
+	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 20)

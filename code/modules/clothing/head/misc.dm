@@ -37,6 +37,12 @@
 	icon_state = "plaguedoctor"
 	permeability_coefficient = 0.01
 
+/obj/item/clothing/head/plaguedoctorhat/shadow
+	name = "shadowperson hat"
+	desc = "A hat used to protect a shadowperson's head from the sun and other bright lights."
+	permeability_coefficient = 0.50
+
+
 /obj/item/clothing/head/hasturhood
 	name = "hastur's hood"
 	desc = "It's <i>unspeakably</i> stylish."
