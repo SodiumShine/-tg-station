@@ -132,8 +132,7 @@
 */
 
 /datum/species/shadow
-	// Humans cursed to stay in the darkness, lest their life forces drain. They regain health in shadow and die in light.
-	name = "Shadowperson" // SHINE changed ??? to Shadow
+	name = "Edge"
 	id = "shadow"
 	darksight = 8
 	sexes = 0
@@ -145,7 +144,17 @@
 	death_cry = "writhes and twists before seizing up, collapsing into a loose, dark organic mess..."
 	hair_color = "000000"
 	hair_alpha = 150
-	desc = "Creatures of darkness. Burn in the light. Super edgy. <BR><b>Important note:</b> All shadowpeople are supplied with special clothes that will protect them from light. These can be found in your backpack."
+	desc = "The Edge are an interesting race from a distant star system that have recently been cleared to work on Nanotrasen Stations.\
+			Though they may appear to be single entities, they are actually thousands if not millions of tiny insect-like organisms congregated\
+			and organized into a single working unit. \
+			Due to evolving on a planet orbiting around the gravity well of a black hole, the get most of their energy from geo-thermal heat and\
+			internal processes, their exteriors consisting of units resistant to sub-zero temperatures.  Thus, the stations environments are enough\
+			to support a healthy internal environment, however, they still need to absorb oxygen and take in nutrients in order to survive and\
+			exposure to excess electromagnetic radiation (i.e. light) will severely damage the tiny creatures that make up their bodies.\
+			Due to being from the edge of the known systems, they are officially called \"The Edge\" but are more commonly\
+			known as \"Edgelings\" by humans, though many of the Nanotrasen higher-ups have taken to calling them \"Edgelords\" for reasons\
+			currently undisclosed.\
+			<BR><b>Important note:</b> All shadowpeople are supplied with special clothes that will protect them from light. These can be found in your backpack."
 
 /datum/species/shadow/after_equip_job(var/datum/job/J, var/mob/living/carbon/human/H)
 	H.equip_to_slot_or_del(new /obj/item/clothing/suit/bio_suit/plaguedoctorsuit/shadow(H), slot_in_backpack)
