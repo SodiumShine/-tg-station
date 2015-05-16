@@ -58,3 +58,10 @@
 /obj/item/ammo_box/foambox/riot
 	icon_state = "foambox_riot"
 	ammo_type = /obj/item/ammo_casing/caseless/foam_dart/riot
+
+/obj/item/ammo_box/beanbag
+	name = "ammo box (Beanbag Shells)"
+	desc = "Non-lethal slugs for your shotgun"
+	icon_state = "9mmbox"
+	ammo_type = /obj/item/ammo_casing/shotgun/beanbag
+	max_ammo = 6

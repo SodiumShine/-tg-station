@@ -98,6 +98,7 @@ datum/preferences
 	var/sec_record = ""
 	var/gen_record = ""
 
+	var/gear = ""
 
 /datum/preferences/New(client/C)
 	blood_type = random_blood_type()
@@ -181,10 +182,14 @@ datum/preferences
 				dat += "<a href ='?_src_=prefs;preference=religion_name;task=input'><b>Chaplain religion:</b> [custom_names["religion"]] </a>"
 				dat += "<a href ='?_src_=prefs;preference=deity_name;task=input'><b>Chaplain deity:</b> [custom_names["deity"]]</a><BR>"
 
-				dat += "<b>Character Info:</b><BR>"
-				dat += "<a href ='?_src_=prefs;preference=flavor_text;task=open'><b>Set Examine Description</b></a><br>"
-				dat += "<a href=\"byond://?src=\ref[user];preference=records;record=1\"><b>Character Records</b></a><br></td>"
-
+				dat += "<b>Character Flavour:</b><BR>"
+				dat += "<a href ='?_src_=prefs;preference=flavor_text;task=open'><b>Examine Description</b></a><br>"
+				dat += "<a href=\"byond://?src=\ref[user];preference=records;record=1\"><b>Character Records</b></a><br>"
+				dat += " <a href='byond://?src=\ref[user];preference=loadout;task=input'><b>Personal Effects</b></a>"
+				if(!gear)
+					dat += "<i>Item</i>: None<BR></td>"
+				if(gear)
+					dat += "<i>Item</i>: [gear]<BR></td>"
 
 				dat += "<td valign='center'>"
 
@@ -960,7 +965,7 @@ datum/preferences
 			SetFlavorText(user)
 			return
 
-		else if(href_list["preference"] == "records")
+		if(href_list["preference"] == "records")
 			if(text2num(href_list["record"]) >= 1)
 				SetRecords(user)
 				return
@@ -994,6 +999,25 @@ datum/preferences
 
 					gen_record = genmsg
 					SetRecords(user)
+
+
+		else if (href_list["preference"] == "loadout")
+
+			if(href_list["task"] == "input")
+
+				var/list/valid_gear_choices = list("Nothing")
+
+				for(var/thing in gear_datums)
+					var/gear_name = thing
+					valid_gear_choices += gear_name
+
+				var/choice = input(user, "Choose an item to spawn with your character:") as null|anything in valid_gear_choices
+
+				if(choice == "Nothing")
+					gear = ""
+					return
+				else if(choice)
+					gear = choice
 
 		ShowChoices(user)
 		return 1 // END OF PROC
