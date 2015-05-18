@@ -141,7 +141,7 @@
 /mob/living/silicon/robot/proc/pick_module()
 	if(module)
 		return
-	designation = input("Please, select a new module! Please note your selected module cannot be changed back easily.", "Robot", null, null)as null|anything in list("Standard", "Engineering", "Medical", "Miner", "Janitor","Service", "Security","Science")
+	designation = input("Please, select a new module! Please note your selected module cannot be changed back easily.", "Robot", null, null)as null|anything in list("Standard", "Engineering", "Medical", "Miner", "Janitor","Service", "Security")
 	var/animation_length=0
 	if(module)
 		return
