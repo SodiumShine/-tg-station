@@ -198,7 +198,7 @@ var/list/uplink_items = list()
 
 /datum/uplink_item/dangerous/viscerators
 	name = "Viscerator Delivery Grenade"
-	desc = "A unique grenade that deploys a swarm of viscerators upon activation, which will chase down and shred any non-operatives in the area."
+	desc = "A unique grenade that deploys a swarm of viscerators upon activation, which will chase down and shred anyone in the area without discrimination."
 	item = /obj/item/weapon/grenade/spawnergrenade/manhacks
 	cost = 8
 	gamemodes = list() // SHINE empty list
