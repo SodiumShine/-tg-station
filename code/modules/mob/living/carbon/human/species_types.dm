@@ -721,6 +721,12 @@ SKRELL
 
 	H.apply_overlay(HAIR_LAYER)
 
+/datum/species/skrell/handle_chemicals(datum/reagent/chem, mob/living/carbon/human/H)
+	if(chem.id == "mushroomhallucinogen")
+		H.reagents.remove_reagent(chem.id, REAGENTS_METABOLISM)
+		return 1
+
+
 /*
 Tajara
 */

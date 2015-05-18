@@ -20,6 +20,7 @@
 	icon = 'icons/obj/hydroponics/harvest.dmi'
 	potency = -1
 	dried_type = -1 //bit different. saves us from having to define each stupid grown's dried_type as itself. If you don't want a plant to be driable (watermelons) set this to null in the time definition.
+	diet_type = 2
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/New(newloc, new_potency = 50)
 	..()
@@ -1035,6 +1036,7 @@ obj/item/weapon/reagent_containers/food/snacks/grown/shell/eggy/add_juice()
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/mushroom
 	name = "mushroom"
+	diet_type = 0
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/mushroom/reishi
 	seed = /obj/item/seeds/reishimycelium
