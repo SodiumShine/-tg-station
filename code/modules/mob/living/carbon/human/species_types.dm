@@ -521,6 +521,7 @@ GAMOIDS
 	</br> Like most robots they require charging via powercells in order to continue operating, and may need to be occasionally repaired using a welding tool.
 	 However they are not capable of maintaining themselves and will need another crewmember to do so."}
 
+
 /datum/species/gamoid/after_equip_job(var/datum/job/J, var/mob/living/carbon/human/H)
 	H.equip_to_slot_or_del(new /obj/item/weapon/stock_parts/cell/crap(H), slot_in_backpack)
 	return
@@ -539,27 +540,60 @@ GAMOIDS
 /mob/living/carbon/human/attackby(obj/item/weapon/W as obj, mob/user as mob, params)
 	if(src.dna.species.id == "gamoid")
 
+		if (istype(W, /obj/item/weapon/screwdriver) && user.a_intent == "help")
+			if(src == user)
+				user << "<span class='warning'>You lack the reach to open yourself.</span>"
+				return 1
+			if(src.dna.species.open_panel == 0)
+				src.dna.species.open_panel = 1
+				visible_message("<span class='notice'>[user] unscrews and opens the maintainance panel on [src].</span>")
+				return 0
+			else
+				src.dna.species.open_panel = 0
+				visible_message("<span class='notice'>[user] closes and secures the maintainance panel on [src].</span>")
+				return 0
 		if (istype(W, /obj/item/weapon/weldingtool) && user.a_intent == "help")
 			user.changeNext_move(CLICK_CD_MELEE)
 			var/obj/item/weapon/weldingtool/WT = W
 			if (src == user)
-				user << "<span class='warning'>You lack the reach to be able to repair yourself.</span>"
+				user << "<span class='warning'>You lack the reach to repair yourself.</span>"
 				return 1
 			if (src.health >= src.maxHealth)
 				user << "<span class='warning'>[src] does not need repairs.</span>"
 				return 1
 			if (WT.remove_fuel(0, user))
-				adjustBruteLoss(-10)
-				adjustFireLoss(-10)
-				adjustToxLoss(-10)
+				adjustBruteLoss(-20)
 				updatehealth()
+				add_fingerprint(user)
 				visible_message("<span class='notice'>[user] has made some repairs to [src].</span>")
 				return 0
 			else
 				user << "<span class='warning'>The welder must be on for this task.</span>"
 				return 1
 
-		if (istype(W, /obj/item/weapon/stock_parts/cell) && user.a_intent == "help")
+		else if(istype(W, /obj/item/stack/cable_coil) && user.a_intent == "help")
+			var/obj/item/stack/cable_coil/coil = W
+			if (src == user)
+				user << "<span class='warning'>You lack the reach to repair yourself.</span>"
+				return 1
+			if(!src.dna.species.open_panel)
+				user << "<span class='warning'>You will need to open [src]'s maintainence panel first.</span>"
+				return 1
+			if (src.health < src.maxHealth)
+				if (coil.use(1))
+					adjustFireLoss(-15)
+					adjustToxLoss(-15)
+					updatehealth()
+					user.visible_message("[user] has replaced some of the burnt wires in [src].", "<span class='notice'>You replace some of the burnt wires in [src].</span>")
+					return 0
+				else
+					user << "<span class='warning'>You need more cable to repair [src]!</span>"
+					return 1
+			else
+				user << "<span class='warning'>The wires seem fine, there's no need to fix them.</span>"
+				return 1
+
+		else if (istype(W, /obj/item/weapon/stock_parts/cell) && user.a_intent == "help")
 			user.changeNext_move(CLICK_CD_MELEE)
 			var/obj/item/weapon/stock_parts/cell/C = W
 			if (src == user)
@@ -587,11 +621,14 @@ GAMOIDS
 				user << "<span class='warning'>The powercell is empty!</span>"
 				return 1
 
-		if (istype(W, /obj/item/borg/upgrade/restart))
+		else if (istype(W, /obj/item/borg/upgrade/restart))
 			user.changeNext_move(CLICK_CD_MELEE)
 			var/obj/item/borg/upgrade/restart/R = W
 			if (src == user)
 				user << "<span class='warning'>You cannot reach your own maintainence interface.</span>"
+				return 1
+			if(!src.dna.species.open_panel)
+				user << "<span class='warning'>You will need to open [src]'s maintainence panel first.</span>"
 				return 1
 			if (src.stat < 2)
 				user << "<span class='warning'>This gamoid unit isn't in need of a restart module.</span>"

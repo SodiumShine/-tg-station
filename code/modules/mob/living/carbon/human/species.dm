@@ -58,6 +58,8 @@
 	var/diet = 0 //0=omnivore 1=carnivore 2=herbivore 3=cant eat except for special
 	var/list/diet_special = list() // special needs children who can only eat certain things
 	var/desc = "No description set"
+	var/open_panel = 0 // Gamoids need to be opened to repair/recharge
+
 
 	// species flags. these can be found in flags.dm
 	var/list/specflags = list()
