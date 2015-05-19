@@ -183,7 +183,7 @@ datum/preferences
 				dat += "<a href ='?_src_=prefs;preference=deity_name;task=input'><b>Chaplain deity:</b> [custom_names["deity"]]</a><BR>"
 
 				dat += "<b>Character Flavour:</b><BR>"
-				dat += "<a href ='?_src_=prefs;preference=flavor_text;task=open'><b>Examine Description</b></a><br>"
+				dat += "<a href ='?_src_=prefs;preference=flavor_text;task=general'><b>Character Description</b></a>: [TextPreview(flavor_texts["general"])]<br>"
 				dat += "<a href=\"byond://?src=\ref[user];preference=records;record=1\"><b>Character Records</b></a><br>"
 				dat += " <a href='byond://?src=\ref[user];preference=loadout;task=input'><b>Personal Effects</b></a>"
 				if(!gear)
@@ -930,6 +930,7 @@ datum/preferences
 
 		if(href_list["preference"] == "flavor_text")
 			switch(href_list["task"])
+/*
 				if("open")
 					SetFlavorText(user)
 					return
@@ -937,6 +938,7 @@ datum/preferences
 					user << browse(null, "window=flavor_text")
 					ShowChoices(user)
 					return
+*/
 				if("general")
 					var/msg = input(usr,"Give a general description of your character. This will appear when others examine you in game.","Flavor Text",html_decode(flavor_texts[href_list["task"]])) as message
 					if(msg != null)
@@ -962,7 +964,7 @@ datum/preferences
 						msg = copytext(msg, 1, MAX_MESSAGE_LEN)
 						msg = html_encode(msg)
 					flavor_texts[href_list["task"]] = msg
-			SetFlavorText(user)
+//			SetFlavorText(user)
 			return
 
 		if(href_list["preference"] == "records")
@@ -1154,7 +1156,7 @@ datum/preferences
 			user << browse(null, "window=preferences")
 		return
 
-
+/*
 /datum/preferences/proc/SetFlavorText(mob/user)
 	var/HTML = "<body>"
 	HTML += "<tt><center>"
@@ -1173,7 +1175,7 @@ datum/preferences
 	user << browse(null, "window=preferences")
 	user << browse(HTML, "window=flavor_text;size=430x300")
 	return
-
+*/
 /datum/preferences/proc/SetRecords(mob/user)
 	var/HTML = "<body>"
 	HTML += "<tt><center>"
