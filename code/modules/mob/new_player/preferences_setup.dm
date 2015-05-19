@@ -41,11 +41,22 @@
 	var/g = "m"
 	if(gender == FEMALE)	g = "f"
 
-	if(pref_species.id == "human" || !config.mutant_races)
+	if(pref_species.id == "human" || !config.mutant_races) // if human
 		preview_icon = new /icon('icons/mob/human.dmi', "[skin_tone]_[g]_s")
-	else
+
+	else if(pref_species.sexes) // if a species with gender
 		preview_icon = new /icon('icons/mob/human.dmi', "[pref_species.id]_[g]_s")
-		preview_icon.Blend("#[mutant_color]", ICON_MULTIPLY)
+		if(MUTCOLORS in pref_species.specflags)
+			preview_icon.Blend("#[mutant_color]", ICON_MULTIPLY)
+		else
+			preview_icon.Blend("#[pref_species.default_color]", ICON_MULTIPLY)
+	else  // sexless species
+		preview_icon = new /icon('icons/mob/human.dmi', "[pref_species.id]_s")
+		if(MUTCOLORS in pref_species.specflags)
+			preview_icon.Blend("#[mutant_color]", ICON_MULTIPLY)
+		else
+			preview_icon.Blend("#[pref_species.default_color]", ICON_MULTIPLY)
+
 
 	var/datum/sprite_accessory/S
 	if(underwear)

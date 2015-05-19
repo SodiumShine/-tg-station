@@ -26,7 +26,7 @@
 	var/id = null		// if the game needs to manually check your race to do something not included in a proc here, it will use this
 	var/name = null		// this is the fluff name. these will be left generic (such as 'Lizardperson' for the lizard race) so servers can change them to whatever
 	var/roundstart = 0	// can this mob be chosen at roundstart? (assuming the config option is checked?)
-	var/default_color = "#FFF"	// if alien colors are disabled, this is the color that will be used by that race
+	var/default_color = "FFF"	// if alien colors are disabled, this is the color that will be used by that race
 
 	var/eyes = "eyes"	// which eyes the race uses. at the moment, the only types of eyes are "eyes" (regular eyes) and "jelleyes" (three eyes)
 	var/sexes = 1		// whether or not the race has sexual characteristics. at the moment this is only 0 for skeletons and shadows
