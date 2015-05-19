@@ -193,7 +193,7 @@
 					H.take_overall_damage(0,L)
 					if(prob(25))
 						H << "<span class='userdanger'>The light burns us!</span>"
-					H << 'sound/weapons/sear.ogg'
+					playsound(H.loc, 'sound/weapons/sear.ogg', 25, 1, -2)
 
 				else if(light_amount < 3 && light_amount > 2) // Not too dark, not too bright
 
@@ -547,10 +547,12 @@ GAMOIDS
 			if(src.dna.species.open_panel == 0)
 				src.dna.species.open_panel = 1
 				visible_message("<span class='notice'>[user] unscrews and opens the maintainance panel on [src].</span>")
+				playsound(loc, 'sound/items/Screwdriver.ogg', 20, 1, -1)
 				return 0
 			else
 				src.dna.species.open_panel = 0
 				visible_message("<span class='notice'>[user] closes and secures the maintainance panel on [src].</span>")
+				playsound(loc, 'sound/items/Screwdriver.ogg', 25, 1, -1)
 				return 0
 		if (istype(W, /obj/item/weapon/weldingtool) && user.a_intent == "help")
 			user.changeNext_move(CLICK_CD_MELEE)
@@ -566,6 +568,7 @@ GAMOIDS
 				updatehealth()
 				add_fingerprint(user)
 				visible_message("<span class='notice'>[user] has made some repairs to [src].</span>")
+				playsound(loc, 'sound/items/Welder.ogg', 25, 1, -1)
 				return 0
 			else
 				user << "<span class='warning'>The welder must be on for this task.</span>"
@@ -584,7 +587,8 @@ GAMOIDS
 					adjustFireLoss(-15)
 					adjustToxLoss(-15)
 					updatehealth()
-					user.visible_message("[user] has replaced some of the burnt wires in [src].", "<span class='notice'>You replace some of the burnt wires in [src].</span>")
+					user.visible_message("[user] has replaced some of the wires in [src].", "<span class='notice'>You replace some of the wires in [src].</span>")
+					playsound(loc, 'sound/effects/sparks4.ogg', 25, 1, -1)
 					return 0
 				else
 					user << "<span class='warning'>You need more cable to repair [src]!</span>"
