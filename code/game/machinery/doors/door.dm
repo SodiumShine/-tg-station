@@ -18,13 +18,14 @@
 	var/heat_proof = 0 // For glass airlocks/opacity firedoors
 	var/emergency = 0 // Emergency access override
 	var/sub_door = 0 // 1 if it's meant to go under another door.
-
+	var/closingLayer = 3.1
+	var/openingLayer = 2.8
 /obj/machinery/door/New()
 	..()
 	if(density)
-		layer = 3.1 //Above most items if closed
+		layer = closingLayer //Above most items if closed
 	else
-		layer = 2.7 //Under all objects if opened. 2.7 due to tables being at 2.6
+		layer = openingLayer //Under all objects if opened. 2.7 due to tables being at 2.6
 	update_freelook_sight()
 	air_update_turf(1)
 	airlocks += src
@@ -219,7 +220,7 @@
 	sleep(5)
 	src.density = 0
 	sleep(5)
-	src.layer = 2.7
+	src.layer = openingLayer
 	update_icon()
 	SetOpacity(0)
 	operating = 0
@@ -236,7 +237,7 @@
 	operating = 1
 
 	do_animate("closing")
-	src.layer = 3.1
+	src.layer = closingLayer
 	sleep(5)
 	src.density = 1
 	sleep(5)
