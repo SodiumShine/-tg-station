@@ -282,20 +282,31 @@ var/record_id_num = 1001
 	if(!config.mutant_races || H.dna.species.use_skintones)
 		photo = icon("icon" = 'icons/mob/human.dmi', "icon_state" = "[H.skin_tone]_[g]_s")
 	else
-		photo = icon("icon" = 'icons/mob/human.dmi', "icon_state" = "[H.dna.species.id]_[g]_s")
-		photo.Blend("#[H.dna.mutant_color]", ICON_MULTIPLY)
+		if(H.dna.species.sexes)
+			photo = icon("icon" = 'icons/mob/human.dmi', "icon_state" = "[H.dna.species.id]_[g]_s")
+			photo.Blend("#[H.dna.mutant_color]", ICON_MULTIPLY)
+		else
+			photo = icon("icon" = 'icons/mob/human.dmi', "icon_state" = "[H.dna.species.id]_s")
+			photo.Blend("#[H.dna.mutant_color]", ICON_MULTIPLY)
 
 	var/icon/eyes_s
 	if(EYECOLOR in H.dna.species.specflags)
 		eyes_s = icon("icon" = 'icons/mob/human_face.dmi', "icon_state" = "[H.dna.species.eyes]_s")
 		eyes_s.Blend("#[H.eye_color]", ICON_MULTIPLY)
+	else
+		eyes_s = icon("icon" = 'icons/mob/human_face.dmi', "icon_state" = "eyes_s")
+		eyes_s.Blend("#FFFFFF", ICON_MULTIPLY)
 
 	var/datum/sprite_accessory/S
 	S = hair_styles_list[H.hair_style]
 	if(S && (HAIR in H.dna.species.specflags))
 		var/icon/hair_s = icon("icon" = S.icon, "icon_state" = "[S.icon_state]_s")
-		hair_s.Blend("#[H.hair_color]", ICON_MULTIPLY)
-		eyes_s.Blend(hair_s, ICON_OVERLAY)
+		if(H.dna.species.hair_color == "mutcolor") //species must have this colour
+			hair_s.Blend("#[H.dna.species.default_color]", ICON_MULTIPLY)
+			eyes_s.Blend(hair_s, ICON_OVERLAY)
+		else
+			hair_s.Blend("#[H.hair_color]", ICON_MULTIPLY) // custom coloured hair
+			eyes_s.Blend(hair_s, ICON_OVERLAY)
 
 	S = facial_hair_styles_list[H.facial_hair_style]
 	if(S && (FACEHAIR in H.dna.species.specflags))
