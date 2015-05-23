@@ -140,8 +140,8 @@
 	ignored_by = list(/mob/living/simple_animal/hostile/faithless)
 	meat = /obj/item/weapon/reagent_containers/food/snacks/meat/slab/human/mutant/shadow
 	specflags = list(NOBLOOD,HAIR,FACEHAIR,COLDRES)
-	roundstart = 1 // SHINE
-	armor = -10 //shine
+	roundstart = 1
+	armor = -10
 	death_cry = "writhes and twists before seizing up, collapsing into a loose, dark organic mess..."
 	hair_color = "000000"
 	hair_alpha = 150
@@ -158,9 +158,9 @@
 			<BR><b>Important note:</b> All shadowpeople are supplied with special clothes that will protect them from light. These can be found in your backpack."
 	dangerous_existence = 1
 
-/datum/species/shadow/after_equip_job(var/datum/job/J, var/mob/living/carbon/human/H)
-	H.equip_to_slot_or_del(new /obj/item/clothing/suit/bio_suit/plaguedoctorsuit/shadow(H), slot_in_backpack)
-	H.equip_to_slot_or_del(new /obj/item/clothing/head/plaguedoctorhat/shadow(H), slot_in_backpack)
+/datum/species/shadow/before_equip_job(var/datum/job/J, var/mob/living/carbon/human/H)
+	H.equip_to_slot_or_del(new /obj/item/clothing/suit/bio_suit/plaguedoctorsuit/shadow(H), slot_wear_suit)
+	H.equip_to_slot_or_del(new /obj/item/clothing/head/plaguedoctorhat/shadow(H), slot_head)
 
 
 
@@ -193,7 +193,7 @@
 					if(PR == 1)
 						L = 0
 					H.take_overall_damage(0,L)
-					if(prob(25))
+					if(prob(50))
 						H << "<span class='userdanger'>The light burns us!</span>"
 					playsound(H.loc, 'sound/weapons/sear.ogg', 25, 1, -2)
 
@@ -256,6 +256,7 @@
 /datum/species/slime/handle_chemicals(datum/reagent/chem, mob/living/carbon/human/H)
 	if(chem.id == "slimejelly")
 		return 1
+
 /*
  JELLYPEOPLE
 */
@@ -305,13 +306,11 @@
 	id = "golem"
 	specflags = list(NOBREATH,HEATRES,COLDRES,NOGUNS,NOBLOOD,RADIMMUNE,VIRUSIMMUNE,HARDFEET)
 	speedmod = 3
-	armor = 35 // SHINE nerfed 55 to 35
+	armor = 55
 	punchmod = 5
-	no_equip = list(slot_wear_mask, slot_wear_suit, slot_gloves, slot_shoes, slot_head, slot_w_uniform) // slot_wear_mask SHINE letting them have masks on
-	nojumpsuit = 1 // SHINE not letting them have magic skin pockets anymore
+	no_equip = list(slot_wear_mask, slot_wear_suit, slot_gloves, slot_shoes, slot_head, slot_w_uniform)
+	nojumpsuit = 1
 	meat = /obj/item/weapon/reagent_containers/food/snacks/meat/slab/human/mutant/golem
-	roundstart = 0 // SHINE
-//	magicIDslot = 1 // SHINE everyone must have ID
 
 /*
  ADAMANTINE GOLEMS
@@ -772,7 +771,7 @@ SKRELL
 
 
 /*
-Tajara
+TAJARA
 */
 
 /datum/species/tajaran
@@ -800,3 +799,36 @@ Tajara
 
 /datum/species/tajaran/spec_life(mob/living/carbon/human/H)
 	handle_mutant_bodyparts(H)
+
+
+/*
+ROCKMEN
+*/
+/datum/species/rock
+	name = "Rockman"
+	id = "rock"
+	specflags = list(HEATRES,COLDRES,NOGUNS,HARDFEET,NOFIRE)
+	speedmod = 3
+	armor = 55
+	punchmod = 5
+	no_equip = list(slot_wear_mask, slot_wear_suit, slot_gloves, slot_shoes, slot_head, slot_w_uniform)
+	nojumpsuit = 1
+	meat = /obj/item/weapon/reagent_containers/food/snacks/meat/slab/human/mutant/golem
+	roundstart = 0
+	sexes = 0
+	say_mod = "rumbles"
+//	death_cry = ""
+	desc = {"The Rockmen, named as such by Nanotrasen, previously had no name as they never really bothered to have something to call themselves.
+	Simple creatures who originally lived simple lives before being discovered by Humans, and quickly enlisted to work as cheap labour on stations.
+	The Rockmen didn't seem to mind and went along with it.<BR>
+
+	Despite their name and appearance, Rockmen are not actually composed entirely of minerals, and are not at all abiogenic. They are living creatures, requiring
+	air, food and water like many other organisms. It is merely their outer layers that resemble rock, in their composition as well as appearance and hardness.
+	Their tough rock-like exterior is useful not only as a natural defence against physical attacks but renders them immune to fire and heat. Likely this is
+	the result of evolution ensuring Rockmen will survive on their home planet, which is mostly volcanic. Rockmen are not capable of weilding firearms made for humans,
+	or wearing most Nanotrasen made clothing and equipment, as their large bulky builds make such small items difficult to use. Additionally, they tend to move slowly.<BR>
+
+	While seeming to lack intellect by comparison to other species, Rockmen are not actually any less intelligent than Humans,
+	simply slower in the most physical sense. Unlike humans and many other races, they don't find themselves requiring many forms of comfort or leisure,
+	making their culture seem less civilized at a glance.
+	"}
