@@ -10,6 +10,7 @@
 	use_skintones = 1
 	desc = {"The bulk of Nanotrasen, superiour to all other races. At least they are in their own eyes.
 	</br> Only Humans are allowed to hold Command positions, and are the only ones protected by most silicon laws."}
+
 /datum/species/human/handle_chemicals(datum/reagent/chem, mob/living/carbon/human/H)
 	if(chem.id == "mutationtoxin")
 		H << "<span class='danger'>Your flesh rapidly mutates!</span>"
@@ -155,6 +156,7 @@
 			known as \"Edgelings\" by humans, though many of the Nanotrasen higher-ups have taken to calling them \"Edgelords\" for reasons\
 			currently undisclosed.\
 			<BR><b>Important note:</b> All shadowpeople are supplied with special clothes that will protect them from light. These can be found in your backpack."
+	dangerous_existence = 1
 
 /datum/species/shadow/after_equip_job(var/datum/job/J, var/mob/living/carbon/human/H)
 	H.equip_to_slot_or_del(new /obj/item/clothing/suit/bio_suit/plaguedoctorsuit/shadow(H), slot_in_backpack)
@@ -453,6 +455,7 @@ var/global/image/plasmaman_on_fire = image("icon"='icons/mob/OnFire.dmi', "icon_
 	safe_oxygen_min = 0 //We don't breath this
 	safe_toxins_min = 16 //We breath THIS!
 	safe_toxins_max = 0
+	dangerous_existence = 1 //So so much
 	var/skin = 0
 
 /datum/species/plasmaman/skin
