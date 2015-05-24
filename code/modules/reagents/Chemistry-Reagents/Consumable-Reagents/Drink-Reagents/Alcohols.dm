@@ -623,3 +623,10 @@ datum/reagent/consumable/ethanol/drunkenblumpkin
 	description = "A weird mix of whiskey and blumpkin juice."
 	color = "#1EA0FF" // rgb: 102, 67, 0
 	boozepwr = 35
+
+datum/reagent/consumable/ethanol/zorkrye
+	name = "Zork Rye"
+	id = "zorkrye"
+	description = "You get the feeling you should pour this out."
+	color = "#800080"
+	boozepwr = 10

@@ -249,7 +249,4 @@
 	desc = "Want some rye? Course ya do. (This drink is considered contraband)"
 	icon = 'icons/obj/food_custom.dmi'
 	icon_state = "zorkrye"
-
-/obj/item/weapon/reagent_containers/food/drinks/bottle/zorkrye/New()
-	..()
-	reagents.add_reagent("zorkrye" = 100)
+	list_reagents = list("zorkrye" = 100)
