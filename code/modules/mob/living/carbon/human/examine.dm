@@ -236,6 +236,9 @@
 		else
 			msg += "[t_He] [t_is] quite chubby.\n"
 
+	if(hydration < HYDRATION_LEVEL_STARVING - 50)
+		msg += "[t_He] [t_is] severely parched and looks very dry.\n"
+
 	if(pale)
 		msg += "[t_He] [t_has] pale skin.\n"
 

@@ -11,10 +11,12 @@ datum/reagent/consumable
 	name = "Consumable"
 	id = "consumable"
 	var/nutriment_factor = 1 * REAGENTS_METABOLISM
+	var/hydration_factor = 1 * REAGENTS_METABOLISM
 
 datum/reagent/consumable/on_mob_life(var/mob/living/M as mob)
 	current_cycle++
 	M.nutrition += nutriment_factor
+	M.hydration += hydration_factor
 	holder.remove_reagent(src.id, metabolization_rate)
 
 datum/reagent/consumable/nutriment
@@ -30,6 +32,14 @@ datum/reagent/consumable/nutriment/on_mob_life(var/mob/living/M as mob)
 		M.heal_organ_damage(1,0)
 	..()
 	return
+
+datum/reagent/consumable/hydrate
+	name = "Hydrate"
+	id = "hydrate"
+	description = "Magic space water tbh"
+	reagent_state = LIQUID
+	hydration_factor = 15 * REAGENTS_METABOLISM
+	color = "#FFFFFF" // rgb: 255, 255, 255
 
 datum/reagent/consumable/vitamin
 	name = "Vitamin"
@@ -259,6 +269,7 @@ datum/reagent/consumable/hot_coco
 	description = "Made with love! And coco beans."
 	nutriment_factor = 3 * REAGENTS_METABOLISM
 	color = "#403010" // rgb: 64, 48, 16
+	hydration_factor = 15 * REAGENTS_METABOLISM
 
 datum/reagent/consumable/hot_coco/on_mob_life(var/mob/living/M as mob)
 	if (M.bodytemperature < 310)//310 is the normal bodytemp. 310.055
@@ -354,6 +365,7 @@ datum/reagent/consumable/hot_ramen
 	description = "The noodles are boiled, the flavors are artificial, just like being back in school."
 	nutriment_factor = 5 * REAGENTS_METABOLISM
 	color = "#302000" // rgb: 48, 32, 0
+	hydration_factor = 15 * REAGENTS_METABOLISM
 
 datum/reagent/consumable/hot_ramen/on_mob_life(var/mob/living/M as mob)
 	if (M.bodytemperature < 310)//310 is the normal bodytemp. 310.055
@@ -367,6 +379,7 @@ datum/reagent/consumable/hell_ramen
 	description = "The noodles are boiled, the flavors are artificial, just like being back in school."
 	nutriment_factor = 5 * REAGENTS_METABOLISM
 	color = "#302000" // rgb: 48, 32, 0
+	hydration_factor = 15 * REAGENTS_METABOLISM
 
 datum/reagent/consumable/hell_ramen/on_mob_life(var/mob/living/M as mob)
 	M.bodytemperature += 10 * TEMPERATURE_DAMAGE_COEFFICIENT

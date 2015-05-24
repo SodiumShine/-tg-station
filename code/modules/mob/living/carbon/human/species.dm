@@ -502,6 +502,11 @@
 			hunger_rate = 3 * HUNGER_FACTOR
 		H.nutrition = max (0, H.nutrition - hunger_rate)
 
+	// hydration decrease
+	if (H.hydration > 0 && H.stat != 2)
+		var/thirst_rate = THIRST_FACTOR
+		H.hydration = max (0, H.hydration - thirst_rate)
+
 
 	if (H.nutrition > NUTRITION_LEVEL_FULL)
 		if(H.overeatduration < 600) //capped so people don't take forever to unfat
@@ -645,6 +650,16 @@
 			H.throw_alert("nutrition","hungry")
 		else
 			H.throw_alert("nutrition","starving")
+
+	switch(H.hydration)
+		if(HYDRATION_LEVEL_FULL to INFINITY)
+			H.clear_alert("hydration")
+		if(HYDRATION_LEVEL_HUNGRY to HYDRATION_LEVEL_FULL)
+			H.clear_alert("hydration")
+		if(HYDRATION_LEVEL_STARVING to HYDRATION_LEVEL_HUNGRY)
+			H.throw_alert("hydration","thirsty")
+		else
+			H.throw_alert("hydration","parched")
 
 	return 1
 

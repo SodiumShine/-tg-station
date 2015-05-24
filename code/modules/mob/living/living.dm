@@ -441,6 +441,7 @@ Sorry Giacom. Please don't be mad :(
 	SetWeakened(0)
 	radiation = 0
 	nutrition = NUTRITION_LEVEL_FED + 50
+	hydration = NUTRITION_LEVEL_FED + 50
 	bodytemperature = 310
 	disabilities = 0
 	eye_blind = 0

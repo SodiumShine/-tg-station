@@ -30,6 +30,11 @@
 		if((src.disabilities & FAT) && src.m_intent == "run" && src.bodytemperature <= 360)
 			src.bodytemperature += 2
 
+		if(src.hydration && src.stat != 2)
+			src.hydration -= THIRST_FACTOR/10
+			if(src.m_intent == "run")
+				src.hydration -= THIRST_FACTOR/10
+
 /mob/living/carbon/movement_delay()
 	. = 0
 	if(legcuffed)

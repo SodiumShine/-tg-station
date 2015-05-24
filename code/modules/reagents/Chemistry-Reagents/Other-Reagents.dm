@@ -114,7 +114,12 @@ datum/reagent/water
 	description = "A ubiquitous chemical substance that is composed of hydrogen and oxygen."
 	color = "#AAAAAA77" // rgb: 170, 170, 170, 77 (alpha)
 	var/cooling_temperature = 2
+	var/hydration_factor = 15 * REAGENTS_METABOLISM
 
+datum/reagent/water/on_mob_life(var/mob/living/M as mob)
+	current_cycle++
+	M.hydration += hydration_factor
+	holder.remove_reagent(src.id, metabolization_rate)
 /*
  *	Water reaction to turf
  */

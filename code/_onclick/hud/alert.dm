@@ -116,7 +116,7 @@ The box in your backpack has an oxygen tank and gas mask in it."
 The box in your backpack has an oxygen tank and gas mask in it."
 //End gas alerts
 
-
+// hunger alerts
 /obj/screen/alert/fat
 	name = "Fat"
 	desc = "You ate too much food, lardass. Run around the station and lose some weight."
@@ -129,6 +129,16 @@ The box in your backpack has an oxygen tank and gas mask in it."
 	name = "Starving"
 	desc = "Some food would be to kill for right about now. The hunger pains make moving around a chore."
 
+//hydration alerts
+/obj/screen/alert/thirsty
+	name = "Thirsty"
+	desc = "You could use a drink"
+
+/obj/screen/alert/parched
+	name= "Parched"
+	desc = "You feel like you might fall over from dehydration."
+
+//temperature alerts
 /obj/screen/alert/hot
 	name = "Too Hot"
 	desc = "You're flaming hot! Get somewhere cooler and take off any insulating clothing like a fire suit."

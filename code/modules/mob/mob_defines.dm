@@ -73,6 +73,7 @@
 	var/jitteriness = 0//Carbon
 	var/nutrition = NUTRITION_LEVEL_FED + 50//Carbon
 	var/satiety = 0//Carbon
+	var/hydration = HYDRATION_LEVEL_FED + 50//SHINE carbon
 
 	var/overeatduration = 0		// How long this guy is overeating //Carbon
 	var/paralysis = 0
