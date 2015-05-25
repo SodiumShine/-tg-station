@@ -45,7 +45,7 @@
 	name = "gravitational anomaly"
 	icon_state = "shield2"
 	density = 1
-	var/boing = 0
+	var/cooldown = 0 // SHINE replaced 'boing'
 
 /obj/effect/anomaly/grav/New()
 	..()
@@ -54,7 +54,8 @@
 /obj/effect/anomaly/grav/anomalyEffect()
 	..()
 
-	boing = 1
+	if(cooldown)
+		--cooldown
 	for(var/obj/O in orange(4, src))
 		if(!O.anchored)
 			step_towards(O,src)
@@ -70,11 +71,11 @@
 	return
 
 /obj/effect/anomaly/grav/proc/gravShock(var/mob/A)
-	if(boing && isliving(A) && !A.stat)
+	if((cooldown < 1) && isliving(A) && !A.stat)
 		A.Weaken(2)
 		var/atom/target = get_edge_target_turf(A, get_dir(src, get_step_away(A, src)))
 		A.throw_at(target, 5, 1)
-		boing = 0
+		cooldown = 3
 		return
 
 /////////////////////
@@ -137,7 +138,8 @@
 		qdel(src)
 		return
 
-	grav(rand(0,3), rand(2,3), 50, 25)
+//	grav(rand(0,3), rand(2,3), 50, 25)
+	grav(rand(0,3), rand(2,3), 25, 10) // SHINE nerfed
 
 	//Throwing stuff around!
 	for(var/obj/O in orange(1,src))

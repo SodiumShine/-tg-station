@@ -25,10 +25,11 @@
 		var/turf/T = pick(get_area_turfs(impact_area))
 		if(T)
 				// Calculate new position (searches through beacons in world)
-			var/obj/item/device/radio/beacon/chosen
+			var/obj/effect/landmark/chosen
 			var/list/possible = list()
-			for(var/obj/item/device/radio/beacon/W in world)
-				possible += W
+			for(var/obj/effect/landmark/W in world)
+				if(W.name == "bluespace_a")
+					possible += W
 
 			if(possible.len > 0)
 				chosen = pick(possible)

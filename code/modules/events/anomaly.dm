@@ -1,5 +1,5 @@
 /datum/round_event_control/anomaly
-	name = "Anomaly: Energetic Flux"
+	name = "Anomaly: Energetic Flux Prototype"
 	typepath = /datum/round_event/anomaly
 	max_occurrences = 0 //This one probably shouldn't occur! It'd work, but it wouldn't be very fun.
 	weight = 15
@@ -8,6 +8,7 @@
 	var/area/impact_area
 	var/obj/effect/anomaly/newAnomaly
 	announceWhen	= 1
+	endWhen = 3
 
 
 /datum/round_event/anomaly/setup(loop=0)
