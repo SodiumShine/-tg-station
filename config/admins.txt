@@ -8,3 +8,5 @@
 # NOTE: syntax was changed to allow hyphenation of ranknames, since spaces are stripped.      #
 ###############################################################################################
 sodiumshine = Game Master
+morguemeat = Wicked
+grayscalerain = Sali
