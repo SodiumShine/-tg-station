@@ -1053,7 +1053,7 @@
 
 	var/datum/gas_mixture/environment = H.loc.return_air()
 	var/datum/gas_mixture/breath
-	if((H.health <= config.health_threshold_crit) && (NOBREATH in H.dna.species.specflags)) //SHINE if they dont breath they shouldn't suffocate
+	if((H.health <= config.health_threshold_crit) && !(NOBREATH in H.dna.species.specflags)) //SHINE if they dont breath they shouldn't suffocate
 		H.losebreath++
 	if(H.losebreath>0) //Suffocating so do not take a breath
 		H.losebreath--
