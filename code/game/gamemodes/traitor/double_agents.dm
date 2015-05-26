@@ -5,6 +5,7 @@
 	required_players = 0
 	required_enemies = 2
 	recommended_enemies = 2
+	reroll_friendly = 0
 
 	traitor_name = "double agent"
 

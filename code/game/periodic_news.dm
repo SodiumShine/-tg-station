@@ -119,14 +119,14 @@ proc/check_for_newscaster_updates()
 */
 proc/announce_newscaster_news(datum/news_announcement/news)
 	message_admins("Announcing newscaster news")
-	var/datum/feed_channel/sendto
-	for(var/datum/feed_channel/FC in news_network.network_channels)
+	var/datum/newscaster/feed_channel/sendto
+	for(var/datum/newscaster/feed_channel/FC in news_network.network_channels)
 		if(FC.channel_name == news.channel_name)
 			sendto = FC
 			break
 
 	if(!sendto)
-		sendto = new /datum/feed_channel
+		sendto = new /datum/newscaster/feed_channel
 		sendto.channel_name = news.channel_name
 		sendto.author = news.author
 		sendto.locked = 1
