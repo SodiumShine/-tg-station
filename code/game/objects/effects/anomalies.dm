@@ -179,3 +179,19 @@
 	if( T && istype(T,/turf/simulated) && prob(turf_removal_chance) )
 		T.ex_act(ex_act_force)
 	return
+
+/obj/effect/anomaly/cryo
+	name = "cryogenic anomaly"
+	icon = 'icons/effects/effects.dmi'
+	desc = "A mysterious anomaly, seen commonly only in the region of space that the station orbits..."
+	icon_state = "shield-old"
+
+/obj/effect/anomaly/cryo/New()
+	..()
+	aSignal.origin_tech = "plasmatech=5;powerstorage=4;biotech=6"
+
+/obj/effect/anomaly/cryo/anomalyEffect()
+	..()
+	var/turf/simulated/T = get_turf(src)
+	if(istype(T))
+		T.atmos_spawn_air(SPAWN_COLD | SPAWN_NITROGEN, 50)

@@ -112,6 +112,8 @@ var/const/SPAWN_N2O = 64
 
 var/const/SPAWN_AIR = 256
 
+var/const/SPAWN_COLD = 512 // SHINE pretty much just for cryo anomaly
+
 /turf/simulated/proc/atmos_spawn_air(var/flag, var/amount)
 	if(!text || !amount || !air)
 		return
@@ -124,6 +126,8 @@ var/const/SPAWN_AIR = 256
 	if(flag & SPAWN_HEAT)
 		G.temperature += 1000
 
+	if(flag & SPAWN_COLD)
+		G.temperature -= 9999
 	if(flag & SPAWN_TOXINS)
 		G.toxins += amount
 	if(flag & SPAWN_OXYGEN)
