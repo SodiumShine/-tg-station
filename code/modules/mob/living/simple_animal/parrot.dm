@@ -57,6 +57,7 @@
 	mob_size = MOB_SIZE_SMALL
 	flying = 1
 
+
 	var/parrot_damage_upper = 10
 	var/parrot_state = PARROT_WANDER //Hunt for a perch when created
 	var/parrot_sleep_max = 25 //The time the parrot sits while perched before looking around. Mosly a way to avoid the parrot's AI in life() being run every single tick.
@@ -113,6 +114,9 @@
 			  /mob/living/simple_animal/parrot/proc/perch_player, \
 			  /mob/living/simple_animal/parrot/proc/toggle_mode)
 
+	access_card = new /obj/item/weapon/card/id(src)
+	var/datum/job/engineer/E = new /datum/job/engineer
+	access_card.access = E.get_access()
 
 /mob/living/simple_animal/parrot/death(gibbed)
 	if(held_item)

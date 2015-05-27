@@ -22,3 +22,8 @@
 /mob/living/simple_animal/pet/fox/Renault
 	name = "Renault"
 	desc = "Renault, the Captain's trustworthy fox. I wonder what it says?"
+
+/mob/living/simple_animal/pet/fox/Renault/New()
+	access_card = new /obj/item/weapon/card/id(src)
+	var/datum/job/captain/C = new /datum/job/captain
+	access_card.access = C.get_access()

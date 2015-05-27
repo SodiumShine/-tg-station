@@ -32,6 +32,12 @@
 	var/turns_since_scan = 0
 	var/mob/living/simple_animal/mouse/movement_target
 
+/mob/living/simple_animal/pet/cat/Runtime/New()
+
+	access_card = new /obj/item/weapon/card/id(src)
+	var/datum/job/doctor/D = new /datum/job/doctor
+	access_card.access = D.get_access()
+
 /mob/living/simple_animal/pet/cat/Runtime/Life()
 	//MICE!
 	if((src.loc) && isturf(src.loc))

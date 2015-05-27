@@ -32,6 +32,9 @@
 		icon_dead = "mouse_[body_color]_dead"
 		name = "[body_color] mouse"
 
+	access_card = new /obj/item/weapon/card/id(src)
+	var/datum/job/assistant/A = new /datum/job/assistant
+	access_card.access = A.get_access()
 
 /mob/living/simple_animal/mouse/proc/splat()
 	src.health = 0
@@ -81,6 +84,14 @@
 	response_help  = "pets"
 	response_disarm = "gently pushes aside"
 	response_harm   = "splats"
+
+
+/mob/living/simple_animal/mouse/brown/Tom/New()
+	..()
+	access_card = null
+	access_card = new /obj/item/weapon/card/id(src)
+	var/datum/job/bartender/B = new /datum/job/bartender
+	access_card.access = B.get_access()
 
 /obj/item/trash/deadmouse
 	name = "dead mouse"

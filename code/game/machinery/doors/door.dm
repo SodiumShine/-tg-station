@@ -88,6 +88,10 @@
 	return !density
 
 /obj/machinery/door/proc/bumpopen(mob/user as mob)
+
+	if(istype(user,/mob/living/simple_animal) && !user.ckey)
+		return
+
 	if(operating)
 		return
 	src.add_fingerprint(user)
