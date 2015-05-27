@@ -367,7 +367,7 @@
 "hc" = (/obj/structure/closet/crate,/obj/machinery/camera/autoname{dir = 8},/turf/simulated/floor/plasteel{icon_state = "bot"},/area/quartermaster/storage)
 "hd" = (/obj/machinery/atmospherics/pipe/simple/supply/hidden,/obj/machinery/firealarm{dir = 8; pixel_x = -24},/turf/simulated/floor/plasteel,/area/hallway/primary/central)
 "he" = (/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,/obj/machinery/light{icon_state = "tube1"; dir = 4},/turf/simulated/floor/plasteel,/area/hallway/primary/central)
-"hf" = (/obj/structure/table,/obj/item/weapon/restraints/handcuffs,/obj/item/device/assembly/timer,/obj/item/device/flash,/obj/machinery/newscaster{pixel_x = -32},/turf/simulated/floor/plasteel,/area/security/brig)
+"hf" = (/obj/structure/table,/obj/item/weapon/restraints/handcuffs,/obj/item/device/assembly/timer,/obj/item/device/flash,/obj/machinery/newscaster/security_unit{pixel_x = -32},/turf/simulated/floor/plasteel,/area/security/brig)
 "hg" = (/obj/machinery/atmospherics/pipe/manifold/supply/hidden{dir = 8},/obj/structure/stool/bed/chair{dir = 4},/obj/effect/landmark/start{name = "Security Officer"},/turf/simulated/floor/plasteel,/area/security/brig)
 "hh" = (/obj/machinery/atmospherics/pipe/simple/supply/hidden{dir = 4},/obj/structure/table,/obj/machinery/recharger{pixel_y = 4},/turf/simulated/floor/plasteel,/area/security/brig)
 "hi" = (/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,/obj/machinery/atmospherics/pipe/simple/supply/hidden{dir = 4},/obj/structure/table,/obj/item/weapon/book/manual/wiki/security_space_law,/obj/item/weapon/storage/lockbox/loyalty,/obj/item/device/detective_scanner/budget,/turf/simulated/floor/plasteel,/area/security/brig)
