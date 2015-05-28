@@ -502,10 +502,35 @@
 			hunger_rate = 3 * HUNGER_FACTOR
 		H.nutrition = max (0, H.nutrition - hunger_rate)
 
-	// hydration decrease
+	// hydration stuff
 	if (H.hydration > 0 && H.stat != 2)
 		var/thirst_rate = THIRST_FACTOR
 		H.hydration = max (0, H.hydration - thirst_rate)
+
+
+	if(H.hydration > HYDRATION_LEVEL_HUNGRY)
+		if(H.hydration_warning > 0)
+			H.hydration_warning = 0
+			H << "<span class='notice'>You no longer feel thirsty.</span>"
+
+	if ((H.hydration < HYDRATION_LEVEL_HUNGRY) && (H.hydration > HYDRATION_LEVEL_STARVING)) // thirsty but not dehydrated so get dizzy
+		if(H.dizziness <= 50)
+			H.dizziness += 2
+		if(H.hydration_warning < 1) //previously fine
+			H << "<span class='warning'>You throat feels dry and your head feels dizzy. You must be thirsty.</span>"
+			H.hydration_warning = 1
+		else if(H.hydration_warning > 1) //previously dehydrated
+			H.hydration_warning = 1
+			H << "<span class='notice'>You start to feel less dehydrated, but you're still thirsty.</span>"
+
+	if (H.hydration < HYDRATION_LEVEL_STARVING) // dehydrated, everything gets blurry
+		if(H.eye_blurry <= 10)
+			H.eye_blurry += 2
+		if(H.dizziness <= 100)
+			H.dizziness += 5
+		if(H.hydration_warning < 2)
+			H << "<span class='warning'>Your vision starts to blur. You must be dehydrated.</span>"
+			H.hydration_warning = 2
 
 
 	if (H.nutrition > NUTRITION_LEVEL_FULL)

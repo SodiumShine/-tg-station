@@ -75,6 +75,8 @@
 	var/satiety = 0//Carbon
 	var/hydration = HYDRATION_LEVEL_FED + 50//SHINE carbon
 
+	var/hydration_warning = 0 //SHINE 0 for full, 1 for thirsty, 2 for dehydrated
+
 	var/overeatduration = 0		// How long this guy is overeating //Carbon
 	var/paralysis = 0
 	var/stunned = 0
