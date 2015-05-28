@@ -307,7 +307,7 @@
 		if (ailist.len)
 			var/mob/living/silicon/ai/announcer = pick(ailist)
 			if(character.mind)
-				if((character.mind.assigned_role != "Cyborg") && (character.mind.special_role != "MODE"))
+				if((character.mind.assigned_role != "Cyborg") && (character.mind.assigned_role != character.mind.special_role))
 					announcer.say("[announcer.radiomod] [character.real_name] has signed up as [rank].")
 */
 /mob/new_player/proc/AnnounceArrival(var/mob/living/carbon/human/character, var/rank)
