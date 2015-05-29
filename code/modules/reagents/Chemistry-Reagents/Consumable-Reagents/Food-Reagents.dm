@@ -16,7 +16,8 @@ datum/reagent/consumable
 datum/reagent/consumable/on_mob_life(var/mob/living/M as mob)
 	current_cycle++
 	M.nutrition += nutriment_factor
-	M.hydration += hydration_factor
+	if(M.hydration < HYDRATION_LEVEL_FULL)
+		M.hydration += (hydration_factor * 0.5)
 	holder.remove_reagent(src.id, metabolization_rate)
 
 datum/reagent/consumable/nutriment
@@ -269,7 +270,7 @@ datum/reagent/consumable/hot_coco
 	description = "Made with love! And coco beans."
 	nutriment_factor = 3 * REAGENTS_METABOLISM
 	color = "#403010" // rgb: 64, 48, 16
-	hydration_factor = 15 * REAGENTS_METABOLISM
+	hydration_factor = 10 * REAGENTS_METABOLISM
 
 datum/reagent/consumable/hot_coco/on_mob_life(var/mob/living/M as mob)
 	if (M.bodytemperature < 310)//310 is the normal bodytemp. 310.055
@@ -365,7 +366,7 @@ datum/reagent/consumable/hot_ramen
 	description = "The noodles are boiled, the flavors are artificial, just like being back in school."
 	nutriment_factor = 5 * REAGENTS_METABOLISM
 	color = "#302000" // rgb: 48, 32, 0
-	hydration_factor = 15 * REAGENTS_METABOLISM
+	hydration_factor = 5 * REAGENTS_METABOLISM
 
 datum/reagent/consumable/hot_ramen/on_mob_life(var/mob/living/M as mob)
 	if (M.bodytemperature < 310)//310 is the normal bodytemp. 310.055
@@ -379,7 +380,7 @@ datum/reagent/consumable/hell_ramen
 	description = "The noodles are boiled, the flavors are artificial, just like being back in school."
 	nutriment_factor = 5 * REAGENTS_METABOLISM
 	color = "#302000" // rgb: 48, 32, 0
-	hydration_factor = 15 * REAGENTS_METABOLISM
+	hydration_factor = 5 * REAGENTS_METABOLISM
 
 datum/reagent/consumable/hell_ramen/on_mob_life(var/mob/living/M as mob)
 	M.bodytemperature += 10 * TEMPERATURE_DAMAGE_COEFFICIENT

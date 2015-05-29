@@ -32,9 +32,21 @@
 	if(!canconsume(M, user))
 		return 0
 
+
+	var/bladder = M.hydration + 10 // SHINE i dont fucking know
+	for(var/datum/reagent/consumable/C in M.reagents.reagent_list) //we add the nutrition value of what we're currently digesting
+		bladder += C.hydration_factor * C.volume / C.metabolization_rate
+
 	if(M == user)
-//		M << "<span class='notice'>You swallow a gulp of [src].</span>"
-		M.visible_message("<span class='notice'>[M] drinks some [src].</span>")
+		if(bladder < 50)
+			M.visible_message("[M] thirstily guzzles down some [src]!")
+		else if(bladder > 50 && bladder < 150)
+			M.visible_message("[M] gulps down some [src]!")
+		else if(bladder > 150 && bladder < 550)
+			M.visible_message("[M] drinks some [src].")
+		else if (bladder > 550)
+			M.visible_message("[M] sips some [src].")
+
 		if(reagents.total_volume)
 			reagents.reaction(M, INGEST)
 			spawn(5)
@@ -42,6 +54,7 @@
 
 		playsound(M.loc,'sound/items/drink.ogg', rand(10,50), 1)
 		return 1
+
 
 	user.visible_message("<span class='warning'>[user] attempts to feed [src] to [M].</span>", "<span class='notice'>You attempt to feed [src] to [M].</span>")
 	if(!do_mob(user, M)) return

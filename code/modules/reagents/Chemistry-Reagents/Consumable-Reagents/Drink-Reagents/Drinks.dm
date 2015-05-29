@@ -111,7 +111,6 @@ datum/reagent/consumable/nothing
 	name = "Nothing"
 	id = "nothing"
 	description = "Absolutely nothing."
-	hydration_factor = 15 * REAGENTS_METABOLISM
 
 datum/reagent/consumable/nothing/on_mob_life(var/mob/living/M as mob)
 	if(istype(M, /mob/living/carbon/human) && M.job in list("Mime"))
@@ -124,7 +123,7 @@ datum/reagent/consumable/potato_juice
 	description = "Juice of the potato. Bleh."
 	nutriment_factor = 2 * REAGENTS_METABOLISM
 	color = "#302000" // rgb: 48, 32, 0
-	hydration_factor = 15 * REAGENTS_METABOLISM
+	hydration_factor = 10 * REAGENTS_METABOLISM
 
 datum/reagent/consumable/milk
 	name = "Milk"
@@ -173,7 +172,7 @@ datum/reagent/consumable/coffee
 	color = "#482000" // rgb: 72, 32, 0
 	nutriment_factor = 0
 	overdose_threshold = 80
-	hydration_factor = 15 * REAGENTS_METABOLISM
+	hydration_factor = 10 * REAGENTS_METABOLISM
 
 datum/reagent/consumable/coffee/overdose_process(var/mob/living/M as mob)
 	M.Jitter(5)
@@ -195,7 +194,7 @@ datum/reagent/consumable/tea
 	description = "Tasty black tea, it has antioxidants, it's good for you!"
 	color = "#101000" // rgb: 16, 16, 0
 	nutriment_factor = 0
-	hydration_factor = 15 * REAGENTS_METABOLISM
+	hydration_factor = 10 * REAGENTS_METABOLISM
 
 datum/reagent/consumable/tea/on_mob_life(var/mob/living/M as mob)
 	M.dizziness = max(0,M.dizziness-2)
@@ -215,7 +214,7 @@ datum/reagent/consumable/icecoffee
 	description = "Coffee and ice, refreshing and cool."
 	color = "#102838" // rgb: 16, 40, 56
 	nutriment_factor = 0
-	hydration_factor = 15 * REAGENTS_METABOLISM
+	hydration_factor = 10 * REAGENTS_METABOLISM
 
 datum/reagent/consumable/icecoffee/on_mob_life(var/mob/living/M as mob)
 	M.dizziness = max(0,M.dizziness-5)
@@ -233,7 +232,7 @@ datum/reagent/consumable/icetea
 	description = "No relation to a certain rap artist/ actor."
 	color = "#104038" // rgb: 16, 64, 56
 	nutriment_factor = 0
-	hydration_factor = 15 * REAGENTS_METABOLISM
+	hydration_factor = 10 * REAGENTS_METABOLISM
 
 datum/reagent/consumable/icetea/on_mob_life(var/mob/living/M as mob)
 	M.dizziness = max(0,M.dizziness-2)
@@ -251,7 +250,7 @@ datum/reagent/consumable/space_cola
 	id = "cola"
 	description = "A refreshing beverage."
 	color = "#100800" // rgb: 16, 8, 0
-	hydration_factor = 15 * REAGENTS_METABOLISM
+	hydration_factor = 5 * REAGENTS_METABOLISM
 
 datum/reagent/consumable/space_cola/on_mob_life(var/mob/living/M as mob)
 	M.drowsyness = max(0,M.drowsyness-5)
@@ -265,7 +264,7 @@ datum/reagent/consumable/nuka_cola
 	id = "nuka_cola"
 	description = "Cola, cola never changes."
 	color = "#100800" // rgb: 16, 8, 0
-	hydration_factor = 15 * REAGENTS_METABOLISM
+	hydration_factor = 5 * REAGENTS_METABOLISM
 
 datum/reagent/consumable/nuka_cola/on_mob_life(var/mob/living/M as mob)
 	M.Jitter(20)
@@ -284,7 +283,7 @@ datum/reagent/consumable/spacemountainwind
 	id = "spacemountainwind"
 	description = "Blows right through you like a space wind."
 	color = "#102000" // rgb: 16, 32, 0
-	hydration_factor = 15 * REAGENTS_METABOLISM
+	hydration_factor = 5 * REAGENTS_METABOLISM
 
 datum/reagent/consumable/spacemountainwind/on_mob_life(var/mob/living/M as mob)
 	M.drowsyness = max(0,M.drowsyness-7)
@@ -300,7 +299,7 @@ datum/reagent/consumable/dr_gibb
 	id = "dr_gibb"
 	description = "A delicious blend of 42 different flavours"
 	color = "#102000" // rgb: 16, 32, 0
-	hydration_factor = 15 * REAGENTS_METABOLISM
+	hydration_factor = 5 * REAGENTS_METABOLISM
 
 datum/reagent/consumable/dr_gibb/on_mob_life(var/mob/living/M as mob)
 	M.drowsyness = max(0,M.drowsyness-6)
@@ -314,7 +313,7 @@ datum/reagent/consumable/space_up
 	id = "space_up"
 	description = "Tastes like a hull breach in your mouth."
 	color = "#00FF00" // rgb: 0, 255, 0
-	hydration_factor = 15 * REAGENTS_METABOLISM
+	hydration_factor = 5 * REAGENTS_METABOLISM
 
 datum/reagent/consumable/space_up/on_mob_life(var/mob/living/M as mob)
 	if (M.bodytemperature > 310)
@@ -327,7 +326,7 @@ datum/reagent/consumable/lemon_lime
 	description = "A tangy substance made of 0.5% natural citrus!"
 	id = "lemon_lime"
 	color = "#8CFF00" // rgb: 135, 255, 0
-	hydration_factor = 15 * REAGENTS_METABOLISM
+	hydration_factor = 5 * REAGENTS_METABOLISM
 
 datum/reagent/consumable/lemon_lime/on_mob_life(var/mob/living/M as mob)
 	if (M.bodytemperature > 310)
@@ -340,7 +339,7 @@ datum/reagent/consumable/sodawater
 	id = "sodawater"
 	description = "A can of club soda. Why not make a scotch and soda?"
 	color = "#619494" // rgb: 97, 148, 148
-	hydration_factor = 15 * REAGENTS_METABOLISM
+	hydration_factor = 5 * REAGENTS_METABOLISM
 
 datum/reagent/consumable/sodawater/on_mob_life(var/mob/living/M as mob)
 	M.dizziness = max(0,M.dizziness-5)
@@ -355,7 +354,7 @@ datum/reagent/consumable/tonic
 	id = "tonic"
 	description = "It tastes strange but at least the quinine keeps the Space Malaria at bay."
 	color = "#0064C8" // rgb: 0, 100, 200
-	hydration_factor = 15 * REAGENTS_METABOLISM
+	hydration_factor = 5 * REAGENTS_METABOLISM
 
 datum/reagent/consumable/tonic/on_mob_life(var/mob/living/M as mob)
 	M.dizziness = max(0,M.dizziness-5)
@@ -384,7 +383,7 @@ datum/reagent/consumable/soy_latte
 	id = "soy_latte"
 	description = "A nice and tasty beverage while you are reading your hippie books."
 	color = "#664300" // rgb: 102, 67, 0
-	hydration_factor = 15 * REAGENTS_METABOLISM
+	hydration_factor = 10 * REAGENTS_METABOLISM
 
 datum/reagent/consumable/soy_latte/on_mob_life(var/mob/living/M as mob)
 	M.dizziness = max(0,M.dizziness-5)
@@ -403,7 +402,7 @@ datum/reagent/consumable/cafe_latte
 	id = "cafe_latte"
 	description = "A nice, strong and tasty beverage while you are reading."
 	color = "#664300" // rgb: 102, 67, 0
-	hydration_factor = 15 * REAGENTS_METABOLISM
+	hydration_factor = 10 * REAGENTS_METABOLISM
 
 datum/reagent/consumable/cafe_latte/on_mob_life(var/mob/living/M as mob)
 	M.dizziness = max(0,M.dizziness-5)
@@ -444,7 +443,7 @@ datum/reagent/consumable/cherryshake
 	description = "A cherry flavored milkshake."
 	color = "#FFB6C1"
 	nutriment_factor = 4 * REAGENTS_METABOLISM
-	hydration_factor = 15 * REAGENTS_METABOLISM
+	hydration_factor = 10 * REAGENTS_METABOLISM
 
 datum/reagent/consumable/bluecherryshake
 	name = "Blue Cherry Shake"
@@ -452,7 +451,7 @@ datum/reagent/consumable/bluecherryshake
 	description = "An exotic milkshake."
 	color = "#00F1FF"
 	nutriment_factor = 4 * REAGENTS_METABOLISM
-	hydration_factor = 15 * REAGENTS_METABOLISM
+	hydration_factor = 10 * REAGENTS_METABOLISM
 
 datum/reagent/consumable/pumpkin_latte
 	name = "Pumpkin Latte"
@@ -460,7 +459,7 @@ datum/reagent/consumable/pumpkin_latte
 	description = "A mix of pumpkin juice and coffee."
 	color = "#F4A460"
 	nutriment_factor = 3 * REAGENTS_METABOLISM
-	hydration_factor = 15 * REAGENTS_METABOLISM
+	hydration_factor = 10 * REAGENTS_METABOLISM
 
 datum/reagent/consumable/gibbfloats
 	name = "Gibb Floats"
@@ -497,7 +496,7 @@ datum/reagent/consumable/atomicbomb
 	id = "atomicbomb"
 	description = "Nuclear proliferation never tasted so good."
 	color = "#666300" // rgb: 102, 99, 0
-	hydration_factor = 15 * REAGENTS_METABOLISM
+	hydration_factor = 5 * REAGENTS_METABOLISM
 
 datum/reagent/consumable/atomicbomb/on_mob_life(var/mob/living/M as mob)
 	M.druggy = max(M.druggy, 50)
@@ -520,7 +519,7 @@ datum/reagent/consumable/gargle_blaster
 	id = "gargleblaster"
 	description = "Whoah, this stuff looks volatile!"
 	color = "#664300" // rgb: 102, 67, 0
-	hydration_factor = 15 * REAGENTS_METABOLISM
+	hydration_factor = 5 * REAGENTS_METABOLISM
 
 datum/reagent/consumable/gargle_blaster/on_mob_life(var/mob/living/M as mob)
 	M.dizziness +=6
@@ -570,7 +569,7 @@ datum/reagent/consumable/hippies_delight
 	color = "#664300" // rgb: 102, 67, 0
 	nutriment_factor = 0
 	metabolization_rate = 0.2 * REAGENTS_METABOLISM
-	hydration_factor = 15 * REAGENTS_METABOLISM
+	hydration_factor = 10 * REAGENTS_METABOLISM
 
 datum/reagent/consumable/hippies_delight/on_mob_life(var/mob/living/M as mob)
 	M.druggy = max(M.druggy, 50)
