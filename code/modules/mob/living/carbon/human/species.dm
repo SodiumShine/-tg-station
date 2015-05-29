@@ -511,7 +511,7 @@
 	if(H.hydration > HYDRATION_LEVEL_HUNGRY)
 		if(H.hydration_warning > 0)
 			H.hydration_warning = 0
-			H << "<span class='notice'>You no longer feel thirsty.</span>"
+//			H << "<span class='notice'>You no longer feel thirsty.</span>"
 
 	if ((H.hydration < HYDRATION_LEVEL_HUNGRY) && (H.hydration > HYDRATION_LEVEL_STARVING)) // thirsty but not dehydrated so get dizzy
 		if(H.dizziness <= 50)
@@ -519,17 +519,17 @@
 		if(H.hydration_warning < 1) //previously fine
 			H << "<span class='warning'>You throat feels dry and your head feels dizzy. You must be thirsty.</span>"
 			H.hydration_warning = 1
-		else if(H.hydration_warning > 1) //previously dehydrated
+/*		else if(H.hydration_warning > 1) //previously dehydrated
 			H.hydration_warning = 1
-			H << "<span class='notice'>You start to feel less dehydrated, but you're still thirsty.</span>"
-
+			H << "<span class='notice'>You start to feel less dehydrated.</span>"
+*/
 	if (H.hydration < HYDRATION_LEVEL_STARVING) // dehydrated, everything gets blurry
-		if(H.eye_blurry <= 10)
-			H.eye_blurry += 2
+//		if(H.eye_blurry <= 10)
+//			H.eye_blurry += 2
 		if(H.dizziness <= 100)
 			H.dizziness += 5
 		if(H.hydration_warning < 2)
-			H << "<span class='warning'>Your vision starts to blur. You must be dehydrated.</span>"
+			H << "<span class='warning'>Your head is pounding and everything feels like it's spinning. You must be dehydrated.</span>"
 			H.hydration_warning = 2
 
 
