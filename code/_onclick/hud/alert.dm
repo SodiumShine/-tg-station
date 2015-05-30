@@ -114,6 +114,15 @@ The box in your backpack has an oxygen tank and gas mask in it."
 	name = "Choking (Plasma)"
 	desc = "There's highly flammable, toxic plasma in the air and you're breathing it in. Find some fresh air. \
 The box in your backpack has an oxygen tank and gas mask in it."
+
+/obj/screen/alert/too_much_n2
+	name = "Choking (N2)"
+	desc = "There's too much nitrogen gas in the air!"
+
+/obj/screen/alert/not_enough_n2
+	name ="Choking (No N2)"
+	desc = "Not enough!"
+
 //End gas alerts
 
 // hunger alerts
