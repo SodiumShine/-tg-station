@@ -304,7 +304,7 @@
 	// Animated beings of stone. They have increased defenses, and do not need to breathe. They're also slow as fuuuck.
 	name = "Golem"
 	id = "golem"
-	specflags = list(NOBREATH,HEATRES,COLDRES,NOGUNS,NOBLOOD,RADIMMUNE,VIRUSIMMUNE,HARDFEET)
+	specflags = list(NOBREATH,HEATRES,COLDRES,NOGUNS,NOBLOOD,RADIMMUNE,VIRUSIMMUNE,PIERCEIMMUNE)
 	speedmod = 3
 	armor = 55
 	punchmod = 5
@@ -358,7 +358,7 @@
 	say_mod = "rattles"
 	sexes = 0
 	meat = /obj/item/weapon/reagent_containers/food/snacks/meat/slab/human/mutant/skeleton
-	specflags = list(NOBREATH,HEATRES,COLDRES,NOBLOOD,RADIMMUNE,VIRUSIMMUNE,HARDFEET)
+	specflags = list(NOBREATH,HEATRES,COLDRES,NOBLOOD,RADIMMUNE,VIRUSIMMUNE,PIERCEIMMUNE)
 /*
  ZOMBIES
 */
@@ -418,7 +418,7 @@ ABDUCTORS
 	say_mod = "gibbers"
 	sexes = 0
 	invis_sight = SEE_INVISIBLE_LEVEL_ONE
-	specflags = list(NOBLOOD,NOBREATH,VIRUSIMMUNE,HARDFEET)
+	specflags = list(NOBLOOD,NOBREATH,VIRUSIMMUNE,PIERCEIMMUNE)
 	var/scientist = 0 // vars to not pollute spieces list with castes
 	var/agent = 0
 	var/team = 1
@@ -512,7 +512,7 @@ GAMOIDS
 	id = "gamoid"
 	say_mod = "states"
 	sexes = 1
-	specflags = list(COLDRES,NOBLOOD,NOBREATH,EYECOLOR,HAIR,FACEHAIR,LIPS,RADIMMUNE,VIRUSIMMUNE,ABIOTIC,HARDFEET)
+	specflags = list(COLDRES,NOBLOOD,NOBREATH,EYECOLOR,HAIR,FACEHAIR,LIPS,RADIMMUNE,VIRUSIMMUNE,ABIOTIC,PIERCEIMMUNE)
 	exotic_blood = /datum/reagent/oil
 	meat = /obj/item/weapon/reagent_containers/food/snacks/meat/slab/synthmeat
 	roundstart = 1
@@ -809,7 +809,7 @@ ROCKMEN
 /datum/species/rock
 	name = "Rockman"
 	id = "rock"
-	specflags = list(HEATRES,COLDRES,NOGUNS,HARDFEET,NOFIRE)
+	specflags = list(HEATRES,COLDRES,NOGUNS,PIERCEIMMUNE,NOFIRE)
 	speedmod = 3
 	armor = 55
 	punchmod = 5
