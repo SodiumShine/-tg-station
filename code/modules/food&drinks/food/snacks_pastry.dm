@@ -149,6 +149,7 @@
 	icon_state = "COOKIE!!!"
 	bitesize = 1
 	bonus_reagents = list("nutriment" = 1)
+	list_reagents = list("nutriment" = 1)
 	filling_color = "#F0E68C"
 
 
