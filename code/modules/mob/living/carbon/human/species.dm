@@ -59,7 +59,8 @@
 	var/list/diet_special = list() // special needs children who can only eat certain things
 	var/desc = "No description set"
 	var/open_panel = 0 // Gamoids need to be opened to repair/recharge
-
+	var/nohunger = 0 //By default, species must eat and drink
+	var/nothirst = 0
 
 	// species flags. these can be found in flags.dm
 	var/list/specflags = list()
@@ -562,6 +563,11 @@
 		if(H.metabolism_efficiency == 1.25 && !(ABIOTIC in H.dna.species.specflags))
 			H << "<span class='notice'>You no longer feel vigorous.</span>"
 		H.metabolism_efficiency = 1
+
+	if(H.dna.species.nohunger == 1)
+		H.nutrition = NUTRITION_LEVEL_FED
+	if(H.dna.species.nothirst == 1)
+		H.hydration = HYDRATION_LEVEL_FED
 
 	H.updatehealth()
 

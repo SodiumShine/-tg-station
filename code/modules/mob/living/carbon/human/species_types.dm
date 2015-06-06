@@ -522,6 +522,8 @@ GAMOIDS
 	meat = /obj/item/weapon/reagent_containers/food/snacks/meat/slab/synthmeat
 	roundstart = 1
 	armor = 10
+	nohunger = 0
+	nothirst = 1
 	default_color = "FFFFFF"
 	death_cry = "shuts down with a critical error, eyes flickering closed..."
 	desc = {"Gamoids are one of Nanotrasen's latest ways of cutting the costs of staff. Most gamoids are originally commercial or recreational service robots, refitted to work on Stations.
