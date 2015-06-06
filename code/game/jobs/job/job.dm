@@ -105,9 +105,12 @@
 	//Equip headset
 	H.equip_to_slot_or_del(new src.default_headset(H), slot_ears)
 
-	// custom gear
-	var/gear_to_spawn = text2path(H.client.prefs.gear)
-	H.equip_to_slot_or_del(new gear_to_spawn(H), slot_in_backpack)
+	// custom gear (personal effects)
+	if(H.client) // make sure spawned mobs dont make runtime errors
+		if(H.client.prefs.gear) // make sure something is actually there
+			var/gear_to_spawn = text2path(H.client.prefs.gear)
+			if(gear_to_spawn)
+				H.equip_to_slot_or_del(new gear_to_spawn(H), slot_in_backpack)
 
 /datum/job/proc/apply_fingerprints(var/mob/living/carbon/human/H)
 	if(!istype(H))
