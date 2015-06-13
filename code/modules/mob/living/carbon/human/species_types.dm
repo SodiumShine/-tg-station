@@ -720,7 +720,7 @@ SKRELL
 	name = "Skrell"
 	roundstart = 1
 	mutant_bodyparts = list("head")
-	default_color = "#8CD7A3"
+	default_color = "8CD7A3"
 	eyes = "skrelleyes"
 	sexes = 1
 	say_mod = "warbles"
@@ -788,7 +788,7 @@ TAJARA
 	name = "Tajaran"
 	darksight = 8
 	roundstart = 1
-	default_color = "#AFA59E"
+	default_color = "AFA59E"
 	hair_color = "mutcolor"
 	no_equip = list(slot_shoes)
 	mutant_bodyparts = list("tail","ears")
