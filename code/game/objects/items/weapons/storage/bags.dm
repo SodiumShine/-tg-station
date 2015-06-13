@@ -333,3 +333,19 @@
 /obj/item/weapon/storage/bag/tray/handle_item_insertion(obj/item/I, prevent_warning = 0)
 	overlays += image("icon" = I.icon, "icon_state" = I.icon_state, "layer" = -1)
 	..()
+
+
+/*
+ *	Chemistry bag
+ */
+
+/obj/item/weapon/storage/bag/chemistry
+	name = "chemistry bag"
+	icon = 'icons/obj/chemical.dmi'
+	icon_state = "bag"
+	desc = "A bag for storing pills, patches, and bottles."
+	storage_slots = 50
+	max_combined_w_class = 200
+	w_class = 1
+	preposition = "in"
+	can_hold = list(/obj/item/weapon/reagent_containers/pill, /obj/item/weapon/reagent_containers/glass/beaker, /obj/item/weapon/reagent_containers/glass/bottle)
