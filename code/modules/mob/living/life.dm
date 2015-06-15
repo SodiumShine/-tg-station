@@ -172,8 +172,10 @@
 		if(blind)
 			if(eye_blind)
 				blind.layer = 18
+				throw_alert("blind")
 			else
 				blind.layer = 0
+				clear_alert("blind")
 
 				if (disabilities & NEARSIGHT)
 					client.screen += global_hud.vimpaired
@@ -183,6 +185,9 @@
 
 				if (druggy)
 					client.screen += global_hud.druggy
+					throw_alert("high")
+				else
+					clear_alert("high")
 
 				if(eye_stat > 20)
 					if(eye_stat > 30)

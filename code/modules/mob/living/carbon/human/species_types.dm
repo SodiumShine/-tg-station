@@ -32,7 +32,7 @@
 	default_color = "00FF00"
 	roundstart = 1
 	specflags = list(MUTCOLORS,EYECOLOR,LIPS)
-	mutant_bodyparts = list("tail", "snout")
+	mutant_bodyparts = list("tail", "snout", "spines", "horns", "frills", "body_markings")
 	attack_verb = "slash"
 	attack_sound = 'sound/weapons/slash.ogg'
 	miss_sound = 'sound/weapons/slashmiss.ogg'
@@ -766,7 +766,7 @@ SKRELL
 		for(var/bodypart in bodyparts_to_add)
 			I = image("icon" = 'icons/mob/mutant_bodyparts.dmi', "icon_state" = "[icon_state_string]_[bodypart]_[layer]", "layer" =- layer)
 			if(!(H.disabilities & HUSK))
-				I.color = "#[H.dna.mutant_color]"
+				I.color = "#[H.dna.features["mcolor"]]"
 			standing += I
 		H.overlays_standing[layer] = standing.Copy()
 		standing = list()
