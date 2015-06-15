@@ -89,8 +89,8 @@
 
 /obj/machinery/door/proc/bumpopen(mob/user as mob)
 
-	if(istype(user,/mob/living/simple_animal) && !user.ckey)
-		return
+//	if(istype(user,/mob/living/simple_animal) && !user.ckey) // SHINE wouldn't it be funny to let animals open doors all by themselves?
+//		return
 
 	if(operating)
 		return
