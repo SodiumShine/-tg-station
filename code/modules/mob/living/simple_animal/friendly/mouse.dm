@@ -33,8 +33,7 @@
 		name = "[body_color] mouse"
 
 	access_card = new /obj/item/weapon/card/id(src)
-	var/datum/job/assistant/A = new /datum/job/assistant
-	access_card.access = A.get_access()
+	access_card.access = list(access_maint_tunnels)
 
 /mob/living/simple_animal/mouse/proc/splat()
 	src.health = 0
