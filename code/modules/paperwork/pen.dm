@@ -26,6 +26,9 @@
 	var/clicks = 0
 	var/broken = 0
 
+/obj/item/weapon/pen/suicide_act(mob/user)
+	user.visible_message("<span class='suicide'>[user] is scribbling numbers all over themself with [src]! It looks like they're trying to commit sudoku!</span>")
+	return(BRUTELOSS)
 /obj/item/weapon/pen/attack_self(mob/user)
 	if(broken)
 		usr << "<span class='notice'> Too much clicking has broken this pen...</span>"
