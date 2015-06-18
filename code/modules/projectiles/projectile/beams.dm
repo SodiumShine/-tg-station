@@ -36,6 +36,7 @@
 	icon_state = "xray"
 	damage = 15
 	irradiate = 30
+	range = 15
 	forcedodge = 1
 
 /obj/item/projectile/beam/disabler
