@@ -24,7 +24,7 @@
 
 	loot = list(
 				/obj/item/weapon/gun/projectile/automatic/pistol,
-				/obj/item/weapon/gun/projectile/shotgun/combat,
+				/obj/item/weapon/gun/projectile/shotgun/automatic/combat,
 				/obj/item/weapon/gun/projectile/revolver/mateba,
 				/obj/item/weapon/gun/projectile/automatic/pistol/deagle,
 				/obj/item/weapon/flamethrower/full/tank
