@@ -64,7 +64,7 @@ datum/surgery_step/proc/pain(mob/living/carbon/human/user, mob/living/carbon/tar
 		Handle_Multi_Loc(user, target)
 
 	preop(user, target, target_zone, tool)
-	if(do_after(user, time))
+	if(do_after(user, time, target = target))
 
 		var/advance = 0
 		var/prob_chance = 100
@@ -100,9 +100,9 @@ datum/surgery_step/proc/pain(mob/living/carbon/human/user, mob/living/carbon/tar
 	return 1
 
 /datum/surgery_step/saw/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
-	if(ishuman(target))
-		var/mob/living/carbon/human/H = target
-		H.apply_damage(50,"brute","[target_zone]")
+	if(ishuman(target) || ismonkey(target) || isalienadult(target))
+		var/mob/living/carbon/M = target
+		M.apply_damage(75,"brute","[target_zone]")
 		user.visible_message("[user] saws [target]'s [parse_zone(target_zone)] open!", "<span class='notice'>You saw [target]'s [parse_zone(target_zone)] open.</span>")
 		feedback_add_details("surgery_step_success","[src.type]")
 	return 1

@@ -23,11 +23,6 @@
 	//2: Do not pass internal_pressure_bound
 	//3: Do not pass either
 
-
-	var/clogged = 0
-	var/clogcolour = null
-	var/clogchance = 33
-
 	var/frequency = 1439
 	var/datum/radio_frequency/radio_connection
 
@@ -72,13 +67,11 @@
 	..()
 	air_contents.volume = 1000
 
-
 /obj/machinery/atmospherics/unary/vent_pump/update_icon_nopipes()
 	overlays.Cut()
 	if(showpipe)
 		overlays += getpipeimage('icons/obj/atmospherics/unary_devices.dmi', "vent_cap", initialize_directions)
 
-//	message_admins("update icon")
 	if(welded)
 		icon_state = "vent_welded"
 		return
@@ -91,59 +84,6 @@
 		icon_state = "vent_out"
 	else
 		icon_state = "vent_in"
-/*
-	if(clogged == 1)
-		if(!clogcolour)
-			clogcolour = pick("white","yellow","blue","pink")
-		icon_state ="[level == 1 && istype(loc, /turf/simulated) ? "h" : "" ]clog_[clogcolour]"
-		return
-*/
-
-/*	if(on && !(stat & (NOPOWER|BROKEN))) SHINE old code?
-		if(pump_direction)
-			icon_state = "[level == 1 && istype(loc, /turf/simulated) ? "h" : "" ]out"
-		else
-			icon_state = "[level == 1 && istype(loc, /turf/simulated) ? "h" : "" ]in" */
-
-
-
-/* ORIGINAL
-/obj/machinery/atmospherics/unary/vent_pump/update_icon()
-	if(welded)
-		icon_state = "[level == 1 && istype(loc, /turf/simulated) ? "h" : "" ]weld"
-		return
-	if(on && !(stat & (NOPOWER|BROKEN)))
-		if(pump_direction)
-			icon_state = "[level == 1 && istype(loc, /turf/simulated) ? "h" : "" ]out"
-		else
-			icon_state = "[level == 1 && istype(loc, /turf/simulated) ? "h" : "" ]in"
-	else
-		icon_state = "[level == 1 && istype(loc, /turf/simulated) ? "h" : "" ]off"
-
-	return
-*/
-/* SHINE Is this needed anymore?
-/obj/machinery/atmospherics/unary/vent_pump/hide(var/i) //to make the little pipe section invisible, the icon changes.
-//	message_admins("Hide proc")
-	if(welded)
-		icon_state = "[i == 1 && istype(loc, /turf/simulated) ? "h" : "" ]weld"
-		return
-	if(clogged == 1)
-		if(!clogcolour)
-			clogcolour = pick("white","yellow","blue","pink")
-		icon_state = "[i == 1 && istype(loc, /turf/simulated) ? "h" : "" ]clog_[clogcolour]"
-		return
-	if(on&&node)
-		if(pump_direction)
-			icon_state = "[i == 1 && istype(loc, /turf/simulated) ? "h" : "" ]out"
-		else
-			icon_state = "[i == 1 && istype(loc, /turf/simulated) ? "h" : "" ]in"
-
-	else
-		icon_state = "[i == 1 && istype(loc, /turf/simulated) ? "h" : "" ]off"
-		on = 0
-	return
-*/
 
 /obj/machinery/atmospherics/unary/vent_pump/process_atmos()
 	..()
@@ -156,9 +96,6 @@
 		return 0
 
 	if(welded)
-		return 0
-
-	if(clogged == 1)
 		return 0
 
 	var/datum/gas_mixture/environment = loc.return_air()
@@ -203,20 +140,6 @@
 
 				parent.update = 1
 
-///////////////////////////////////
-///SHINE'S STUPID CLOGGING STUFF///
-///////////////////////////////////
-/*	if(clogged == 0)
-//		if(network.normal_members.len > 20)
-		if(prob(1) && prob(1) && prob(clogchance))
-			clogchance = 1
-			clogged = 1
-			update_icon_nopipes()
-			playsound(src.loc, 'sound/effects/attackblob.ogg', 50, 1)
-			message_admins("Vent clogged at [src.x], [src.y]")
-			return 0
-		else if((clogchance < 33) && prob(5))
-			clogchance += 1 */
 	return 1
 
 //Radio remote control
@@ -344,36 +267,15 @@
 	return
 
 /obj/machinery/atmospherics/unary/vent_pump/attackby(obj/item/W, mob/user, params)
-	if(istype(W, /obj/item/weapon/plunger))
-		if(clogged == 0)
-			user << "<span class='notice'>[src] is clean. No need to unclog it.</span>"
-			return
-		else if(clogged == 1)
-			user << "<span class='notice'>You start unclogging the vent...</span>"
-			if(do_after(user, 30))
-				src.clogged = 0
-				update_icon()
-				user << "<span class='notice'>You unclog the vent!</span>"
-				playsound(src.loc, 'sound/effects/attackblob.ogg', 50, 1)
-				return
-		else
-			message_admins("There was an error at [src.x], [src.y] with someone unclogging a vent")
-			return
-	if(istype(W, /obj/item/weapon/wrench)&& !(stat & NOPOWER) && on)
-		if(src.clogged)
-			user << "<span class='warning'>You won't be able to do anything with this [src] with all that gunk in the way.</span>"
-			return 1
+	if (istype(W, /obj/item/weapon/wrench)&& !(stat & NOPOWER) && on)
 		user << "<span class='warning'>You cannot unwrench this [src], turn it off first!</span>"
 		return 1
 	if(istype(W, /obj/item/weapon/weldingtool))
-		if(src.clogged)
-			user << "<span class='warning'>You won't be able to do anything with this [src] with all that gunk in the way.</span>"
-			return 1
 		var/obj/item/weapon/weldingtool/WT = W
 		if (WT.remove_fuel(0,user))
 			playsound(loc, 'sound/items/Welder.ogg', 40, 1)
 			user << "<span class='notice'>You begin welding the vent...</span>"
-			if(do_after(user, 20))
+			if(do_after(user, 20, target = src))
 				if(!src || !WT.isOn()) return
 				playsound(src.loc, 'sound/items/Welder2.ogg', 50, 1)
 				if(!welded)
@@ -392,8 +294,6 @@
 	..()
 	if(welded)
 		user << "It seems welded shut."
-	if(clogged)
-		usr << "It's clogged full of some kind of gross [clogcolour] gunk. You're not sure what the stuff actually is..."
 
 /obj/machinery/atmospherics/unary/vent_pump/power_change()
 	if(powered(power_channel))
@@ -408,12 +308,6 @@
 		initial_loc.air_vent_names -= id_tag
 	..()
 
-//	if(clogged)
-//		L << "You'll never fit in there with all that gunk."
 
 /obj/machinery/atmospherics/unary/vent_pump/can_crawl_through()
 	return !welded
-/obj/machinery/atmospherics/unary/vent_pump/proc/gunkup()
-	clogged = 1
-	update_icon()
-	return
