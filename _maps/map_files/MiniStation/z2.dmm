@@ -444,7 +444,7 @@
 "iB" = (/obj/structure/shuttle/engine/heater{icon_state = "heater"; dir = 1},/obj/structure/window/reinforced,/turf/simulated/floor/plating,/area/shuttle/supply)
 "iC" = (/turf/space,/turf/simulated/wall/shuttle{icon_state = "swall_f10"; dir = 2},/area/shuttle/supply)
 "iD" = (/obj/structure/closet,/turf/simulated/floor/plasteel/warning/corner{dir = 1},/area/centcom/supply)
-"iE" = (/obj/structure/closet/secure_closet/cargotech,/turf/simulated/floor/plasteel/loadingarea,/area/centcom/supply)
+"iE" = (/obj/structure/closet/wardrobe/cargotech,/turf/simulated/floor/plasteel/loadingarea,/area/centcom/supply)
 "iF" = (/obj/structure/closet/secure_closet/quartermaster,/turf/simulated/floor/plasteel/loadingarea,/area/centcom/supply)
 "iG" = (/obj/structure/closet,/turf/simulated/floor/plasteel,/area/centcom/supply)
 "iH" = (/turf/simulated/floor/plasteel/green/side{dir = 4},/area/centcom/control)

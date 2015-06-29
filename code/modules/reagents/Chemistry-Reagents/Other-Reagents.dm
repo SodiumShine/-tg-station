@@ -638,7 +638,7 @@ datum/reagent/water/on_mob_life(var/mob/living/M as mob)
 
 /datum/reagent/nanites/reaction_mob(var/mob/M, var/method=TOUCH, var/volume)
 	src = null
-	if( (prob(10) && method==TOUCH) || method==INGEST)
+	if( (prob(min(10, volume)) && method==TOUCH) || method==INGEST)
 		M.ForceContractDisease(new /datum/disease/transformation/robot(0))
 
 /datum/reagent/xenomicrobes
@@ -649,7 +649,7 @@ datum/reagent/water/on_mob_life(var/mob/living/M as mob)
 
 /datum/reagent/xenomicrobes/reaction_mob(var/mob/M, var/method=TOUCH, var/volume)
 	src = null
-	if( (prob(10) && method==TOUCH) || method==INGEST)
+	if( (prob(min(10, volume)) && method==TOUCH) || method==INGEST)
 		M.ContractDisease(new /datum/disease/transformation/xeno(0))
 
 /datum/reagent/fluorosurfactant//foam precursor
