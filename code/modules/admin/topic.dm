@@ -107,11 +107,11 @@
 */
 			if("12")
 				if(src.makeGangsters())
-					message_admins("[key_name(usr)] started a gang war.")
-					log_admin("[key_name(usr)] started a gang war.")
+					message_admins("[key_name(usr)] created gangs.")
+					log_admin("[key_name(usr)] created gangs.")
 				else
-					message_admins("[key_name(usr)] tried to start a gang war. Unfortunately, there were not enough candidates available.")
-					log_admin("[key_name(usr)] failed to start a gang war.")
+					message_admins("[key_name(usr)] tried to create gangs. Unfortunately, there were not enough candidates available.")
+					log_admin("[key_name(usr)] failed create gangs.")
 			if("13")
 				message_admins("[key_name(usr)] is creating a Centcom response team...")
 				if(src.makeEmergencyresponseteam())
@@ -1494,6 +1494,16 @@
 			return
 
 		usr.client.cmd_admin_animalize(M)
+
+	else if(href_list["gangpoints"])
+		var/datum/gang/G = locate(href_list["gangpoints"]) in ticker.mode.gangs
+		if(G)
+			var/newpoints = input("Set [G.name ] Gang's influence.","Set Influence",G.points) as null|num
+			if(newpoints)
+				message_admins("[key_name_admin(usr)] changed the [G.name] Gang's influence from [G.points] to [newpoints]</span>")
+				log_admin("[key_name(usr)] changed the [G.name] Gang's influence from [G.points] to [newpoints]</span>")
+				G.points = newpoints
+				G.message_gangtools("Your gang now has [G.points] influence.")
 
 	else if(href_list["adminplayeropts"])
 		var/mob/M = locate(href_list["adminplayeropts"])

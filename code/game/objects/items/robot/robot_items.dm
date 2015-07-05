@@ -29,6 +29,7 @@
 	icon = 'icons/obj/decals.dmi'
 	icon_state = "shock"
 
+/* Originally used for science borg
 /obj/item/weapon/storage/bag/tray/claw // used by sciborgs to pick stuff up
 	name = "manipulator"
 	icon = 'icons/mob/robot_items.dmi'
@@ -42,7 +43,7 @@
 	storage_slots = 1
 	allow_quick_gather = 0
 	collection_mode = 0
-
+*/
 /**********************************************************************
 						HUD/SIGHT things
 ***********************************************************************/
