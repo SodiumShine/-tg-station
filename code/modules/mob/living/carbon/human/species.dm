@@ -94,6 +94,24 @@
 	// PROCS //
 	///////////
 
+/datum/species/proc/random_name(gender,unique,lastname)
+	if(unique)
+		return random_unique_name(gender)
+
+	var/randname
+	if(gender == MALE)
+		randname = pick(first_names_male)
+	else
+		randname = pick(first_names_female)
+
+	if(lastname)
+		randname += " [lastname]"
+	else
+		randname += " [pick(last_names)]"
+
+	return randname
+
+
 //Please override this locally if you want to define when what species qualifies for what rank if human authority is enforced.
 /datum/species/proc/qualifies_for_rank(var/rank, var/list/features)
 	return 1
@@ -930,7 +948,6 @@
 			if(attacker_style && attacker_style.harm_act(M,H))
 				return 1
 			else
-				add_logs(M, H, "punched")
 				M.do_attack_animation(H)
 
 				var/atk_verb = "punch"
@@ -966,6 +983,7 @@
 								"<span class='userdanger'>[M] has [atk_verb]ed [H]!</span>")
 
 				H.apply_damage(damage, BRUTE, affecting, armor_block)
+				add_logs(M, H, "punched")
 				if((H.stat != DEAD) && damage >= 9)
 					H.visible_message("<span class='danger'>[M] has weakened [H]!</span>", \
 									"<span class='userdanger'>[M] has weakened [H]!</span>")

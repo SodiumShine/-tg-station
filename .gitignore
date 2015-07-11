@@ -8,5 +8,7 @@
 *.rsc
 *.lk
 *.int
+*.backup
+
 /data/mode.txt
 /mapbackup/

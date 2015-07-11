@@ -73,6 +73,17 @@ datum/species/human/spec_death(var/gibbed, var/mob/living/carbon/human/H)
 	They only recently gained a semblance of basic rights, but are still considered to be second class citizens.
 	Naturally they resent this a little bit. </br>Very common on stations due to being cheap labour."}
 
+/datum/species/lizard/random_name(gender,unique,lastname)
+	if(unique)
+		return random_unique_lizard_name(gender)
+
+	var/randname = lizard_name(gender)
+
+	if(lastname)
+		randname += " [lastname]"
+
+	return randname
+
 /datum/species/lizard/qualifies_for_rank(var/rank, var/list/features)
 	if(rank in command_positions)
 		return 0

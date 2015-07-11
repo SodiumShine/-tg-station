@@ -68,7 +68,7 @@
 			M << "<span class='danger'>You feel a tiny prick!</span>"
 		. = 1
 
-	add_logs(user, M, "stabbed", object="[name]")
+	add_logs(user, M, "stabbed", src)
 
 /*
  * Sleepypens

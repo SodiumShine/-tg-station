@@ -112,6 +112,7 @@
 	new /obj/item/weapon/grenade/flashbang(src)
 	new /obj/item/weapon/storage/belt/security/full(src)
 	new /obj/item/clothing/glasses/hud/security/sunglasses(src)
+	new /obj/item/clothing/head/helmet/sec(src)
 	// SHINE ministation compensation
 	new /obj/item/clothing/mask/gas/sechailer/swat(src)
 	new /obj/item/weapon/melee/baton/loaded(src)

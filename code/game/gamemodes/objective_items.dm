@@ -32,18 +32,8 @@ datum/objective_item/steal/hoslaser
 	difficulty = 5
 	excludefromjob = list("Captain")
 */
-/*
-/datum/objective_item/steal/rcd
-	name = "a rapid-construction-device"
-	targetitem = /obj/item/weapon/rcd
-	difficulty = 3
-*/
-/* SHINE too hard to hide
-/datum/objective_item/steal/jetpack
-	name = "a jetpack"
-	targetitem = /obj/item/weapon/tank/jetpack
-	difficulty = 3
-*/
+
+
 /*
 datum/objective_item/steal/magboots // SHINE changed from advanced to normal boots
 	name = "a pair of magboots"

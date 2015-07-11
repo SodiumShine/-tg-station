@@ -76,7 +76,7 @@
 			I.SpecialThrow(src)
 
 		if(thrower)
-			add_logs(thrower, src, "hit", object="[I]")
+			add_logs(thrower, src, "hit", I)
 
 /mob/living/mech_melee_attack(obj/mecha/M)
 	if(M.occupant.a_intent == "harm")
@@ -97,10 +97,10 @@
 		updatehealth()
 		visible_message("<span class='danger'>[M.name] has hit [src]!</span>", \
 						"<span class='userdanger'>[M.name] has hit [src]!</span>")
-		add_logs(M.occupant, src, "attacked", object=M, addition="(INTENT: [uppertext(M.occupant.a_intent)]) (DAMTYPE: [uppertext(M.damtype)])")
+		add_logs(M.occupant, src, "attacked", M, "(INTENT: [uppertext(M.occupant.a_intent)]) (DAMTYPE: [uppertext(M.damtype)])")
 	else
 		step_away(src,M)
-		add_logs(M.occupant, src, "pushed", object=M, admin=0)
+		add_logs(M.occupant, src, "pushed", M)
 		visible_message("<span class='warning'>[M] pushes [src] out of the way.</span>")
 
 		return
@@ -198,7 +198,7 @@
 		return // can't attack while eating!
 
 	if (stat != DEAD)
-		add_logs(M, src, "attacked", admin=0)
+		add_logs(M, src, "attacked")
 		M.do_attack_animation(src)
 		visible_message("<span class='danger'>The [M.name] glomps [src]!</span>", \
 				"<span class='userdanger'>The [M.name] glomps [src]!</span>")
@@ -214,7 +214,7 @@
 		M.do_attack_animation(src)
 		visible_message("<span class='danger'>\The [M] [M.attacktext] [src]!</span>", \
 						"<span class='userdanger'>\The [M] [M.attacktext] [src]!</span>")
-		add_logs(M, src, "attacked", admin=0)
+		add_logs(M, src, "attacked")
 		return 1
 
 
@@ -233,7 +233,7 @@
 			return 0
 		M.do_attack_animation(src)
 		if (prob(75))
-			add_logs(M, src, "attacked", admin=0)
+			add_logs(M, src, "attacked")
 			playsound(loc, 'sound/weapons/bite.ogg', 50, 1, -1)
 			visible_message("<span class='danger'>[M.name] bites [src]!</span>", \
 					"<span class='userdanger'>[M.name] bites [src]!</span>")
@@ -253,7 +253,7 @@
 		else
 			L.do_attack_animation(src)
 			if(prob(90))
-				add_logs(L, src, "attacked", admin=0)
+				add_logs(L, src, "attacked")
 				visible_message("<span class='danger'>[L.name] bites [src]!</span>", \
 						"<span class='userdanger'>[L.name] bites [src]!</span>")
 				playsound(loc, 'sound/weapons/bite.ogg', 50, 1, -1)
