@@ -272,7 +272,7 @@
 			oldpatient = user
 
 /obj/machinery/bot/medbot/process_scan(var/mob/living/carbon/human/H)
-	if (H.stat == 2)
+	if (H.stat == 2 || ABIOTIC in H.dna.species.specflags)
 		return
 
 	if ((H == oldpatient) && (world.time < last_found + 200))
