@@ -34,7 +34,7 @@
 		if(locate(/obj/machinery/power/apc) in T)	//damn you maint APCs!!
 			continue
 
-		if(istype(C, /mob/living/carbon/human))
+		if(istype(C, /mob/living/carbon/human) && !(RADIMMUNE in C.dna.species.specflags))
 			var/mob/living/carbon/human/H = C
 			if(prob(5))
 				H.irradiate(rand(100, 160))
