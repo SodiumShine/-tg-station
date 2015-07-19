@@ -97,7 +97,7 @@ datum/objective_item/steal/plasma
 	difficulty = 3
 	excludefromjob = list("Chief Engineer","Research Director","Station Engineer","Scientist","Atmospheric Technician")
 
-/datum/objective_item/plasma/check_special_completion(var/obj/item/weapon/tank/T)
+/datum/objective_item/plasma/check_special_completion(obj/item/weapon/tank/T)
 	var/target_amount = text2num(name)
 	var/found_amount = 0
 	found_amount += T.air_contents.toxins
@@ -109,7 +109,7 @@ datum/objective_item/steal/plasma
 	targetitem = /obj/item/device/aicard
 	difficulty = 5 //beyond the impossible // SHINE changed to 5 since no actual ai
  //SHINE we dont have AI on ministation so dead ones will do
-/datum/objective_item/functionalai/check_special_completion(var/obj/item/device/aicard/C)
+/datum/objective_item/functionalai/check_special_completion(obj/item/device/aicard/C)
 	for(var/mob/living/silicon/ai/A in C)
 		if(istype(A, /mob/living/silicon/ai) && A.stat != 2) //See if any AI's are alive inside that card.
 			return 1
@@ -122,7 +122,7 @@ datum/objective_item/steal/plasma
 	excludefromjob = list("Chief Engineer")
 	altitems = list(/obj/item/weapon/photo)
 
-/datum/objective_item/blueprints/check_special_completion(var/obj/item/I)
+/datum/objective_item/blueprints/check_special_completion(obj/item/I)
 	if(istype(I, /obj/item/areaeditor/blueprints))
 		return 1
 	if(istype(I, /obj/item/weapon/photo))
@@ -137,7 +137,7 @@ datum/objective_item/steal/plasma
 	difficulty = 3
 	excludefromjob = list("Research Director","Scientist")
 
-/datum/objective_item/slime/check_special_completion(var/obj/item/slime_extract/E)
+/datum/objective_item/slime/check_special_completion(obj/item/slime_extract/E)
 	if(E.Uses > 0)
 		return 1
 	return 0
@@ -259,7 +259,7 @@ datum/objective_item/steal/sandwich
 	targetitem = /obj/item/stack/sheet/cardboard
 	difficulty = 9001
 
-/datum/objective_item/stack/check_special_completion(var/obj/item/stack/S)
+/datum/objective_item/stack/check_special_completion(obj/item/stack/S)
 	var/target_amount = text2num(name)
 	var/found_amount = 0
 

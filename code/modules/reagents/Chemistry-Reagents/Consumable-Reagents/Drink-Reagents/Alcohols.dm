@@ -22,7 +22,7 @@
 	var/boozepwr = 10 //lower numbers mean the booze will have an effect faster.
 	hydration_factor = 5 * REAGENTS_METABOLISM
 
-/datum/reagent/consumable/ethanol/on_mob_life(var/mob/living/M as mob)
+/datum/reagent/consumable/ethanol/on_mob_life(mob/living/M)
 	M.jitteriness = max(M.jitteriness-5,0)
 	if(current_cycle >= boozepwr)
 		if (!M.slurring) M.slurring = 1
@@ -35,7 +35,7 @@
 		M.adjustToxLoss(2)
 	..()
 	return
-/datum/reagent/consumable/ethanol/reaction_obj(var/obj/O, var/volume)
+/datum/reagent/consumable/ethanol/reaction_obj(obj/O, volume)
 	if(istype(O,/obj/item/weapon/paper))
 		var/obj/item/weapon/paper/paperaffected = O
 		paperaffected.clearpaper()
@@ -49,7 +49,7 @@
 			usr << "It wasn't enough..."
 	return
 
-/datum/reagent/consumable/ethanol/reaction_mob(var/mob/living/M, var/method=TOUCH, var/volume)//Splashing people with ethanol isn't quite as good as fuel.
+/datum/reagent/consumable/ethanol/reaction_mob(mob/living/M, method=TOUCH, volume)//Splashing people with ethanol isn't quite as good as fuel.
 	if(!istype(M, /mob/living))
 		return
 	if(method == TOUCH)
@@ -77,7 +77,7 @@
 	color = "#664300" // rgb: 102, 67, 0
 	boozepwr = 45
 
-/datum/reagent/consumable/ethanol/kahlua/on_mob_life(var/mob/living/M as mob)
+/datum/reagent/consumable/ethanol/kahlua/on_mob_life(mob/living/M)
 	M.dizziness = max(0,M.dizziness-5)
 	M.drowsyness = max(0,M.drowsyness-3)
 	M.sleeping = max(0,M.sleeping-2)
@@ -100,7 +100,7 @@
 	nutriment_factor = 1 * REAGENTS_METABOLISM
 	boozepwr = 35
 
-/datum/reagent/consumable/ethanol/thirteenloko/on_mob_life(var/mob/living/M as mob)
+/datum/reagent/consumable/ethanol/thirteenloko/on_mob_life(mob/living/M)
 	M.drowsyness = max(0,M.drowsyness-7)
 	M.sleeping = max(0,M.sleeping-2)
 	if (M.bodytemperature > 310)
@@ -116,7 +116,7 @@
 	color = "#0064C8" // rgb: 0, 100, 200
 	boozepwr = 35
 
-/datum/reagent/consumable/ethanol/vodka/on_mob_life(var/mob/living/M as mob)
+/datum/reagent/consumable/ethanol/vodka/on_mob_life(mob/living/M)
 	M.radiation = max(M.radiation-2,0)
 	..()
 	return
@@ -129,7 +129,7 @@
 	nutriment_factor = 2 * REAGENTS_METABOLISM
 	boozepwr = 55
 
-/datum/reagent/consumable/ethanol/bilk/on_mob_life(var/mob/living/M as mob)
+/datum/reagent/consumable/ethanol/bilk/on_mob_life(mob/living/M)
 	if(M.getBruteLoss() && prob(10))
 		M.heal_organ_damage(1,0)
 	..()
@@ -142,7 +142,7 @@
 	color = "#666340" // rgb: 102, 99, 64
 	boozepwr = 15
 
-/datum/reagent/consumable/ethanol/threemileisland/on_mob_life(var/mob/living/M as mob)
+/datum/reagent/consumable/ethanol/threemileisland/on_mob_life(mob/living/M)
 	M.druggy = max(M.druggy, 50)
 	..()
 	return
@@ -315,7 +315,7 @@
 	boozepwr = 25
 	metabolization_rate = 0.8
 
-/datum/reagent/consumable/ethanol/beepsky_smash/on_mob_life(var/mob/living/M as mob)
+/datum/reagent/consumable/ethanol/beepsky_smash/on_mob_life(mob/living/M)
 	M.Stun(1)
 	..()
 	return
@@ -390,7 +390,7 @@
 	color = "#664300" // rgb: 102, 67, 0
 	boozepwr = 15
 
-/datum/reagent/consumable/ethanol/manhattan_proj/on_mob_life(var/mob/living/M as mob)
+/datum/reagent/consumable/ethanol/manhattan_proj/on_mob_life(mob/living/M)
 	M.druggy = max(M.druggy, 30)
 	..()
 	return
@@ -409,7 +409,7 @@
 	color = "#664300" // rgb: 102, 67, 0
 	boozepwr = 25
 
-/datum/reagent/consumable/ethanol/antifreeze/on_mob_life(var/mob/living/M as mob)
+/datum/reagent/consumable/ethanol/antifreeze/on_mob_life(mob/living/M)
 	if (M.bodytemperature < 330)
 		M.bodytemperature = min(330, M.bodytemperature + (20 * TEMPERATURE_DAMAGE_COEFFICIENT)) //310 is the normal bodytemp. 310.055
 	..()
@@ -471,7 +471,7 @@
 	color = "#664300" // rgb: 102, 67, 0
 	boozepwr = 35
 
-/datum/reagent/consumable/ethanol/sbiten/on_mob_life(var/mob/living/M as mob)
+/datum/reagent/consumable/ethanol/sbiten/on_mob_life(mob/living/M)
 	if (M.bodytemperature < 360)
 		M.bodytemperature = min(360, M.bodytemperature + (50 * TEMPERATURE_DAMAGE_COEFFICIENT)) //310 is the normal bodytemp. 310.055
 	..()
@@ -506,7 +506,7 @@
 	color = "#664300" // rgb: 102, 67, 0
 	boozepwr = 55
 
-/datum/reagent/consumable/ethanol/iced_beer/on_mob_life(var/mob/living/M as mob)
+/datum/reagent/consumable/ethanol/iced_beer/on_mob_life(mob/living/M)
 	if(M.bodytemperature > 270)
 		M.bodytemperature = max(270, M.bodytemperature - (20 * TEMPERATURE_DAMAGE_COEFFICIENT)) //310 is the normal bodytemp. 310.055
 	..()
@@ -598,7 +598,7 @@
 	color = "#FFFF91" // rgb: 255, 255, 140
 	boozepwr = 25
 
-/datum/reagent/consumable/ethanol/bananahonk/on_mob_life(var/mob/living/M as mob)
+/datum/reagent/consumable/ethanol/bananahonk/on_mob_life(mob/living/M)
 	if( ( istype(M, /mob/living/carbon/human) && M.job in list("Clown") ) || istype(M, /mob/living/carbon/monkey) )
 		M.heal_organ_damage(1,1)
 	..()
@@ -612,7 +612,7 @@
 	color = "#664300" // rgb: 102, 67, 0
 	boozepwr = 15
 
-/datum/reagent/consumable/ethanol/silencer/on_mob_life(var/mob/living/M as mob)
+/datum/reagent/consumable/ethanol/silencer/on_mob_life(mob/living/M)
 	if(istype(M, /mob/living/carbon/human) && M.job in list("Mime"))
 		M.heal_organ_damage(1,1)
 	..()

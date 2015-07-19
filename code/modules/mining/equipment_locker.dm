@@ -86,7 +86,7 @@
 						else
 							break
 
-/obj/machinery/mineral/ore_redemption/attackby(var/obj/item/weapon/W, var/mob/user, params)
+/obj/machinery/mineral/ore_redemption/attackby(obj/item/weapon/W, mob/user, params)
 	if(istype(W,/obj/item/weapon/card/id))
 		var/obj/item/weapon/card/id/I = usr.get_active_hand()
 		if(istype(I) && !istype(inserted_id))
@@ -114,7 +114,7 @@
 		return 1
 	..()
 
-/obj/machinery/mineral/ore_redemption/proc/SmeltMineral(var/obj/item/weapon/ore/O)
+/obj/machinery/mineral/ore_redemption/proc/SmeltMineral(obj/item/weapon/ore/O)
 	if(O.refined_type)
 		var/obj/item/stack/sheet/M = O.refined_type
 		points += O.points * point_upgrade
@@ -122,7 +122,7 @@
 	qdel(O)//No refined type? Purge it.
 	return
 
-/obj/machinery/mineral/ore_redemption/attack_hand(user as mob)
+/obj/machinery/mineral/ore_redemption/attack_hand(mob/user)
 	if(..())
 		return
 	interact(user)
@@ -302,7 +302,7 @@
 	component_parts += new /obj/item/weapon/stock_parts/console_screen(null)
 	RefreshParts()
 
-/obj/machinery/mineral/equipment_vendor/attack_hand(user as mob)
+/obj/machinery/mineral/equipment_vendor/attack_hand(mob/user)
 	if(..())
 		return
 	interact(user)
@@ -354,7 +354,7 @@
 	updateUsrDialog()
 	return
 
-/obj/machinery/mineral/equipment_vendor/attackby(obj/item/I as obj, mob/user as mob, params)
+/obj/machinery/mineral/equipment_vendor/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/weapon/mining_voucher))
 		RedeemVoucher(I, user)
 		return
@@ -418,7 +418,7 @@
 	icon_state = "data"
 	var/points = 500
 
-/obj/item/weapon/card/mining_point_card/attackby(obj/item/I as obj, mob/user as mob, params)
+/obj/item/weapon/card/mining_point_card/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/weapon/card/id))
 		if(points)
 			var/obj/item/weapon/card/id/C = I
@@ -447,7 +447,7 @@
 	throw_range = 5
 	origin_tech = "bluespace=2"
 
-/obj/item/device/wormhole_jaunter/attack_self(mob/user as mob)
+/obj/item/device/wormhole_jaunter/attack_self(mob/user)
 	var/turf/device_turf = get_turf(user)
 	if(!device_turf||device_turf.z==2||device_turf.z>=7)
 		user << "<span class='notice'>You're having difficulties getting the [src.name] to work.</span>"
@@ -510,7 +510,7 @@
 	var/burst_time = 50
 	var/fieldlimit = 3
 
-/obj/item/weapon/resonator/proc/CreateResonance(var/target, var/creator)
+/obj/item/weapon/resonator/proc/CreateResonance(target, creator)
 	var/turf/T = get_turf(target)
 	if(locate(/obj/effect/resonance) in T)
 		return
@@ -521,7 +521,7 @@
 		spawn(burst_time)
 			fieldsactive--
 
-/obj/item/weapon/resonator/attack_self(mob/user as mob)
+/obj/item/weapon/resonator/attack_self(mob/user)
 	if(burst_time == 50)
 		burst_time = 30
 		user << "<span class='info'>You set the resonator's fields to detonate after 3 seconds.</span>"
@@ -621,7 +621,7 @@
 						  /obj/item/weapon/ore/plasma,  /obj/item/weapon/ore/uranium,    /obj/item/weapon/ore/iron,
 						  /obj/item/weapon/ore/bananium)
 
-/mob/living/simple_animal/hostile/mining_drone/attackby(obj/item/I as obj, mob/user as mob, params)
+/mob/living/simple_animal/hostile/mining_drone/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/weapon/weldingtool))
 		var/obj/item/weapon/weldingtool/W = I
 		if(W.welding && !stat)

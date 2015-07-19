@@ -1,12 +1,10 @@
-
-
-/mob/living/carbon/human/gib_animation(var/animate)
+/mob/living/carbon/human/gib_animation(animate)
 	..(animate, "gibbed-h")
 
-/mob/living/carbon/human/dust_animation(var/animate)
+/mob/living/carbon/human/dust_animation(animate)
 	..(animate, "dust-h")
 
-/mob/living/carbon/human/dust(var/animation = 1)
+/mob/living/carbon/human/dust(animation = 1)
 	if(braingib)
 		qdel(braingib)
 	..()
@@ -27,6 +25,7 @@
 	stat = DEAD
 	dizziness = 0
 	jitteriness = 0
+	heart_attack = 0
 
 	if(istype(loc, /obj/mecha))
 		var/obj/mecha/M = loc
