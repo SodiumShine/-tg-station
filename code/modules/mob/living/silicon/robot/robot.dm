@@ -15,6 +15,7 @@
 	var/obj/screen/inv1 = null
 	var/obj/screen/inv2 = null
 	var/obj/screen/inv3 = null
+	var/obj/screen/lamp_button = null
 
 	var/shown_robot_modules = 0	//Used to determine whether they have the module menu shown or not
 	var/obj/screen/robot_modules_background
@@ -60,6 +61,8 @@
 	var/tonermax = 40
 	var/jetpackoverlay = 0
 	var/braintype = "Cyborg"
+	var/lamp_max = 10 //Maximum brightness of a borg lamp. Set as a var for easy adjusting.
+	var/lamp_intensity = 0 //Luminosity of the headlamp. 0 is off. Higher settings than the minimum require power.
 
 /mob/living/silicon/robot/New(loc)
 	spark_system = new /datum/effect/effect/system/spark_spread()
@@ -131,7 +134,8 @@
 		else
 			src << "<span class='boldannounce'>Oops! Something went very wrong, your MMI was unable to receive your mind. You have been ghosted. Please make a bug report so we can fix this bug.</span>"
 			ghostize()
-			ERROR("A borg has been destroyed, but its MMI lacked a brainmob, so the mind could not be transferred. Player: [ckey].")
+			spawn(0)
+				throw EXCEPTION("Borg MMI lacked a brainmob")
 		mmi = null
 	if(connected_ai)
 		connected_ai.connected_robots -= src
@@ -230,6 +234,7 @@
 	transform_animation(animation_length)
 	notify_ai(2)
 	update_icons()
+	update_headlamp()
 	SetEmagged(emagged) // Update emag status and give/take emag modules.
 
 /mob/living/silicon/robot/proc/transform_animation(animation_length)
@@ -729,12 +734,17 @@
 /mob/living/silicon/robot/update_icons()
 
 	overlays.Cut()
-	if(stat == CONSCIOUS)
+	if(stat != DEAD && !(paralysis || stunned || weakened)) //Not dead, not stunned.
+		var/state_name = icon_state //For easy conversion and/or different names
 		switch(icon_state)
 			if("robot")
 				overlays += "eyes-standard"
+				state_name = "standard"
+			if("mediborg")
+				overlays += "eyes-mediborg"
 			if("toiletbot")
-				overlays += "eyes-toiletbot"
+				overlays += "eyes-mediborg"
+				state_name = "mediborg"
 			if("secborg")
 				overlays += "eyes-secborg"
 			if("engiborg")
@@ -747,6 +757,9 @@
 				overlays += "eyes-syndie_bloodhound"
 			else
 				overlays += "eyes"
+				state_name = "serviceborg"
+		if(lamp_intensity > 2)
+			overlays += "eyes-[state_name]-lights"
 
 	if(opened)
 		if(wiresexposed)
@@ -759,8 +772,6 @@
 	if(jetpackoverlay)
 		overlays += "minerjetpack"
 	update_fire()
-
-
 
 /mob/living/silicon/robot/proc/installed_modules()
 	if(!module)
@@ -875,16 +886,16 @@
 						if(cleaned_human.lying)
 							if(cleaned_human.head)
 								cleaned_human.head.clean_blood()
-								cleaned_human.update_inv_head(0)
+								cleaned_human.update_inv_head()
 							if(cleaned_human.wear_suit)
 								cleaned_human.wear_suit.clean_blood()
-								cleaned_human.update_inv_wear_suit(0)
+								cleaned_human.update_inv_wear_suit()
 							else if(cleaned_human.w_uniform)
 								cleaned_human.w_uniform.clean_blood()
-								cleaned_human.update_inv_w_uniform(0)
+								cleaned_human.update_inv_w_uniform()
 							if(cleaned_human.shoes)
 								cleaned_human.shoes.clean_blood()
-								cleaned_human.update_inv_shoes(0)
+								cleaned_human.update_inv_shoes()
 							cleaned_human.clean_blood()
 							cleaned_human << "<span class='danger'>[src] cleans your face!</span>"
 			return
@@ -986,6 +997,32 @@
 	set desc = "Modify the default radio setting for stating your laws."
 	set category = "Robot Commands"
 	set_autosay()
+
+/mob/living/silicon/robot/proc/control_headlamp()
+	if(stat)
+		src << "<span class='danger'>This function is currently offline.</span>"
+		return
+
+//Some sort of magical "modulo" thing which somehow increments lamp power by 2, until it hits the max and resets to 0.
+	lamp_intensity = (lamp_intensity+2) % (lamp_max+2)
+	src << "[lamp_intensity ? "Headlamp power set to Level [lamp_intensity/2]" : "Headlamp disabled."]"
+	update_headlamp()
+
+/mob/living/silicon/robot/proc/update_headlamp(var/turn_off = 0)
+	SetLuminosity(0)
+
+	if(lamp_intensity && (turn_off || stat))
+		src << "<span class='danger'>Your headlamp has been deactivated.</span>"
+		lamp_intensity = 0
+	else
+		AddLuminosity(lamp_intensity)
+
+	if(lamp_button)
+		lamp_button.icon_state = "lamp[lamp_intensity]"
+
+	update_icons()
+
+
 
 /mob/living/silicon/robot/proc/deconstruct()
 	var/turf/T = get_turf(src)
