@@ -59,9 +59,12 @@
 	var/diet = 0 //0=omnivore 1=carnivore 2=herbivore 3=cant eat except for special
 	var/list/diet_special = list() // special needs children who can only eat certain things
 	var/desc = "No description set"
-	var/open_panel = 0 // Gamoids need to be opened to repair/recharge
 	var/nohunger = 0 //By default, species must eat and drink
 	var/nothirst = 0
+
+	// Gamoid Stuff
+	var/open_panel = 0 // Gamoids need to be opened to repair/recharge
+	var/gamoid_energy = 1000 // Starting battery
 
 	// species flags. these can be found in flags.dm
 	var/list/specflags = list()
@@ -821,6 +824,20 @@
 			H.throw_alert("hydration","thirsty")
 		else
 			H.throw_alert("hydration","parched")
+
+	if (H.dna.species.gamoid_energy && (H.dna.species.id == "gamoid"))
+		var/cellcharge = H.dna.species.gamoid_energy/1000
+		switch(cellcharge)
+			if(0.75 to INFINITY)
+				H.clear_alert("charge")
+			if(0.5 to 0.75)
+				H.throw_alert("charge","lowcell",1)
+			if(0.25 to 0.5)
+				H.throw_alert("charge","lowcell",2)
+			if(0.01 to 0.25)
+				H.throw_alert("charge","lowcell",3)
+			else
+				H.throw_alert("charge","emptycell")
 
 	return 1
 
