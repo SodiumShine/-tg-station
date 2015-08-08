@@ -59,9 +59,12 @@
 	var/diet = 0 //0=omnivore 1=carnivore 2=herbivore 3=cant eat except for special
 	var/list/diet_special = list() // special needs children who can only eat certain things
 	var/desc = "No description set"
-	var/open_panel = 0 // Gamoids need to be opened to repair/recharge
 	var/nohunger = 0 //By default, species must eat and drink
 	var/nothirst = 0
+
+	// Gamoid Stuff
+	var/open_panel = 0 // Gamoids need to be opened to repair/recharge
+	var/gamoid_energy = 1000 // Starting battery
 
 	// species flags. these can be found in flags.dm
 	var/list/specflags = list()
@@ -766,6 +769,7 @@
 			switch(H.hal_screwyhud)
 				if(1)	H.healths.icon_state = "health6"
 				if(2)	H.healths.icon_state = "health7"
+				if(5)	H.healths.icon_state = "health0"
 				else
 					switch(H.health - H.staminaloss)
 						if(100 to INFINITY)		H.healths.icon_state = "health0"
@@ -796,6 +800,8 @@
 					icon_num = 4
 				if(damage > (comparison*4))
 					icon_num = 5
+				if(H.hal_screwyhud == 5)
+					icon_num = 0
 				if(icon_num)
 					H.healthdoll.overlays += image('icons/mob/screen_gen.dmi',"[L.name][icon_num]")
 
@@ -818,6 +824,20 @@
 			H.throw_alert("hydration","thirsty")
 		else
 			H.throw_alert("hydration","parched")
+
+	if (H.dna.species.gamoid_energy && (H.dna.species.id == "gamoid"))
+		var/cellcharge = H.dna.species.gamoid_energy/1000
+		switch(cellcharge)
+			if(0.75 to INFINITY)
+				H.clear_alert("charge")
+			if(0.5 to 0.75)
+				H.throw_alert("charge","lowcell",1)
+			if(0.25 to 0.5)
+				H.throw_alert("charge","lowcell",2)
+			if(0.01 to 0.25)
+				H.throw_alert("charge","lowcell",3)
+			else
+				H.throw_alert("charge","emptycell")
 
 	return 1
 
@@ -1106,7 +1126,6 @@
 						H.apply_effect(20, PARALYZE, armor)
 					if(prob(I.force + ((100 - H.health)/2)) && H != user && I.damtype == BRUTE)
 						ticker.mode.remove_revolutionary(H.mind)
-						ticker.mode.remove_gangster(H.mind)
 
 				if(bloody)	//Apply blood
 					if(H.wear_mask)
@@ -1167,7 +1186,7 @@
 	if(blocked <= 0)	return 0
 
 	var/obj/item/organ/limb/organ = null
-	if(isorgan(def_zone))
+	if(islimb(def_zone))
 		organ = def_zone
 	else
 		if(!def_zone)	def_zone = ran_zone(def_zone)

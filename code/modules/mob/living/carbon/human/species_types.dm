@@ -663,21 +663,22 @@ GAMOIDS
 				user << "<span class='warning'>You cannot reach your own powercell interface port.</span>"
 				return 1
 
-			if (src.nutrition >= NUTRITION_LEVEL_FULL || src.nutrition >= (NUTRITION_LEVEL_FULL - 10))
+//			if (src.nutrition >= NUTRITION_LEVEL_FULL || src.nutrition >= (NUTRITION_LEVEL_FULL - 10))
+			if (src.dna.species.gamoid_energy >= 1000)
 				user << "<span class='warning'>Gamoid unit already at maximum charge capacity.</span>"
 				return 1
 			if (C.charge > 0)
 				user << "<span class='notice'>You insert the powercell into [src.name].</span>"
 				var/powergap = 0
-				powergap = (NUTRITION_LEVEL_FULL - src.nutrition)
+				powergap = (1000 - src.dna.species.gamoid_energy)
 //				world << "DEBUG [powergap]"
 
-				src.nutrition += C.charge
+				src.dna.species.gamoid_energy += C.charge
 				C.charge -= powergap
 				if (C.charge < 0)
 					C.charge = 0
-				if (src.nutrition >= NUTRITION_LEVEL_FULL)
-					src.nutrition = NUTRITION_LEVEL_FULL
+				if (src.dna.species.gamoid_energy >= 1000)
+					src.dna.species.gamoid_energy = 1000
 				src << "<span class='notice'>GAMOID SYSTEM: Internal power storage has finished charging.</span>"
 				return 0
 			if (C.charge < 3)
@@ -742,10 +743,8 @@ GAMOIDS
 
 
 /datum/species/gamoid/spec_life(mob/living/carbon/human/H)
-//	if(H.viruses.len > 0) 									// SHINE robots dont get sick // SHINE have virusimmune now
-//		for(var/datum/disease/D in H.viruses)
-//			D.cure()
-//			world << "DEBUG: viruses removed from gamoid, cured [D.name]"
+	if(!H.sleeping)
+		H.dna.species.gamoid_energy -= 1
 
 //	var/powerwarned
 //	if((H.nutrition+50) > NUTRITION_LEVEL_STARVING)
@@ -753,7 +752,8 @@ GAMOIDS
 //	if((H.nutrition+50) < NUTRITION_LEVEL_STARVING && powerwarned == 0) // SHINE robots run out of power and shutdown
 //		H << "<span class='warning'>WARNING: Power levels low. System will enter Sleep Mode if power is not recharged soon.</span>"
 //		powerwarned = 1
-	if(H.nutrition < NUTRITION_LEVEL_STARVING)
+//	if(H.nutrition < NUTRITION_LEVEL_STARVING)
+	if(H.dna.species.gamoid_energy < 10)
 		if(!H.sleeping)
 			H << "<span class='warning'>GAMOID SYSTEM: Low power. Entering Emergency Sleep Mode...</span>"
 		H.sleeping = 10
