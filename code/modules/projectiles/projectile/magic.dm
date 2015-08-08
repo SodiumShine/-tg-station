@@ -25,7 +25,6 @@
 	damage = 10
 	damage_type = BRUTE
 	nodamage = 0
-	flag = "magic"
 
 /obj/item/projectile/magic/fireball/Range()
 	var/mob/living/L = locate(/mob/living) in (range(src, 1) - firer)
@@ -48,7 +47,6 @@
 	damage = 0
 	damage_type = OXY
 	nodamage = 1
-	flag = "magic"
 
 /obj/item/projectile/magic/resurrection/on_hit(mob/living/carbon/target)
 	. = ..()
@@ -72,7 +70,6 @@
 	damage = 0
 	damage_type = OXY
 	nodamage = 1
-	flag = "magic"
 	var/inner_tele_radius = 0
 	var/outer_tele_radius = 6
 
@@ -96,7 +93,6 @@
 	damage = 0
 	damage_type = OXY
 	nodamage = 1
-	flag = "magic"
 
 /obj/item/projectile/magic/door/on_hit(atom/target)
 	. = ..()
@@ -117,7 +113,6 @@
 	damage = 0
 	damage_type = BURN
 	nodamage = 1
-	flag = "magic"
 
 /obj/item/projectile/magic/change/on_hit(atom/change)
 	. = ..()
@@ -265,7 +260,6 @@
 	damage = 0
 	damage_type = BURN
 	nodamage = 1
-	flag = "magic"
 
 /obj/item/projectile/magic/animate/Bump(atom/change)
 	..()
