@@ -16,13 +16,14 @@
 	..()
 	supervisors = "Nanotrasen and Central Command"
 
+/*
 /datum/job/hop/New()
 	..()
 	supervisors = "the captain and Central Command"
 
 /datum/job/hop/get_access()
 	return get_all_accesses()
-
+*/
 // Cargo
 
 /datum/job/cargo_tech/New()
@@ -74,13 +75,21 @@
 	supervisors = "no one but yourself"
 	access = list(access_sec_doors, access_forensics_lockers, access_morgue, access_maint_tunnels, access_court, access_engine)
 	minimal_access = list(access_sec_doors, access_forensics_lockers, access_morgue, access_maint_tunnels, access_court)
+	spawn_positions = 0
+	total_positions = 0
 
 /datum/job/officer/New()
 	..()
-	total_positions = 2 // SHINE 4 to 2
-	spawn_positions = 1
+	total_positions = 0 // SHINE 4 to 2
+	spawn_positions = 0
 	access = list(access_security, access_sec_doors, access_brig, access_court)
 	minimal_access = list(access_security, access_sec_doors, access_brig, access_court)
+
+
+/datum/job/hos/New()
+	..()
+	total_positions = 1
+	spawn_positions = 1
 
 /datum/job/janitor/New() // SHINE added
 	..()
