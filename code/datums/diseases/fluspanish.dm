@@ -1,5 +1,5 @@
 /datum/disease/fluspanish
-	name = "Spanish Inquisition Flu"
+	name = "Spanish Flu"
 	max_stages = 4
 	spread_text = "Airborne"
 	cure_text = "Inacusiate"
@@ -8,8 +8,9 @@
 	agent = "Unexpected flu virion"
 	viable_mobtypes = list(/mob/living/carbon/human)
 	permeability_mod = 0.75
-	desc = "Often unexpected, the Spanish Inquisition Flu sets fire to the subject for being a heretic."
+	desc = "Spanish Flu sets fire to the subject for being a heretic."
 	severity = DANGEROUS
+	stage_prob = 3
 
 /datum/disease/fluspanish/stage_act()
 	..()
@@ -33,9 +34,8 @@
 				affected_mob << "<span class='danger'> Your skin feels like it's burning!</span>"
 		if(4)
 			if(prob(10))
-				affected_mob.on_fire = 1
-				affected_mob.AddLuminosity(3)
-				affected_mob.update_fire()
+				affected_mob.adjust_fire_stacks(5)
+				affected_mob.IgniteMob()
 				affected_mob.bodytemperature += 15
 //				affected_mob.take_organ_damage(0,5)
 	return
