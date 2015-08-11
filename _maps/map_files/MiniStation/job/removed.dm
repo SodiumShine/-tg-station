@@ -1,5 +1,8 @@
 // Removed Jobs, setting config_check to 0 will stop them from being initialised.
 
+/datum/job/hop/config_check()
+	return 0
+
 /datum/job/chef/config_check()
 	return 0
 
@@ -45,10 +48,16 @@
 /datum/job/roboticist/config_check()
 	return 0
 
-/datum/job/hos/config_check()
-	return 0
+///datum/job/hos/config_check()
+//	return 0
 
 /datum/job/warden/config_check()
+	return 0
+
+/datum/job/officer/config_check()
+	return 0
+
+/datum/job/detective/config_check()
 	return 0
 
 /datum/job/cyborg/config_check()
