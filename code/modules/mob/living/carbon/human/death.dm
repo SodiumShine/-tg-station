@@ -5,8 +5,6 @@
 	..(animate, "dust-h")
 
 /mob/living/carbon/human/dust(animation = 1)
-	if(braingib)
-		qdel(braingib)
 	..()
 
 /mob/living/carbon/human/spawn_gibs()

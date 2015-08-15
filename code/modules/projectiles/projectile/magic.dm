@@ -133,10 +133,6 @@
 				if(Robot.mmi)
 					qdel(Robot.mmi)
 				Robot.notify_ai(1)
-			else if(istype(M, /mob/living/carbon/human))
-				var/mob/living/carbon/human/Human = M
-				if(Human.braingib)
-					qdel(Human.braingib)
 			else
 				for(var/obj/item/W in M)
 					if(istype(W, /obj/item/weapon/implant))	//TODO: Carn. give implants a dropped() or something
